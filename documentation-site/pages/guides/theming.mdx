@@ -5,18 +5,24 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import { Notification } from 'baseui/notification';
-import Layout from '../../components/layout';
-import Example from '../../components/example';
-import IconOverrides from 'examples/theme/icon-overrides.tsx';
-import { Timing, Easing } from '../../components/theming/animations.js';
-import { Border, Radius } from '../../components/theming/borders.js';
-import { Breakpoint } from '../../components/theming/breakpoints.js';
-import { Color } from '../../components/theming/colors.js';
-import { Grid } from '../../components/theming/grid.js';
-import { Lighting } from '../../components/theming/lighting.js';
-import { Sizing } from '../../components/theming/sizing.js';
-import { Type } from '../../components/theming/typography.js';
+import { Notification } from "baseui/notification";
+import Layout from "../../components/layout";
+import Example from "../../components/example";
+import IconOverrides from "examples/theme/icon-overrides.tsx";
+import {
+  Timing,
+  Easing,
+} from "../../components/theming/animations.jsx";
+import {
+  Border,
+  Radius,
+} from "../../components/theming/borders.jsx";
+import { Breakpoint } from "../../components/theming/breakpoints.jsx";
+import { Color } from "../../components/theming/colors.jsx";
+import { Grid } from "../../components/theming/grid.jsx";
+import { Lighting } from "../../components/theming/lighting.jsx";
+import { Sizing } from "../../components/theming/sizing.jsx";
+import { Type } from "../../components/theming/typography.jsx";
 
 export default Layout;
 
@@ -61,14 +67,16 @@ The theme object itself is nothing special—just an object with specific proper
   overrides={{
     Body: {
       style: {
-        width: '100%',
+        width: "100%",
       },
     },
   }}
 >
-  Make sure to reference the Flow/TypesScript definitions when customizing your theme object. Base
-  Web components assume certain properties are on the theme object at run-time. A missing property
-  on the theme object can lead to a runtime error.
+  Make sure to reference the Flow/TypesScript definitions
+  when customizing your theme object. Base Web components
+  assume certain properties are on the theme object at
+  run-time. A missing property on the theme object can lead
+  to a runtime error.
 </Notification>
 
 ### Default themes
@@ -76,12 +84,14 @@ The theme object itself is nothing special—just an object with specific proper
 We provide 2 themes out of the box, `LightTheme` and `DarkTheme`, which style components in light and dark variants. If you don’t want to customize Base Web, you can use either of these ready-to-use themes as is:
 
 ```js
-import React from 'react';
-import { LightTheme, ThemeProvider } from 'baseui';
+import React from "react";
+import { LightTheme, ThemeProvider } from "baseui";
 
 export default function App() {
   return (
-    <ThemeProvider theme={LightTheme}>I can use themed Base Web components here!</ThemeProvider>
+    <ThemeProvider theme={LightTheme}>
+      I can use themed Base Web components here!
+    </ThemeProvider>
   );
 }
 ```
@@ -92,20 +102,32 @@ If you want to allow for toggling between the 2 themes at
 , you need to allocate some state for determining which theme is passed to `ThemeProvider`.
 
 ```js
-import React from 'react';
-import { LightTheme, DarkTheme, ThemeProvider } from 'baseui';
-import { Button } from 'baseui/button';
+import React from "react";
+import {
+  LightTheme,
+  DarkTheme,
+  ThemeProvider,
+} from "baseui";
+import { Button } from "baseui/button";
 
 const THEME = {
-  light: 'light',
-  dark: 'dark',
+  light: "light",
+  dark: "dark",
 };
 
 export default function App() {
   const [theme, setTheme] = React.useState(THEME.light);
   return (
-    <ThemeProvider theme={theme === THEME.light ? LightTheme : DarkTheme}>
-      <Button onClick={() => setTheme(theme === THEME.light ? THEME.dark : THEME.light)}>
+    <ThemeProvider
+      theme={theme === THEME.light ? LightTheme : DarkTheme}
+    >
+      <Button
+        onClick={() =>
+          setTheme(
+            theme === THEME.light ? THEME.dark : THEME.light
+          )
+        }
+      >
         Toggle light/dark theme!
       </Button>
     </ThemeProvider>
@@ -118,17 +140,19 @@ export default function App() {
 While `ThemeProvider` will provide your theme object to any descendent Base Web components, we recommend using `BaseProvider` at the root of your application. `BaseProvider` combines the functionality of the `ThemeProvider` with our [`LayersManager`](/components/layer#layersmanager) utility. You should only use `ThemeProvider` directly if you need to provide a separate theme to a subtree of your application.
 
 ```js
-import React from 'react';
-import { BaseProvider, LightTheme } from 'baseui';
-import { Provider as StyletronProvider } from 'styletron-react';
-import { Client as Styletron } from 'styletron-engine-atomic';
+import React from "react";
+import { BaseProvider, LightTheme } from "baseui";
+import { Provider as StyletronProvider } from "styletron-react";
+import { Client as Styletron } from "styletron-engine-atomic";
 
 const engine = new Styletron();
 
 export default function App() {
   return (
     <StyletronProvider value={engine}>
-      <BaseProvider theme={LightTheme}>I can use themed Base Web stuff here!</BaseProvider>
+      <BaseProvider theme={LightTheme}>
+        I can use themed Base Web stuff here!
+      </BaseProvider>
     </StyletronProvider>
   );
 }
@@ -159,18 +183,18 @@ Our theme object has a lot of properties. Most of these properties are assigned 
 These are passed as the first argument to `createTheme`.
 
 ```js
-import { createTheme } from 'baseui';
+import { createTheme } from "baseui";
 
 const primitives = {
-  accent: '#F127E4', // hot pink
-  accent50: '#FDEDFC',
-  accent100: '#FCD3F9',
-  accent200: '#F89FF3',
-  accent300: '#F45AEA',
-  accent400: '#F127E4',
-  accent500: '#B71DAD',
-  accent600: '#901788',
-  accent700: '#600F5B',
+  accent: "#F127E4", // hot pink
+  accent50: "#FDEDFC",
+  accent100: "#FCD3F9",
+  accent200: "#F89FF3",
+  accent300: "#F45AEA",
+  accent400: "#F127E4",
+  accent500: "#B71DAD",
+  accent600: "#901788",
+  accent700: "#600F5B",
 };
 
 const theme = createTheme(primitives);
@@ -189,18 +213,18 @@ The second parameter for createTheme is an `overrides` object.
 The `overrides` object will be deep-merged with the initial result of mapping `primitives` to all the theme properties. `overrides` is just a convenient shortcut for deep-merging assignments onto your theme object.
 
 ```js
-import { createTheme } from 'baseui';
+import { createTheme } from "baseui";
 
 const primitives = {
-  accent: '#F127E4', // hot pink
-  accent50: '#FDEDFC',
-  accent100: '#FCD3F9',
-  accent200: '#F89FF3',
-  accent300: '#F45AEA',
-  accent400: '#F127E4',
-  accent500: '#B71DAD',
-  accent600: '#901788',
-  accent700: '#600F5B',
+  accent: "#F127E4", // hot pink
+  accent50: "#FDEDFC",
+  accent100: "#FCD3F9",
+  accent200: "#F89FF3",
+  accent300: "#F45AEA",
+  accent400: "#F127E4",
+  accent500: "#B71DAD",
+  accent600: "#901788",
+  accent700: "#600F5B",
 };
 
 const overrides = {
@@ -226,18 +250,18 @@ In this example, we first reassign the accent color on our theme primitives to h
 One of the main reasons to have a dynamic theme is to toggle your app between light and dark modes. `createTheme` will by default map `primitives` to theme colors in a way suited to light themes. If you want to create a custom theme on top of our dark theme, you can instead use the `createDarkTheme` function.
 
 ```js
-import { createDarkTheme } from 'baseui';
+import { createDarkTheme } from "baseui";
 
 const primitives = {
-  accent: '#F127E4', // hot pink
-  accent50: '#FDEDFC',
-  accent100: '#FCD3F9',
-  accent200: '#F89FF3',
-  accent300: '#F45AEA',
-  accent400: '#F127E4',
-  accent500: '#B71DAD',
-  accent600: '#901788',
-  accent700: '#600F5B',
+  accent: "#F127E4", // hot pink
+  accent50: "#FDEDFC",
+  accent100: "#FCD3F9",
+  accent200: "#F89FF3",
+  accent300: "#F45AEA",
+  accent400: "#F127E4",
+  accent500: "#B71DAD",
+  accent600: "#901788",
+  accent700: "#600F5B",
 };
 
 const darkTheme = createDarkTheme(primitives);
@@ -246,18 +270,18 @@ const darkTheme = createDarkTheme(primitives);
 This works exactly the same as `createTheme`, but `createDarkTheme` will map all your `primitives` to theme properties in a way that’s better suited to dark themes. Note: `createDarkTheme` also accepts an optional `overrides` object as the second argument.
 
 ```js
-import { createDarkTheme } from 'baseui';
+import { createDarkTheme } from "baseui";
 
 const primitives = {
-  accent: '#F127E4', // hot pink
-  accent50: '#FDEDFC',
-  accent100: '#FCD3F9',
-  accent200: '#F89FF3',
-  accent300: '#F45AEA',
-  accent400: '#F127E4',
-  accent500: '#B71DAD',
-  accent600: '#901788',
-  accent700: '#600F5B',
+  accent: "#F127E4", // hot pink
+  accent50: "#FDEDFC",
+  accent100: "#FCD3F9",
+  accent200: "#F89FF3",
+  accent300: "#F45AEA",
+  accent400: "#F127E4",
+  accent500: "#B71DAD",
+  accent600: "#901788",
+  accent700: "#600F5B",
 };
 
 const overrides = {
@@ -285,10 +309,10 @@ If you aren't sure why this change in mapping is necessary, try creating a dark 
 The `primitives` object has an optional property, `primaryFontFamily`, which allows you to set a custom font family string for typography components.
 
 ```js
-import { createTheme } from 'baseui';
+import { createTheme } from "baseui";
 
 const primitives = {
-  primaryFontFamily: 'Verdana',
+  primaryFontFamily: "Verdana",
 };
 
 const theme = createTheme(primitives);
@@ -299,25 +323,25 @@ In this example, we assign `primaryFontFamily` to the vastly underrated `Verdana
 But what if we wanted to use `Georgia` for Display typography? For this purpose, you would need to use `overrides`.
 
 ```js
-import { createTheme } from 'baseui';
+import { createTheme } from "baseui";
 
 const primitives = {
-  primaryFontFamily: 'Verdana',
+  primaryFontFamily: "Verdana",
 };
 
 const overrides = {
   typography: {
     DisplayLarge: {
-      fontFamily: 'Georgia',
+      fontFamily: "Georgia",
     },
     DisplayMedium: {
-      fontFamily: 'Georgia',
+      fontFamily: "Georgia",
     },
     DisplaySmall: {
-      fontFamily: 'Georgia',
+      fontFamily: "Georgia",
     },
     DisplayXSmall: {
-      fontFamily: 'Georgia',
+      fontFamily: "Georgia",
     },
   },
 };
@@ -356,7 +380,10 @@ The example below overrides the `ChevronLeft` icon with the `ArrowLeft` icon, ma
 
 All the icons that can be found on the Icon component page can be overridden using this technique.
 
-<Example title="Pagination icon overrides" path="theme/icon-overrides.tsx">
+<Example
+  title="Pagination icon overrides"
+  path="theme/icon-overrides.tsx"
+>
   <IconOverrides />
 </Example>
 
@@ -367,21 +394,19 @@ All the icons that can be found on the Icon component page can be overridden usi
   overrides={{
     Body: {
       style: {
-        width: '100%',
+        width: "100%",
       },
     },
   }}
 >
-  Extending the theme is an advanced pattern. See if you can configure the default theme first
-  before extending it.
+  Extending the theme is an advanced pattern. See if you can
+  configure the default theme first before extending it.
 </Notification>
 
 There may be a scenario where you want to extend our default theme. We do not recommend removing theme properties, as this may lead to a runtime error when a component references a missing property. _Adding_ new properties, though is perfectly acceptable.
 
 ```js
-// @flow
-
-import type { ThemeT } from 'baseui';
+import type { ThemeT } from "baseui";
 
 const CustomThemeT = ThemeT & { customColor: string };
 ```
@@ -389,19 +414,23 @@ const CustomThemeT = ThemeT & { customColor: string };
 You will notice, however, that you can't use `createTheme` with your `CustomThemeT`. If you want to use `createTheme`, we recommend that you first create a normal theme with `createTheme` and then _extend_ it with your custom properties.
 
 ```js
-import { createTheme } from 'baseui';
-import type { ThemeT } from 'baseui';
+import { createTheme } from "baseui";
+import type { ThemeT } from "baseui";
 
 const CustomThemeT = ThemeT & { customColor: string };
 
 const theme = createTheme(/*primitives, overrides*/);
 const customTheme: CustomThemeT = {
   ...theme,
-  customColor: 'pink',
+  customColor: "pink",
 };
 
 function App() {
-  return <BaseProvider theme={customTheme}>{/* ... */}</BaseProvider>;
+  return (
+    <BaseProvider theme={customTheme}>
+      {/* ... */}
+    </BaseProvider>
+  );
 }
 ```
 
@@ -426,11 +455,15 @@ export const themedUseStyletron = createThemedUseStyletron<CustomThemeT>();
 You can import these custom themed utilities wherever you want access to your custom theme.
 
 ```js
-import { themedUseStyletron as useStyletron } from 'path/to/my-style-utils.js';
+import { themedUseStyletron as useStyletron } from "path/to/my-style-utils.jsx";
 
 function Foo() {
   const [css, theme] = useStyletron();
-  return <div className={css({ color: theme.customColor })}>Okay</div>;
+  return (
+    <div className={css({ color: theme.customColor })}>
+      Okay
+    </div>
+  );
 }
 ```
 
@@ -451,14 +484,17 @@ There are 2 supported methods for styling Base Web components: `withStyle` and `
 Whenever Base Web exports a [Styletron](https://www.styletron.org/) styled component, we prefix that component with `Styled`. You can use `withStyle` to extend a styled component with your custom styles:
 
 ```js
-import { withStyle } from 'baseui';
-import { StyledBaseButton } from 'baseui/button';
+import { withStyle } from "baseui";
+import { StyledBaseButton } from "baseui/button";
 
-const MyButton = withStyle(StyledBaseButton, ({ $theme }) => {
-  return {
-    color: $theme.colors.accent,
-  };
-});
+const MyButton = withStyle(
+  StyledBaseButton,
+  ({ $theme }) => {
+    return {
+      color: $theme.colors.accent,
+    };
+  }
+);
 ```
 
 Notice how the second parameter is a function that is passed an object with a `$theme` property. This property provides a reference to your theme object.
@@ -468,7 +504,7 @@ Notice how the second parameter is a function that is passed an object with a `$
 For in-depth information on `overrides`, check out the [official documentation](/guides/understanding-overrides). As it relates to theming, any `overrides` `style` function will be passed a reference to the nearest ancestor theme object to make consistent styling easy.
 
 ```js
-import { Button } from 'baseui/button';
+import { Button } from "baseui/button";
 
 function App() {
   return (
@@ -494,7 +530,7 @@ Theming and extending the built-in Base Web components will get you a long way, 
 #### `useStyletron`
 
 ```js
-import { useStyletron } from 'baseui';
+import { useStyletron } from "baseui";
 
 function App() {
   const [css, theme] = useStyletron();
@@ -515,9 +551,9 @@ function App() {
 #### `styled`
 
 ```js
-import { styled } from 'baseui';
+import { styled } from "baseui";
 
-const Title = styled('div', ({ $theme }) => {
+const Title = styled("div", ({ $theme }) => {
   return {
     color: $theme.colors.accent,
   };
@@ -533,7 +569,7 @@ function App() {
 #### `Block`
 
 ```js
-import { Block } from 'baseui/block';
+import { Block } from "baseui/block";
 
 function App() {
   return <Block color="accent" />;

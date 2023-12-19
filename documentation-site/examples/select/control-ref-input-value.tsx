@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Select, Value, ImperativeMethods} from 'baseui/select';

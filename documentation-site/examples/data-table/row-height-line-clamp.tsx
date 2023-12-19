@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 
 import {
@@ -286,7 +284,7 @@ const rows = [
     roi: 2.1,
     imdb: 5.0,
   },
-].map(r => ({id: r.title, data: r}));
+].map((r) => ({id: r.title, data: r}));
 
 export default function Example() {
   return (

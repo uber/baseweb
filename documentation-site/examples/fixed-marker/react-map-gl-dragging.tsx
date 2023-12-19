@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {FixedMarker} from 'baseui/map-marker';
 import ReactMapGL, {Marker} from 'react-map-gl';
@@ -23,7 +22,7 @@ export default function Example() {
     setDragging(true);
   }, []);
 
-  const onMarkerDragEnd = React.useCallback(event => {
+  const onMarkerDragEnd = React.useCallback((event) => {
     setPosition({
       latitude: event.lngLat[1],
       longitude: event.lngLat[0],

@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {toaster, ToasterContainer} from 'baseui/toast';
 import {Button, SIZE} from 'baseui/button';

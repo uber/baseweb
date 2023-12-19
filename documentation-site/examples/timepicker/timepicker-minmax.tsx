@@ -1,4 +1,3 @@
-// @flow
 import React, {useState} from 'react';
 import {useStyletron} from 'baseui';
 import {TimePicker} from 'baseui/timepicker';
