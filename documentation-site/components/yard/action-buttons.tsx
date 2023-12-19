@@ -17,9 +17,6 @@ import {
 import { Button, KIND, SIZE } from "baseui/button";
 import { ButtonGroup } from "baseui/button-group";
 
-// @ts-ignore
-import { deploy } from "../../components/code-sandboxer.jsx";
-
 const ActionButtons: React.FC<{
   formatCode: () => void;
   copyCode: () => void;
@@ -30,12 +27,6 @@ const ActionButtons: React.FC<{
   importsConfig: TImportsConfig;
 }> = ({ formatCode, copyCode, reset, code, componentName, importsConfig }) => {
   const [, theme] = useStyletron();
-  async function handleOpenExample() {
-    const url = await deploy(`Base Web - ${componentName}`, code);
-    if (url) {
-      window.open(url, "_blank");
-    }
-  }
 
   return (
     <React.Fragment>
@@ -67,13 +58,6 @@ const ActionButtons: React.FC<{
         >
           <MdRotateRight style={{ paddingRight: theme.sizing.scale100 }} />{" "}
           Reset
-        </Button>
-        <Button
-          kind={KIND.secondary}
-          size={SIZE.compact}
-          onClick={handleOpenExample}
-        >
-          Try example on CodeSandbox
         </Button>
         <Button
           overrides={{

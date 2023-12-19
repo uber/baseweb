@@ -17,7 +17,6 @@ import Code from "./code";
 import CodeIcon from "./code-icon";
 import { trackEvent } from "../helpers/ga";
 import { H3 } from "./markdown-elements";
-import { deploy } from "../components/code-sandboxer.jsx";
 
 function Source(props) {
   if (!props.children || typeof props.children !== "string") return null;
@@ -36,25 +35,12 @@ function Example(props) {
       const tsCode = await import(
         /* webpackMode: "eager" */ `!!raw-loader!../examples/${path.replace(
           ".js",
-          ".tsx",
+          ".tsx"
         )}`
       );
       setCode(tsCode.default);
     })();
   }, []);
-
-  async function handleOpenExample() {
-    if (code) {
-      const url = await deploy(
-        `Base Web - ${title || "Example"}`,
-        code,
-        additionalPackages,
-      );
-      if (url) {
-        window.open(url, "_blank");
-      }
-    }
-  }
 
   return (
     <Card
@@ -100,13 +86,6 @@ function Example(props) {
           <Block>
             <Source>{code}</Source>
           </Block>
-          <Button
-            kind={KIND.secondary}
-            size={SIZE.compact}
-            onClick={handleOpenExample}
-          >
-            Try example on CodeSandbox
-          </Button>
         </React.Fragment>
       )}
     </Card>
