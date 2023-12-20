@@ -1,5 +1,18 @@
 const posts = [
   {
+    path: "/blog/open-source-engagement",
+    author: "Vojtech Miksu",
+    authorLink: "https://github.com/tajo",
+    title: "Open Source Engagement and Future",
+    tagline: "Let's clarify the future of Base Web and what it means for OSS",
+    date: "19 December 2023",
+    coverImage:
+      "https://user-images.githubusercontent.com/5317799/160484160-c3de4f21-c4bd-4978-b39a-7c5c677b449f.png",
+    coverImageWidth: 960,
+    coverImageHeight: 575,
+    keyWords: ["Base Web", "Design System", "React", "Changelog"],
+  },
+  {
     path: "/blog/base-web-v12",
     author: "Chase Starr",
     authorLink: "https://github.com/chasestarr",

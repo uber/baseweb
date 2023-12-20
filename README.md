@@ -6,7 +6,7 @@
 
 <h1 align="center">Base Web React Components</h1>
 
-[![Build status](https://badge.buildkite.com/92a7500cd98f619621c4801833d8b358c2fd79efc9b98f1b98.svg?branch=master)](https://buildkite.com/uberopensource/baseui)
+⚠️ **Maintenance status**. We are limiting our engagement with this repository while still mirroring our internal development. For more details, please check [Open Source Engagement and Future](https://baseweb.design/blog/open-source-engagement/). If you are an Uber developer and looking to open an issue, use this [link](https://t.uber.com/ui-platform-bug-2) or [contribute](https://p.uber.com/base-code).
 
 **Base** is a design system comprised of modern, responsive, living components. Base Web is the React implementation of Base.
 
@@ -31,21 +31,21 @@ npm install baseui styletron-react styletron-engine-monolithic
 ```
 
 ```javascript
-import {Client as Styletron} from 'styletron-engine-monolithic';
-import {Provider as StyletronProvider} from 'styletron-react';
-import {LightTheme, BaseProvider, styled} from 'baseui';
-import {StatefulInput} from 'baseui/input';
+import { Client as Styletron } from "styletron-engine-monolithic";
+import { Provider as StyletronProvider } from "styletron-react";
+import { LightTheme, BaseProvider, styled } from "baseui";
+import { StatefulInput } from "baseui/input";
 
 const engine = new Styletron();
 
-const Centered = styled('div', {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '100%',
+const Centered = styled("div", {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "100%",
 });
 
-export default function Hello () {
+export default function Hello() {
   return (
     <StyletronProvider value={engine}>
       <BaseProvider theme={LightTheme}>
@@ -62,4 +62,4 @@ Both Base Web and Styletron come with [TypeScript](https://www.typescriptlang.or
 
 ## Docs
 
-To read the documentation, please visit [baseweb.design](https://baseweb.design).
+To read the documentation, please visit [baseweb.design](https://baseweb.design). To preview more component examples, please visit [baseweb.design/ladle](https://baseweb.design/ladle).

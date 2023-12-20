@@ -1,0 +1,25 @@
+import Layout from "../../../components/layout";
+import { Meta } from "../../../components/blog";
+import metadata from "./metadata.json";
+
+export default Layout;
+
+<Meta data={metadata} />
+
+Our involvement with the open source community has been somewhat limited recently, and we apologize for this. The reality is, we view Base Web as a rather mature project, and our focus has shifted to other areas. Nevertheless, we continue to maintain this library by updating dependencies, addressing bugs, and introducing new features and components. This commitment to Base Web, a foundational element of all Uber's web applications, will persist for years to come.
+
+However, our activity in the open source software community will be less than before. We're no longer actively reviewing and merging pull requests or participating in the issues section. To streamline development, we've integrated Base Web's source code into our internal monorepo, focusing entirely on our internal customers and their specific needs.
+
+# New Versions
+
+We still mirror Base Web's source code in this public repository for visibility and use. Internally, we don't adhere to a versioning system as everyone uses the latest code, so we don't track breaking changes. Moving forward, we plan to publish all main commits of baseui as versions like 0.0.0-next-d12da36, where d12da36 is the commit SHA. This approach allows access to the latest Base Web version, though be aware that breaking changes may not be announced or documented. Occasionally, we might release a new stable major version.
+
+# Community Support
+
+Since we no longer monitor it, we have closed the issue section. However, you're welcome to submit a pull request. If it's highly beneficial internally, we may consider merging it, but be advised that integrating public PRs into our internal monorepo is a substantial effort and may take time.
+
+For ongoing support, there's a large [Base Web Slack channel](https://join.slack.com/t/baseui/shared_invite/zt-5f1s4d10-1D2uywAECAG50m64PTH9cw) with over 1300 members. We encourage you to join and pose your questions there.
+
+# Future
+
+We remain as enthusiastic about Base Web as we were at its inception. It boasts a [unique customization system](/guides/understanding-overrides) that has proven extremely valuable for our internal clients. We continue to develop innovative tools surrounding it, such as employing generative AI to scaffold new UIs using Base Web components. We hope to share more details on this exciting development soon. However, for now, the development of Base Web will be driven by our internal needs, and we'll continue to share our progress with you.
