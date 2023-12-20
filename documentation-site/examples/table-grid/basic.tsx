@@ -28,7 +28,7 @@ export default function Example() {
           <StyledHeadCell>Column 2</StyledHeadCell>
           <StyledHeadCell>Column 3</StyledHeadCell>
         </div>
-        {data.map(row => {
+        {data.map((row) => {
           return (
             <div role="row" className={css({display: 'contents'})}>
               <StyledBodyCell>{row[0]}</StyledBodyCell>

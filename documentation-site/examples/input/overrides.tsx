@@ -16,10 +16,10 @@ export default function Example() {
             const border = $disabled
               ? colors.borderTransparent
               : $error
-              ? colors.borderNegative
-              : $isFocused
-              ? 'darkseagreen'
-              : colors.borderOpaque;
+                ? colors.borderNegative
+                : $isFocused
+                  ? 'darkseagreen'
+                  : colors.borderOpaque;
             return {
               borderLeftColor: border,
               borderRightColor: border,
@@ -29,10 +29,10 @@ export default function Example() {
                 $disabled
                   ? 'transparent'
                   : $error
-                  ? colors.shadowError
-                  : $isFocused
-                  ? 'lightseagreen'
-                  : 'transparent'
+                    ? colors.shadowError
+                    : $isFocused
+                      ? 'lightseagreen'
+                      : 'transparent'
               }`,
             };
           },

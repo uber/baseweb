@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {ButtonDock} from 'baseui/button-dock';
 import {Button, KIND} from 'baseui/button';

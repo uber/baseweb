@@ -5,17 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { TimezonePicker } from 'baseui/timezonepicker';
-import { SIZE } from 'baseui/input';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
-import inputConfig from './input';
-import selectConfig from './select';
+import { TimezonePicker } from "baseui/timezonepicker";
+import { SIZE } from "baseui/input";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
+import inputConfig from "./input";
+import selectConfig from "./select";
 
 const TimezonepickerConfig: TConfig = {
-  componentName: 'TimezonePicker',
+  componentName: "TimezonePicker",
   imports: {
-    'baseui/timezonepicker': { named: ['TimezonePicker'] },
+    "baseui/timezonepicker": { named: ["TimezonePicker"] },
   },
   scope: {
     TimezonePicker,
@@ -24,19 +24,19 @@ const TimezonepickerConfig: TConfig = {
   theme: selectConfig.theme,
   props: {
     value: {
-      value: 'Europe/London',
+      value: "Europe/London",
       type: PropTypes.String,
       description:
-        'Optional value that can be provided to fully control the component. If not provided, TimezonePicker will manage state internally.',
+        "Optional value that can be provided to fully control the component. If not provided, TimezonePicker will manage state internally.",
       stateful: true,
     },
     onChange: {
-      value: '({ id }) => setValue(id)',
+      value: "({ id }) => setValue(id)",
       type: PropTypes.Function,
-      description: 'Callback for when the timezone selection changes.',
+      description: "Callback for when the timezone selection changes.",
       propHook: {
-        what: 'id',
-        into: 'value',
+        what: "id",
+        into: "value",
       },
     },
     positive: inputConfig.props.positive,
@@ -46,7 +46,7 @@ const TimezonepickerConfig: TConfig = {
       value: new Date().toISOString(),
       type: PropTypes.Date,
       description:
-        'If not provided, defaults to new Date(). Important to note that the timezone picker only displays options related to the provided date. Take Pacific Time for example. On March 9th, Pacific Time equates to the more specific Pacific Standard Time. On March 10th, it operates on Pacific Daylight Time. The timezone picker will never display PST and PDT together. If you need exact specificity, provide a date. Otherwise it will default to the relevant timezone at render.',
+        "If not provided, defaults to new Date(). Important to note that the timezone picker only displays options related to the provided date. Take Pacific Time for example. On March 9th, Pacific Time equates to the more specific Pacific Standard Time. On March 10th, it operates on Pacific Daylight Time. The timezone picker will never display PST and PDT together. If you need exact specificity, provide a date. Otherwise it will default to the relevant timezone at render.",
     },
     mapLabels: {
       value: undefined,
@@ -58,7 +58,7 @@ const TimezonepickerConfig: TConfig = {
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
         names: [selectConfig],
         sharedProps: {},

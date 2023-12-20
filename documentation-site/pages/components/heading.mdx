@@ -1,20 +1,13 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Exports from "../../components/exports";
+import Layout from "../../components/layout";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import * as HeadingExports from "baseui/heading";
 
-import Example from '../../components/example';
-import Exports from '../../components/exports';
-import Layout from '../../components/layout';
+import Basic from "examples/heading/basic.tsx";
+import DecoupleStyles from "examples/heading/decouple-styles.tsx";
 
-import * as HeadingExports from 'baseui/heading';
-
-import Basic from 'examples/heading/basic.tsx';
-import DecoupleStyles from 'examples/heading/decouple-styles.tsx';
-
-import { Heading, HeadingLevel } from 'baseui/heading';
+import { Heading, HeadingLevel } from "baseui/heading";
 
 export default Layout;
 
@@ -36,8 +29,15 @@ It is also possible to **decouple styles from the underlying `h1`-`h6` DOM eleme
 
 Ideally, the user will use the default styles but sometimes it might make sense to set a fixed style no matter in what context the component was placed. You can decouple styles from levels through the `styleLevel` prop. However, **the proper `h1, h2 ... h6` hierarchy always stays in place**.
 
-<Example title="Decouple and fix heading styles" path="heading/decouple-styles.tsx">
+<Example
+  title="Decouple and fix heading styles"
+  path="heading/decouple-styles.tsx"
+>
   <DecoupleStyles />
 </Example>
 
-<Exports component={HeadingExports} title="Heading exports" path="baseui/heading" />
+<Exports
+  component={HeadingExports}
+  title="Heading exports"
+  path="baseui/heading"
+/>

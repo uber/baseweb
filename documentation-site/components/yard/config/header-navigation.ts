@@ -10,23 +10,28 @@ import {
   ALIGN,
   StyledNavigationItem,
   StyledNavigationList,
-} from 'baseui/header-navigation';
-import { StyledLink } from 'baseui/link';
-import { Button } from 'baseui/button';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+} from "baseui/header-navigation";
+import { StyledLink } from "baseui/link";
+import { Button } from "baseui/button";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const HeaderNavigationConfig: TConfig = {
-  componentName: 'HeaderNavigation',
+  componentName: "HeaderNavigation",
   imports: {
-    'baseui/header-navigation': {
-      named: ['HeaderNavigation', 'ALIGN', 'StyledNavigationList', 'StyledNavigationItem'],
+    "baseui/header-navigation": {
+      named: [
+        "HeaderNavigation",
+        "ALIGN",
+        "StyledNavigationList",
+        "StyledNavigationItem",
+      ],
     },
-    'baseui/link': {
-      named: ['StyledLink'],
+    "baseui/link": {
+      named: ["StyledLink"],
     },
-    'baseui/button': {
-      named: ['Button'],
+    "baseui/button": {
+      named: ["Button"],
     },
   },
   scope: {
@@ -59,14 +64,14 @@ const HeaderNavigationConfig: TConfig = {
 </StyledNavigationList>
 `,
       type: PropTypes.ReactNode,
-      description: 'Header navigation content.',
+      description: "Header navigation content.",
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root'],
+        names: ["Root"],
         sharedProps: {},
       },
     },

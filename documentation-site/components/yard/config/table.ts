@@ -5,32 +5,32 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { Table } from 'baseui/table';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { Table } from "baseui/table";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const TableConfig: TConfig = {
-  componentName: 'Table',
+  componentName: "Table",
   imports: {
-    'baseui/table': {
-      named: ['Table'],
+    "baseui/table": {
+      named: ["Table"],
     },
   },
   scope: { Table },
   theme: [
-    'tableHeadBackgroundColor',
-    'tableBackground',
-    'tableStripedBackground',
-    'tableFilter',
-    'tableFilterHeading',
-    'tableFilterBackground',
-    'tableFilterFooterBackground',
+    "tableHeadBackgroundColor",
+    "tableBackground",
+    "tableStripedBackground",
+    "tableFilter",
+    "tableFilterHeading",
+    "tableFilterBackground",
+    "tableFilterFooterBackground",
   ],
   props: {
     columns: {
       value: `['Name', 'Age', 'Address']`,
       type: PropTypes.Array,
-      description: 'Table columns. Data passed to each header cell.',
+      description: "Table columns. Data passed to each header cell.",
     },
     data: {
       value: `[
@@ -38,28 +38,28 @@ const TableConfig: TConfig = {
   ['Jane Smith', 32, '100 Market st. San Francisco, California'],
 ]`,
       type: PropTypes.Array,
-      description: 'Table rows. Data passed to each row and cell',
+      description: "Table rows. Data passed to each row and cell",
     },
-    'aria-label': {
+    "aria-label": {
       value: undefined,
       type: PropTypes.String,
-      description: 'Aria-label attribute',
+      description: "Aria-label attribute",
       hidden: true,
     },
     horizontalScrollWidth: {
       value: undefined,
       type: PropTypes.String,
-      description: 'Table width fills this provided value.',
+      description: "Table width fills this provided value.",
     },
     isLoading: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Lets you specify loading state.',
+      description: "Lets you specify loading state.",
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
         names: [],
         sharedProps: {},

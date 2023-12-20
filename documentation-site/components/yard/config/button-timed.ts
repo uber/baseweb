@@ -4,45 +4,45 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { ButtonTimed } from 'baseui/button-timed';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { ButtonTimed } from "baseui/button-timed";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const ButtonTimedConfig: TConfig = {
-  componentName: 'ButtonTimed',
+  componentName: "ButtonTimed",
   imports: {
-    'baseui/button-timed': {
-      named: ['ButtonTimed'],
+    "baseui/button-timed": {
+      named: ["ButtonTimed"],
     },
   },
   scope: {
     ButtonTimed,
   },
   theme: [
-    'buttonPrimaryFill',
-    'buttonPrimaryText',
-    'buttonPrimaryHover',
-    'buttonPrimaryActive',
-    'buttonSecondaryFill',
-    'buttonSecondaryText',
-    'buttonSecondaryHover',
-    'buttonSecondaryActive',
-    'buttonTertiaryFill',
-    'buttonTertiaryText',
-    'buttonTertiaryHover',
-    'buttonTertiaryActive',
-    'buttonTertiarySelectedFill',
-    'buttonTertiarySelectedText',
-    'buttonMinimalFill',
-    'buttonMinimalText',
-    'buttonMinimalHover',
-    'buttonMinimalActive',
-    'buttonDisabledFill',
-    'buttonDisabledText',
+    "buttonPrimaryFill",
+    "buttonPrimaryText",
+    "buttonPrimaryHover",
+    "buttonPrimaryActive",
+    "buttonSecondaryFill",
+    "buttonSecondaryText",
+    "buttonSecondaryHover",
+    "buttonSecondaryActive",
+    "buttonTertiaryFill",
+    "buttonTertiaryText",
+    "buttonTertiaryHover",
+    "buttonTertiaryActive",
+    "buttonTertiarySelectedFill",
+    "buttonTertiarySelectedText",
+    "buttonMinimalFill",
+    "buttonMinimalText",
+    "buttonMinimalHover",
+    "buttonMinimalActive",
+    "buttonDisabledFill",
+    "buttonDisabledText",
   ],
   props: {
     children: {
-      value: 'Label',
+      value: "Label",
       type: PropTypes.ReactNode,
       description: `Visible label.`,
     },
@@ -58,14 +58,14 @@ const ButtonTimedConfig: TConfig = {
     },
     startEnhancer: {
       value: undefined,
-      placeholder: '() => <span>🦊</span>',
+      placeholder: "() => <span>🦊</span>",
       type: PropTypes.Function,
       description: `A component rendered at the start of the button.`,
       hidden: true,
     },
     endEnhancer: {
       value: undefined,
-      placeholder: '<i>world!</i>',
+      placeholder: "<i>world!</i>",
       type: PropTypes.Function,
       description: `A component rendered at the end of the button.`,
       hidden: true,
@@ -73,40 +73,40 @@ const ButtonTimedConfig: TConfig = {
     disabled: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Indicates that the button is disabled',
+      description: "Indicates that the button is disabled",
       hidden: true,
     },
     colors: {
       value: undefined,
       defaultValue: '{backgroundColor: "#03703c", color: "white"}',
       type: PropTypes.Object,
-      description: 'Lets you customize the background and text color.',
+      description: "Lets you customize the background and text color.",
       hidden: true,
     },
     isLoading: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Show loading button style and spinner.',
+      description: "Show loading button style and spinner.",
       hidden: true,
     },
     isSelected: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Indicates that the button is selected.',
+      description: "Indicates that the button is selected.",
       hidden: true,
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
         names: [
-          'BaseButtonTimed',
-          'TimerContainer',
-          'EndEnhancer',
-          'LoadingSpinner',
-          'LoadingSpinnerContainer',
-          'StartEnhancer',
+          "BaseButtonTimed",
+          "TimerContainer",
+          "EndEnhancer",
+          "LoadingSpinner",
+          "LoadingSpinnerContainer",
+          "StartEnhancer",
         ],
       },
     },

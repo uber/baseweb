@@ -1,25 +1,18 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import FileUploaderBasic from "examples/file-uploader/basic.tsx";
+import FileUploaderError from "examples/file-uploader/error.tsx";
+import FileUploaderIndeterminate from "examples/file-uploader/indeterminate-progress.tsx";
+import FileUploaderDisabled from "examples/file-uploader/disabled.tsx";
+import FileUploaderOverrides from "examples/file-uploader/overrides.tsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import OverridesExample from "examples/file-uploader/_overrides_component.tsx";
+import * as FileUploaderExports from "baseui/file-uploader";
 
-import FileUploaderBasic from 'examples/file-uploader/basic.tsx';
-import FileUploaderError from 'examples/file-uploader/error.tsx';
-import FileUploaderIndeterminate from 'examples/file-uploader/indeterminate-progress.tsx';
-import FileUploaderDisabled from 'examples/file-uploader/disabled.tsx';
-import FileUploaderOverrides from 'examples/file-uploader/overrides.tsx';
-
-import OverridesExample from 'examples/file-uploader/_overrides_component.tsx';
-import * as FileUploaderExports from 'baseui/file-uploader';
-
-import Yard from '../../components/yard/index';
-import fileUploaderYardConfig from '../../components/yard/config/file-uploader';
+import Yard from "../../components/yard/index";
+import fileUploaderYardConfig from "../../components/yard/config/file-uploader";
 
 export default Layout;
 
@@ -53,15 +46,24 @@ To learn more, read the corresponding [OWASP article on file uploads](https://ww
   <FileUploaderError />
 </Example>
 
-<Example title="File upload with unknown progress" path="file-uploader/indeterminate-progress.tsx">
+<Example
+  title="File upload with unknown progress"
+  path="file-uploader/indeterminate-progress.tsx"
+>
   <FileUploaderIndeterminate />
 </Example>
 
-<Example title="File uploader in disabled state" path="file-uploader/disabled.tsx">
+<Example
+  title="File uploader in disabled state"
+  path="file-uploader/disabled.tsx"
+>
   <FileUploaderDisabled />
 </Example>
 
-<Example title="File uploader with overrides" path="file-uploader/overrides.tsx">
+<Example
+  title="File uploader with overrides"
+  path="file-uploader/overrides.tsx"
+>
   <FileUploaderOverrides />
 </Example>
 

@@ -9,7 +9,9 @@ export default function Example() {
   const [values, setValues] = React.useState(['', '', '', '']);
   return (
     <div className={css({display: 'flex'})}>
-      <Button onClick={() => toggle(s => !s)}>Mount PinCode</Button>
+      <Button onClick={() => toggle((s) => !s)}>
+        Mount PinCode
+      </Button>
       <div className={css({marginLeft: theme.sizing.scale300})} />
       {showPinCode ? (
         <PinCode

@@ -12,7 +12,7 @@ function GroupList() {
   return (
     <div>
       <Checkbox
-        onChange={e => {
+        onChange={(e) => {
           const target = e.target as HTMLInputElement;
           setCheckboxes([target.checked, target.checked]);
         }}
@@ -24,7 +24,7 @@ function GroupList() {
       <div className={css({padding: theme.sizing.scale400})}>
         <Checkbox
           checked={checkboxes[0]}
-          onChange={e => {
+          onChange={(e) => {
             const target = e.target as HTMLInputElement;
             setCheckboxes([target.checked, checkboxes[1]]);
           }}
@@ -33,7 +33,7 @@ function GroupList() {
         </Checkbox>
         <Checkbox
           checked={checkboxes[1]}
-          onChange={e => {
+          onChange={(e) => {
             const target = e.target as HTMLInputElement;
             setCheckboxes([checkboxes[0], target.checked]);
           }}

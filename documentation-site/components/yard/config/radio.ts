@@ -4,18 +4,18 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import pick from 'just-pick';
+import pick from "just-pick";
 
-import { Radio, RadioGroup, ALIGN } from 'baseui/radio';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { Radio, RadioGroup, ALIGN } from "baseui/radio";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
-import { changeHandlers } from './common/common';
+import { changeHandlers } from "./common/common";
 
 const RadioGroupConfig: TConfig = {
-  componentName: 'RadioGroup',
+  componentName: "RadioGroup",
   imports: {
-    'baseui/radio': { named: ['RadioGroup'] },
+    "baseui/radio": { named: ["RadioGroup"] },
   },
   scope: {
     Radio,
@@ -23,39 +23,39 @@ const RadioGroupConfig: TConfig = {
     ALIGN,
   },
   theme: [
-    'tickFill',
-    'tickFillHover',
-    'tickFillActive',
-    'tickFillSelected',
-    'tickFillSelectedHover',
-    'tickFillSelectedHoverActive',
-    'tickFillError',
-    'tickFillErrorHover',
-    'tickFillErrorHoverActive',
-    'tickFillErrorSelected',
-    'tickFillErrorSelectedHover',
-    'tickFillErrorSelectedHoverActive',
-    'tickFillDisabled',
-    'tickBorder',
-    'tickBorderError',
-    'tickMarkFill',
-    'tickMarkFillError',
-    'tickMarkFillDisabled',
+    "tickFill",
+    "tickFillHover",
+    "tickFillActive",
+    "tickFillSelected",
+    "tickFillSelectedHover",
+    "tickFillSelectedHoverActive",
+    "tickFillError",
+    "tickFillErrorHover",
+    "tickFillErrorHoverActive",
+    "tickFillErrorSelected",
+    "tickFillErrorSelectedHover",
+    "tickFillErrorSelectedHoverActive",
+    "tickFillDisabled",
+    "tickBorder",
+    "tickBorderError",
+    "tickMarkFill",
+    "tickMarkFillError",
+    "tickMarkFillDisabled",
   ],
   props: {
     value: {
-      value: '2',
+      value: "2",
       type: PropTypes.String,
-      description: 'Passed to the input element value attribute',
+      description: "Passed to the input element value attribute",
       stateful: true,
     },
     onChange: {
-      value: 'e => setValue(e.currentTarget.value)',
+      value: "e => setValue(e.currentTarget.value)",
       type: PropTypes.Function,
-      description: 'Handler for change events on trigger element.',
+      description: "Handler for change events on trigger element.",
       propHook: {
-        what: 'e.target.value',
-        into: 'value',
+        what: "e.target.value",
+        into: "value",
       },
     },
     children: {
@@ -70,26 +70,26 @@ const RadioGroupConfig: TConfig = {
   Three
 </Radio>`,
       type: PropTypes.ReactNode,
-      description: 'Radios within the RadioGroup',
+      description: "Radios within the RadioGroup",
       imports: {
-        'baseui/radio': { named: ['Radio'] },
+        "baseui/radio": { named: ["Radio"] },
       },
     },
     name: {
-      value: 'number',
+      value: "number",
       type: PropTypes.String,
       description:
-        'String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string.',
+        "String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string.",
       hidden: false,
     },
     align: {
-      value: 'ALIGN.vertical',
+      value: "ALIGN.vertical",
       type: PropTypes.Enum,
       options: ALIGN,
-      description: 'How to position radio buttons in the group.',
+      description: "How to position radio buttons in the group.",
       imports: {
-        'baseui/radio': {
-          named: ['ALIGN'],
+        "baseui/radio": {
+          named: ["ALIGN"],
         },
       },
     },
@@ -97,71 +97,76 @@ const RadioGroupConfig: TConfig = {
       value: false,
       type: PropTypes.Boolean,
       description:
-        'Disabled all radio group from being changed. To disable some of radios provide disabled flag in each of them.',
+        "Disabled all radio group from being changed. To disable some of radios provide disabled flag in each of them.",
     },
     error: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Sets radio group into error state.',
+      description: "Sets radio group into error state.",
     },
     required: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Set if the control is required to be checked.',
+      description: "Set if the control is required to be checked.",
       hidden: true,
     },
     autoFocus: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Set to be focused (active) on selectedchecked radio.',
+      description: "Set to be focused (active) on selectedchecked radio.",
       hidden: true,
     },
     containsInteractiveElement: {
       value: false,
       type: PropTypes.Boolean,
       description:
-        'Indicates the radio contains an interactive element, and the default label behavior should be prevented for child elements.',
+        "Indicates the radio contains an interactive element, and the default label behavior should be prevented for child elements.",
       hidden: true,
     },
-    'aria-label': {
+    "aria-label": {
       value: undefined,
       type: PropTypes.String,
       description: `Sets aria-label attribute.`,
       hidden: true,
     },
-    'aria-labelledby': {
+    "aria-labelledby": {
       value: undefined,
       type: PropTypes.String,
       description: `Sets aria-labelledby attribute.`,
       hidden: true,
     },
-    ...pick(changeHandlers, ['onBlur', 'onFocus', 'onMouseLeave', 'onMouseEnter']),
+    ...pick(changeHandlers, [
+      "onBlur",
+      "onFocus",
+      "onMouseLeave",
+      "onMouseEnter",
+    ]),
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root'],
+        names: ["Root"],
         sharedProps: {
           $isFocused: {
             type: PropTypes.Boolean,
-            description: 'True when the component is focused.',
+            description: "True when the component is focused.",
           },
           $isHovered: {
             type: PropTypes.Boolean,
-            description: 'True when the component is hovered.',
+            description: "True when the component is hovered.",
           },
           $isActive: {
             type: PropTypes.Boolean,
-            description: 'True when the component is active.',
+            description: "True when the component is active.",
           },
-          $error: 'error',
+          $error: "error",
           $checked: {
             type: PropTypes.Boolean,
-            description: 'True when the component is active.',
+            description: "True when the component is active.",
           },
-          $required: 'required',
-          $disabled: 'disabled',
+          $required: "required",
+          $disabled: "disabled",
         },
       },
     },

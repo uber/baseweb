@@ -1,18 +1,18 @@
-import Layout from '../../../components/layout';
-import {BlogImage, Meta, Caption} from '../../../components/blog';
-import {Block} from 'baseui/block';
-import {StatefulInput} from 'baseui/input';
-import {StatefulSelect} from 'baseui/select';
-import {StatefulPaymentCard} from 'baseui/payment-card';
-import {StatefulPhoneInput} from 'baseui/phone-input';
-import metadata from './metadata.json';
+import Layout from "../../../components/layout";
+import { BlogImage, Meta, Caption } from "../../../components/blog";
+import { Block } from "baseui/block";
+import { StatefulInput } from "baseui/input";
+import { StatefulSelect } from "baseui/select";
+import { StatefulPaymentCard } from "baseui/payment-card";
+import { StatefulPhoneInput } from "baseui/phone-input";
+import metadata from "./metadata.json";
 
-import aspectRatioBoxGif from './aspect-ratio-box.gif';
-import responsiveFlexGridGif from './responsive-flex-grid.gif';
-import responsiveHideGif from './responsive-hide.gif';
-import responsiveLoadStatusGif from './responsive-load-status.gif';
-import responsiveNavBarGif from './responsive-nav-bar.gif';
-import viewportMetaTagGif from './viewport-meta-tag.gif';
+import aspectRatioBoxGif from "./aspect-ratio-box.gif";
+import responsiveFlexGridGif from "./responsive-flex-grid.gif";
+import responsiveHideGif from "./responsive-hide.gif";
+import responsiveLoadStatusGif from "./responsive-load-status.gif";
+import responsiveNavBarGif from "./responsive-nav-bar.gif";
+import viewportMetaTagGif from "./viewport-meta-tag.gif";
 
 export default Layout;
 
@@ -72,9 +72,8 @@ const breakpoints = {
 
 const ResponsiveTheme = Object.keys(breakpoints).reduce(
   (acc, key) => {
-    acc.mediaQuery[
-      key
-    ] = `@media screen and (min-width: ${breakpoints[key]}px)`;
+    acc.mediaQuery[key] =
+      `@media screen and (min-width: ${breakpoints[key]}px)`;
     return acc;
   },
   {
@@ -83,7 +82,10 @@ const ResponsiveTheme = Object.keys(breakpoints).reduce(
   },
 );
 
-export const MyTheme = {...LightTheme, ...ResponsiveTheme};
+export const MyTheme = {
+  ...LightTheme,
+  ...ResponsiveTheme,
+};
 ```
 
 This sets the following values inside `MyTheme`:
@@ -114,7 +116,7 @@ Another benefit with this approach is the consistency with how Base Web componen
 Now that our theme is set up with media queries, we can start using them to create responsively-styled components using `themeStyled()`:
 
 ```js
-const LoadStatus = themedStyled('span', ({$theme}) => ({
+const LoadStatus = themedStyled("span", ({ $theme }) => ({
   ...$theme.typography.font250,
   color: $theme.colors.mono800,
   [$theme.mediaQuery.small]: {
@@ -139,18 +141,18 @@ The [Block](/components/block/#responsive-layouts) component accepts props eithe
 This gives us a simpler way of creating components:
 
 ```js
-const NavBar = props => (
+const NavBar = (props) => (
   <Block
-    height={['scale1400', 'scale1600']}
-    paddingLeft={['scale800', 'scale1200']}
-    paddingRight={['scale800', 'scale1200']}
+    height={["scale1400", "scale1600"]}
+    paddingLeft={["scale800", "scale1200"]}
+    paddingRight={["scale800", "scale1200"]}
     {...props}
   />
 );
 
 // is equivalent to
 
-const NavBar = themedStyled('div', ({$theme}) => ({
+const NavBar = themedStyled("div", ({ $theme }) => ({
   height: $theme.sizing.scale1400,
   paddingRight: $theme.sizing.scale800,
   paddingLeft: $theme.sizing.scale800,
@@ -174,10 +176,10 @@ We can also take advantage of these responsive properties to completely hide a B
 
 ```js
 // TabLink appears only on mobile
-const TabLink = props => <Block display={['block', 'none']} {...props} />;
+const TabLink = (props) => <Block display={["block", "none"]} {...props} />;
 
 // NavLink appears only on desktop
-const NavLink = props => <Block display={['none', 'block']} {...props} />;
+const NavLink = (props) => <Block display={["none", "block"]} {...props} />;
 ```
 
 <BlogImage
@@ -201,7 +203,7 @@ const Filters = () => (
   </FlexGrid>
 );
 
-const Locations = ({Pickup, Dropoff}) => (
+const Locations = ({ Pickup, Dropoff }) => (
   <FlexGrid columnCount={[1, 2]} columnGap="scale300" rowGap="scale300">
     <FlexGridItem>
       <Pickup />
@@ -232,7 +234,7 @@ In order to avoid these reflows, we can take advantage of the [AspectRatioBox](/
 <AspectRatioBox aspectRatio={300 / 117}>
   <AspectRatioBoxBody
     as="img"
-    src={assetUrl('/error-image.svg')}
+    src={assetUrl("/error-image.svg")}
     alt="Truck with scuba-gear on ocean floor with octopus and
          fishes behind it"
   />
@@ -244,7 +246,3 @@ In order to avoid these reflows, we can take advantage of the [AspectRatioBox](/
   alt="side-by-side comparison of app loading, left with an image that reflows on load"
   caption="Right image uses AspectRatioBox component to prevent reflows on slower networks"
 />
-
-## Final thoughts
-
-Base Web currently gives you a few foundational components to build responsive web applications: from **Block**, to **FlexGrid**, to **AspectRatioBox**. We hope these components, along with this guide, will help and encourage you to build applications that are accessible to as many users as possible. Base Web is also open-source, so if you want to contribute enhancements or additional components, please check out our [contributing guide](https://github.com/uber/baseweb/blob/master/CONTRIBUTING.md)!

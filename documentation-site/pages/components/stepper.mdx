@@ -1,18 +1,11 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import { Stepper } from "baseui/stepper";
+import * as StepperExports from "baseui/stepper";
 
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
-
-import { Stepper } from 'baseui/stepper';
-import * as StepperExports from 'baseui/stepper';
-
-import Yard from '../../components/yard/index';
-import stepperYardConfig from '../../components/yard/config/stepper';
+import Yard from "../../components/yard/index";
+import stepperYardConfig from "../../components/yard/config/stepper";
 
 export default Layout;
 
@@ -25,4 +18,8 @@ value using the provided buttons. Users can also click on the value itself for m
 adjustment. Stepper works best for fields with small integer values, such as the number of
 riders in a vehicle or the number of items ordered from a menu.
 
-<Exports component={StepperExports} title="Stepper exports" path="baseui/stepper" />
+<Exports
+  component={StepperExports}
+  title="Stepper exports"
+  path="baseui/stepper"
+/>

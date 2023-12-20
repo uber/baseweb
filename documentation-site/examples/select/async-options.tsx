@@ -76,14 +76,14 @@ export default function Example() {
   const [options, setOptions] = React.useState<any>(OPTIONS);
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const handleInputChange = debounce(function(term: string) {
+  const handleInputChange = debounce(function (term: string) {
     if (!term) {
       setOptions(OPTIONS);
       return;
     }
     setIsLoading(true);
     setTimeout(() => {
-      const nextOptions = OPTIONS.filter(option => {
+      const nextOptions = OPTIONS.filter((option) => {
         return option.label
           .toLowerCase()
           .includes(term.toLowerCase());

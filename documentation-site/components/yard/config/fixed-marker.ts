@@ -12,138 +12,141 @@ import {
   KIND,
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
-} from 'baseui/map-marker';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
-import { Check, Upload, Search } from 'baseui/icon';
+} from "baseui/map-marker";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
+import { Check, Upload, Search } from "baseui/icon";
 
 export const theme = [];
 
 export const fixedMarkerProps = {
   label: {
-    value: 'Uber HQ',
+    value: "Uber HQ",
     type: PropTypes.String,
-    description: 'Text to display inside of the marker.',
+    description: "Text to display inside of the marker.",
   },
   dragging: {
     value: false,
     type: PropTypes.Boolean,
-    description: 'Renders the component with circular shadow to represent dragging.',
+    description:
+      "Renders the component with circular shadow to represent dragging.",
     defaultValue: false,
   },
   size: {
-    value: 'PINHEAD_SIZES_SHAPES.medium',
-    enumName: 'PINHEAD_SIZES_SHAPES',
-    defaultValue: 'PINHEAD_SIZES_SHAPES.medium',
+    value: "PINHEAD_SIZES_SHAPES.medium",
+    enumName: "PINHEAD_SIZES_SHAPES",
+    defaultValue: "PINHEAD_SIZES_SHAPES.medium",
     options: PINHEAD_SIZES_SHAPES,
     type: PropTypes.Enum,
-    description: 'Size of the pinhead (top container) of the marker.',
+    description: "Size of the pinhead (top container) of the marker.",
     imports: {
-      'baseui/map-marker': {
-        named: ['PINHEAD_SIZES_SHAPES'],
+      "baseui/map-marker": {
+        named: ["PINHEAD_SIZES_SHAPES"],
       },
     },
   },
   needle: {
-    value: 'NEEDLE_SIZES.medium',
-    enumName: 'NEEDLE_SIZES',
-    defaultValue: 'NEEDLE_SIZES.medium',
+    value: "NEEDLE_SIZES.medium",
+    enumName: "NEEDLE_SIZES",
+    defaultValue: "NEEDLE_SIZES.medium",
     options: NEEDLE_SIZES,
     type: PropTypes.Enum,
-    description: 'Size of the needle (bottom element) of the marker.',
+    description: "Size of the needle (bottom element) of the marker.",
     imports: {
-      'baseui/map-marker': {
-        named: ['NEEDLE_SIZES'],
+      "baseui/map-marker": {
+        named: ["NEEDLE_SIZES"],
       },
     },
   },
   startEnhancer: {
-    value: '({size}) => <Upload size={size}/>',
-    placeholder: '({size}) => <Upload size={size}/>',
+    value: "({size}) => <Upload size={size}/>",
+    placeholder: "({size}) => <Upload size={size}/>",
     type: PropTypes.Function,
-    description: 'Icon or element to render in the leading slot (before the label).',
+    description:
+      "Icon or element to render in the leading slot (before the label).",
     imports: {
-      'baseui/icon': {
-        named: ['Upload'],
+      "baseui/icon": {
+        named: ["Upload"],
       },
     },
   },
   endEnhancer: {
     value: undefined,
-    placeholder: '({size}) => <Search size={size}/>',
+    placeholder: "({size}) => <Search size={size}/>",
     type: PropTypes.Function,
-    description: 'Icon or element to render in the trailing slot (after the label).',
+    description:
+      "Icon or element to render in the trailing slot (after the label).",
     imports: {
-      'baseui/icon': {
-        named: ['Search'],
+      "baseui/icon": {
+        named: ["Search"],
       },
     },
   },
   kind: {
-    value: 'KIND.default',
-    enumName: 'KIND',
-    defaultValue: 'KIND.default',
+    value: "KIND.default",
+    enumName: "KIND",
+    defaultValue: "KIND.default",
     options: KIND,
     type: PropTypes.Enum,
-    description: 'Kind changes colors of the PinHead, Needle and DragShadow.',
+    description: "Kind changes colors of the PinHead, Needle and DragShadow.",
     imports: {
-      'baseui/map-marker': {
-        named: ['KIND'],
+      "baseui/map-marker": {
+        named: ["KIND"],
       },
     },
   },
   badgeEnhancerSize: {
-    value: 'BADGE_ENHANCER_SIZES.none',
-    enumName: 'BADGE_ENHANCER_SIZES',
-    defaultValue: 'BADGE_ENHANCER_SIZES.none',
+    value: "BADGE_ENHANCER_SIZES.none",
+    enumName: "BADGE_ENHANCER_SIZES",
+    defaultValue: "BADGE_ENHANCER_SIZES.none",
     options: BADGE_ENHANCER_SIZES,
     type: PropTypes.Enum,
-    description: 'Size of the badge enhancer.',
+    description: "Size of the badge enhancer.",
     imports: {
-      'baseui/map-marker': {
-        named: ['BADGE_ENHANCER_SIZES'],
+      "baseui/map-marker": {
+        named: ["BADGE_ENHANCER_SIZES"],
       },
     },
   },
   badgeEnhancerContent: {
-    value: '({size}) => <Check size={size}/>',
-    placeholder: '({size}) => <Check size={size}/>',
+    value: "({size}) => <Check size={size}/>",
+    placeholder: "({size}) => <Check size={size}/>",
     type: PropTypes.Function,
-    description: 'Content to render inside of the badge enhancer.',
+    description: "Content to render inside of the badge enhancer.",
     imports: {
-      'baseui/icon': {
-        named: ['Check'],
+      "baseui/icon": {
+        named: ["Check"],
       },
     },
   },
   labelEnhancerContent: {
-    value: 'Uber Eats',
+    value: "Uber Eats",
     type: PropTypes.String,
-    description: 'Text to display as the optional label enhancer.',
+    description: "Text to display as the optional label enhancer.",
   },
   labelEnhancerPosition: {
-    value: 'LABEL_ENHANCER_POSITIONS.bottom',
-    enumName: 'LABEL_ENHANCER_POSITIONS',
-    defaultValue: 'LABEL_ENHANCER_POSITIONS.bottom',
+    value: "LABEL_ENHANCER_POSITIONS.bottom",
+    enumName: "LABEL_ENHANCER_POSITIONS",
+    defaultValue: "LABEL_ENHANCER_POSITIONS.bottom",
     options: LABEL_ENHANCER_POSITIONS,
     type: PropTypes.Enum,
-    description: 'Position of the label enhancer.',
+    description: "Position of the label enhancer.",
     imports: {
-      'baseui/map-marker': {
-        named: ['LABEL_ENHANCER_POSITIONS'],
+      "baseui/map-marker": {
+        named: ["LABEL_ENHANCER_POSITIONS"],
       },
     },
   },
 };
 
 const FixedMarkerConfig: TConfig = {
-  componentName: 'FixedMarker',
+  componentName: "FixedMarker",
   imports: {
-    'baseui/map-marker': {
-      named: ['FixedMarker'],
+    "baseui/map-marker": {
+      named: ["FixedMarker"],
     },
-    'baseui/icon': {
-      named: ['Check'],
+    "baseui/icon": {
+      named: ["Check"],
     },
   },
   scope: {
@@ -163,22 +166,22 @@ const FixedMarkerConfig: TConfig = {
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
         names: [
-          'Root',
-          'PinHead',
-          'LabelSlot',
-          'Label',
-          'EnhancerSlot',
-          'PinHeadContainer',
-          'Needle',
-          'DragShadow',
-          'DragShadowContainer',
-          'DragContainer',
-          'BadgeEnhancer',
-          'LabelEnhancerContainer',
-          'LabelEnhancer',
+          "Root",
+          "PinHead",
+          "LabelSlot",
+          "Label",
+          "EnhancerSlot",
+          "PinHeadContainer",
+          "Needle",
+          "DragShadow",
+          "DragShadowContainer",
+          "DragContainer",
+          "BadgeEnhancer",
+          "LabelEnhancerContainer",
+          "LabelEnhancer",
         ],
         sharedProps: {},
       },

@@ -1,21 +1,14 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
+import Yard from "../../components/yard/index";
+import bannerYardConfig from "../../components/yard/config/banner";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import Action from "examples/banner/action.tsx";
+import Artwork from "examples/banner/artwork.tsx";
+import Variants from "examples/banner/variants.tsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
-import Yard from '../../components/yard/index';
-import bannerYardConfig from '../../components/yard/config/banner';
-
-import Action from 'examples/banner/action.tsx';
-import Artwork from 'examples/banner/artwork.tsx';
-import Variants from 'examples/banner/variants.tsx';
-
-import * as BannerExports from 'baseui/banner';
+import * as BannerExports from "baseui/banner";
 
 export default Layout;
 
@@ -45,4 +38,8 @@ Use lower contrast for messages with lower severity. Use higher contrast for mes
   <Action />
 </Example>
 
-<Exports component={BannerExports} title="Banner exports" path="baseui/banner" />
+<Exports
+  component={BannerExports}
+  title="Banner exports"
+  path="baseui/banner"
+/>

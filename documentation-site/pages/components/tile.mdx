@@ -1,23 +1,16 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Exports from "../../components/exports";
+import Layout from "../../components/layout";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import SingleSelect from "examples/tile/single-select.tsx";
+import SelectionNoTrailingContent from "examples/tile/selection-no-trailing-content.tsx";
+import MultiSelectBatch from "examples/tile/multi-select-batch.tsx";
+import MultiSelectLive from "examples/tile/multi-select-live.tsx";
+import Action from "examples/tile/action.tsx";
+import Alignment from "examples/tile/alignment.tsx";
 
-import Example from '../../components/example';
-import Exports from '../../components/exports';
-import Layout from '../../components/layout';
-
-import SingleSelect from 'examples/tile/single-select.tsx';
-import SelectionNoTrailingContent from 'examples/tile/selection-no-trailing-content.tsx';
-import MultiSelectBatch from 'examples/tile/multi-select-batch.tsx';
-import MultiSelectLive from 'examples/tile/multi-select-live.tsx';
-import Action from 'examples/tile/action.tsx';
-import Alignment from 'examples/tile/alignment.tsx';
-
-import Yard from '../../components/yard/index';
-import tileConfig from '../../components/yard/config/tile';
+import Yard from "../../components/yard/index";
+import tileConfig from "../../components/yard/config/tile";
 
 export default Layout;
 
@@ -64,7 +57,10 @@ The Tile component may be used within a TileGroup component in order to prompt u
   <SingleSelect />
 </Example>
 
-<Example title="No trailing content" path="tile/selection-no-trailing-content.tsx">
+<Example
+  title="No trailing content"
+  path="tile/selection-no-trailing-content.tsx"
+>
   <SelectionNoTrailingContent />
 </Example>
 

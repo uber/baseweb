@@ -1,6 +1,6 @@
-import Layout from '../../../components/layout';
-import {BlogImage, Demo, Meta} from '../../../components/blog';
-import metadata from './metadata.json';
+import Layout from "../../../components/layout";
+import { BlogImage, Demo, Meta } from "../../../components/blog";
+import metadata from "./metadata.json";
 
 export default Layout;
 
@@ -28,7 +28,6 @@ This function will provide a custom type that you supply in the `$theme` field i
 callback. Take a look at the example below.
 
 ```js
-// @flow
 import {styled, createThemedStyled} from 'baseui';
 
 type PropsT = {};
@@ -58,7 +57,6 @@ Now we no longer need to perform additional type annotation simply to appease fl
 on the task at hand with all of the added benefits to type checking.
 
 ```js
-// @flow
 import {styled, withStyle} from 'baseui';
 
 type PropsT = {};
@@ -80,7 +78,6 @@ Similar to how `styled` has a related `createThemedStyled` function, `withStyle`
 `createThemedWithStyle`.
 
 ```js
-// @flow
 import {createThemedStyled, createThemedWithStyle} from 'baseui';
 
 type CustomTheme = {customColor: string};
@@ -109,19 +106,21 @@ functions to avoid duplicated import statements from baseui.
 themed-styled.js
 
 ```js
-// @flow
-import {createThemedStyled, createThemedWithStyle} from 'baseui';
+import {
+  createThemedStyled,
+  createThemedWithStyle,
+} from "baseui";
 
-type CustomTheme = {customColor: string};
+type CustomTheme = { customColor: string };
 export const styled = createThemedStyled<CustomTheme>();
-export const withStyle = createThemedWithStyle<CustomTheme>();
+export const withStyle =
+  createThemedWithStyle<CustomTheme>();
 ```
 
 styled-components.js
 
 ```js
-// @flow
-import {styled, withStyle} from './themed-styled.js';
+import {styled, withStyle} from './themed-styled.jsx';
 
 type PropsT = {};
 
@@ -147,28 +146,31 @@ Doing so removes the need to import `ThemeContext` around and calling `React.use
 values from the theme. See the example below for a concise method to style your elements.
 
 ```js
-// @flow
-import {useStyletron} from 'baseui';
+import { useStyletron } from "baseui";
 
 function ComponentA() {
   const [css, theme] = useStyletron();
-  return <div className={css({color: theme.colors.primary400})}>test</div>;
+  return <div className={css({ color: theme.colors.primary400 })}>test</div>;
 }
 ```
 
 As we've seen before, `useStyletron` also has a related `createThemedUseStyletron` function.
 
 ```js
-// @flow
-import {createThemedUseStyletron} from 'baseui';
+import { createThemedUseStyletron } from "baseui";
 
-type CustomTheme = {customColor: string};
+type CustomTheme = { customColor: string };
 
-const themedUseStyletron = createThemedUseStyletron<CustomTheme>();
+const themedUseStyletron =
+  createThemedUseStyletron<CustomTheme>();
 
 function ComponentA() {
   const [css, theme] = themedUseStyletron();
-  return <div className={css({color: theme.customColor})}>test</div>;
+  return (
+    <div className={css({ color: theme.customColor })}>
+      test
+    </div>
+  );
 }
 ```
 

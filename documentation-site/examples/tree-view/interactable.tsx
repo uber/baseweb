@@ -11,7 +11,7 @@ const getLabelCheckbox = (label: React.ReactNode) => () => {
     <TreeLabelInteractable>
       <Checkbox
         checked={value}
-        onChange={e =>
+        onChange={(e) =>
           setValue((e.target as HTMLInputElement).checked)
         }
       >

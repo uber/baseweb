@@ -1,31 +1,24 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Exports from "../../components/exports";
+import Layout from "../../components/layout";
+import SEO from "../../components/meta-seo";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import BasicButton from "examples/button/basic.tsx";
+import Kinds from "examples/button/kinds.tsx";
+import Sizes from "examples/button/sizes.tsx";
+import WithEnhancer from "examples/button/with-enhancers.tsx";
+import States from "examples/button/states.tsx";
+import Shapes from "examples/button/shapes.tsx";
+import Dropdown from "examples/button/dropdown.tsx";
+import ButtonAsAnAnchor from "examples/button/as-an-anchor.tsx";
 
-import Example from '../../components/example';
-import Exports from '../../components/exports';
-import Layout from '../../components/layout';
-import SEO from '../../components/meta-seo';
+import { Button, KIND } from "baseui/button";
+import * as ButtonExports from "baseui/button";
+import Upload from "baseui/icon/upload";
+import ArrowRight from "baseui/icon/arrow-right";
 
-import BasicButton from 'examples/button/basic.tsx';
-import Kinds from 'examples/button/kinds.tsx';
-import Sizes from 'examples/button/sizes.tsx';
-import WithEnhancer from 'examples/button/with-enhancers.tsx';
-import States from 'examples/button/states.tsx';
-import Shapes from 'examples/button/shapes.tsx';
-import Dropdown from 'examples/button/dropdown.tsx';
-import ButtonAsAnAnchor from 'examples/button/as-an-anchor.tsx';
-
-import { Button, KIND } from 'baseui/button';
-import * as ButtonExports from 'baseui/button';
-import Upload from 'baseui/icon/upload';
-import ArrowRight from 'baseui/icon/arrow-right';
-
-import Yard from '../../components/yard/index';
-import buttonYardConfig from '../../components/yard/config/button';
+import Yard from "../../components/yard/index";
+import buttonYardConfig from "../../components/yard/config/button";
 
 <SEO
   description="Buttons provide cues for actions and events. These fundamental components allow users to process actions or navigate an experience."
@@ -93,4 +86,8 @@ primary button action. As the name implies, it’s offered to supplement to crea
   <ButtonAsAnAnchor />
 </Example>
 
-<Exports component={ButtonExports} title="Button exports" path="baseui/button" />
+<Exports
+  component={ButtonExports}
+  title="Button exports"
+  path="baseui/button"
+/>

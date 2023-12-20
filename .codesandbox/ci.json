@@ -1,8 +1,0 @@
-{
-  "buildCommand": "build",
-  "publishDirectory": {
-    "baseui": "dist"
-  },
-  "sandboxes": ["basic-usage-9olot"],
-  "node": "16"
-}

@@ -17,7 +17,7 @@ export default function Example() {
         ]}
         labelKey="id"
         valueKey="color"
-        onChange={event => console.log(event)}
+        onChange={(event) => console.log(event)}
       />
       <br />
       <StatefulSelect
@@ -31,7 +31,7 @@ export default function Example() {
         ]}
         labelKey="id"
         valueKey="color"
-        onChange={event => console.log(event)}
+        onChange={(event) => console.log(event)}
       />
       <br />
       <StatefulSelect
@@ -46,7 +46,7 @@ export default function Example() {
         ]}
         labelKey="id"
         valueKey="color"
-        onChange={event => console.log(event)}
+        onChange={(event) => console.log(event)}
       />
     </React.Fragment>
   );

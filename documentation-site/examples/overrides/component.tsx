@@ -5,7 +5,7 @@ export default function Example() {
   return (
     <Button
       overrides={{
-        BaseButton: props => <button>{props.children}</button>,
+        BaseButton: (props) => <button>{props.children}</button>,
       }}
     >
       Submit

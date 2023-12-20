@@ -9,7 +9,7 @@ export default function Example() {
       <Input
         id="input-id"
         value={value}
-        onChange={event => setValue(event.currentTarget.value)}
+        onChange={(event) => setValue(event.currentTarget.value)}
       />
     </FormControl>
   );

@@ -66,7 +66,6 @@ class SortableTable extends React.Component<any, any> {
 
   getSortedData = () => {
     if (this.state.nameDirection) {
-      // $FlowFixMe
       const sorted = DATA.slice(0).sort((a, b) =>
         a[0].localeCompare(b[0]),
       );

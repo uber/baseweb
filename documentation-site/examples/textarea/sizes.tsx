@@ -11,20 +11,20 @@ export default function Example() {
       <Textarea
         size={SIZE.compact}
         value={valueA}
-        onChange={e => setValueA(e.currentTarget.value)}
+        onChange={(e) => setValueA(e.currentTarget.value)}
         placeholder="Compact size..."
       />
       <br />
       <Textarea
         value={valueB}
-        onChange={e => setValueB(e.currentTarget.value)}
+        onChange={(e) => setValueB(e.currentTarget.value)}
         placeholder="Default size..."
       />
       <br />
       <Textarea
         size={SIZE.large}
         value={valueC}
-        onChange={e => setValueC(e.currentTarget.value)}
+        onChange={(e) => setValueC(e.currentTarget.value)}
         placeholder="Large size..."
       />
     </React.Fragment>

@@ -1,11 +1,4 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
-
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
-
-import Layout from '../../components/layout';
+import Layout from "../../components/layout";
 
 export default Layout;
 
@@ -45,10 +38,10 @@ However, since search engines do not take user actions like clicking or hovering
 To enable this functionality in Base Web, you can add the `renderAll` property to the `Tab` component. Additionally, the text should always be wrapped in a paragraph.
 
 ```js
-import * as React from 'react';
-import {StatefulTabs, Tab} from 'baseui/tabs';
+import * as React from "react";
+import { StatefulTabs, Tab } from "baseui/tabs";
 export default () => (
-  <StatefulTabs initialState={{activeKey: '0'}} renderAll>
+  <StatefulTabs initialState={{ activeKey: "0" }} renderAll>
     <Tab title="Tab Link 1">
       <p>Tab 1 content</p>
     </Tab>
@@ -67,10 +60,10 @@ export default () => (
 The `Accordion` component follows the same principles as the `Tab` component - to make it SEO-friendly, please take the following approach:
 
 ```js
-import * as React from 'react';
-import {Accordion, Panel} from 'baseui/accordion';
+import * as React from "react";
+import { Accordion, Panel } from "baseui/accordion";
 const content =
-  'Praesent condimentum ante ac ipsum aliquam, ac scelerisque velit sagittis. Ut sit amet libero scelerisque, accumsan ante vitae, hendrerit tellus. Nullam metus est, vehicula a aliquet id, lobortis in mauris.';
+  "Praesent condimentum ante ac ipsum aliquam, ac scelerisque velit sagittis. Ut sit amet libero scelerisque, accumsan ante vitae, hendrerit tellus. Nullam metus est, vehicula a aliquet id, lobortis in mauris.";
 export default () => (
   <Accordion renderAll>
     <Panel title="Accordion panel 1">
@@ -97,10 +90,10 @@ Cards can contain a rich amount of text, images _(if you use them, do not forget
 To best comply with SEO best practices, wrap the text within the `Card` component in a paragraph. Because `StyledBody` is a Styletron component, you can leverage the `$as` property to change it to a paragraph:
 
 ```js
-import * as React from 'react';
-import {Card, StyledBody} from 'baseui/card';
+import * as React from "react";
+import { Card, StyledBody } from "baseui/card";
 export default () => (
-  <Card overrides={{Root: {style: {width: '328px'}}}}>
+  <Card overrides={{ Root: { style: { width: "328px" } } }}>
     <StyledBody $as="p">
       Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
       faucibus ex, non facilisis nisl.
@@ -116,15 +109,15 @@ export default () => (
 Similarily to the Card component, text in the Modal should we wrapped in paragraphs too:
 
 ```js
-import * as React from 'react';
-import {Button} from 'baseui/button';
+import * as React from "react";
+import { Button } from "baseui/button";
 import {
   Modal,
   ModalHeader,
   ModalBody,
   ModalFooter,
   ModalButton,
-} from 'baseui/modal';
+} from "baseui/modal";
 export default () => {
   const [isOpen, setIsOpen] = React.useState(false);
   function close() {

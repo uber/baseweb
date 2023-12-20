@@ -1,25 +1,18 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import Basic from "examples/notification/basic.tsx";
+import Kinds from "examples/notification/kinds.tsx";
+import Closeable from "examples/notification/closeable.tsx";
+import Customization from "examples/notification/overrides.tsx";
+import CustomDismiss from "examples/notification/custom-dismiss.tsx";
+import FullWidth from "examples/notification/full-width.tsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
-
-import Basic from 'examples/notification/basic.tsx';
-import Kinds from 'examples/notification/kinds.tsx';
-import Closeable from 'examples/notification/closeable.tsx';
-import Customization from 'examples/notification/overrides.tsx';
-import CustomDismiss from 'examples/notification/custom-dismiss.tsx';
-import FullWidth from 'examples/notification/full-width.tsx';
-
-import { Notification } from 'baseui/notification';
-import * as NotificationExports from 'baseui/notification';
-import Yard from '../../components/yard/index';
-import notificationYardConfig from '../../components/yard/config/notification';
+import { Notification } from "baseui/notification";
+import * as NotificationExports from "baseui/notification";
+import Yard from "../../components/yard/index";
+import notificationYardConfig from "../../components/yard/config/notification";
 
 export default Layout;
 
@@ -44,11 +37,17 @@ they'll be used in.
   <Basic />
 </Example>
 
-<Example title="Notification with all Available Kinds" path="notification/kinds.tsx">
+<Example
+  title="Notification with all Available Kinds"
+  path="notification/kinds.tsx"
+>
   <Kinds />
 </Example>
 
-<Example title="Notification Closeable example" path="notification/closeable.tsx">
+<Example
+  title="Notification Closeable example"
+  path="notification/closeable.tsx"
+>
   <Closeable />
 </Example>
 
@@ -60,7 +59,10 @@ they'll be used in.
   <Customization />
 </Example>
 
-<Example title="Notification with Custom Dismiss" path="notification/custom-dismiss.tsx">
+<Example
+  title="Notification with Custom Dismiss"
+  path="notification/custom-dismiss.tsx"
+>
   <CustomDismiss />
 </Example>
 

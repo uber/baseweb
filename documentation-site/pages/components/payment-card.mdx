@@ -1,28 +1,21 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import Controlled from "examples/payment-card/controlled.tsx";
+import Uncontrolled from "examples/payment-card/uncontrolled.tsx";
+import DefaultValue from "examples/payment-card/defaultvalue.tsx";
+import Form from "examples/payment-card/form.tsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import { StatefulPaymentCard } from "baseui/payment-card";
 
-import Controlled from 'examples/payment-card/controlled.tsx';
-import Uncontrolled from 'examples/payment-card/uncontrolled.tsx';
-import DefaultValue from 'examples/payment-card/defaultvalue.tsx';
-import Form from 'examples/payment-card/form.tsx';
+import * as PaymentCardExports from "baseui/payment-card";
+import * as InputExports from "baseui/input";
 
-import { StatefulPaymentCard } from 'baseui/payment-card';
+import { Table } from "baseui/table";
 
-import * as PaymentCardExports from 'baseui/payment-card';
-import * as InputExports from 'baseui/input';
-
-import { Table } from 'baseui/table';
-
-import Yard from '../../components/yard/index';
-import paymentCardYardConfig from '../../components/yard/config/payment-card';
+import Yard from "../../components/yard/index";
+import paymentCardYardConfig from "../../components/yard/config/payment-card";
 
 export default Layout;
 
@@ -33,17 +26,17 @@ export default Layout;
 The Payment Card input **automatically detects and formats credit card types**. It shows a small thumbnail icon of the parsed credit card brand to let users know they have entered their card in the correct format. The supported credit card brands are listed here:
 
 <Table
-  columns={['Card Type', 'Example Number']}
+  columns={["Card Type", "Example Number"]}
   data={[
-    ['American Express', '378282246310005'],
-    ['Diners Club', '36259600000004'],
-    ['Discover', '6011111111111117'],
-    ['ELO', '6550000000000001'],
-    ['JCB', '3530111333300000'],
-    ['Maestro', '6304000000000000'],
-    ['Mastercard', '5555555555554444'],
-    ['UnionPay', '6246729687894613'],
-    ['Visa', '4111111111111111'],
+    ["American Express", "378282246310005"],
+    ["Diners Club", "36259600000004"],
+    ["Discover", "6011111111111117"],
+    ["ELO", "6550000000000001"],
+    ["JCB", "3530111333300000"],
+    ["Maestro", "6304000000000000"],
+    ["Mastercard", "5555555555554444"],
+    ["UnionPay", "6246729687894613"],
+    ["Visa", "4111111111111111"],
   ]}
 />
 
@@ -68,12 +61,19 @@ This component is based on the [Input](/components/input) component. All of the 
 If you'd like to add further validations, check out the [card-validator](https://www.npmjs.com/package/card-validator)
 package that Base Web uses under the hood too.
 
-<Example title="Stateful (uncontrolled) usage" path="payment-card/uncontrolled.tsx">
+<Example
+  title="Stateful (uncontrolled) usage"
+  path="payment-card/uncontrolled.tsx"
+>
   <Uncontrolled />
 </Example>
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulPaymentCard`, which manages its own state.
 
-<Exports component={PaymentCardExports} title="Payment Card exports" path="baseui/payment-card" />
+<Exports
+  component={PaymentCardExports}
+  title="Payment Card exports"
+  path="baseui/payment-card"
+/>
 
 <Exports component={InputExports} title="Input exports" path="baseui/input" />

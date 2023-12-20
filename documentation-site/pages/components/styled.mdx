@@ -1,26 +1,22 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import { Notification, KIND } from "baseui/notification";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import Example from "../../components/example";
+import Layout from "../../components/layout";
 
-import { Notification, KIND } from 'baseui/notification';
-
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-
-import StyledBasic from 'examples/styled/basic.tsx';
+import StyledBasic from "examples/styled/basic.tsx";
 
 export default Layout;
 
 # Styled
 
-<Notification overrides={{ Body: { style: { width: 'auto' } } }} kind={KIND.warning}>
-  We recommend using the <a href="/components/use-styletron">useStyletron</a> hook to apply css
-  styles to your html elements. It allows for simpler patterns where not only elements can be
-  reused, but the also the css definitions. See the 'useStyletron' page for additional
-  styletron-related information.
+<Notification
+  overrides={{ Body: { style: { width: "auto" } } }}
+  kind={KIND.warning}
+>
+  We recommend using the <a href="/components/use-styletron">useStyletron</a>{" "}
+  hook to apply css styles to your html elements. It allows for simpler patterns
+  where not only elements can be reused, but the also the css definitions. See
+  the 'useStyletron' page for additional styletron-related information.
 </Notification>
 
 Base Web exports a modified version of [Styletron's](https://www.styletron.org/api-reference#styled) `styled` function.

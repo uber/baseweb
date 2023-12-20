@@ -9,7 +9,7 @@ export default function Example() {
       <Textarea
         id="textarea-id"
         value={value}
-        onChange={event => setValue(event.currentTarget.value)}
+        onChange={(event) => setValue(event.currentTarget.value)}
       />
     </FormControl>
   );

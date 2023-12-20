@@ -1,29 +1,26 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import { Notification, KIND } from "baseui/notification";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-import { Notification, KIND } from 'baseui/notification';
+import * as BlockExports from "baseui/block";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
-
-import * as BlockExports from 'baseui/block';
-
-import Basic from 'examples/block/basic.tsx';
-import Responsive from 'examples/block/responsive.tsx';
-import Override from 'examples/block/override.tsx';
+import Basic from "examples/block/basic.tsx";
+import Responsive from "examples/block/responsive.tsx";
+import Override from "examples/block/override.tsx";
 
 export default Layout;
 
-<Notification overrides={{ Body: { style: { width: 'auto' } } }} kind={KIND.warning}>
-  We recommend using the <a href="/components/use-styletron">useStyletron</a> hook to apply css
-  styles to your html elements. It allows for simpler patterns with less custom api to learn. It
-  aligns much closer to basic html/css without React and maintains the efficient inline benefits of
-  using the Block component.
+<Notification
+  overrides={{ Body: { style: { width: "auto" } } }}
+  kind={KIND.warning}
+>
+  We recommend using the <a href="/components/use-styletron">useStyletron</a>{" "}
+  hook to apply css styles to your html elements. It allows for simpler patterns
+  with less custom api to learn. It aligns much closer to basic html/css without
+  React and maintains the efficient inline benefits of using the Block
+  component.
 </Notification>
 
 # Block

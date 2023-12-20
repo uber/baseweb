@@ -1,34 +1,31 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import Basic from "examples/slider/basic.tsx";
+import Marks from "examples/slider/marks.tsx";
+import Stateful from "examples/slider/stateful.tsx";
+import Disabled from "examples/slider/disabled.tsx";
+import Range from "examples/slider/range.tsx";
+import StepMinMax from "examples/slider/step-min-max.tsx";
+import CustomTicks from "examples/slider/custom-ticks.tsx";
+import Customization from "examples/slider/overrides.tsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import { StatefulSlider as Slider } from "baseui/slider";
+import * as SliderExports from "baseui/slider";
 
-import Basic from 'examples/slider/basic.tsx';
-import Marks from 'examples/slider/marks.tsx';
-import Stateful from 'examples/slider/stateful.tsx';
-import Disabled from 'examples/slider/disabled.tsx';
-import Range from 'examples/slider/range.tsx';
-import StepMinMax from 'examples/slider/step-min-max.tsx';
-import CustomTicks from 'examples/slider/custom-ticks.tsx';
-import Customization from 'examples/slider/overrides.tsx';
-
-import { StatefulSlider as Slider } from 'baseui/slider';
-import * as SliderExports from 'baseui/slider';
-
-import Yard from '../../components/yard/index';
-import sliderYardConfig from '../../components/yard/config/slider';
+import Yard from "../../components/yard/index";
+import sliderYardConfig from "../../components/yard/config/slider";
 
 export default Layout;
 
 # Slider
 
-<Yard placeholderHeight={90} compilerStyles={{ marginTop: '56px' }} {...sliderYardConfig} />
+<Yard
+  placeholderHeight={90}
+  compilerStyles={{ marginTop: "56px" }}
+  {...sliderYardConfig}
+/>
 
 Control input with sliding axis to choose a single value or range between min and max values.
 
@@ -90,4 +87,8 @@ The component is also **optimized for iOS and Android devices**.
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulSlider`, which manages its own state.
 
-<Exports component={SliderExports} title="Slider exports" path="baseui/slider" />
+<Exports
+  component={SliderExports}
+  title="Slider exports"
+  path="baseui/slider"
+/>

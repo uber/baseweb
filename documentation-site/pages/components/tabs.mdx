@@ -1,35 +1,32 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import { Notification, KIND } from "baseui/notification";
+import { StatefulTabs, Tab } from "baseui/tabs";
+import * as TabsExports from "baseui/tabs";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-import { Notification, KIND } from 'baseui/notification';
-import { StatefulTabs, Tab } from 'baseui/tabs';
-import * as TabsExports from 'baseui/tabs';
+import TabsControlled from "examples/tabs/controlled.tsx";
+import TabsUncontrolled from "examples/tabs/uncontrolled.tsx";
+import TabsCustomKeys from "examples/tabs/custom-keys.tsx";
+import TabsVertical from "examples/tabs/vertical.tsx";
+import TabsRenderAll from "examples/tabs/renderall.tsx";
+import TabsOverrides from "examples/tabs/overrides.tsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
-
-import TabsControlled from 'examples/tabs/controlled.tsx';
-import TabsUncontrolled from 'examples/tabs/uncontrolled.tsx';
-import TabsCustomKeys from 'examples/tabs/custom-keys.tsx';
-import TabsVertical from 'examples/tabs/vertical.tsx';
-import TabsRenderAll from 'examples/tabs/renderall.tsx';
-import TabsOverrides from 'examples/tabs/overrides.tsx';
-
-import Yard from '../../components/yard/index';
-import tabsYardConfig from '../../components/yard/config/tabs';
+import Yard from "../../components/yard/index";
+import tabsYardConfig from "../../components/yard/config/tabs";
 
 export default Layout;
 
-<Notification overrides={{ Body: { style: { width: 'auto' } } }} kind={KIND.warning}>
-  This component is deprecated and will be removed in our next major version, slated for late 2021.
-  We recommend using our new <a href="/components/tabs-motion">Tabs (Motion)</a> component. It has
-  an animated highlight and is compliant with the WAI-ARIA 1.1 Specification. The APIs are almost
-  identical so give it a try!
+<Notification
+  overrides={{ Body: { style: { width: "auto" } } }}
+  kind={KIND.warning}
+>
+  This component is deprecated and will be removed in our next major version,
+  slated for late 2021. We recommend using our new{" "}
+  <a href="/components/tabs-motion">Tabs (Motion)</a> component. It has an
+  animated highlight and is compliant with the WAI-ARIA 1.1 Specification. The
+  APIs are almost identical so give it a try!
 </Notification>
 
 # Tabs

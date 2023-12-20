@@ -23,8 +23,8 @@ On npm, you can find Base Web as `baseui`.
 Add `baseui` and its peer dependencies to your project:
 
 ```bash
-# using yarn
-yarn add baseui styletron-react styletron-engine-monolithic
+# using pnpm
+pnpm add baseui styletron-react styletron-engine-monolithic
 
 # using npm
 npm install baseui styletron-react styletron-engine-monolithic
@@ -58,18 +58,8 @@ export default function Hello () {
 }
 ```
 
-Both Base Web and Styletron come with [flow types](https://flow.org/) and [TypeScript](https://www.typescriptlang.org/index.html). All our components are typed and examples have Vanilla, Flow and TypeScript versions.
+Both Base Web and Styletron come with [TypeScript](https://www.typescriptlang.org/index.html).
 
 ## Docs
 
 To read the documentation, please visit [baseweb.design](https://baseweb.design).
-
-## Contributing
-
-[Contributing](CONTRIBUTING.md)
-
-## Shoutouts 🙏
-
-<img src="https://raw.githubusercontent.com/tajo/react-movable/master/assets/browserstack-logo.png?raw=true" height="80" title="BrowserStack Logo" alt="BrowserStack Logo" />
-
-Big thanks to [BrowserStack](https://www.browserstack.com) for letting the maintainers use their service to debug browser issues.

@@ -1,7 +1,7 @@
 import * as React from 'react';
-
 import {MobileHeader, TYPE} from 'baseui/mobile-header';
 import ArrowLeft from 'baseui/icon/arrow-left';
+
 import Plus from 'baseui/icon/plus';
 import Check from 'baseui/icon/check';
 import map from './images/map-san-francisco.jpg';
@@ -52,7 +52,14 @@ export default function Example() {
         style={{height: '100%', width: '100%', overflowY: 'auto'}}
         tabIndex={0}
       >
-        <img src={map} />
+        <img
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+          src={map.src}
+          alt="SF map"
+        />
       </div>
     </div>
   );

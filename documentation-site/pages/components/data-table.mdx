@@ -1,27 +1,20 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import { Notification, KIND } from "baseui/notification";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
+import UnstableWarning from "../../components/unstable-warning";
+import TableGuideNotification from "../../components/table-guide-notification";
 
-import { Notification, KIND } from 'baseui/notification';
+import Overrides from "../../components/overrides";
+import * as DataTableExports from "baseui/data-table";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
-import UnstableWarning from '../../components/unstable-warning';
-import TableGuideNotification from '../../components/table-guide-notification';
-
-import Overrides from '../../components/overrides';
-import * as DataTableExports from 'baseui/data-table';
-
-import Basic from 'examples/data-table/basic.tsx';
-import BatchAction from 'examples/data-table/batch-action.tsx';
-import RowHeightLineClamp from 'examples/data-table/row-height-line-clamp.tsx';
-import CustomizedEmptyState from 'examples/data-table/customized-empty-state.tsx';
-import CustomizedColumnSort from 'examples/data-table/customized-column-sort.tsx';
-import AccessTableData from 'examples/data-table/access-table-data.tsx';
+import Basic from "examples/data-table/basic.tsx";
+import BatchAction from "examples/data-table/batch-action.tsx";
+import RowHeightLineClamp from "examples/data-table/row-height-line-clamp.tsx";
+import CustomizedEmptyState from "examples/data-table/customized-empty-state.tsx";
+import CustomizedColumnSort from "examples/data-table/customized-column-sort.tsx";
+import AccessTableData from "examples/data-table/access-table-data.tsx";
 
 export default Layout;
 
@@ -50,15 +43,24 @@ other table options: [Table](/components/table) (uses css-flex) or [TableGrid](/
   <RowHeightLineClamp />
 </Example>
 
-<Example title="Customized Column Sort" path="data-table/customized-column-sort.tsx">
+<Example
+  title="Customized Column Sort"
+  path="data-table/customized-column-sort.tsx"
+>
   <CustomizedColumnSort />
 </Example>
 
-<Example title="Customized Empty State" path="data-table/customized-empty-state.tsx">
+<Example
+  title="Customized Empty State"
+  path="data-table/customized-empty-state.tsx"
+>
   <CustomizedEmptyState />
 </Example>
 
-<Example title="Imperatively access table data" path="data-table/access-table-data.tsx">
+<Example
+  title="Imperatively access table data"
+  path="data-table/access-table-data.tsx"
+>
   <AccessTableData />
 </Example>
 
@@ -68,4 +70,8 @@ clipboard or download the data to CSV or other formats.
 
 ## API
 
-<Exports component={DataTableExports} title="Data-Table exports" path="baseui/data-table" />
+<Exports
+  component={DataTableExports}
+  title="Data-Table exports"
+  path="baseui/data-table"
+/>

@@ -1,26 +1,19 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import TreeViewBasic from "examples/tree-view/basic.tsx";
+import TreeViewUncontrolled from "examples/tree-view/uncontrolled.tsx";
+import CustomLabelledTreeView from "examples/tree-view/custom-label.tsx";
+import TreeViewOverrides from "examples/tree-view/overrides.tsx";
+import TreeViewLabelOverrides from "examples/tree-view/label-overrides.tsx";
+import SingleExpanded from "examples/tree-view/single-expanded.tsx";
+import LabelInteractable from "examples/tree-view/interactable.tsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import Yard from "../../components/yard/index";
+import treeviewYardConfig from "../../components/yard/config/tree-view";
 
-import TreeViewBasic from 'examples/tree-view/basic.tsx';
-import TreeViewUncontrolled from 'examples/tree-view/uncontrolled.tsx';
-import CustomLabelledTreeView from 'examples/tree-view/custom-label.tsx';
-import TreeViewOverrides from 'examples/tree-view/overrides.tsx';
-import TreeViewLabelOverrides from 'examples/tree-view/label-overrides.tsx';
-import SingleExpanded from 'examples/tree-view/single-expanded.tsx';
-import LabelInteractable from 'examples/tree-view/interactable.tsx';
-
-import Yard from '../../components/yard/index';
-import treeviewYardConfig from '../../components/yard/config/tree-view';
-
-import * as TreeViewExports from 'baseui/tree-view';
+import * as TreeViewExports from "baseui/tree-view";
 
 export default Layout;
 
@@ -40,11 +33,17 @@ The TreeView is used to display a hierarchical list of items.
   <CustomLabelledTreeView />
 </Example>
 
-<Example title="Customizing icons and rendering all content for SEO" path="tree-view/overrides.tsx">
+<Example
+  title="Customizing icons and rendering all content for SEO"
+  path="tree-view/overrides.tsx"
+>
   <TreeViewOverrides />
 </Example>
 
-<Example title="Customizing labels based on depth" path="tree-view/label-overrides.tsx">
+<Example
+  title="Customizing labels based on depth"
+  path="tree-view/label-overrides.tsx"
+>
   <TreeViewLabelOverrides />
 </Example>
 
@@ -55,11 +54,17 @@ The TreeView is used to display a hierarchical list of items.
   <SingleExpanded />
 </Example>
 
-<Example title="Using interactable elements in a tree node label" path="tree-view/interactable.tsx">
+<Example
+  title="Using interactable elements in a tree node label"
+  path="tree-view/interactable.tsx"
+>
   <LabelInteractable />
 </Example>
 
-<Example title="Stateful (uncontrolled) usage" path="tree-view/uncontrolled.tsx">
+<Example
+  title="Stateful (uncontrolled) usage"
+  path="tree-view/uncontrolled.tsx"
+>
   <TreeViewUncontrolled />
 </Example>
 
@@ -77,4 +82,8 @@ You can also `Tab` focus the component and use all shortcuts according to the sp
 - `Home`, `End`
 - `*`
 
-<Exports component={TreeViewExports} title="Tree View exports" path="baseui/tree-view" />
+<Exports
+  component={TreeViewExports}
+  title="Tree View exports"
+  path="baseui/tree-view"
+/>

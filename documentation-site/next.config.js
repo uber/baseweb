@@ -6,69 +6,38 @@ LICENSE file in the root directory of this source tree.
 */
 
 /* eslint-env node */
-
-const { resolve } = require('path');
-const withMDX = require('@next/mdx')({
+const withMDX = require("@next/mdx")({
   extension: /\.mdx?$/,
 });
 
+/** @type {import('next').NextConfig} */
 module.exports = withMDX({
+  output: "export",
+  //distDir: "../public",
   images: {
     unoptimized: true,
   },
   typescript: {
     ignoreBuildErrors: true,
   },
-  publicRuntimeConfig: {
-    loadYard: process.env.LOAD_YARD,
-  },
   trailingSlash: true,
-  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-  webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
-    // Exclude image formats from next-image-loader
-    const imageRuleIndex = config.module.rules.findIndex(
-      (rule) => rule.loader === 'next-image-loader'
-    );
-    if (imageRuleIndex !== -1) {
-      config.module.rules[imageRuleIndex].exclude = /\.(png|jpe?g|gif|webp|svg)$/i;
-    }
-
-    config.module.rules.push({
-      test: /\.(png|jpe?g|gif|webp|svg)$/i,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            publicPath: '/_next/static/images/',
-            outputPath: 'static/images/',
-            name: '[name]-[hash].[ext]',
-          },
-        },
-      ],
-    });
-
-    config.optimization.splitChunks.maxSize = 20_000;
-
-    config.resolve.alias.baseui = resolve(__dirname, '../dist');
-    config.resolve.alias.examples = resolve(__dirname, 'examples');
-    // references next polyfills example: https://github.com/zeit/next.js/tree/canary/examples/with-polyfills
-    const originalEntry = config.entry;
+  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+  experimental: {
+    esmExternals: "loose",
+    externalDir: true,
+    webpackBuildWorker: true,
+  },
+  webpack: (config, { dev, isServer, webpack }) => {
+    // workaround for react-view and babel
     config.resolve.fallback = { fs: false };
-    config.entry = async () => {
-      const entries = await originalEntry();
-
-      if (entries['main.js'] && !entries['main.js'].includes('./helpers/polyfills.js')) {
-        entries['main.js'].unshift('./helpers/polyfills.js');
-      }
-
-      return entries;
-    };
-
-    if (dev) {
-      config.devtool = 'inline-source-map';
-    }
-
+    config.optimization.splitChunks.maxSize = 20000;
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        __DEV__: dev,
+        __BROWSER__: !isServer,
+        __SERVER__: isServer,
+      }),
+    );
     return config;
   },
-  pageExtensions: ['js', 'jsx', 'mdx'],
 });

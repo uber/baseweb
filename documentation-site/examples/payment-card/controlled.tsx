@@ -6,7 +6,7 @@ export default function Example() {
   return (
     <PaymentCard
       value={value}
-      onChange={event => setValue(event.currentTarget.value)}
+      onChange={(event) => setValue(event.currentTarget.value)}
       placeholder="Please enter your credit card number..."
     />
   );

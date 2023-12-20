@@ -37,7 +37,7 @@ export default function Example() {
     setTags([...tags, tag]);
   };
   const removeTag = (tag: string) => {
-    setTags(tags.filter(t => t !== tag));
+    setTags(tags.filter((t) => t !== tag));
   };
   const handleKeyDown = (
     event: React.KeyboardEvent<HTMLInputElement>,
@@ -62,7 +62,7 @@ export default function Example() {
     <Input
       placeholder={tags.length ? '' : 'Enter A Tag'}
       value={value}
-      onChange={e => setValue(e.currentTarget.value)}
+      onChange={(e) => setValue(e.currentTarget.value)}
       overrides={{
         Input: {
           style: {width: 'auto', flexGrow: 1},

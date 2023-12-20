@@ -5,19 +5,19 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import * as React from 'react';
-import SimpleEditor from 'react-simple-code-editor';
-import Highlight, { Prism } from 'prism-react-renderer';
-import { useStyletron } from 'baseui';
+import * as React from "react";
+import SimpleEditor from "react-simple-code-editor";
+import Highlight, { Prism } from "prism-react-renderer";
+import { useStyletron } from "baseui";
 
-import type { TTransformToken, TEditorProps } from 'react-view';
-import { lightTheme, useValueDebounce } from 'react-view';
-import darkTheme from './dark-theme';
+import type { TTransformToken, TEditorProps } from "react-view";
+import { lightTheme, useValueDebounce } from "react-view";
+import darkTheme from "./dark-theme";
 
 const highlightCode = (
   code: string,
   theme: typeof lightTheme,
-  transformToken?: TTransformToken
+  transformToken?: TTransformToken,
 ) => (
   <Highlight Prism={Prism} code={code} theme={theme} language="jsx">
     {({ tokens, getLineProps, getTokenProps }) => (
@@ -50,14 +50,18 @@ const Editor: React.FC<TEditorProps> = ({
 }) => {
   const [css, theme] = useStyletron();
   const [focused, setFocused] = React.useState(false);
-  const plainStyles = theme.name.startsWith('light-theme') ? lightTheme : darkTheme;
+  const plainStyles = theme.name.startsWith("light-theme")
+    ? lightTheme
+    : darkTheme;
   const editorTheme = {
     ...plainStyles,
     plain: {
       ...plainStyles.plain,
-      fontSize: small ? '13px' : '14px',
-      whiteSpace: 'break-spaces',
-      backgroundColor: focused ? theme.colors.inputFillActive : theme.colors.inputFill,
+      fontSize: small ? "13px" : "14px",
+      whiteSpace: "break-spaces",
+      backgroundColor: focused
+        ? theme.colors.inputFillActive
+        : theme.colors.inputFill,
     },
   };
 
@@ -66,29 +70,37 @@ const Editor: React.FC<TEditorProps> = ({
   return (
     <div
       className={css({
-        boxSizing: 'border-box',
+        boxSizing: "border-box",
         backgroundColor: editorTheme.plain.backgroundColor,
-        paddingLeft: '8px',
-        paddingRight: '8px',
-        paddingTop: '0px',
-        paddingBottom: '0px',
-        overflow: 'hidden',
-        borderLeftWidth: '2px',
-        borderRightWidth: '2px',
-        borderTopWidth: '2px',
-        borderBottomWidth: '2px',
-        borderLeftStyle: 'solid',
-        borderTopStyle: 'solid',
-        borderRightStyle: 'solid',
-        borderBottomStyle: 'solid',
-        borderTopRightRadius: '8px',
-        borderTopLeftRadius: '8px',
-        borderBottomRightRadius: '8px',
-        borderBottomLeftRadius: '8px',
-        borderLeftColor: focused ? theme.colors.borderSelected : theme.colors.inputBorder,
-        borderTopColor: focused ? theme.colors.borderSelected : theme.colors.inputBorder,
-        borderRightColor: focused ? theme.colors.borderSelected : theme.colors.inputBorder,
-        borderBottomColor: focused ? theme.colors.borderSelected : theme.colors.inputBorder,
+        paddingLeft: "8px",
+        paddingRight: "8px",
+        paddingTop: "0px",
+        paddingBottom: "0px",
+        overflow: "hidden",
+        borderLeftWidth: "2px",
+        borderRightWidth: "2px",
+        borderTopWidth: "2px",
+        borderBottomWidth: "2px",
+        borderLeftStyle: "solid",
+        borderTopStyle: "solid",
+        borderRightStyle: "solid",
+        borderBottomStyle: "solid",
+        borderTopRightRadius: "8px",
+        borderTopLeftRadius: "8px",
+        borderBottomRightRadius: "8px",
+        borderBottomLeftRadius: "8px",
+        borderLeftColor: focused
+          ? theme.colors.borderSelected
+          : theme.colors.inputBorder,
+        borderTopColor: focused
+          ? theme.colors.borderSelected
+          : theme.colors.inputBorder,
+        borderRightColor: focused
+          ? theme.colors.borderSelected
+          : theme.colors.inputBorder,
+        borderBottomColor: focused
+          ? theme.colors.borderSelected
+          : theme.colors.inputBorder,
       })}
     >
       <style
@@ -98,7 +110,7 @@ const Editor: React.FC<TEditorProps> = ({
       />
       <SimpleEditor
         ignoreTabKey={true}
-        value={code || ''}
+        value={code || ""}
         placeholder={placeholder}
         highlight={(code) => highlightCode(code, editorTheme, transformToken)}
         onValueChange={(code) => setCode(code)}

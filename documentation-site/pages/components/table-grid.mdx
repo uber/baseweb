@@ -1,22 +1,15 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
+import TableGuideNotification from "../../components/table-guide-notification";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import * as TableGridExports from "baseui/table-grid";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
-import TableGuideNotification from '../../components/table-guide-notification';
-
-import * as TableGridExports from 'baseui/table-grid';
-
-import Basic from 'examples/table-grid/basic.tsx';
-import Nested from 'examples/table-grid/nested.tsx';
-import CellSpan from 'examples/table-grid/cell-span.tsx';
-import Sortable from 'examples/table-grid/sortable.tsx';
-import CellNavigation from 'examples/table-grid/cell-navigation.tsx';
+import Basic from "examples/table-grid/basic.tsx";
+import Nested from "examples/table-grid/nested.tsx";
+import CellSpan from "examples/table-grid/cell-span.tsx";
+import Sortable from "examples/table-grid/sortable.tsx";
+import CellNavigation from "examples/table-grid/cell-navigation.tsx";
 
 export default Layout;
 
@@ -54,6 +47,9 @@ with [flex-box](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Bo
 Tables should be navigable by keyboard. The example below includes a useful react hook to apply arrow
 event handlers to cells.
 
-<Example title="Accessible cell navigation" path="table-grid/cell-navigation.tsx">
+<Example
+  title="Accessible cell navigation"
+  path="table-grid/cell-navigation.tsx"
+>
   <CellNavigation />
 </Example>

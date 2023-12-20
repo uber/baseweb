@@ -22,7 +22,7 @@ const Dropdown = (props: {children: React.ReactNode}) => {
   return (
     <Popover
       isOpen={isOpen}
-      onClick={() => setIsOpen(s => !s)}
+      onClick={() => setIsOpen((s) => !s)}
       content={
         <StatefulMenu
           items={items}

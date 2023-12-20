@@ -1,42 +1,42 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import { useStyletron } from "baseui";
+import * as TokensExports from "baseui/tokens";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
-
-import { useStyletron } from 'baseui';
-import * as TokensExports from 'baseui/tokens';
-
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import BasicExample from 'examples/tokens/basic.tsx';
-import Exports from '../../components/exports';
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import BasicExample from "examples/tokens/basic.tsx";
+import Exports from "../../components/exports";
 
 export default Layout;
 
 export function ColorPreviewContainer(props) {
   const [css, theme] = useStyletron();
-  return <div className={css({ ...theme.typography.MonoParagraphSmall })} {...props} />;
+  return (
+    <div
+      className={css({
+        ...theme.typography.MonoParagraphSmall,
+      })}
+      {...props}
+    />
+  );
 }
 export function ColorPreview({ name, value, displayValue }) {
   return (
     <div
       style={{
-        display: 'flex',
-        alignItems: 'center',
-        borderBottomStyle: 'solid',
-        borderBottomWidth: '1px',
+        display: "flex",
+        alignItems: "center",
+        borderBottomStyle: "solid",
+        borderBottomWidth: "1px",
         borderBottomColor: `${value}`,
       }}
     >
       <div
         style={{
           backgroundColor: value,
-          width: '100px',
-          minWidth: '100px',
-          height: '50px',
-          marginRight: '20px',
+          width: "100px",
+          minWidth: "100px",
+          height: "50px",
+          marginRight: "20px",
         }}
       ></div>
       <div style={{ flexGrow: 1 }}>{name}</div>
@@ -50,7 +50,7 @@ export function ColorPreview({ name, value, displayValue }) {
 You can import Base Web design tokens from `baseui/tokens`. A primitive token is just an alias for a value in your design system, such as a hex or pixel value. It creates a consistent way to reference an immutable value in a design system. For example:
 
 ```js
-const acmeBlue = '#0000FF';
+const acmeBlue = "#0000FF";
 ```
 
 Anytime someone needs to reference the blue for Acme Co. there is a single place it is defined and exported. Note, this is a little different from a theme, which assigns semantic meaning to colors. A token is just a consistent way to reference an immutable value in a design system.
@@ -70,8 +70,8 @@ You can create a custom theme with your choice of color tokens. Here is what tha
 ```js
 // myTheme.tsx
 
-import { createTheme, lightThemePrimitives } from 'baseui';
-import { colors } from 'baseui/tokens';
+import { createTheme, lightThemePrimitives } from "baseui";
+import { colors } from "baseui/tokens";
 
 const myThemePrimitives = {
   ...lightThemePrimitives,
@@ -97,8 +97,8 @@ Sometimes our default mapping of theme's building primitives to theme properties
 ```js
 // myTheme.tsx
 
-import { createTheme, lightThemePrimitives } from 'baseui';
-import { colors } from 'baseui/tokens';
+import { createTheme, lightThemePrimitives } from "baseui";
+import { colors } from "baseui/tokens";
 
 const myThemeOverrides = {
   colors: {
@@ -131,4 +131,8 @@ Not every color listed here is used in a `baseui` component. This is simply the 
 
 ## API
 
-<Exports component={TokensExports} title="Tokens exports" path="baseui/tokens" />
+<Exports
+  component={TokensExports}
+  title="Tokens exports"
+  path="baseui/tokens"
+/>

@@ -5,14 +5,14 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { TreeView, toggleIsExpanded } from 'baseui/tree-view';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { TreeView, toggleIsExpanded } from "baseui/tree-view";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const TreeViewConfig: TConfig = {
-  componentName: 'TreeView',
+  componentName: "TreeView",
   imports: {
-    'baseui/tree-view': { named: ['TreeView', 'toggleIsExpanded'] },
+    "baseui/tree-view": { named: ["TreeView", "toggleIsExpanded"] },
   },
   scope: {
     TreeView,
@@ -81,58 +81,60 @@ const TreeViewConfig: TConfig = {
   },
 ]`,
       type: PropTypes.Array,
-      description: 'Tree View data structure.',
+      description: "Tree View data structure.",
       stateful: true,
       hidden: true,
     },
     getId: {
       value: undefined,
       type: PropTypes.Function,
-      placeholder: 'node => node.id',
+      placeholder: "node => node.id",
       description: `Let's you set a custom mapping node => id function.`,
     },
     indentGuides: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Displays indent guides',
+      description: "Displays indent guides",
     },
     onToggle: {
-      value: 'node => {\n  setData(prevData => toggleIsExpanded(prevData, node))\n}',
+      value:
+        "node => {\n  setData(prevData => toggleIsExpanded(prevData, node))\n}",
       type: PropTypes.Function,
       description: `Called every time an tree item is clicked.`,
     },
     renderAll: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Renders all tab content for SEO purposes regardless of tab active state.',
+      description:
+        "Renders all tab content for SEO purposes regardless of tab active state.",
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
         names: [
-          'Root',
-          'TreeItemList',
-          'TreeItem',
-          'TreeLabel',
-          'TreeItemContent',
-          'IconContainer',
-          'ExpandIcon',
-          'CollapseIcon',
+          "Root",
+          "TreeItemList",
+          "TreeItem",
+          "TreeLabel",
+          "TreeItemContent",
+          "IconContainer",
+          "ExpandIcon",
+          "CollapseIcon",
         ],
         sharedProps: {
           $hasChildren: {
             type: PropTypes.Boolean,
-            description: 'True when the node has children.',
+            description: "True when the node has children.",
           },
           $isExpanded: {
             type: PropTypes.Boolean,
-            description: 'True when the node is expanded.',
+            description: "True when the node is expanded.",
           },
           $isSelected: {
             type: PropTypes.Boolean,
-            description: 'True when the node is selected.',
+            description: "True when the node is selected.",
           },
           $isFocusVisible: {
             type: PropTypes.Boolean,

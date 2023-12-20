@@ -1,22 +1,15 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Exports from "../../components/exports";
+import Layout from "../../components/layout";
+import SEO from "../../components/meta-seo";
+import Yard from "../../components/yard/index";
+import appNavBarYardConfig from "../../components/yard/config/app-nav-bar.ts";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import * as AppNavBarExports from "baseui/app-nav-bar";
 
-import Example from '../../components/example';
-import Exports from '../../components/exports';
-import Layout from '../../components/layout';
-import SEO from '../../components/meta-seo';
-import Yard from '../../components/yard/index';
-import appNavBarYardConfig from '../../components/yard/config/app-nav-bar.ts';
-
-import * as AppNavBarExports from 'baseui/app-nav-bar';
-
-import Basic from 'examples/app-nav-bar/basic.tsx';
-import MapItemToNode from 'examples/app-nav-bar/map-item-to-node.tsx';
-import UniqueIdentifier from 'examples/app-nav-bar/unique-identifier.tsx';
+import Basic from "examples/app-nav-bar/basic.tsx";
+import MapItemToNode from "examples/app-nav-bar/map-item-to-node.tsx";
+import UniqueIdentifier from "examples/app-nav-bar/unique-identifier.tsx";
 
 <SEO
   description="The shared navigation bar component enables users to orient and navigate different sections of applications reliably."
@@ -52,4 +45,8 @@ This utility relies on unique label values to operate but can be customized foll
   <UniqueIdentifier />
 </Example>
 
-<Exports component={AppNavBarExports} title="Navigation bar exports" path="baseui/app-nav-bar" />
+<Exports
+  component={AppNavBarExports}
+  title="Navigation bar exports"
+  path="baseui/app-nav-bar"
+/>

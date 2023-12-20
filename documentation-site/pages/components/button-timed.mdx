@@ -1,23 +1,16 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Exports from "../../components/exports";
+import Layout from "../../components/layout";
+import SEO from "../../components/meta-seo";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import Paused from "examples/button-timed/paused.tsx";
 
-import Example from '../../components/example';
-import Exports from '../../components/exports';
-import Layout from '../../components/layout';
-import SEO from '../../components/meta-seo';
+import { ButtonTimed } from "baseui/button";
+import * as ButtonTimedExports from "baseui/button-timed";
+import ArrowRight from "baseui/icon/arrow-right";
 
-import Paused from 'examples/button-timed/paused.tsx';
-
-import { ButtonTimed } from 'baseui/button';
-import * as ButtonTimedExports from 'baseui/button-timed';
-import ArrowRight from 'baseui/icon/arrow-right';
-
-import Yard from '../../components/yard/index';
-import buttonTimedYardConfig from '../../components/yard/config/button-timed';
+import Yard from "../../components/yard/index";
+import buttonTimedYardConfig from "../../components/yard/config/button-timed";
 
 <SEO
   description="Buttons provide allow users to process actions or navigate an experience. Timed buttons auto-advance the user after a finite amount of time (usually few seconds)."
@@ -44,4 +37,8 @@ Timed buttons should be used sparingly for offers or autoconfirming non-critical
 
 Use the `pause` prop to declaratively start and pause the countdown timer.
 
-<Exports component={ButtonTimedExports} title="Button Timed exports" path="baseui/button-timed" />
+<Exports
+  component={ButtonTimedExports}
+  title="Button Timed exports"
+  path="baseui/button-timed"
+/>

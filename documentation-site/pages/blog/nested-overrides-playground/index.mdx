@@ -1,9 +1,9 @@
-import {Tag} from 'baseui/tag';
-import metadata from './metadata.json';
-import LiveEditorTag from './live-editor-tag';
-import LiveEditor from './live-editor';
-import Layout from '../../../components/layout';
-import {BlogImage, Meta, Caption} from '../../../components/blog';
+import { Tag } from "baseui/tag";
+import metadata from "./metadata.json";
+import LiveEditorTag from "./live-editor-tag";
+import LiveEditor from "./live-editor";
+import Layout from "../../../components/layout";
+import { BlogImage, Meta, Caption } from "../../../components/blog";
 
 export default Layout;
 
@@ -20,14 +20,14 @@ One of the most unique aspects of Base Web components is that you can fully cust
 Here's TLDR: Every component has the `overrides` prop that maps sub-components to custom styles, props or even entire components. For example, if you want to change the default color of tag you can do this:
 
 ```tsx
-import * as React from 'react';
-import {Tag} from 'baseui/tag';
+import * as React from "react";
+import { Tag } from "baseui/tag";
 
 export default () => (
   <Tag
     overrides={{
       Text: {
-        style: ({$theme}) => ({
+        style: ({ $theme }) => ({
           color: $theme.colors.accent,
         }),
       },
@@ -43,7 +43,7 @@ and the tag will have `accent`ed label:
 <Tag
   overrides={{
     Text: {
-      style: ({$theme}) => ({
+      style: ({ $theme }) => ({
         color: $theme.colors.accent,
       }),
     },

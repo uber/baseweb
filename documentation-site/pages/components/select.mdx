@@ -1,39 +1,32 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import SelectUncontrolled from "examples/select/uncontrolled.tsx";
+import SelectSizes from "examples/select/sizes.tsx";
+import SelectControlled from "examples/select/controlled.tsx";
+import SelectOverridden from "examples/select/overridden.tsx";
+import SelectLabel from "examples/select/label.tsx";
+import SelectInModal from "examples/select/in-modal.tsx";
+import SelectNative from "examples/select/native.tsx";
+import SelectSinglePickSearch from "examples/select/search-single-pick.tsx";
+import SelectMultiPickSearch from "examples/select/search-multi-pick.tsx";
+import SelectWithManyOptions from "examples/select/with-many-options.tsx";
+import SelectCreatable from "examples/select/creatable.tsx";
+import SelectCreatableMulti from "examples/select/creatable-multi.tsx";
+import SelectOverriddenDropdown from "examples/select/overridden-dropdown.tsx";
+import SelectGrouped from "examples/select/grouped.tsx";
+import SelectAsyncOptions from "examples/select/async-options.tsx";
+import SelectFocus from "examples/select/focus.tsx";
+import SelectDropdown from "examples/select/control-ref-dropdown.tsx";
+import SelectInputValue from "examples/select/control-ref-input-value.tsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import { StatefulSelect, TYPE } from "baseui/select";
+import * as SelectExports from "baseui/select";
+import { Block } from "baseui/block";
 
-import SelectUncontrolled from 'examples/select/uncontrolled.tsx';
-import SelectSizes from 'examples/select/sizes.tsx';
-import SelectControlled from 'examples/select/controlled.tsx';
-import SelectOverridden from 'examples/select/overridden.tsx';
-import SelectLabel from 'examples/select/label.tsx';
-import SelectInModal from 'examples/select/in-modal.tsx';
-import SelectNative from 'examples/select/native.tsx';
-import SelectSinglePickSearch from 'examples/select/search-single-pick.tsx';
-import SelectMultiPickSearch from 'examples/select/search-multi-pick.tsx';
-import SelectWithManyOptions from 'examples/select/with-many-options.tsx';
-import SelectCreatable from 'examples/select/creatable.tsx';
-import SelectCreatableMulti from 'examples/select/creatable-multi.tsx';
-import SelectOverriddenDropdown from 'examples/select/overridden-dropdown.tsx';
-import SelectGrouped from 'examples/select/grouped.tsx';
-import SelectAsyncOptions from 'examples/select/async-options.tsx';
-import SelectFocus from 'examples/select/focus.tsx';
-import SelectDropdown from 'examples/select/control-ref-dropdown.tsx';
-import SelectInputValue from 'examples/select/control-ref-input-value.tsx';
-
-import { StatefulSelect, TYPE } from 'baseui/select';
-import * as SelectExports from 'baseui/select';
-import { Block } from 'baseui/block';
-
-import Yard from '../../components/yard/index';
-import selectYardConfig from '../../components/yard/config/select';
+import Yard from "../../components/yard/index";
+import selectYardConfig from "../../components/yard/config/select";
 
 export default Layout;
 
@@ -60,7 +53,10 @@ Things to note in the example source code:
 - the `value` is always an `Array` to provide a consistent interface - no matter if you use multi or single selects,
 - you have to call `setState` with the entire object, not just the `id` value.
 
-<Example title="Select as single-pick search" path="select/search-single-pick.tsx">
+<Example
+  title="Select as single-pick search"
+  path="select/search-single-pick.tsx"
+>
   <SelectSinglePickSearch />
 </Example>
 
@@ -78,7 +74,10 @@ arrow will not be rendered to the right.
 The creatable select enables users to create new options along with choosing
 existing options.
 
-<Example title="Select as multi-pick search" path="select/search-multi-pick.tsx">
+<Example
+  title="Select as multi-pick search"
+  path="select/search-multi-pick.tsx"
+>
   <SelectMultiPickSearch />
 </Example>
 
@@ -102,11 +101,17 @@ existing options.
   <SelectFocus />
 </Example>
 
-<Example title="Imperatively control dropdown" path="select/control-ref-dropdown.tsx">
+<Example
+  title="Imperatively control dropdown"
+  path="select/control-ref-dropdown.tsx"
+>
   <SelectDropdown />
 </Example>
 
-<Example title="Imperatively control input value" path="select/control-ref-input-value.tsx">
+<Example
+  title="Imperatively control input value"
+  path="select/control-ref-input-value.tsx"
+>
   <SelectInputValue />
 </Example>
 
@@ -120,7 +125,7 @@ following methods: `setInputFocus`, `setInputBlur`, `setDropdownOpen`, and `setI
 <Example
   title="Select with many options"
   path="select/with-many-options.tsx"
-  additionalPackages={{ 'react-window': '^1.8.5' }}
+  additionalPackages={{ "react-window": "^1.8.5" }}
 >
   <SelectWithManyOptions />
 </Example>
@@ -137,10 +142,17 @@ following methods: `setInputFocus`, `setInputBlur`, `setDropdownOpen`, and `setI
   <SelectOverridden />
 </Example>
 
-<Example title="Select dropdown overrides" path="select/overridden-dropdown.tsx">
+<Example
+  title="Select dropdown overrides"
+  path="select/overridden-dropdown.tsx"
+>
   <SelectOverriddenDropdown />
 </Example>
 
 To override the `Popover` that's being used by the Dropdown subcomponent, you have to use a [nested override](/guides/understanding-overrides/#override-nested-components).
 
-<Exports component={SelectExports} title="Select exports" path="baseui/select" />
+<Exports
+  component={SelectExports}
+  title="Select exports"
+  path="baseui/select"
+/>

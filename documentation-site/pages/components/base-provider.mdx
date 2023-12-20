@@ -1,13 +1,6 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
-
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
-
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import { Notification } from 'baseui/notification';
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import { Notification } from "baseui/notification";
 
 export default Layout;
 
@@ -21,8 +14,8 @@ to handle styling and stacking context in the application.
 Wrap your application with the `BaseProvider` at its root:
 
 ```jsx
-import { BaseProvider, LightTheme } from 'baseui';
-import { Provider as StyletronProvider } from 'styletron-react';
+import { BaseProvider, LightTheme } from "baseui";
+import { Provider as StyletronProvider } from "styletron-react";
 
 export default function App() {
   return (
@@ -37,10 +30,10 @@ export default function App() {
 
 <Notification
   overrides={{
-    Body: { style: { width: 'auto' } },
+    Body: { style: { width: "auto" } },
   }}
 >
-  Your application might be wrapping the root only with ThemeProvider. You should use BaseProvider
-  instead to support correct layering. Please note that this component adds an <b>additional div</b>{' '}
-  that could impact your layout.
+  Your application might be wrapping the root only with ThemeProvider. You
+  should use BaseProvider instead to support correct layering. Please note that
+  this component adds an <b>additional div</b> that could impact your layout.
 </Notification>

@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Banner, ACTION_POSITION} from 'baseui/banner';

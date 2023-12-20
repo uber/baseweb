@@ -1,33 +1,27 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
+import * as React from "react";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import Basic from "examples/menu/basic.tsx";
+import Compact from "examples/menu/compact.tsx";
+import Profile from "examples/menu/profile.tsx";
+import Stateless from "examples/menu/stateless.tsx";
+import Child from "examples/menu/child.tsx";
+import ChildRenderAll from "examples/menu/child-render-all.tsx";
+import Grouped from "examples/menu/grouped.tsx";
+import VirtualList from "examples/menu/virtual-list.tsx";
+import Href from "examples/menu/href.tsx";
+import Dividers from "examples/menu/dividers.tsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import Overrides from "../../components/overrides";
+import { StatefulMenu, OptionProfile } from "baseui/menu";
+import * as MenuExports from "baseui/menu";
+import { Block } from "baseui/block";
+import Code from "../../components/code";
 
-import Basic from 'examples/menu/basic.tsx';
-import Compact from 'examples/menu/compact.tsx';
-import Profile from 'examples/menu/profile.tsx';
-import Stateless from 'examples/menu/stateless.tsx';
-import Child from 'examples/menu/child.tsx';
-import ChildRenderAll from 'examples/menu/child-render-all.tsx';
-import Grouped from 'examples/menu/grouped.tsx';
-import VirtualList from 'examples/menu/virtual-list.tsx';
-import Href from 'examples/menu/href.tsx';
-import Dividers from 'examples/menu/dividers.tsx';
-
-import Overrides from '../../components/overrides';
-import { StatefulMenu, OptionProfile } from 'baseui/menu';
-import * as MenuExports from 'baseui/menu';
-import { Block } from 'baseui/block';
-import Code from '../../components/code';
-
-import Yard from '../../components/yard/index';
-import menuYardConfig from '../../components/yard/config/menu';
+import Yard from "../../components/yard/index";
+import menuYardConfig from "../../components/yard/config/menu";
 
 export default Layout;
 
@@ -77,7 +71,10 @@ The provided id will be set as a value for the item container's `id` attribute t
   <Child />
 </Example>
 
-<Example title="Menu with Child Menu renderAll (SSR / SEO)" path="menu/child-render-all.tsx">
+<Example
+  title="Menu with Child Menu renderAll (SSR / SEO)"
+  path="menu/child-render-all.tsx"
+>
   <ChildRenderAll />
 </Example>
 
@@ -88,7 +85,7 @@ The provided id will be set as a value for the item container's `id` attribute t
 <Example
   title="Menu with Long Items List"
   path="menu/virtual-list.tsx"
-  additionalPackages={{ 'react-virtualized': '^9.21.0' }}
+  additionalPackages={{ "react-virtualized": "^9.21.0" }}
 >
   <VirtualList />
 </Example>
@@ -111,32 +108,34 @@ The provided id will be set as a value for the item container's `id` attribute t
       <Block marginBottom="scale600">
         <StatefulMenu
           items={[
-            { label: 'Item One' },
-            { label: 'Item Two' },
+            { label: "Item One" },
+            { label: "Item Two" },
             { divider: true },
-            { label: 'Item Three', disabled: true },
-            { label: 'Item Four', disabled: true },
+            { label: "Item Three", disabled: true },
+            { label: "Item Four", disabled: true },
             { divider: true },
-            { label: 'Item Five' },
-            { label: 'Item Six' },
+            { label: "Item Five" },
+            { label: "Item Six" },
           ]}
           onItemSelect={console.log}
           overrides={props.overrides}
         />
       </Block>
       <p>
-        <b>Note:</b> <i>baseui/menu</i> supports and exports two types of options: <b>OptionList</b>{' '}
-        (default) and <b>OptionProfile</b>. You can opt-in into OptionProfile (example rendered
-        below) by overriding the <strong>Option</strong> key. Since each override is an another
-        component, you can pass additional overrides (<strong>all Profile* components</strong>) to
-        it as well and that's what we do below.
+        <b>Note:</b> <i>baseui/menu</i> supports and exports two types of
+        options: <b>OptionList</b> (default) and <b>OptionProfile</b>. You can
+        opt-in into OptionProfile (example rendered below) by overriding the{" "}
+        <strong>Option</strong> key. Since each override is an another
+        component, you can pass additional overrides (
+        <strong>all Profile* components</strong>) to it as well and that's what
+        we do below.
       </p>
       <StatefulMenu
         items={[...new Array(4)].map(() => ({
-          title: 'David Smith',
-          subtitle: 'Senior Engineering Manager',
-          body: 'Uber Everything',
-          imgUrl: 'https://via.placeholder.com/60x60',
+          title: "David Smith",
+          subtitle: "Senior Engineering Manager",
+          body: "Uber Everything",
+          imgUrl: "https://via.placeholder.com/60x60",
         }))}
         overrides={{
           ...props.overrides,
@@ -156,8 +155,8 @@ The provided id will be set as a value for the item container's `id` attribute t
         }}
       />
       <Block marginTop="scale600" marginBottom="scale600">
-        <strong>Source Code</strong> (override objects are empty just to demonstrate their
-        placement)
+        <strong>Source Code</strong> (override objects are empty just to
+        demonstrate their placement)
       </Block>
       <Code>
         {`import {StatefulMenu, OptionProfile} from 'baseui/menu';

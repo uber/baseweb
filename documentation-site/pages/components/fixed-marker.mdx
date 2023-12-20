@@ -1,30 +1,23 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import Basic from "examples/fixed-marker/basic.tsx";
+import StartEnhancer from "examples/fixed-marker/start-enhancer.tsx";
+import EndEnhancerColor from "examples/fixed-marker/end-enhancer-color.tsx";
+import StartEnhancerLarge from "examples/fixed-marker/start-enhancer-large.tsx";
+import Dragging from "examples/fixed-marker/dragging.tsx";
+import XSmall from "examples/fixed-marker/x-small.tsx";
+import ReactMapGL from "examples/fixed-marker/react-map-gl.tsx";
+import ReactMapGLDragging from "examples/fixed-marker/react-map-gl-dragging.tsx";
+import BadgeEnhancerText from "examples/fixed-marker/badge-enhancer-text.tsx";
+import BadgeAndLabelEnhancers from "examples/fixed-marker/badge-and-label-enhancers.tsx";
+import { FixedMarkerSizingTable } from "../../components/map-marker-sizing-table.jsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import Yard from "../../components/yard/index";
+import fixedMarkerYardConfig from "../../components/yard/config/fixed-marker";
 
-import Basic from 'examples/fixed-marker/basic.tsx';
-import StartEnhancer from 'examples/fixed-marker/start-enhancer.tsx';
-import EndEnhancerColor from 'examples/fixed-marker/end-enhancer-color.tsx';
-import StartEnhancerLarge from 'examples/fixed-marker/start-enhancer-large.tsx';
-import Dragging from 'examples/fixed-marker/dragging.tsx';
-import XSmall from 'examples/fixed-marker/x-small.tsx';
-import ReactMapGL from 'examples/fixed-marker/react-map-gl.tsx';
-import ReactMapGLDragging from 'examples/fixed-marker/react-map-gl-dragging.tsx';
-import BadgeEnhancerText from 'examples/fixed-marker/badge-enhancer-text.tsx';
-import BadgeAndLabelEnhancers from 'examples/fixed-marker/badge-and-label-enhancers.tsx';
-import { FixedMarkerSizingTable } from '../../components/map-marker-sizing-table.js';
-
-import Yard from '../../components/yard/index';
-import fixedMarkerYardConfig from '../../components/yard/config/fixed-marker';
-
-import * as FixedMarkerExports from 'baseui/map-marker';
+import * as FixedMarkerExports from "baseui/map-marker";
 
 export default Layout;
 
@@ -72,19 +65,28 @@ For more information on the design principles behind the Base map markers, pleas
 
 A fixed map marker with only a label. Default size is medium.
 
-<Example title="Start enhancer with label" path="fixed-marker/start-enhancer.tsx">
+<Example
+  title="Start enhancer with label"
+  path="fixed-marker/start-enhancer.tsx"
+>
   <StartEnhancer />
 </Example>
 
 A fixed map marker with a start enhancer icon and a label. Icons can be passed to the leading or trailing end of the markers with `startEnhancer` and `endEnhancer`.
 
-<Example title="End enhancer with custom color" path="fixed-marker/end-enhancer-color.tsx">
+<Example
+  title="End enhancer with custom color"
+  path="fixed-marker/end-enhancer-color.tsx"
+>
   <EndEnhancerColor />
 </Example>
 
 A fixed map marker with an end enhancer icon, a label, and custom styling.
 
-<Example title="Large size with only an icon" path="fixed-marker/start-enhancer-large.tsx">
+<Example
+  title="Large size with only an icon"
+  path="fixed-marker/start-enhancer-large.tsx"
+>
   <StartEnhancerLarge />
 </Example>
 
@@ -102,7 +104,10 @@ A fixed marker with the dragging decoration enabled.
 
 An extra small marker with a tall needle. The X small marker is the same anchor used by the [Floating Marker](../floating-marker).
 
-<Example title="Marker with a badge enhancer with text" path="fixed-marker/badge-enhancer-text">
+<Example
+  title="Marker with a badge enhancer with text"
+  path="fixed-marker/badge-enhancer-text"
+>
   <BadgeEnhancerText />
 </Example>
 
@@ -123,10 +128,17 @@ A fixed map marker with a small badge enhancer that contains an icon and a label
 
 A fixed map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a fixed map marker in react-map-gl, wrap the fixed marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
 
-<Example title="Draggable marker with react-map-gl" path="fixed-marker/react-map-gl-dragging.tsx">
+<Example
+  title="Draggable marker with react-map-gl"
+  path="fixed-marker/react-map-gl-dragging.tsx"
+>
   <ReactMapGLDragging />
 </Example>
 
 A draggable fixed map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. Everytime the marker is dragged, the `dragging` prop is updated and the marker position is updated.
 
-<Exports component={FixedMarkerExports} title="Fixed Marker exports" path="baseui/map-marker" />
+<Exports
+  component={FixedMarkerExports}
+  title="Fixed Marker exports"
+  path="baseui/map-marker"
+/>

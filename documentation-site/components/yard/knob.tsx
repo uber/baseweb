@@ -5,18 +5,23 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import * as React from 'react';
-import { useStyletron } from 'baseui';
-import { StyledLink } from 'baseui/link';
-import { Input } from 'baseui/input';
-import { Radio, RadioGroup } from 'baseui/radio';
-import { Checkbox } from 'baseui/checkbox';
-import { Select, SIZE } from 'baseui/select';
-import { StatefulTooltip } from 'baseui/tooltip';
+import * as React from "react";
+import { useStyletron } from "baseui";
+import { StyledLink } from "baseui/link";
+import { Input } from "baseui/input";
+import { Radio, RadioGroup } from "baseui/radio";
+import { Checkbox } from "baseui/checkbox";
+import { Select, SIZE } from "baseui/select";
+import { StatefulTooltip } from "baseui/tooltip";
 
-import Editor from './editor';
-import type { TPropValue } from 'react-view';
-import { assertUnreachable, useValueDebounce, PropTypes, Error } from 'react-view';
+import Editor from "./editor";
+import type { TPropValue } from "react-view";
+import {
+  assertUnreachable,
+  useValueDebounce,
+  PropTypes,
+  Error,
+} from "react-view";
 
 const getTooltip = (description: string, type: string, name: string) => (
   <span>
@@ -29,7 +34,11 @@ const getTooltip = (description: string, type: string, name: string) => (
 
 const Spacing: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [css, theme] = useStyletron();
-  return <div className={css({ margin: `${theme.sizing.scale400} 0` })}>{children}</div>;
+  return (
+    <div className={css({ margin: `${theme.sizing.scale400} 0` })}>
+      {children}
+    </div>
+  );
 };
 
 const Label: React.FC<{
@@ -48,8 +57,8 @@ const Label: React.FC<{
       <StatefulTooltip accessibilityType="tooltip" content={tooltip}>
         <span
           className={css({
-            textDecoration: 'underline',
-            ':hover': {
+            textDecoration: "underline",
+            ":hover": {
               color: theme.colors.contentSecondary,
             },
           })}
@@ -93,8 +102,8 @@ const Knob: React.SFC<{
             href="https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom"
             target="_blank"
             $style={{
-              fontSize: '14px',
-              display: 'block',
+              fontSize: "14px",
+              display: "block",
             }}
           >
             React Ref documentation
@@ -134,8 +143,8 @@ const Knob: React.SFC<{
             >
               <span
                 className={css({
-                  textDecoration: 'underline',
-                  ':hover': {
+                  textDecoration: "underline",
+                  ":hover": {
                     color: theme.colors.contentSecondary,
                   },
                 })}
@@ -158,7 +167,7 @@ const Knob: React.SFC<{
         option: options[key],
       }));
       // eslint-disable-next-line no-case-declarations
-      const valueKey = val && String(val).split('.')[1];
+      const valueKey = val && String(val).split(".")[1];
       return (
         <Spacing>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
@@ -169,7 +178,7 @@ const Knob: React.SFC<{
               overrides={{
                 RadioGroupRoot: {
                   style: ({ $theme }) => ({
-                    flexWrap: 'wrap',
+                    flexWrap: "wrap",
                     marginTop: 0,
                     marginBottom: $theme.sizing.scale300,
                   }),
@@ -206,7 +215,7 @@ const Knob: React.SFC<{
               size={SIZE.compact}
               options={selectOptions}
               clearable={false}
-              value={[{ id: valueKey || '', option: valueKey }]}
+              value={[{ id: valueKey || "", option: valueKey }]}
               labelKey="option"
               valueKey="id"
               onChange={({ value }) => {
@@ -228,7 +237,7 @@ const Knob: React.SFC<{
             onChange={(code) => {
               globalSet(code);
             }}
-            code={val ? String(val) : ''}
+            code={val ? String(val) : ""}
             placeholder={placeholder}
             small
           />

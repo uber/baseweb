@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import {useStyletron} from 'baseui';
 import {
@@ -15,10 +13,7 @@ import {
 // https://gist.github.com/6174/6062387
 function pseudoRandomString(rowIdx: any, columnIdx: any) {
   return (
-    (0.88 * rowIdx)
-      .toString(36)
-      .replace('.', '')
-      .substring(2) +
+    (0.88 * rowIdx).toString(36).replace('.', '').substring(2) +
     (0.99 * columnIdx).toString(36).replace('.', '')
   ).slice(0, 10);
 }
@@ -175,12 +170,12 @@ const columns = [
         </div>
       );
     },
-    buildFilter: function(params: any) {
-      return function(data: any) {
+    buildFilter: function (params: any) {
+      return function (data: any) {
         return params.selection.has(data.color);
       };
     },
-    sortFn: function(a: any, b: any) {
+    sortFn: function (a: any, b: any) {
       return a.color.localeCompare(b.color);
     },
   }),

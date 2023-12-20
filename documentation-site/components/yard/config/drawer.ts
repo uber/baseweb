@@ -5,15 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { Drawer, ANCHOR, SIZE } from 'baseui/drawer';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { Drawer, ANCHOR, SIZE } from "baseui/drawer";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const DrawerConfig: TConfig = {
-  componentName: 'Drawer',
+  componentName: "Drawer",
   imports: {
-    'baseui/drawer': {
-      named: ['Drawer'],
+    "baseui/drawer": {
+      named: ["Drawer"],
     },
   },
   scope: { Drawer, ANCHOR, SIZE },
@@ -23,61 +23,64 @@ const DrawerConfig: TConfig = {
       value: undefined,
       defaultValue: true,
       type: PropTypes.Boolean,
-      description: 'Sets whether the Drawer should be displayed by easing in and out.',
+      description:
+        "Sets whether the Drawer should be displayed by easing in and out.",
       hidden: true,
     },
     isOpen: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Determines if the drawer is open.',
+      description: "Determines if the drawer is open.",
       stateful: true,
     },
     autoFocus: {
       value: true,
       type: PropTypes.Boolean,
-      description: 'If true, focus will shift to the first interactive element within the drawer.',
+      description:
+        "If true, focus will shift to the first interactive element within the drawer.",
       hidden: true,
     },
     renderAll: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Renders all drawer content for SEO purposes regardless of drawer isOpen state.',
+      description:
+        "Renders all drawer content for SEO purposes regardless of drawer isOpen state.",
     },
     children: {
-      value: '<div>drawer content</div>',
+      value: "<div>drawer content</div>",
       type: PropTypes.ReactNode,
-      description: 'Drawer content.',
+      description: "Drawer content.",
     },
     onClose: {
-      value: '() => setIsOpen(false);',
+      value: "() => setIsOpen(false);",
       type: PropTypes.Function,
-      description: 'A callback that is invoked when the modal will close.',
+      description: "A callback that is invoked when the modal will close.",
       propHook: {
-        what: 'false',
-        into: 'isOpen',
+        what: "false",
+        into: "isOpen",
       },
     },
     size: {
-      value: 'SIZE.default',
+      value: "SIZE.default",
       options: SIZE,
-      defaultValue: 'SIZE.default',
+      defaultValue: "SIZE.default",
       type: PropTypes.Enum,
-      description: 'Defines the modal size.',
+      description: "Defines the modal size.",
       imports: {
-        'baseui/drawer': {
-          named: ['SIZE'],
+        "baseui/drawer": {
+          named: ["SIZE"],
         },
       },
     },
     anchor: {
-      value: 'ANCHOR.default',
+      value: "ANCHOR.default",
       options: ANCHOR,
-      defaultValue: 'ANCHOR.default',
+      defaultValue: "ANCHOR.default",
       type: PropTypes.Enum,
-      description: 'Window side from which the drawer originates from.',
+      description: "Window side from which the drawer originates from.",
       imports: {
-        'baseui/drawer': {
-          named: ['ANCHOR'],
+        "baseui/drawer": {
+          named: ["ANCHOR"],
         },
       },
     },
@@ -85,52 +88,53 @@ const DrawerConfig: TConfig = {
       value: true,
       defaultValue: true,
       type: PropTypes.Boolean,
-      description: 'Whether the drawer should be closeable by the user.',
+      description: "Whether the drawer should be closeable by the user.",
       hidden: true,
     },
     showBackdrop: {
       value: true,
       defaultValue: true,
       type: PropTypes.Boolean,
-      description: 'Whether the backdrop should be shown.',
+      description: "Whether the backdrop should be shown.",
     },
     onBackdropClick: {
       value: false,
       type: PropTypes.Function,
-      description: 'Callback invoked when backdrop is clicked.',
+      description: "Callback invoked when backdrop is clicked.",
       hidden: true,
     },
     onEscapeKeyDown: {
       value: false,
       type: PropTypes.Function,
-      description: 'Callback invoked when escape key is pressed.',
+      description: "Callback invoked when escape key is pressed.",
       hidden: true,
     },
     mountNode: {
       value: undefined,
       type: PropTypes.Object,
-      description: 'Defines where to mount the drawer. It accepts an HTMLElement.',
+      description:
+        "Defines where to mount the drawer. It accepts an HTMLElement.",
       hidden: true,
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root', 'Backdrop', 'DrawerBody', 'DrawerContainer', 'Close'],
+        names: ["Root", "Backdrop", "DrawerBody", "DrawerContainer", "Close"],
         sharedProps: {
           $animating: {
             type: PropTypes.Boolean,
-            description: 'True if drawer is animating.',
+            description: "True if drawer is animating.",
           },
           $isVisible: {
             type: PropTypes.Boolean,
-            description: 'True if drawer is visible.',
+            description: "True if drawer is visible.",
           },
-          $isOpen: 'isOpen',
-          $size: 'size',
-          $closeable: 'closeable',
-          $anchor: 'anchor',
+          $isOpen: "isOpen",
+          $size: "size",
+          $closeable: "closeable",
+          $anchor: "anchor",
         },
       },
     },

@@ -1,12 +1,5 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
-
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
-
-import Layout from '../../components/layout';
-import { Notification } from 'baseui/notification';
+import Layout from "../../components/layout";
+import { Notification } from "baseui/notification";
 
 export default Layout;
 
@@ -94,18 +87,18 @@ In order to use Base Web, you need to do a small setup and wrap the root of your
 application with `StyletronProvider` and [`BaseProvider`](https://baseweb.design/components/base-provider) components:
 
 ```javascript
-import { Client as Styletron } from 'styletron-engine-atomic';
-import { Provider as StyletronProvider } from 'styletron-react';
-import { LightTheme, BaseProvider, styled } from 'baseui';
-import { StatefulInput } from 'baseui/input';
+import { Client as Styletron } from "styletron-engine-atomic";
+import { Provider as StyletronProvider } from "styletron-react";
+import { LightTheme, BaseProvider, styled } from "baseui";
+import { StatefulInput } from "baseui/input";
 
 const engine = new Styletron();
 
-const Centered = styled('div', {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '100%',
+const Centered = styled("div", {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "100%",
 });
 
 export default function Hello() {
@@ -123,12 +116,12 @@ export default function Hello() {
 
 <Notification
   overrides={{
-    Body: { style: { width: 'auto' } },
+    Body: { style: { width: "auto" } },
   }}
 >
-  Your application might be wrapping the root only with ThemeProvider. You should use BaseProvider
-  instead to support correct layering. Please note that this component adds an <b>additional div</b>{' '}
-  that could impact your layout.
+  Your application might be wrapping the root only with ThemeProvider. You
+  should use BaseProvider instead to support correct layering. Please note that
+  this component adds an <b>additional div</b> that could impact your layout.
 </Notification>
 
 There are detailed guides for Styletron/Base Web setup for the following frameworks:

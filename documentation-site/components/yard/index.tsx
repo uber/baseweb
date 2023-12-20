@@ -4,8 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import * as React from 'react';
+import * as React from "react";
 
 // baseui imports
 import {
@@ -14,26 +13,26 @@ import {
   lightThemePrimitives,
   darkThemePrimitives,
   ThemeProvider,
-} from 'baseui';
-import { Card } from 'baseui/card';
-import { Spinner } from 'baseui/spinner';
+} from "baseui";
+import { Card } from "baseui/card";
+import { Spinner } from "baseui/spinner";
 
-import { useView, Compiler, Error } from 'react-view';
+import { useView, Compiler, Error } from "react-view";
 
 // yard (baseweb customization of react-view)
-import type { TProviderValue } from './provider';
-import { getProvider, getThemeFromContext } from './provider';
-import type { TCustomPropFields } from './custom-props';
-import { customProps } from './custom-props';
-import ThemeEditor from './theme-editor';
-import Overrides from './overrides';
-import OverridesDescription from './overrides-description';
-import Editor from './editor';
-import ActionButtons from './action-buttons';
-import Knobs from './knobs';
-import { YardTabs, YardTab } from './styled-components';
-import { countProps, countOverrides, countThemeValues } from './utils';
-import type { TYardProps } from './types';
+import type { TProviderValue } from "./provider";
+import { getProvider, getThemeFromContext } from "./provider";
+import type { TCustomPropFields } from "./custom-props";
+import { customProps } from "./custom-props";
+import ThemeEditor from "./theme-editor";
+import Overrides from "./overrides";
+import OverridesDescription from "./overrides-description";
+import Editor from "./editor";
+import ActionButtons from "./action-buttons";
+import Knobs from "./knobs";
+import { YardTabs, YardTab } from "./styled-components";
+import { countProps, countOverrides, countThemeValues } from "./utils";
+import type { TYardProps } from "./types";
 
 const Yard: React.FC<TYardProps> = ({
   componentName,
@@ -48,9 +47,9 @@ const Yard: React.FC<TYardProps> = ({
   const [css, baseTheme] = useStyletron();
   const componentTheme = getThemeFromContext(baseTheme, theme);
   const themePrimitives =
-    baseTheme.name && baseTheme.name.startsWith('dark-theme')
-      ? 'darkThemePrimitives'
-      : 'lightThemePrimitives';
+    baseTheme.name && baseTheme.name.startsWith("dark-theme")
+      ? "darkThemePrimitives"
+      : "lightThemePrimitives";
   const provider = getProvider(componentTheme, themePrimitives);
   const params = useView<TProviderValue, TCustomPropFields>({
     componentName,
@@ -80,14 +79,16 @@ const Yard: React.FC<TYardProps> = ({
 
   // Bail in IE11
   if (
-    typeof window !== 'undefined' &&
-    typeof document !== 'undefined' &&
+    typeof window !== "undefined" &&
+    typeof document !== "undefined" &&
     // @ts-ignore: non standard window property
     !!window.MSInputMethodContext &&
     // @ts-ignore: non standard document property
     !!document.documentMode
   ) {
-    console.warn('[react-live] does not work in IE11! Please use Edge or another modern browser.');
+    console.warn(
+      "[react-live] does not work in IE11! Please use Edge or another modern browser.",
+    );
     return null;
   }
 
@@ -101,10 +102,10 @@ const Yard: React.FC<TYardProps> = ({
           <div
             className={css({
               height: `${placeholderHeight}px`,
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             })}
           >
             <Spinner $size={placeholderHeight > 50 ? 50 : placeholderHeight} />
@@ -114,11 +115,15 @@ const Yard: React.FC<TYardProps> = ({
       <Error msg={params.errorProps.msg} isPopup />
       {showOverrides || showTheme ? (
         <YardTabs initialTab={initialTab}>
-          <YardTab title={`Props${activeProps > 0 ? ` (${activeProps})` : ''}`}>
+          <YardTab title={`Props${activeProps > 0 ? ` (${activeProps})` : ""}`}>
             <Knobs {...params.knobProps} />
           </YardTab>
           {showOverrides && (
-            <YardTab title={`Style Overrides${activeOverrides > 0 ? ` (${activeOverrides})` : ''}`}>
+            <YardTab
+              title={`Style Overrides${
+                activeOverrides > 0 ? ` (${activeOverrides})` : ""
+              }`}
+            >
               <OverridesDescription componentName={componentName} />
               <Overrides
                 componentName={componentName}
@@ -126,13 +131,17 @@ const Yard: React.FC<TYardProps> = ({
                 overrides={params.knobProps.state.overrides}
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 set={(propValue: any) => {
-                  params.knobProps.set(propValue, 'overrides');
+                  params.knobProps.set(propValue, "overrides");
                 }}
               />
             </YardTab>
           )}
           {showTheme && (
-            <YardTab title={`Theme ${activeThemeValues > 0 ? `(${activeThemeValues})` : ''}`}>
+            <YardTab
+              title={`Theme ${
+                activeThemeValues > 0 ? `(${activeThemeValues})` : ""
+              }`}
+            >
               <ThemeEditor
                 theme={params.providerValue || {}}
                 themeInit={componentTheme}

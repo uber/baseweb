@@ -1,16 +1,9 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
-
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-
-import UseStyletronBasic from 'examples/use-styletron/basic.tsx';
-import ReuseDefinitions from 'examples/use-styletron/reuse-css-definitions.tsx';
-import StyledOverrides from 'examples/use-styletron/overrides.tsx';
+import UseStyletronBasic from "examples/use-styletron/basic.tsx";
+import ReuseDefinitions from "examples/use-styletron/reuse-css-definitions.tsx";
+import StyledOverrides from "examples/use-styletron/overrides.tsx";
 
 export default Layout;
 
@@ -36,7 +29,10 @@ Do you prefer other approaches when styling your components? Feel free to use
 them in parallel to Base Web and Styletron. Styletron adds only `8kB` to your
 bundle and works in isolation.
 
-<Example title="Reuse css definitions" path="use-styletron/reuse-css-definitions.tsx">
+<Example
+  title="Reuse css definitions"
+  path="use-styletron/reuse-css-definitions.tsx"
+>
   <ReuseDefinitions />
 </Example>
 

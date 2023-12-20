@@ -1,17 +1,10 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
-
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
-
-import Layout from '../../components/layout';
+import Layout from "../../components/layout";
 
 export default Layout;
 
 # Learning Base Web
 
-We understand that learning new libraries has its own set of challenges. To help you get started, we’ll first go over the concepts of Base Web, 
+We understand that learning new libraries has its own set of challenges. To help you get started, we’ll first go over the concepts of Base Web,
 then you'll build your first Base Web application.
 
 ## Concepts
@@ -24,7 +17,7 @@ Base Web uses Styletron to apply styles to components. In addition to using Base
 already loaded in your project, **we recommend you use Styletron to style these new components too**:
 
 ```js
-import {useStyletron} from 'baseui';
+import { useStyletron } from "baseui";
 
 export default () => {
   const [css, theme] = useStyletron();
@@ -32,7 +25,7 @@ export default () => {
     <a
       href="/my-link"
       className={css({
-        fontSize: '20px',
+        fontSize: "20px",
         color: theme.colors.primary,
       })}
     >

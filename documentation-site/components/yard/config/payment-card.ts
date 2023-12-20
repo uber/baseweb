@@ -5,17 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import omit from 'just-omit';
-import { PaymentCard } from 'baseui/payment-card';
-import { ADJOINED, SIZE } from 'baseui/input';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
-import { theme, inputProps } from './input';
+import omit from "just-omit";
+import { PaymentCard } from "baseui/payment-card";
+import { ADJOINED, SIZE } from "baseui/input";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
+import { theme, inputProps } from "./input";
 
 const PaymentCardConfig: TConfig = {
-  componentName: 'PaymentCard',
+  componentName: "PaymentCard",
   imports: {
-    'baseui/payment-card': { named: ['PaymentCard'] },
+    "baseui/payment-card": { named: ["PaymentCard"] },
   },
   scope: {
     PaymentCard,
@@ -26,30 +26,36 @@ const PaymentCardConfig: TConfig = {
   props: {
     value: {
       ...inputProps.value,
-      value: '',
+      value: "",
     },
-    ...omit(inputProps, ['type', 'startEnhancer', 'endEnhancer', 'value', 'placeholder']),
+    ...omit(inputProps, [
+      "type",
+      "startEnhancer",
+      "endEnhancer",
+      "value",
+      "placeholder",
+    ]),
     placeholder: {
       ...inputProps.placeholder,
-      value: 'Please enter your credit card number...',
+      value: "Please enter your credit card number...",
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root', 'Input', 'InputContainer', 'IconWrapper'],
+        names: ["Root", "Input", "InputContainer", "IconWrapper"],
         sharedProps: {
           $isFocused: {
             type: PropTypes.Boolean,
-            description: 'True when the component is focused.',
+            description: "True when the component is focused.",
           },
-          $disabled: 'disabled',
-          $error: 'error',
-          $positive: 'positive',
-          $adjoined: 'adjoined',
-          $size: 'size',
-          $required: 'required',
+          $disabled: "disabled",
+          $error: "error",
+          $positive: "positive",
+          $adjoined: "adjoined",
+          $size: "size",
+          $required: "required",
         },
       },
     },

@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {LocationPuck, LOCATION_PUCK_TYPES} from 'baseui/map-marker';
 

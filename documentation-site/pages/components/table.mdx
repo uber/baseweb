@@ -1,31 +1,24 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
+import TableGuideNotification from "../../components/table-guide-notification";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import * as TableExports from "baseui/table";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
-import TableGuideNotification from '../../components/table-guide-notification';
+import Basic from "examples/table/basic.tsx";
+import Cells from "examples/table/cells.tsx";
+import Pagination from "examples/table/pagination.tsx";
+import FixedWidthColumn from "examples/table/fixed-width-column.tsx";
+import VerticalScroll from "examples/table/vertical-scroll.tsx";
+import HorizontalScroll from "examples/table/horizontal-scroll.tsx";
+import Sortable from "examples/table/sortable.tsx";
+import Filter from "examples/table/filter.tsx";
+import Graph from "examples/table/graph.tsx";
+import Virtual from "examples/table/virtual.tsx";
+import VirtualHorizontal from "examples/table/virtual-horizontal-scroll.tsx";
 
-import * as TableExports from 'baseui/table';
-
-import Basic from 'examples/table/basic.tsx';
-import Cells from 'examples/table/cells.tsx';
-import Pagination from 'examples/table/pagination.tsx';
-import FixedWidthColumn from 'examples/table/fixed-width-column.tsx';
-import VerticalScroll from 'examples/table/vertical-scroll.tsx';
-import HorizontalScroll from 'examples/table/horizontal-scroll.tsx';
-import Sortable from 'examples/table/sortable.tsx';
-import Filter from 'examples/table/filter.tsx';
-import Graph from 'examples/table/graph.tsx';
-import Virtual from 'examples/table/virtual.tsx';
-import VirtualHorizontal from 'examples/table/virtual-horizontal-scroll.tsx';
-
-import Yard from '../../components/yard/index';
-import tableYardConfig from '../../components/yard/config/table';
+import Yard from "../../components/yard/index";
+import tableYardConfig from "../../components/yard/config/table";
 
 export default Layout;
 
@@ -59,7 +52,10 @@ components, a visually similar table, but implemented with [css-grid](https://de
   <Sortable />
 </Example>
 
-<Example title="Table with fixed width column" path="table/fixed-width-column.tsx">
+<Example
+  title="Table with fixed width column"
+  path="table/fixed-width-column.tsx"
+>
   <FixedWidthColumn />
 </Example>
 
@@ -67,7 +63,10 @@ components, a visually similar table, but implemented with [css-grid](https://de
   <VerticalScroll />
 </Example>
 
-<Example title="Table with horizontal scroll" path="table/horizontal-scroll.tsx">
+<Example
+  title="Table with horizontal scroll"
+  path="table/horizontal-scroll.tsx"
+>
   <HorizontalScroll />
 </Example>
 
@@ -78,7 +77,7 @@ components, a visually similar table, but implemented with [css-grid](https://de
 <Example
   title="Using react-vis"
   path="table/graph.tsx"
-  additionalPackages={{ 'react-vis': '1.11.6' }}
+  additionalPackages={{ "react-vis": "1.11.6" }}
 >
   <Graph />
 </Example>
@@ -92,7 +91,7 @@ contain `react-virtualized` internally. You will need to install it yourself.
 <Example
   title="Table with virtualized table body"
   path="table/virtual.tsx"
-  additionalPackages={{ 'react-virtualized': '^9.21.0' }}
+  additionalPackages={{ "react-virtualized": "^9.21.0" }}
 >
   <Virtual />
 </Example>
@@ -100,7 +99,7 @@ contain `react-virtualized` internally. You will need to install it yourself.
 <Example
   title="Table with virtualized horizontal scroll"
   path="table/virtual-horizontal-scroll.tsx"
-  additionalPackages={{ 'react-virtualized': '^9.21.0' }}
+  additionalPackages={{ "react-virtualized": "^9.21.0" }}
 >
   <VirtualHorizontal />
 </Example>

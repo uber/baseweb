@@ -8,10 +8,8 @@ export default function Example() {
   const [twelveHourTime, setTwelveHourTime] = useState<Date | null>(
     null,
   );
-  const [
-    twentyFourHourTime,
-    setTwentyFourHourTime,
-  ] = useState<Date | null>(null);
+  const [twentyFourHourTime, setTwentyFourHourTime] =
+    useState<Date | null>(null);
   const [creatableTime, setCreatableTime] = useState<Date | null>(
     null,
   );

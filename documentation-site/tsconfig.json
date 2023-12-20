@@ -1,23 +1,24 @@
 {
-  "extends": "../tsconfig.json",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "baseUrl": "./",
+    "jsx": "preserve",
+    "incremental": true,
     "paths": {
-      // todo: maybe use dist to improve performance
-      "baseui": ["../dist"],
-      "baseui/*": ["../dist/*"]
-    },
-    "incremental": true
+      "baseui": ["../src"],
+      "baseui/*": ["../src/*"],
+      "examples/*": ["./examples/*"]
+    }
   },
-  "include": ["next-env.d.ts", "./**/*.ts", "./**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

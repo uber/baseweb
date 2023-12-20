@@ -5,11 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { parseOverrides } from '../custom-props';
-import { toggleOverrideSharedProps } from '../ast';
+import { parseOverrides } from "../custom-props";
+import { toggleOverrideSharedProps } from "../ast";
 
-describe('parseOverrides', () => {
-  test('get overrides active state and value', () => {
+describe("parseOverrides", () => {
+  test("get overrides active state and value", () => {
     const overrides = `{
       Root: {
         style: ({ $theme }) => ({
@@ -55,8 +55,8 @@ describe('parseOverrides', () => {
   });
 });
 
-describe('toggleOverrideSharedProps', () => {
-  test('adding them', () => {
+describe("toggleOverrideSharedProps", () => {
+  test("adding them", () => {
     const overrides = `{
     Root: {
       style: ({ $theme }) => {
@@ -67,7 +67,7 @@ describe('toggleOverrideSharedProps', () => {
       }
     }
   }`;
-    expect(toggleOverrideSharedProps(overrides, ['$isActive'])).toEqual(`({
+    expect(toggleOverrideSharedProps(overrides, ["$isActive"])).toEqual(`({
   $theme,
   $isActive
 }) => {
@@ -78,7 +78,7 @@ describe('toggleOverrideSharedProps', () => {
 }`);
   });
 
-  test('removing them', () => {
+  test("removing them", () => {
     const overrides = `{
     Root: {
       style: ({ $theme, $isActive }) => {
@@ -89,7 +89,7 @@ describe('toggleOverrideSharedProps', () => {
       }
     }
   }`;
-    expect(toggleOverrideSharedProps(overrides, ['$isActive'])).toEqual(`({
+    expect(toggleOverrideSharedProps(overrides, ["$isActive"])).toEqual(`({
   $theme
 }) => {
   return {

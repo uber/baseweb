@@ -1,14 +1,14 @@
-import metadata from './metadata.json';
-import Layout from '../../../components/layout';
-import { BlogImage, Meta, Caption } from '../../../components/blog';
-import ReactCompareImage from 'react-compare-image';
-import ExampleSnapshotPNG from './examplesnapshot.png';
-import SwipeGIF from './swipe.gif';
-import ComparisonPNG from './comparison.png';
-import LeftPNG from './left.png';
-import RightPNG from './right.png';
-import MobileModalPNG from './mobilemodal.png';
-import ChangelogPNG from './changelog.png';
+import metadata from "./metadata.json";
+import Layout from "../../../components/layout";
+import { BlogImage, Meta, Caption } from "../../../components/blog";
+import ReactCompareImage from "react-compare-image";
+import ExampleSnapshotPNG from "./examplesnapshot.png";
+import SwipeGIF from "./swipe.gif";
+import ComparisonPNG from "./comparison.png";
+import LeftPNG from "./left.png";
+import RightPNG from "./right.png";
+import MobileModalPNG from "./mobilemodal.png";
+import ChangelogPNG from "./changelog.png";
 
 export default Layout;
 
@@ -60,8 +60,8 @@ This is the first and most obvious reason to use visual snapshot tests. When we 
 
 <ReactCompareImage leftImage={LeftPNG} rightImage={RightPNG} />
 <Caption>
-  An example of two snapshots catching a regression. Swipe the divider back and forth to see the
-  difference.
+  An example of two snapshots catching a regression. Swipe the divider back and
+  forth to see the difference.
 </Caption>
 
 ### Test what users see
@@ -85,7 +85,7 @@ One of the potential benefits of setting up visual tests is to be able to run th
   alt="A mobile phone sized snapshot with an open modal."
   caption="An example of a mobile snapshot."
   style={{
-    maxHeight: '400px',
+    maxHeight: "400px",
   }}
 />
 
@@ -201,18 +201,18 @@ For a JS/React project, this is a very low overhead way to add visual tests to y
 All of our snapshot tests are run under one Jest `describe` block. It essentially looks like this:
 
 ```js
-describe('Visual Regression Tests', () => {
+describe("Visual Regression Tests", () => {
   getAllScenarios().forEach((scenario) => {
     describe(scenario, () => {
-      it('desktop', async () => {
+      it("desktop", async () => {
         await setupDesktop();
         await snapshot();
       });
-      it('mobile', async () => {
+      it("mobile", async () => {
         await setupMobile();
         await snapshot();
       });
-      it('dark', async () => {
+      it("dark", async () => {
         await setupDark();
         await snapshot();
       });
@@ -235,10 +235,10 @@ The config object looks something like this:
 
 ```js
 const config = {
-  'input-password': {
+  "input-password": {
     interactions: [
       {
-        name: 'togglesMask',
+        name: "togglesMask",
         behavior: async (page) => {
           const toggleSelector = `[data-e2e="mask-toggle"]`;
           await page.$(toggleSelector);
@@ -269,7 +269,7 @@ With Playwright that looks something like this:
 ```js
 // Use Chrome Devtools Protocol to get the scroll height of the page.
 const client = await page.target().createCDPSession();
-const metrics = await client.send('Page.getLayoutMetrics');
+const metrics = await client.send("Page.getLayoutMetrics");
 const height = Math.ceil(metrics.contentSize.height);
 const image = await page.screenshot({
   clip: {
@@ -319,10 +319,10 @@ This should be a last resort as it will almost certainly flake at some point. Wh
 
 ```js
 const config = {
-  'select-search-single': {
+  "select-search-single": {
     interactions: [
       {
-        name: 'open',
+        name: "open",
         behavior: async (page) => {
           const inputSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[role="listbox"]`;

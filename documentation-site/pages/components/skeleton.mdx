@@ -1,24 +1,17 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import { Skeleton } from "baseui/skeleton";
+import * as SkeletonExports from "baseui/skeleton";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import SkeletonBasic from "examples/skeleton/basic.tsx";
+import SkeletonCircle from "examples/skeleton/circle.tsx";
+import SkeletonAnimation from "examples/skeleton/animation.tsx";
+import SkeletonSubElements from "examples/skeleton/subElements.tsx";
 
-import { Skeleton } from 'baseui/skeleton';
-import * as SkeletonExports from 'baseui/skeleton';
-
-import SkeletonBasic from 'examples/skeleton/basic.tsx';
-import SkeletonCircle from 'examples/skeleton/circle.tsx';
-import SkeletonAnimation from 'examples/skeleton/animation.tsx';
-import SkeletonSubElements from 'examples/skeleton/subElements.tsx';
-
-import Yard from '../../components/yard/index';
-import skeletonYardConfig from '../../components/yard/config/skeleton';
+import Yard from "../../components/yard/index";
+import skeletonYardConfig from "../../components/yard/config/skeleton";
 
 export default Layout;
 
@@ -54,4 +47,8 @@ Set `rows` to a positive number and `Skeleton` will generate multiple sub elemen
 The background color of `Root` will become transparent automatically when the `rows` equals to a positive number.
 You can customize the sub elements' shape and position through `overrides.Row`.
 
-<Exports component={SkeletonExports} title="Skeleton exports" path="baseui/skeleton" />
+<Exports
+  component={SkeletonExports}
+  title="Skeleton exports"
+  path="baseui/skeleton"
+/>

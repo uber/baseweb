@@ -1,28 +1,21 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import { DocLink } from "../../components/markdown-elements";
+import Exports from "../../components/exports";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import { StatefulPhoneInput, COUNTRIES } from "baseui/phone-input/index";
+import * as PhoneInputExports from "baseui/phone-input/index";
+import { Table } from "baseui/table";
+import { Block } from "baseui/block";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import { DocLink } from '../../components/markdown-elements';
-import Exports from '../../components/exports';
+import PhoneInputBasic from "examples/phone-input/basic.tsx";
+import PhoneInputUncontrolled from "examples/phone-input/uncontrolled.tsx";
+import PhoneInputLocalized from "examples/phone-input/localized.tsx";
+import FlagOverrides from "examples/phone-input/flag-overrides.tsx";
+import WithNestedOverrides from "examples/phone-input/nested-overrides.tsx";
 
-import { StatefulPhoneInput, COUNTRIES } from 'baseui/phone-input/index';
-import * as PhoneInputExports from 'baseui/phone-input/index';
-import { Table } from 'baseui/table';
-import { Block } from 'baseui/block';
-
-import PhoneInputBasic from 'examples/phone-input/basic.tsx';
-import PhoneInputUncontrolled from 'examples/phone-input/uncontrolled.tsx';
-import PhoneInputLocalized from 'examples/phone-input/localized.tsx';
-import FlagOverrides from 'examples/phone-input/flag-overrides.tsx';
-import WithNestedOverrides from 'examples/phone-input/nested-overrides.tsx';
-
-import Yard from '../../components/yard/index';
-import phoneInputYardConfig from '../../components/yard/config/phone-input';
+import Yard from "../../components/yard/index";
+import phoneInputYardConfig from "../../components/yard/config/phone-input";
 
 export default Layout;
 
@@ -56,7 +49,10 @@ It contains a dropdown which allows the user to choose from a list of countries 
 
 Click [here](/guides/understanding-overrides//#override-nested-components) to learn more about nested overrides.
 
-<Example title="Stateful (uncontrolled) usage" path="phone-input/uncontrolled.tsx">
+<Example
+  title="Stateful (uncontrolled) usage"
+  path="phone-input/uncontrolled.tsx"
+>
   <PhoneInputUncontrolled />
 </Example>
 
@@ -78,9 +74,13 @@ COUNTRIES: {
 
 <Block height="400px">
   <Table
-    columns={['ID', 'Label', 'Dial Code']}
+    columns={["ID", "Label", "Dial Code"]}
     data={Object.values(COUNTRIES).map((c) => [c.id, c.label, c.dialCode])}
   />
 </Block>
 
-<Exports component={PhoneInputExports} title="Phone Input exports" path="baseui/phone-input" />
+<Exports
+  component={PhoneInputExports}
+  title="Phone Input exports"
+  path="baseui/phone-input"
+/>

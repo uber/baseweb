@@ -6,9 +6,8 @@ import {Button} from 'baseui/button';
 type INullableReactText = React.ReactText | null;
 
 export default function Example() {
-  const [toastKey, setToastKey] = React.useState<
-    INullableReactText
-  >(null);
+  const [toastKey, setToastKey] =
+    React.useState<INullableReactText>(null);
 
   const showToast = () =>
     setToastKey(toaster.info('This is the message.', {}));

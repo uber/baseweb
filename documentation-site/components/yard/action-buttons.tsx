@@ -5,16 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import * as React from 'react';
-import { useStyletron } from 'baseui';
-import type { TImportsConfig } from 'react-view';
-import { MdContentCopy, MdFormatIndentIncrease, MdRotateRight } from 'react-icons/md';
+import * as React from "react";
+import { useStyletron } from "baseui";
+import type { TImportsConfig } from "react-view";
+import {
+  MdContentCopy,
+  MdFormatIndentIncrease,
+  MdRotateRight,
+} from "react-icons/md";
 
-import { Button, KIND, SIZE } from 'baseui/button';
-import { ButtonGroup } from 'baseui/button-group';
-
-// @ts-ignore
-import { deploy } from '../../components/code-sandboxer.js';
+import { Button, KIND, SIZE } from "baseui/button";
+import { ButtonGroup } from "baseui/button-group";
 
 const ActionButtons: React.FC<{
   formatCode: () => void;
@@ -26,12 +27,6 @@ const ActionButtons: React.FC<{
   importsConfig: TImportsConfig;
 }> = ({ formatCode, copyCode, reset, code, componentName, importsConfig }) => {
   const [, theme] = useStyletron();
-  async function handleOpenExample() {
-    const url = await deploy(`Base Web - ${componentName}`, code);
-    if (url) {
-      window.open(url, '_blank');
-    }
-  }
 
   return (
     <React.Fragment>
@@ -40,14 +35,17 @@ const ActionButtons: React.FC<{
         overrides={{
           Root: {
             style: ({ $theme }) => ({
-              flexWrap: 'wrap',
+              flexWrap: "wrap",
               marginTop: $theme.sizing.scale300,
             }),
           },
         }}
       >
         <Button kind={KIND.tertiary} onClick={formatCode}>
-          <MdFormatIndentIncrease style={{ paddingRight: theme.sizing.scale100 }} /> Format
+          <MdFormatIndentIncrease
+            style={{ paddingRight: theme.sizing.scale100 }}
+          />{" "}
+          Format
         </Button>
         <Button kind={KIND.tertiary} onClick={copyCode}>
           <MdContentCopy style={{ paddingRight: theme.sizing.scale100 }} /> Copy
@@ -58,21 +56,21 @@ const ActionButtons: React.FC<{
             reset();
           }}
         >
-          <MdRotateRight style={{ paddingRight: theme.sizing.scale100 }} /> Reset
-        </Button>
-        <Button kind={KIND.secondary} size={SIZE.compact} onClick={handleOpenExample}>
-          Try example on CodeSandbox
+          <MdRotateRight style={{ paddingRight: theme.sizing.scale100 }} />{" "}
+          Reset
         </Button>
         <Button
           overrides={{
             BaseButton: {
               props: {
-                $as: 'a',
+                $as: "a",
               },
             },
           }}
           // @ts-ignore
-          href={`/cheat-sheet#${Object.keys(importsConfig)[0].split('/')[1].toLowerCase()}`}
+          href={`/cheat-sheet#${Object.keys(importsConfig)[0]
+            .split("/")[1]
+            .toLowerCase()}`}
           kind={KIND.tertiary}
         >
           API

@@ -1,24 +1,17 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
+import Yard from "../../components/yard/index";
+import locationPuckYardConfig from "../../components/yard/config/location-puck";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import ConsumerLocationPuck from "examples/location-puck/consumer.tsx";
+import ConsumerLocationPuckConfidence from "examples/location-puck/consumer-confidence.tsx";
+import ConsumerLocationPuckNoHeading from "examples/location-puck/consumer-no-heading.tsx";
+import EarnerLocationPuck from "examples/location-puck/earner.tsx";
+import ReactMapGL from "examples/location-puck/react-map-gl.tsx";
+import FloatingMarkerContainer from "../../components/floating-marker-container";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
-import Yard from '../../components/yard/index';
-import locationPuckYardConfig from '../../components/yard/config/location-puck';
-
-import ConsumerLocationPuck from 'examples/location-puck/consumer.tsx';
-import ConsumerLocationPuckConfidence from 'examples/location-puck/consumer-confidence.tsx';
-import ConsumerLocationPuckNoHeading from 'examples/location-puck/consumer-no-heading.tsx';
-import EarnerLocationPuck from 'examples/location-puck/earner.tsx';
-import ReactMapGL from 'examples/location-puck/react-map-gl.tsx';
-import FloatingMarkerContainer from '../../components/floating-marker-container';
-
-import * as LocationPuckExports from 'baseui/map-marker';
+import * as LocationPuckExports from "baseui/map-marker";
 
 export default Layout;
 
@@ -27,11 +20,11 @@ export default Layout;
 <Yard
   {...locationPuckYardConfig}
   compilerStyles={{
-    paddingTop: '48px',
-    paddingBottom: '48px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: "48px",
+    paddingBottom: "48px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   }}
 />
 
@@ -97,4 +90,8 @@ A consumer location puck rendered in a [react-map-gl](https://visgl.github.io/re
 
 ## API
 
-<Exports component={LocationPuckExports} title="Loction Puck exports" path="baseui/map-marker" />
+<Exports
+  component={LocationPuckExports}
+  title="Loction Puck exports"
+  path="baseui/map-marker"
+/>

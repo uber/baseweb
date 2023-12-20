@@ -27,7 +27,7 @@ export default function Example() {
         <br />
 
         {/* eslint-disable-next-line jsx-a11y/aria-proptypes */}
-        <div aria-hidden={('asdf' as unknown) as boolean}>
+        <div aria-hidden={'asdf' as unknown as boolean}>
           should violate
         </div>
         <br />

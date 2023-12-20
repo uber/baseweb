@@ -6,7 +6,7 @@ export default function Example() {
   return (
     <Textarea
       value={value}
-      onChange={e => setValue(e.currentTarget.value)}
+      onChange={(e) => setValue(e.currentTarget.value)}
     />
   );
 }

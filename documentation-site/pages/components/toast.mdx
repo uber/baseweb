@@ -1,22 +1,15 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import ToastNotification from "examples/toast/toast-notification.tsx";
+import ToastSameKeyNotification from "examples/toast/toast-same-key-notification.tsx";
+import ToastCloseFromOutside from "examples/toast/toast-close-from-outside.tsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
-
-import ToastNotification from 'examples/toast/toast-notification.tsx';
-import ToastSameKeyNotification from 'examples/toast/toast-same-key-notification.tsx';
-import ToastCloseFromOutside from 'examples/toast/toast-close-from-outside.tsx';
-
-import { Toast } from 'baseui/toast';
-import * as ToastExports from 'baseui/toast';
-import Yard from '../../components/yard/index';
-import toastYardConfig from '../../components/yard/config/toast';
+import { Toast } from "baseui/toast";
+import * as ToastExports from "baseui/toast";
+import Yard from "../../components/yard/index";
+import toastYardConfig from "../../components/yard/config/toast";
 
 export default Layout;
 
@@ -48,7 +41,10 @@ If a toast with an identical key already exists, that toast's contents will be u
 
 ## Examples
 
-<Example title="Toast Notification Basic Usage" path="toast/toast-notification.tsx">
+<Example
+  title="Toast Notification Basic Usage"
+  path="toast/toast-notification.tsx"
+>
   <ToastNotification />
 </Example>
 
@@ -59,7 +55,10 @@ If a toast with an identical key already exists, that toast's contents will be u
   <ToastSameKeyNotification />
 </Example>
 
-<Example title="Toast Being Closed From Outside" path="toast/toast-close-from-outside.tsx">
+<Example
+  title="Toast Being Closed From Outside"
+  path="toast/toast-close-from-outside.tsx"
+>
   <ToastCloseFromOutside />
 </Example>
 

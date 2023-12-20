@@ -1,30 +1,23 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import { Table } from "baseui/table-semantic";
+import Example from "../../components/example";
+import Exports from "../../components/exports";
+import Layout from "../../components/layout";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import * as LayoutGridExports from "baseui/layout-grid";
 
-import { Table } from 'baseui/table-semantic';
-import Example from '../../components/example';
-import Exports from '../../components/exports';
-import Layout from '../../components/layout';
-
-import * as LayoutGridExports from 'baseui/layout-grid';
-
-import BasicExample from 'examples/layout-grid/basic.tsx';
-import SpanExample from 'examples/layout-grid/span.tsx';
-import ResponsiveExample from 'examples/layout-grid/responsive.tsx';
-import HideExample from 'examples/layout-grid/hide.tsx';
-import SkipExample from 'examples/layout-grid/skip.tsx';
-import SkipShrinkExample from 'examples/layout-grid/skip-shrink.tsx';
-import AlignExample from 'examples/layout-grid/align.tsx';
-import OrderExample from 'examples/layout-grid/order.tsx';
-import BehaviorExample from 'examples/layout-grid/behavior.tsx';
-import CustomExample from 'examples/layout-grid/custom.tsx';
-import UnitExample from 'examples/layout-grid/unit.tsx';
-import CompactExample from 'examples/layout-grid/compact.tsx';
-import OverridesExample from 'examples/layout-grid/overrides.tsx';
+import BasicExample from "examples/layout-grid/basic.tsx";
+import SpanExample from "examples/layout-grid/span.tsx";
+import ResponsiveExample from "examples/layout-grid/responsive.tsx";
+import HideExample from "examples/layout-grid/hide.tsx";
+import SkipExample from "examples/layout-grid/skip.tsx";
+import SkipShrinkExample from "examples/layout-grid/skip-shrink.tsx";
+import AlignExample from "examples/layout-grid/align.tsx";
+import OrderExample from "examples/layout-grid/order.tsx";
+import BehaviorExample from "examples/layout-grid/behavior.tsx";
+import CustomExample from "examples/layout-grid/custom.tsx";
+import UnitExample from "examples/layout-grid/unit.tsx";
+import CompactExample from "examples/layout-grid/compact.tsx";
+import OverridesExample from "examples/layout-grid/overrides.tsx";
 
 export default Layout;
 
@@ -37,12 +30,12 @@ The implementation uses [flexbox](https://developer.mozilla.org/en-US/docs/Web/C
 Here are the default responsive values for the grid, based on the default Base Web theme breakpoints:
 
 <Table
-  columns={['Breakpoint', 'Range', 'Columns', 'Gutter', 'Margin']}
+  columns={["Breakpoint", "Range", "Columns", "Gutter", "Margin"]}
   data={[
-    ['Default', '0 to 319px', '1', '-', '16px'],
-    ['Small', '320px to 599px', '4', '16px', '16px'],
-    ['Medium', '600px to 1135px', '8', '36px', '36px'],
-    ['Large', '1136px and up', '12', '36px', '64px'],
+    ["Default", "0 to 319px", "1", "-", "16px"],
+    ["Small", "320px to 599px", "4", "16px", "16px"],
+    ["Medium", "600px to 1135px", "8", "36px", "36px"],
+    ["Large", "1136px and up", "12", "36px", "64px"],
   ]}
 />
 
@@ -183,7 +176,7 @@ The grid uses `px` as its default CSS unit for measuring layout. You can change 
 ```js
 const theme = {
   grid: {
-    unit: 'rem',
+    unit: "rem",
     gutters: [1, 2, 2],
     margins: [1, 2, 4],
     gridMaxWidth: 70,
@@ -217,4 +210,8 @@ Note, you may not need to use `overrides` at all. You can get pretty far by styl
 
 That said, we provide `overrides` just in case your imagination surpasses our API 🚀.
 
-<Exports component={LayoutGridExports} title="Layout Grid exports" path="baseui/layout-grid" />
+<Exports
+  component={LayoutGridExports}
+  title="Layout Grid exports"
+  path="baseui/layout-grid"
+/>

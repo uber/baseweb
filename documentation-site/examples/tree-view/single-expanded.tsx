@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {StatefulTreeView} from 'baseui/tree-view';
 

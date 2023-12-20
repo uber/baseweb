@@ -20,7 +20,7 @@ export default class Example extends React.Component<
       <List
         items={this.state.items}
         onChange={({oldIndex, newIndex}) =>
-          this.setState(prevState => ({
+          this.setState((prevState) => ({
             items: arrayMove(prevState.items, oldIndex, newIndex),
           }))
         }

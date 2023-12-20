@@ -9,7 +9,7 @@ export default function Example() {
     <StatefulCheckbox
       onChange={console.log}
       overrides={{
-        Checkmark: props => (
+        Checkmark: (props) => (
           <div
             className={css({
               color: props.checked

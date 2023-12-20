@@ -5,16 +5,16 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { ListHeading } from 'baseui/list';
-import { Button, SIZE, SHAPE } from 'baseui/button';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { ListHeading } from "baseui/list";
+import { Button, SIZE, SHAPE } from "baseui/button";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const ListHeadingConfig: TConfig = {
-  componentName: 'ListHeading',
+  componentName: "ListHeading",
   imports: {
-    'baseui/list': {
-      named: ['ListHeading'],
+    "baseui/list": {
+      named: ["ListHeading"],
     },
   },
   scope: {
@@ -28,20 +28,22 @@ const ListHeadingConfig: TConfig = {
     heading: {
       value: '"Heading"',
       type: PropTypes.ReactNode,
-      description: 'Heading content, upper-left side of the container',
+      description: "Heading content, upper-left side of the container",
     },
     subHeading: {
       value: '"Sub-heading"',
       type: PropTypes.ReactNode,
-      description: 'Sub-heading content, lower-left side of the container',
+      description: "Sub-heading content, lower-left side of the container",
     },
     endEnhancer: {
-      value: '() => <Button size={SIZE.compact} shape={SHAPE.pill}>Action</Button>',
+      value:
+        "() => <Button size={SIZE.compact} shape={SHAPE.pill}>Action</Button>",
       type: PropTypes.ReactNode,
-      description: 'Content to be rendered in the upper-right side of the container',
+      description:
+        "Content to be rendered in the upper-right side of the container",
       imports: {
-        'baseui/button': {
-          named: ['Button', 'SIZE'],
+        "baseui/button": {
+          named: ["Button", "SIZE"],
         },
       },
     },
@@ -49,30 +51,33 @@ const ListHeadingConfig: TConfig = {
       value: undefined,
       placeholder: '"Description"',
       type: PropTypes.ReactNode,
-      description: 'Content to be rendered in the lower-right side of the container',
+      description:
+        "Content to be rendered in the lower-right side of the container",
     },
     maxLines: {
       value: 1,
       type: PropTypes.Number,
-      description: 'The maximum number of lines for Header and Subheader (limited to 1 or 2)',
+      description:
+        "The maximum number of lines for Header and Subheader (limited to 1 or 2)",
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
         names: [
-          'Root',
-          'Content',
-          'HeadingContainer',
-          'SubHeadingContainer',
-          'EndEnhancerContainer',
-          'EndEnhancerDescriptionContainer',
+          "Root",
+          "Content",
+          "HeadingContainer",
+          "SubHeadingContainer",
+          "EndEnhancerContainer",
+          "EndEnhancerDescriptionContainer",
         ],
         sharedProps: {
           $maxLines: {
             type: PropTypes.Number,
-            description: 'The maximum number of lines for Header and Subheader (limited to 1 or 2)',
+            description:
+              "The maximum number of lines for Header and Subheader (limited to 1 or 2)",
           },
         },
       },

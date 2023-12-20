@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {Select, TYPE, Value} from 'baseui/select';
 

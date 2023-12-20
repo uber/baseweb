@@ -10,7 +10,7 @@ export default function Example() {
         'scale1200',
         'scale1400',
         '64px',
-      ].map(size => (
+      ].map((size) => (
         <Avatar
           name={`user`}
           size={size}

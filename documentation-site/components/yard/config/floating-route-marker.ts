@@ -5,62 +5,66 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { FloatingRouteMarker, FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS } from 'baseui/map-marker';
-import Upload from 'baseui/icon/upload';
-import ChevronRight from 'baseui/icon/chevron-right';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import {
+  FloatingRouteMarker,
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
+} from "baseui/map-marker";
+import Upload from "baseui/icon/upload";
+import ChevronRight from "baseui/icon/chevron-right";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 export const theme = [];
 
 export const floatingRouteMarkerProps = {
   label: {
-    value: '9 min',
+    value: "9 min",
     type: PropTypes.String,
-    description: 'Primary label to display inside of the marker.',
+    description: "Primary label to display inside of the marker.",
   },
   secondaryLabel: {
-    value: '$4 toll',
+    value: "$4 toll",
     type: PropTypes.String,
-    description: 'Secondary label to display inside of the marker.',
+    description: "Secondary label to display inside of the marker.",
   },
   anchorPosition: {
-    value: 'FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft',
-    enumName: 'FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS',
+    value: "FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft",
+    enumName: "FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS",
     type: PropTypes.Enum,
-    defaultValue: 'FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft',
+    defaultValue: "FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft",
     options: FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
-    description: 'Position to render the anchor (pointer) around the marker.',
+    description: "Position to render the anchor (pointer) around the marker.",
     imports: {
-      'baseui/map-marker': {
-        named: ['FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS'],
+      "baseui/map-marker": {
+        named: ["FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS"],
       },
     },
   },
   startEnhancer: {
-    value: '({size}) => <Upload size={size}/>',
-    placeholder: '({size}) => <Upload size={size}/>',
+    value: "({size}) => <Upload size={size}/>",
+    placeholder: "({size}) => <Upload size={size}/>",
     type: PropTypes.Function,
-    description: 'Icon or element to render in the leading slot.',
+    description: "Icon or element to render in the leading slot.",
   },
   endEnhancer: {
     value: undefined,
-    placeholder: '({size}) => <ChevronRight size={size}/>',
+    placeholder: "({size}) => <ChevronRight size={size}/>",
     type: PropTypes.Function,
-    description: 'Icon or element to render in the trailing slot.',
+    description: "Icon or element to render in the trailing slot.",
   },
   selected: {
     value: false,
     type: PropTypes.Boolean,
-    description: 'Boolean as to whether the marker is in a selected or unselected state.',
+    description:
+      "Boolean as to whether the marker is in a selected or unselected state.",
   },
 };
 
 const FloatingRouteMarkerConfig: TConfig = {
-  componentName: 'FloatingRouteMarker',
+  componentName: "FloatingRouteMarker",
   imports: {
-    'baseui/map-marker': {
-      named: ['FloatingRouteMarker'],
+    "baseui/map-marker": {
+      named: ["FloatingRouteMarker"],
     },
   },
   scope: {
@@ -75,9 +79,16 @@ const FloatingRouteMarkerConfig: TConfig = {
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root', 'Label', 'SecondaryLabel', 'IconContainer', 'Pointer', 'PointerContainer'],
+        names: [
+          "Root",
+          "Label",
+          "SecondaryLabel",
+          "IconContainer",
+          "Pointer",
+          "PointerContainer",
+        ],
         sharedProps: {},
       },
     },

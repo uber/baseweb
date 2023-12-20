@@ -53,11 +53,8 @@ function useFakeProgress(): [number, () => void, () => void] {
 }
 
 export default function Example() {
-  const [
-    progressAmount,
-    startFakeProgress,
-    stopFakeProgress,
-  ] = useFakeProgress();
+  const [progressAmount, startFakeProgress, stopFakeProgress] =
+    useFakeProgress();
 
   return (
     <FileUploader
@@ -76,7 +73,7 @@ export default function Example() {
       }
       overrides={{
         FileDragAndDrop: {
-          style: props => ({
+          style: (props) => ({
             borderLeftColor: props.$isDragActive
               ? props.$theme.colors.positive
               : props.$theme.colors.warning,
@@ -92,12 +89,12 @@ export default function Example() {
           }),
         },
         ContentMessage: {
-          style: props => ({
+          style: (props) => ({
             color: props.$theme.colors.warning,
           }),
         },
         ContentSeparator: {
-          style: props => ({
+          style: (props) => ({
             color: props.$theme.colors.warning,
           }),
         },

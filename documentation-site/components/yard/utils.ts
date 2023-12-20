@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import type { TProp } from 'react-view';
-import type { TProviderValue } from './provider';
+import type { TProp } from "react-view";
+import type { TProviderValue } from "./provider";
 
 export type TPropValueOverrides = {
   [key: string]: {
@@ -17,14 +17,14 @@ export type TPropValueOverrides = {
 
 export const countProps = (
   props: { [key: string]: TProp },
-  propsConfig: { [key: string]: TProp }
+  propsConfig: { [key: string]: TProp },
 ) => {
   let changedProps = 0;
   Object.keys(props).forEach((prop) => {
     if (
-      prop !== 'overrides' &&
-      props[prop].value !== '' &&
-      typeof props[prop].value !== 'undefined' &&
+      prop !== "overrides" &&
+      props[prop].value !== "" &&
+      typeof props[prop].value !== "undefined" &&
       //@ts-ignore
       props[prop].value !== propsConfig[prop].value
     ) {

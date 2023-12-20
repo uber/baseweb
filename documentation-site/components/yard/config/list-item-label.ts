@@ -5,15 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { ListItemLabel } from 'baseui/list';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { ListItemLabel } from "baseui/list";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const ListItemLabelConfig: TConfig = {
-  componentName: 'ListItemLabel',
+  componentName: "ListItemLabel",
   imports: {
-    'baseui/list': {
-      named: ['ListItemLabel'],
+    "baseui/list": {
+      named: ["ListItemLabel"],
     },
   },
   scope: {
@@ -22,30 +22,30 @@ const ListItemLabelConfig: TConfig = {
   theme: [],
   props: {
     children: {
-      value: 'Label',
+      value: "Label",
       type: PropTypes.ReactNode,
-      description: 'List item label content.',
+      description: "List item label content.",
     },
     description: {
-      value: 'description',
+      value: "description",
       type: PropTypes.ReactNode,
-      description: 'List item label description.',
+      description: "List item label description.",
     },
     sublist: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Renders the list item smaller to convey hierarchy.',
+      description: "Renders the list item smaller to convey hierarchy.",
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['LabelContent', 'LabelDescription', 'LabelSublistContent'],
+        names: ["LabelContent", "LabelDescription", "LabelSublistContent"],
         sharedProps: {
-          $labelContent: 'LabelContent',
-          $labelDescription: 'LabelDescription',
-          $labelSublistContent: 'LabelSublistContent',
+          $labelContent: "LabelContent",
+          $labelDescription: "LabelDescription",
+          $labelSublistContent: "LabelSublistContent",
         },
       },
     },

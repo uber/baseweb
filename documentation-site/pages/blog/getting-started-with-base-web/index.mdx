@@ -1,13 +1,13 @@
-import Layout from '../../../components/layout';
-import { BlogImage, Demo, Meta } from '../../../components/blog';
-import metadata from './metadata.json';
+import Layout from "../../../components/layout";
+import { BlogImage, Demo, Meta } from "../../../components/blog";
+import metadata from "./metadata.json";
 
 export default Layout;
 
 <Meta data={metadata} />
 
 <BlogImage
-  style={{ marginTop: '20px' }}
+  style={{ marginTop: "20px" }}
   full
   src="https://cdn.dribbble.com/users/914217/screenshots/4615198/base_ui.png"
   caption="Base Web by Uber Design"
@@ -15,7 +15,7 @@ export default Layout;
 
 **In this post, you'll learn how to create a basic password generator using Base Web components. If you are unfamiliar with Base Web, please go over the [Getting started](/) section before continuing with this article.**
 
-<BlogImage src={'/images/blog/getting-started-with-base-web/result.png'} />
+<BlogImage src={"/images/blog/getting-started-with-base-web/result.png"} />
 
 ## Setup
 
@@ -37,9 +37,9 @@ You might be asking "What's Styletron?". [Styletron](https://www.styletron.org) 
 As per [Base Web's set up instructions](/getting-started/setup/), we need to wrap our app in both the Styletron Provider and the [Base Provider](/components/base-provider/) before we can begin:
 
 ```js
-import { Provider as StyletronProvider } from 'styletron-react';
-import { Client as Styletron } from 'styletron-engine-atomic';
-import { LightTheme, BaseProvider } from 'baseui';
+import { Provider as StyletronProvider } from "styletron-react";
+import { Client as Styletron } from "styletron-engine-atomic";
+import { LightTheme, BaseProvider } from "baseui";
 
 const engine = new Styletron();
 
@@ -49,7 +49,7 @@ ReactDOM.render(
       <App />
     </BaseProvider>
   </StyletronProvider>,
-  document.getElementById('root')
+  document.getElementById("root"),
 );
 ```
 
@@ -59,7 +59,7 @@ _Do you want to learn more about Styletron? Check out the [Styletron docs](https
 
 In this post, we'll implement the following mini-app, that can be used to generate passwords. It will look something like this:
 
-<BlogImage src={'/images/blog/getting-started-with-base-web/mockup.png'} />
+<BlogImage src={"/images/blog/getting-started-with-base-web/mockup.png"} />
 
 We can create the majority of our UI using the following components
 
@@ -72,7 +72,7 @@ We can create the majority of our UI using the following components
 
 This puts us in a good spot without needing to make any changes.
 
-<BlogImage src={'/images/blog/getting-started-with-base-web/foundation.png'} />
+<BlogImage src={"/images/blog/getting-started-with-base-web/foundation.png"} />
 
 At this stage, we can hook up some logic and we are almost there. It's not pretty though. We need to add some of our own styling tweaks.
 
@@ -102,12 +102,12 @@ To customize the `Card` component to work better for our use-case, we can do som
   overrides={{
     Root: {
       style: {
-        left: '50%',
-        maxWidth: '420px',
-        position: 'absolute',
-        top: '20px',
-        transform: 'translate(-50%, 0)',
-        width: '95vw',
+        left: "50%",
+        maxWidth: "420px",
+        position: "absolute",
+        top: "20px",
+        transform: "translate(-50%, 0)",
+        width: "95vw",
       },
     },
   }}
@@ -132,7 +132,9 @@ As a next step, let's move the button inside our input that generates a new pass
 
 Using overrides, we can leverage an `After` option and pass a `Button` to it.
 
-<BlogImage src={'/images/blog/getting-started-with-base-web/input-with-cta.png'} />
+<BlogImage
+  src={"/images/blog/getting-started-with-base-web/input-with-cta.png"}
+/>
 
 ## Adjusting the layout
 
@@ -166,7 +168,9 @@ Base Web exposes the props we need for various change and click handlers. Except
 
 ```js
 const setNewPassword = (p) => {
-  const newPassword = p ? p : generatePassword({ length, numbers, uppercase, symbols });
+  const newPassword = p
+    ? p
+    : generatePassword({ length, numbers, uppercase, symbols });
   const { score } = zxcvbn(newPassword);
   setStrength(score);
   setCopied(false);
@@ -186,17 +190,17 @@ We can pass our strength score into a function that returns a color ID from our 
 const getStrengthColor = (strength) => {
   switch (strength) {
     case 0:
-      return 'negative400';
+      return "negative400";
     case 1:
-      return 'warning400';
+      return "warning400";
     case 2:
-      return 'warning200';
+      return "warning200";
     case 3:
-      return 'positive200';
+      return "positive200";
     case 4:
-      return 'positive400';
+      return "positive400";
     default:
-      return 'primary50';
+      return "primary50";
   }
 };
 ```
@@ -228,17 +232,12 @@ Tie that into our `Input`:
 
 And this will give us
 
-<BlogImage src={'/images/blog/getting-started-with-base-web/strength-meter.gif'} />
+<BlogImage
+  src={"/images/blog/getting-started-with-base-web/strength-meter.gif"}
+/>
 
 ## Conclusion
 
 With little effort we've put together an example app that uses the Base design language.
 
 By default all the components have the Uber look and feel, but the powerful customization makes for a component library that feels less opinionated.
-
-You can see all the code for this post in the following demo:
-
-<Demo
-  src="https://codesandbox.io/embed/password-validatorgenerator-w-base-web-forked-8qtuc?fontsize=14"
-  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-/>

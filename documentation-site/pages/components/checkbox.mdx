@@ -1,32 +1,25 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import Basic from "examples/checkbox/basic-controlled.tsx";
+import Uncontrolled from "examples/checkbox/basic-uncontrolled";
+import Multiline from "examples/checkbox/multiline.tsx";
+import Error from "examples/checkbox/error.tsx";
+import Indeterminate from "examples/checkbox/indeterminate.tsx";
+import Disabled from "examples/checkbox/disabled.tsx";
+import Alignment from "examples/checkbox/alignment.tsx";
+import Customization from "examples/checkbox/overrides.tsx";
+import ComponentOverrides from "examples/checkbox/component-overrides.tsx";
+import Focus from "examples/checkbox/focus.tsx";
+import Toggle from "examples/checkbox/toggle.tsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import { Block } from "baseui/block";
+import { StatefulCheckbox, STYLE_TYPE } from "baseui/checkbox";
+import * as CheckboxExports from "baseui/checkbox";
 
-import Basic from 'examples/checkbox/basic-controlled.tsx';
-import Uncontrolled from 'examples/checkbox/basic-uncontrolled';
-import Multiline from 'examples/checkbox/multiline.tsx';
-import Error from 'examples/checkbox/error.tsx';
-import Indeterminate from 'examples/checkbox/indeterminate.tsx';
-import Disabled from 'examples/checkbox/disabled.tsx';
-import Alignment from 'examples/checkbox/alignment.tsx';
-import Customization from 'examples/checkbox/overrides.tsx';
-import ComponentOverrides from 'examples/checkbox/component-overrides.tsx';
-import Focus from 'examples/checkbox/focus.tsx';
-import Toggle from 'examples/checkbox/toggle.tsx';
-
-import { Block } from 'baseui/block';
-import { StatefulCheckbox, STYLE_TYPE } from 'baseui/checkbox';
-import * as CheckboxExports from 'baseui/checkbox';
-
-import Yard from '../../components/yard/index';
-import checkboxYardConfig from '../../components/yard/config/checkbox';
+import Yard from "../../components/yard/index";
+import checkboxYardConfig from "../../components/yard/config/checkbox";
 
 export default Layout;
 
@@ -76,7 +69,10 @@ options. When engaged (on), Base Web toggles are colored and when disengaged (of
   <Customization />
 </Example>
 
-<Example title="Overriding sub-components" path="checkbox/component-overrides.tsx">
+<Example
+  title="Overriding sub-components"
+  path="checkbox/component-overrides.tsx"
+>
   <ComponentOverrides />
 </Example>
 
@@ -88,10 +84,17 @@ options. When engaged (on), Base Web toggles are colored and when disengaged (of
   <Toggle />
 </Example>
 
-<Example title="Stateful (uncontrolled) usage" path="checkbox/basic-uncontrolled.tsx">
+<Example
+  title="Stateful (uncontrolled) usage"
+  path="checkbox/basic-uncontrolled.tsx"
+>
   <Uncontrolled />
 </Example>
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulCheckbox`, which manages its own state.
 
-<Exports component={CheckboxExports} title="Checkbox exports" path="baseui/checkbox" />
+<Exports
+  component={CheckboxExports}
+  title="Checkbox exports"
+  path="baseui/checkbox"
+/>

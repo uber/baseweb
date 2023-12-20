@@ -10,7 +10,7 @@ export default function Example() {
       <Textarea
         inputRef={inputRef}
         value={value}
-        onChange={e => setValue(e.currentTarget.value)}
+        onChange={(e) => setValue(e.currentTarget.value)}
         placeholder="Focus me by clicking the button below..."
       />
       <br />

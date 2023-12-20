@@ -1,26 +1,19 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
+import FloatingMarkerContainer from "../../components/floating-marker-container";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import Yard from "../../components/yard/index";
+import floatingRouteMarkerYardConfig from "../../components/yard/config/floating-route-marker";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
-import FloatingMarkerContainer from '../../components/floating-marker-container';
+import Basic from "examples/floating-route-marker/basic.tsx";
+import SecondaryLabel from "examples/floating-route-marker/secondary-label.tsx";
+import StartEndEnhacer from "examples/floating-route-marker/start-end-enhancer.tsx";
+import CustomColorOverrides from "examples/floating-route-marker/custom-color-overrides.tsx";
+import ChangingPointerPositions from "examples/floating-route-marker/changing-pointer-positions.tsx";
+import ReactMapGL from "examples/floating-route-marker/react-map-gl.tsx";
 
-import Yard from '../../components/yard/index';
-import floatingRouteMarkerYardConfig from '../../components/yard/config/floating-route-marker';
-
-import Basic from 'examples/floating-route-marker/basic.tsx';
-import SecondaryLabel from 'examples/floating-route-marker/secondary-label.tsx';
-import StartEndEnhacer from 'examples/floating-route-marker/start-end-enhancer.tsx';
-import CustomColorOverrides from 'examples/floating-route-marker/custom-color-overrides.tsx';
-import ChangingPointerPositions from 'examples/floating-route-marker/changing-pointer-positions.tsx';
-import ReactMapGL from 'examples/floating-route-marker/react-map-gl.tsx';
-
-import * as FloatingRouteMarkerExports from 'baseui/map-marker';
+import * as FloatingRouteMarkerExports from "baseui/map-marker";
 
 export default Layout;
 
@@ -29,11 +22,11 @@ export default Layout;
 <Yard
   {...floatingRouteMarkerYardConfig}
   compilerStyles={{
-    paddingTop: '64px',
-    paddingBottom: '64px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: "64px",
+    paddingBottom: "64px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   }}
 />
 
@@ -64,7 +57,7 @@ A helper function `calculateFloatingRouteMarkerOffsets` is available to easily p
       style: {
         transform: calculateFloatingRouteMarkerOffsets(
           FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft,
-          4
+          4,
         ),
       },
     },
@@ -82,7 +75,10 @@ A helper function `calculateFloatingRouteMarkerOffsets` is available to easily p
 
 A floating route map marker with only a label.
 
-<Example title="Primary and secondary labels" path="floating-route-marker/secondary-label.tsx">
+<Example
+  title="Primary and secondary labels"
+  path="floating-route-marker/secondary-label.tsx"
+>
   <FloatingMarkerContainer>
     <SecondaryLabel />
   </FloatingMarkerContainer>
@@ -90,7 +86,10 @@ A floating route map marker with only a label.
 
 A floating route map marker with a primary label and a secondary label.
 
-<Example title="Start and end enhancers" path="floating-route-marker/start-end-enhancer.tsx">
+<Example
+  title="Start and end enhancers"
+  path="floating-route-marker/start-end-enhancer.tsx"
+>
   <FloatingMarkerContainer>
     <StartEndEnhacer />
   </FloatingMarkerContainer>
@@ -98,7 +97,10 @@ A floating route map marker with a primary label and a secondary label.
 
 A floating route map marker with both a start and end enhancer.
 
-<Example title="Custom color overrides" path="floating-route-marker/custom-color-overrides.tsx">
+<Example
+  title="Custom color overrides"
+  path="floating-route-marker/custom-color-overrides.tsx"
+>
   <CustomColorOverrides />
 </Example>
 
@@ -115,7 +117,10 @@ To customize the color of the pointer, use the property `fill` instead of `backg
 
 A floating route marker that cycles through the different pointer positions every three seconds.
 
-<Example title="Usage with react-map-gl" path="floating-route-marker/react-map-gl.tsx">
+<Example
+  title="Usage with react-map-gl"
+  path="floating-route-marker/react-map-gl.tsx"
+>
   <ReactMapGL />
 </Example>
 

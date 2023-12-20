@@ -1,24 +1,17 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import CardBasic from "examples/card/basic.tsx";
+import CardWithImageCta from "examples/card/image-cta.tsx";
+import CardWithThumbnailCta from "examples/card/thumbnail-cta.tsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import { Card, StyledBody, StyledAction, StyledThumbnail } from "baseui/card";
+import { Button } from "baseui/button";
+import * as CardExports from "baseui/card";
 
-import CardBasic from 'examples/card/basic.tsx';
-import CardWithImageCta from 'examples/card/image-cta.tsx';
-import CardWithThumbnailCta from 'examples/card/thumbnail-cta.tsx';
-
-import { Card, StyledBody, StyledAction, StyledThumbnail } from 'baseui/card';
-import { Button } from 'baseui/button';
-import * as CardExports from 'baseui/card';
-
-import Yard from '../../components/yard/index';
-import cardYardConfig from '../../components/yard/config/card';
+import Yard from "../../components/yard/index";
+import cardYardConfig from "../../components/yard/config/card";
 
 export default Layout;
 
@@ -41,7 +34,10 @@ The entire card can become an active click-target.
   <CardWithImageCta />
 </Example>
 
-<Example title="Card with thumbnail and call to action" path="card/thumbnail-cta.tsx">
+<Example
+  title="Card with thumbnail and call to action"
+  path="card/thumbnail-cta.tsx"
+>
   <CardWithThumbnailCta />
 </Example>
 

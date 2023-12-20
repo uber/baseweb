@@ -1,27 +1,20 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import { Notification, KIND } from "baseui/notification";
+import { StyledLink } from "baseui/link";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-import { Notification, KIND } from 'baseui/notification';
-import { StyledLink } from 'baseui/link';
+import SpinnerBasic from "examples/spinner/basic.tsx";
+import SpinnerSize from "examples/spinner/size.tsx";
+import SpinnerCustom from "examples/spinner/custom.tsx";
+import SpinnerSpan from "examples/spinner/span.tsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import { Spinner } from "baseui/spinner";
+import * as SpinnerExports from "baseui/spinner";
 
-import SpinnerBasic from 'examples/spinner/basic.tsx';
-import SpinnerSize from 'examples/spinner/size.tsx';
-import SpinnerCustom from 'examples/spinner/custom.tsx';
-import SpinnerSpan from 'examples/spinner/span.tsx';
-
-import { Spinner } from 'baseui/spinner';
-import * as SpinnerExports from 'baseui/spinner';
-
-import Yard from '../../components/yard/index';
-import spinnerYardConfig from '../../components/yard/config/spinner';
+import Yard from "../../components/yard/index";
+import spinnerYardConfig from "../../components/yard/config/spinner";
 
 export default Layout;
 
@@ -47,7 +40,11 @@ Spinners provide a visual cue that an action is processing awaiting a course of 
 
 ## API
 
-<Exports component={SpinnerExports} title="Spinner exports" path="baseui/spinner" />
+<Exports
+  component={SpinnerExports}
+  title="Spinner exports"
+  path="baseui/spinner"
+/>
 
 By default the spinner styles a single `div` element. You can change the underlying element type by using the `$as` prop. In this example we change it to a `span`. This allows us to use the `Spinner` inside of a `p` element.
 

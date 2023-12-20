@@ -13,7 +13,7 @@ export default function Scenario() {
         KIND.orange,
         KIND.purple,
         KIND.brown,
-      ].map(kind => (
+      ].map((kind) => (
         <div>
           <Tag
             kind={kind}

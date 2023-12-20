@@ -4,18 +4,18 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { ButtonDock } from 'baseui/button-dock';
-import { PropTypes } from 'react-view';
-import { Button, KIND } from 'baseui/button';
-import { Checkbox } from 'baseui/checkbox';
+import { ButtonDock } from "baseui/button-dock";
+import { PropTypes } from "react-view";
+import { Button, KIND } from "baseui/button";
+import { Checkbox } from "baseui/checkbox";
 
-import type { TConfig } from '../types';
+import type { TConfig } from "../types";
 
 const ButtonDockConfig: TConfig = {
-  componentName: 'ButtonDock',
+  componentName: "ButtonDock",
   imports: {
-    'baseui/button-dock': {
-      named: ['ButtonDock'],
+    "baseui/button-dock": {
+      named: ["ButtonDock"],
     },
   },
   scope: {
@@ -27,12 +27,12 @@ const ButtonDockConfig: TConfig = {
   theme: [],
   props: {
     primaryAction: {
-      value: '<Button>Primary Action</Button>',
+      value: "<Button>Primary Action</Button>",
       type: PropTypes.ReactNode,
-      description: 'Defines the content of the primary action. Required',
+      description: "Defines the content of the primary action. Required",
       imports: {
-        'baseui/button': {
-          named: ['Button', 'KIND'],
+        "baseui/button": {
+          named: ["Button", "KIND"],
         },
       },
     },
@@ -40,40 +40,40 @@ const ButtonDockConfig: TConfig = {
       value:
         '[<Button kind={KIND.secondary} key="first">Secondary Action 1</Button>,<Button kind={KIND.secondary} key="second">Secondary Action 2</Button>,]',
       type: PropTypes.Array,
-      description: 'A list of up to two additional actions.',
+      description: "A list of up to two additional actions.",
       imports: {
-        'baseui/button': {
-          named: ['Button', 'KIND'],
+        "baseui/button": {
+          named: ["Button", "KIND"],
         },
       },
     },
     dismissiveAction: {
-      value: '<Button kind={KIND.tertiary}>Dismiss</Button>',
+      value: "<Button kind={KIND.tertiary}>Dismiss</Button>",
       type: PropTypes.ReactNode,
-      description: 'Defines the content of the dissmissive action.',
+      description: "Defines the content of the dissmissive action.",
       imports: {
-        'baseui/button': {
-          named: ['Button', 'KIND'],
+        "baseui/button": {
+          named: ["Button", "KIND"],
         },
       },
     },
     topAccessory: {
       value: undefined,
-      placeholder: '<Checkbox>label</Checkbox>',
+      placeholder: "<Checkbox>label</Checkbox>",
       type: PropTypes.ReactNode,
-      description: 'Defines the content of the dismissive action.',
+      description: "Defines the content of the dismissive action.",
       imports: {
-        'baseui/checkbox': {
-          named: ['Checkbox'],
+        "baseui/checkbox": {
+          named: ["Checkbox"],
         },
       },
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root', 'ActionContainer', 'ActionSubContainer'],
+        names: ["Root", "ActionContainer", "ActionSubContainer"],
         sharedProps: {},
       },
     },

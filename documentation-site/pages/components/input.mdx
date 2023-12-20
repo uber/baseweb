@@ -1,32 +1,25 @@
-<!--
-Copyright (c) Uber Technologies, Inc.
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
+import BasicControlled from "examples/input/basic-controlled.tsx";
+import Sizes from "examples/input/sizes.tsx";
+import AvailableStates from "examples/input/available-states.tsx";
+import Enhancers from "examples/input/enhancers.tsx";
+import Mask from "examples/input/mask.tsx";
+import Customization from "examples/input/overrides.tsx";
+import Focus from "examples/input/focus.tsx";
+import WithTags from "examples/input/with-tags.tsx";
+import Clearable from "examples/input/clearable.tsx";
+import Password from "examples/input/password.tsx";
+import BasicUncontrolled from "examples/input/basic-uncontrolled.tsx";
+import WithSelect from "examples/input/with-select.tsx";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import { StatefulInput } from "baseui/input";
+import * as InputExports from "baseui/input";
 
-import BasicControlled from 'examples/input/basic-controlled.tsx';
-import Sizes from 'examples/input/sizes.tsx';
-import AvailableStates from 'examples/input/available-states.tsx';
-import Enhancers from 'examples/input/enhancers.tsx';
-import Mask from 'examples/input/mask.tsx';
-import Customization from 'examples/input/overrides.tsx';
-import Focus from 'examples/input/focus.tsx';
-import WithTags from 'examples/input/with-tags.tsx';
-import Clearable from 'examples/input/clearable.tsx';
-import Password from 'examples/input/password.tsx';
-import BasicUncontrolled from 'examples/input/basic-uncontrolled.tsx';
-import WithSelect from 'examples/input/with-select.tsx';
-
-import { StatefulInput } from 'baseui/input';
-import * as InputExports from 'baseui/input';
-
-import Yard from '../../components/yard/index';
-import inputYardConfig from '../../components/yard/config/input';
+import Yard from "../../components/yard/index";
+import inputYardConfig from "../../components/yard/config/input";
 
 export default Layout;
 
@@ -100,8 +93,8 @@ You can also use `overrides` to customize the icons used in the toggle:
 <Input
   type="password"
   overrides={{
-    MaskToggleHideIcon: () => '🙈',
-    MaskToggleShowIcon: () => '🐵',
+    MaskToggleHideIcon: () => "🙈",
+    MaskToggleShowIcon: () => "🐵",
   }}
 />
 ```
@@ -126,7 +119,10 @@ In the example above we use `overrides` to add "tag" functionality to our input.
   <WithSelect />
 </Example>
 
-<Example title="Stateful (uncontrolled) usage" path="input/basic-uncontrolled.tsx">
+<Example
+  title="Stateful (uncontrolled) usage"
+  path="input/basic-uncontrolled.tsx"
+>
   <BasicUncontrolled />
 </Example>
 

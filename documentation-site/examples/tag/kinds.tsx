@@ -10,7 +10,7 @@ export default function Scenario() {
         KIND.positive,
         KIND.negative,
         KIND.warning,
-      ].map(kind => (
+      ].map((kind) => (
         <div>
           <Tag
             kind={kind}

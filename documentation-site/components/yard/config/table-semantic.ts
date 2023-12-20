@@ -5,15 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { Table, DIVIDER, SIZE } from 'baseui/table-semantic';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { Table, DIVIDER, SIZE } from "baseui/table-semantic";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const TableSemanticConfig: TConfig = {
-  componentName: 'Table',
+  componentName: "Table",
   imports: {
-    'baseui/table-semantic': {
-      named: ['Table'],
+    "baseui/table-semantic": {
+      named: ["Table"],
     },
   },
   scope: {
@@ -21,12 +21,16 @@ const TableSemanticConfig: TConfig = {
     DIVIDER,
     SIZE,
   },
-  theme: ['tableHeadBackgroundColor', 'tableBackground', 'tableStripedBackground'],
+  theme: [
+    "tableHeadBackgroundColor",
+    "tableBackground",
+    "tableStripedBackground",
+  ],
   props: {
     columns: {
       value: `['Name', 'Age', 'Address']`,
       type: PropTypes.Array,
-      description: 'Table columns. Data passed to each header cell.',
+      description: "Table columns. Data passed to each header cell.",
     },
     data: {
       value: `[
@@ -34,72 +38,72 @@ const TableSemanticConfig: TConfig = {
   ['Jane Smith', 32, '100 Market St., San Francisco, California'],
 ]`,
       type: PropTypes.Array,
-      description: 'Table rows. Data passed to each row and cell',
+      description: "Table rows. Data passed to each row and cell",
     },
     size: {
-      value: 'SIZE.default',
-      defaultValue: 'SIZE.default',
+      value: "SIZE.default",
+      defaultValue: "SIZE.default",
       options: SIZE,
       type: PropTypes.Enum,
-      description: 'Defines the the cell padding styles.',
+      description: "Defines the the cell padding styles.",
       imports: {
-        'baseui/table-semantic': {
-          named: ['SIZE'],
+        "baseui/table-semantic": {
+          named: ["SIZE"],
         },
       },
     },
     divider: {
-      value: 'DIVIDER.horizontal',
-      defaultValue: 'DIVIDER.horizontal',
+      value: "DIVIDER.horizontal",
+      defaultValue: "DIVIDER.horizontal",
       options: DIVIDER,
       type: PropTypes.Enum,
-      description: 'Defines the the cell border styles.',
+      description: "Defines the the cell border styles.",
       imports: {
-        'baseui/table-semantic': {
-          named: ['DIVIDER'],
+        "baseui/table-semantic": {
+          named: ["DIVIDER"],
         },
       },
     },
     horizontalScrollWidth: {
       value: undefined,
       type: PropTypes.String,
-      description: 'Table width fills this provided value.',
+      description: "Table width fills this provided value.",
     },
     isLoading: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Lets you specify loading state.',
+      description: "Lets you specify loading state.",
     },
     loadingMessage: {
-      value: '',
+      value: "",
       type: PropTypes.ReactNode,
       description: `Loading message.`,
     },
     emptyMessage: {
-      value: '',
+      value: "",
       type: PropTypes.ReactNode,
       description: `Empty message.`,
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
         names: [
-          'Root',
-          'Table',
-          'TableHead',
-          'TableHeadRow',
-          'TableHeadCell',
-          'TableHeadCellSortable',
-          'TableBody',
-          'TableBodyRow',
-          'TableBodyCell',
-          'TableLoadingMessage',
-          'TableEmptyMessage',
-          'SortAscIcon',
-          'SortDescIcon',
-          'SortNoneIcon',
+          "Root",
+          "Table",
+          "TableHead",
+          "TableHeadRow",
+          "TableHeadCell",
+          "TableHeadCellSortable",
+          "TableBody",
+          "TableBodyRow",
+          "TableBodyCell",
+          "TableLoadingMessage",
+          "TableEmptyMessage",
+          "SortAscIcon",
+          "SortDescIcon",
+          "SortNoneIcon",
         ],
         sharedProps: {},
       },

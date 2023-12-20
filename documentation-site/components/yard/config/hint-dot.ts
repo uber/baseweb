@@ -4,18 +4,18 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { HintDot, COLOR } from 'baseui/badge';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { HintDot, COLOR } from "baseui/badge";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const HintDotConfig: TConfig = {
-  componentName: 'HintDot',
+  componentName: "HintDot",
   imports: {
-    'baseui/badge': {
-      named: ['HintDot'],
+    "baseui/badge": {
+      named: ["HintDot"],
     },
-    'baseui/block': {
-      named: ['Skeleton'],
+    "baseui/block": {
+      named: ["Skeleton"],
     },
   },
   scope: {
@@ -32,12 +32,12 @@ const HintDotConfig: TConfig = {
     horizontalOffset: {
       value: undefined,
       type: PropTypes.String,
-      description: 'Overrides the default horizontal position.',
+      description: "Overrides the default horizontal position.",
     },
     verticalOffset: {
       value: undefined,
       type: PropTypes.String,
-      description: 'Overrides the default vertical position.',
+      description: "Overrides the default vertical position.",
     },
     hidden: {
       value: false,
@@ -45,28 +45,28 @@ const HintDotConfig: TConfig = {
       description: `Sets visibility to "hidden".`,
     },
     color: {
-      value: 'COLOR.accent',
-      defaultValue: 'COLOR.accent',
+      value: "COLOR.accent",
+      defaultValue: "COLOR.accent",
       options: COLOR,
       type: PropTypes.Enum,
       description:
-        'Defines badge color. Set it to one of COLOR[key] values. Defaults to COLOR.accent.',
+        "Defines badge color. Set it to one of COLOR[key] values. Defaults to COLOR.accent.",
       imports: {
-        'baseui/badge': {
-          named: ['COLOR'],
+        "baseui/badge": {
+          named: ["COLOR"],
         },
       },
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root', 'Badge', 'Positioner'],
+        names: ["Root", "Badge", "Positioner"],
         sharedProps: {
-          $hierarchy: 'hierarchy',
-          $shape: 'shape',
-          $color: 'color',
+          $hierarchy: "hierarchy",
+          $shape: "shape",
+          $color: "color",
         },
       },
     },

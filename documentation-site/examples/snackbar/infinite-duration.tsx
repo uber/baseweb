@@ -9,9 +9,8 @@ import {
 
 function Child() {
   const {enqueue, dequeue} = useSnackbar();
-  const [downloadCountdown, setDownloadCountdown] = React.useState(
-    -1,
-  );
+  const [downloadCountdown, setDownloadCountdown] =
+    React.useState(-1);
 
   function clearDownloadCountdown() {
     setDownloadCountdown(-1);
@@ -24,7 +23,7 @@ function Child() {
       enqueue({message: 'Download complete'});
     } else if (downloadCountdown > 0) {
       setTimeout(() => {
-        setDownloadCountdown(prev => prev - 1);
+        setDownloadCountdown((prev) => prev - 1);
       }, 1000);
     }
   }, [downloadCountdown]);

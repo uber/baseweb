@@ -4,68 +4,69 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { StarRating } from 'baseui/rating';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { StarRating } from "baseui/rating";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const ratingConfig: TConfig = {
-  componentName: 'StarRating',
+  componentName: "StarRating",
   imports: {
-    'baseui/rating': {
-      named: ['StarRating'],
+    "baseui/rating": {
+      named: ["StarRating"],
     },
   },
   scope: { StarRating },
-  theme: ['warning200', 'warning400', 'ratingInactiveFill', 'ratingStroke'],
+  theme: ["warning200", "warning400", "ratingInactiveFill", "ratingStroke"],
   props: {
     numItems: {
       value: 5,
       type: PropTypes.Number,
-      description: 'The total number of items to display.',
+      description: "The total number of items to display.",
     },
     onChange: {
-      value: '(data) => setValue(data.value)',
+      value: "(data) => setValue(data.value)",
       type: PropTypes.Function,
       description: "Callback that's called with the newly selected value.",
       propHook: {
-        what: 'data.value',
-        into: 'value',
+        what: "data.value",
+        into: "value",
       },
     },
     size: {
-      value: '22',
+      value: "22",
       type: PropTypes.Number,
-      description: 'The size of rating icons.',
+      description: "The size of rating icons.",
     },
     value: {
       value: 4,
       type: PropTypes.Number,
-      description: 'The current rating value.',
+      description: "The current rating value.",
       stateful: true,
     },
     readOnly: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Whether the rating is read-only or editable.',
+      description: "Whether the rating is read-only or editable.",
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root', 'Item'],
+        names: ["Root", "Item"],
         sharedProps: {
           $isActive: {
             type: PropTypes.Boolean,
-            description: 'Indicates if the item is a part of the current selection.',
+            description:
+              "Indicates if the item is a part of the current selection.",
           },
           $isSelected: {
             type: PropTypes.Boolean,
-            description: 'Indicates if the item is currently selected.',
+            description: "Indicates if the item is currently selected.",
           },
           $index: {
             type: PropTypes.Number,
-            description: 'Index of the rendered item.',
+            description: "Index of the rendered item.",
           },
         },
       },
