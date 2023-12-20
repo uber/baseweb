@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from "react";
 import Link from "next/link";
-import Image from 'next/image';
+import Image from "next/image";
 import { themedUseStyletron as useStyletron } from "../pages/_app";
 import Menu from "baseui/icon/menu";
 import DarkLogo from "../images/base-web.svg";
@@ -74,7 +74,8 @@ export default function HeaderNavigation({
               outline: `3px solid ${theme.colors.accent}`,
               outlineOffset: "5px",
             },
-          })}>
+          })}
+        >
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
 
           <Image
@@ -83,7 +84,6 @@ export default function HeaderNavigation({
             height={40}
             width={97}
           />
-
         </Link>
         {/* Version Selector */}
         <div
@@ -117,7 +117,7 @@ export default function HeaderNavigation({
           </Button>
         </Link>
         {/* Link to component gallery */}
-        <Link href="/components" passHref legacyBehavior>
+        <Link href="https://baseweb.design/ladle" passHref legacyBehavior>
           <Button
             $as="a"
             size={SIZE.compact}

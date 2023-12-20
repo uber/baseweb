@@ -172,7 +172,7 @@ const Index = (props) => (
     </Markdown.p>
     <Markdown.p>
       For an overview of everything that we offer, check out the{` `}
-      <Link href="/components">component gallery</Link>.
+      <Link href="https://baseweb.design/ladle">component gallery</Link>.
     </Markdown.p>
     <H2>Extensibility</H2>
     <Markdown.p>

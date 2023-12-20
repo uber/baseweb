@@ -4,18 +4,13 @@
     "module": "NodeNext", // Specify module code generation
     "moduleResolution": "NodeNext", // Specify module resolution strategy
     "lib": ["dom", "esnext"], // Specify library files to be included in the compilation
-    "allowJs": true, // Allow JavaScript files to be compiled
-    "checkJs": false, // Report errors in .js files
     "jsx": "react", // Specify JSX code generation
     "declaration": false, // Generates corresponding '.d.ts' file
     "sourceMap": false, // Generates corresponding '.map' file
-    "strict": true, // Enable all strict type-checking options
+    "strict": false, // Enable all strict type-checking options
     "noEmit": true,
-    "noImplicitAny": true, // Raise error on expressions and declarations with an implied 'any' type
-    "strictNullChecks": true, // Enable strict null checks
     "esModuleInterop": true, // Enables emit interoperability between CommonJS and ES Modules
     "skipLibCheck": true, // Skip type checking of declaration files
-    "forceConsistentCasingInFileNames": true, // Disallow inconsistently-cased references to the same file
     "isolatedModules": true, // Ensure each file can be safely transpiled without relying on other imports
     "paths": {
       "baseui": ["./src"],

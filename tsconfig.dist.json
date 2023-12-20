@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "noEmitOnError": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "**.test.*",
+    "**/__tests__/**",
+    "**/__mocks__/**",
+    "**/e2e.*",
+    "**/template-component/**",
+    "**/test/**"
+  ]
+}
