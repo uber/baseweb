@@ -9,6 +9,7 @@ const version = `0.0.0-next-${shortHash}`;
 console.log(`Publishing baseui ${version}`);
 const pkgJson = JSON.parse(fs.readFileSync("./package.json"));
 pkgJson.version = version;
+delete pkgJson.scripts.prepare;
 fs.writeFileSync("./dist/package.json", JSON.stringify(pkgJson, null, 2));
 
 try {
