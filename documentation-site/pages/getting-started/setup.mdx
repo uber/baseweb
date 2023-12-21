@@ -7,20 +7,20 @@ export default Layout;
 
 ## Installing Base Web
 
+You can quickly test Base Web by using [StackBlitz](https://baseweb.design/new).
+
 Base Web is available on npm as [baseui](https://npmjs.com/package/baseui). This single
 package contains all Base Web components.
 
 ```bash
-# using yarn
-yarn add baseui styletron-engine-atomic styletron-react
+# using pnpm
+pnpm add baseui@next styletron-engine-monolithic styletron-react
 
 # using npm
-npm install baseui styletron-engine-atomic styletron-react
+npm install baseui@next styletron-engine-monolithic styletron-react
 ```
 
-Base Web ships with both Flow and TypeScript support.
-
-Our React components don't use [PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html).
+Base Web ships with TypeScript support.
 
 [Styletron](https://www.styletron.org/) is a toolkit for component-oriented styling, part of the CSS-in-JS family. Base Web requires Styletron as a peer dependency (it uses it to apply styles to components), so you need to add Styletron as a dependency too.
 
@@ -47,8 +47,8 @@ Assuming you already have ESLint installed, run:
 # npm
 npm install eslint-plugin-baseui --save-dev
 
-# yarn
-yarn add eslint-plugin-baseui --dev
+# pnpm
+pnpm add eslint-plugin-baseui --dev
 ```
 
 Then add it to your ESLint configuration:
@@ -87,7 +87,7 @@ In order to use Base Web, you need to do a small setup and wrap the root of your
 application with `StyletronProvider` and [`BaseProvider`](https://baseweb.design/components/base-provider) components:
 
 ```javascript
-import { Client as Styletron } from "styletron-engine-atomic";
+import { Client as Styletron } from "styletron-engine-monolithic";
 import { Provider as StyletronProvider } from "styletron-react";
 import { LightTheme, BaseProvider, styled } from "baseui";
 import { StatefulInput } from "baseui/input";

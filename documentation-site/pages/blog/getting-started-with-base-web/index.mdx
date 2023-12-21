@@ -29,7 +29,7 @@ cd password-generator
 Next, we need to pull in the packages for Base Web.
 
 ```shell
-yarn add baseui styletron-engine-atomic styletron-react
+pnpm add baseui@next styletron-engine-monolithic styletron-react
 ```
 
 You might be asking "What's Styletron?". [Styletron](https://www.styletron.org) is a CSS-in-JS solution for component-oriented styling.
@@ -38,7 +38,7 @@ As per [Base Web's set up instructions](/getting-started/setup/), we need to wra
 
 ```js
 import { Provider as StyletronProvider } from "styletron-react";
-import { Client as Styletron } from "styletron-engine-atomic";
+import { Client as Styletron } from "styletron-engine-monolithic";
 import { LightTheme, BaseProvider } from "baseui";
 
 const engine = new Styletron();

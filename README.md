@@ -1,10 +1,8 @@
-<p align="center">
-  <a href="https://baseweb.design">
-    <img width="250px" src="https://res.cloudinary.com/dawr8pobn/image/upload/v1556920604/base-web.svg">
-  </a>
-</p>
+<h1>Base Web React Components</h1>
 
-<h1 align="center">Base Web React Components</h1>
+- [Documentation](https://baseweb.design)
+- [Component catalog](https://baseweb.design/ladle)
+- [Stackblitz playground](https://baseweb.design/new)
 
 ⚠️ **Maintenance status**. We are limiting our engagement with this repository while still mirroring our internal development. For more details, please check [Open Source Engagement and Future](https://baseweb.design/blog/open-source-engagement/). If you are an Uber developer and looking to open an issue, use this [link](https://t.uber.com/ui-platform-bug-2) or [contribute](https://p.uber.com/base-code).
 
@@ -24,10 +22,10 @@ Add `baseui` and its peer dependencies to your project:
 
 ```bash
 # using pnpm
-pnpm add baseui styletron-react styletron-engine-monolithic
+pnpm add baseui@next styletron-react styletron-engine-monolithic
 
 # using npm
-npm install baseui styletron-react styletron-engine-monolithic
+npm install baseui@next styletron-react styletron-engine-monolithic
 ```
 
 ```javascript
