@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { ProgressSteps, Step } from "baseui/progress-steps";
+import { ProgressSteps, Step, ORIENTATION } from "baseui/progress-steps";
 import { Button } from "baseui/button";
 import { PropTypes } from "react-view";
 import type { TConfig } from "../types";
@@ -18,6 +18,7 @@ const ProgressStepsConfig: TConfig = {
   scope: {
     ProgressSteps,
     Step,
+    ORIENTATION,
     Button,
   },
   theme: [""],
@@ -27,6 +28,22 @@ const ProgressStepsConfig: TConfig = {
       type: PropTypes.Number,
       description: "Defines the current active step index.",
       stateful: true,
+    },
+    orientation: {
+      value: "ORIENTATION.vertical",
+      defaultValue: "ORIENTATION.vertical",
+      type: PropTypes.Enum,
+      options: ORIENTATION,
+      description: "The orientation of the progress steps component.",
+      imports: {
+        "baseui/progress-steps": { named: ["ORIENTATION"] },
+      },
+    },
+    alwaysShowDescription: {
+      value: false,
+      type: PropTypes.Boolean,
+      description:
+        "When true, each step's description will always be displayed regardless of whether it is the currently active step",
     },
     children: {
       value: `<Step title="Verify Address">

@@ -68,7 +68,7 @@ const routes = [
             itemId: "/components/button",
           },
           {
-            title: "ButtonDock",
+            title: "Button Dock",
             itemId: "/components/button-dock",
           },
           {

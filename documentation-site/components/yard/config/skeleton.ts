@@ -42,7 +42,11 @@ const SkeletonConfig: TConfig = {
       type: PropTypes.Boolean,
       description: "Lets you choose whether the skeleton has an animation",
     },
-
+    autoSizeRows: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: "Dynamically sizes the skeleton rows to fit the container",
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
