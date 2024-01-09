@@ -6,6 +6,7 @@ import { Skeleton } from "baseui/skeleton";
 import * as SkeletonExports from "baseui/skeleton";
 
 import SkeletonBasic from "examples/skeleton/basic.tsx";
+import SkeletonAutoSizeRows from "examples/skeleton/auto-size-rows.tsx";
 import SkeletonCircle from "examples/skeleton/circle.tsx";
 import SkeletonAnimation from "examples/skeleton/animation.tsx";
 import SkeletonSubElements from "examples/skeleton/subElements.tsx";
@@ -28,6 +29,12 @@ The `Skeleton` component is optimized for rendering shapes with or without anima
 </Example>
 
 Set `height` and `width` to generate a single rectangular `Skeleton`.
+
+<Example title="AutoSize Rows" path="skeleton/auto-size-rows.tsx">
+  <SkeletonAutoSizeRows />
+</Example>
+
+When `autoSizeRows` is supplied, the skeleton's rows will dynamically size to fill the container.
 
 <Example title="Other Shapes" path="skeleton/circle.tsx">
   <SkeletonCircle />
