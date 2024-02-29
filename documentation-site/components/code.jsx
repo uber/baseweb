@@ -14,12 +14,15 @@ import CodeBox from "./code-box";
 
 const Code = ({ children, language }) => {
   const [, theme] = useStyletron();
+  const {
+    props: { children: code = "" },
+  } = children;
   return (
     <CodeBox>
       <Highlight
         {...defaultProps}
-        code={children.replace(/[\r\n]+$/, "")}
-        language={language}
+        code={code.replace(/[\r\n]+$/, "")}
+        language={language || "tsx"}
         theme={theme.name.startsWith("light-theme") ? lightTheme : darkTheme}
       >
         {({ style, tokens, getLineProps, getTokenProps }) => (
@@ -36,10 +39,6 @@ const Code = ({ children, language }) => {
       </Highlight>
     </CodeBox>
   );
-};
-
-Code.defaultProps = {
-  language: "jsx",
 };
 
 export default Code;
