@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Block} from 'baseui/block';
+import * as React from "react";
+import { Block } from "baseui/block";
 
 export default function Example() {
   return (
@@ -7,7 +7,7 @@ export default function Example() {
       as="h2"
       overrides={{
         Block: {
-          style: {color: 'red'},
+          style: { color: "red" },
         },
       }}
     >

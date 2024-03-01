@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Tabs, Tab} from 'baseui/tabs-motion';
+import * as React from "react";
+import { Tabs, Tab } from "baseui/tabs-motion";
 
 export default function Example() {
   const [activeKey, setActiveKey] = React.useState<React.Key>(0);
@@ -9,16 +9,16 @@ export default function Example() {
   return (
     <Tabs
       activeKey={activeKey}
-      onChange={({activeKey}) => setActiveKey(activeKey)}
+      onChange={({ activeKey }) => setActiveKey(activeKey)}
       overrides={{
-        TabList: {props: {ref: tabListRef}},
+        TabList: { props: { ref: tabListRef } },
       }}
     >
       <Tab
         title="First"
         tabRef={firstTabRef}
         overrides={{
-          TabPanel: {props: {ref: firstTabPanelRef}},
+          TabPanel: { props: { ref: firstTabPanelRef } },
         }}
       >
         I must not fear.

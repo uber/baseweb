@@ -1,5 +1,5 @@
-import React from 'react';
-import {Input} from 'baseui/input';
+import React from "react";
+import { Input } from "baseui/input";
 
 export default function Example() {
   return (
@@ -11,14 +11,14 @@ export default function Example() {
               $disabled,
               $error,
               $isFocused,
-              $theme: {colors, sizing},
+              $theme: { colors, sizing },
             } = props;
             const border = $disabled
               ? colors.borderTransparent
               : $error
                 ? colors.borderNegative
                 : $isFocused
-                  ? 'darkseagreen'
+                  ? "darkseagreen"
                   : colors.borderOpaque;
             return {
               borderLeftColor: border,
@@ -27,12 +27,12 @@ export default function Example() {
               borderBottomColor: border,
               boxShadow: `0 0 ${sizing.scale100} ${
                 $disabled
-                  ? 'transparent'
+                  ? "transparent"
                   : $error
                     ? colors.shadowError
                     : $isFocused
-                      ? 'lightseagreen'
-                      : 'transparent'
+                      ? "lightseagreen"
+                      : "transparent"
               }`,
             };
           },

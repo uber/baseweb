@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {ProgressBar} from 'baseui/progress-bar';
+import * as React from "react";
+import { ProgressBar } from "baseui/progress-bar";
 
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 function useInterval(callback: () => void, delay: number | null) {
@@ -37,22 +37,22 @@ export default function Example() {
       value={value}
       overrides={{
         BarProgress: {
-          style: ({$theme, $value}) => {
+          style: ({ $theme, $value }) => {
             return {
               ...$theme.typography.font350,
               backgroundColor: $theme.colors.positive,
               color: $theme.colors.mono200,
-              position: 'relative',
-              ':after': {
-                position: 'absolute',
-                content: $value > 5 ? `"${$value}%"` : '',
-                right: '10px',
+              position: "relative",
+              ":after": {
+                position: "absolute",
+                content: $value > 5 ? `"${$value}%"` : "",
+                right: "10px",
               },
             };
           },
         },
         Bar: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             height: $theme.sizing.scale800,
           }),
         },

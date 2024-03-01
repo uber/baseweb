@@ -1,24 +1,24 @@
-import React from 'react';
-import {PinCode} from 'baseui/pin-code';
-import {SIZE} from 'baseui/input';
+import React from "react";
+import { PinCode } from "baseui/pin-code";
+import { SIZE } from "baseui/input";
 
 export default function Example() {
-  const [valuesA, setValuesA] = React.useState(['', '', '', '']);
-  const [valuesB, setValuesB] = React.useState(['', '', '', '']);
-  const [valuesC, setValuesC] = React.useState(['', '', '', '']);
+  const [valuesA, setValuesA] = React.useState(["", "", "", ""]);
+  const [valuesB, setValuesB] = React.useState(["", "", "", ""]);
+  const [valuesC, setValuesC] = React.useState(["", "", "", ""]);
   return (
     <React.Fragment>
       <PinCode
         size={SIZE.compact}
         values={valuesA}
-        onChange={({values}) => {
+        onChange={({ values }) => {
           setValuesA(values);
         }}
       />
       <br />
       <PinCode
         values={valuesB}
-        onChange={({values}) => {
+        onChange={({ values }) => {
           setValuesB(values);
         }}
       />
@@ -26,7 +26,7 @@ export default function Example() {
       <PinCode
         size={SIZE.large}
         values={valuesC}
-        onChange={({values}) => {
+        onChange={({ values }) => {
           setValuesC(values);
         }}
       />

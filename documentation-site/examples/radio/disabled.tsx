@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Radio, RadioGroup} from 'baseui/radio';
+import * as React from "react";
+import { Radio, RadioGroup } from "baseui/radio";
 
 export default function Example() {
   return (

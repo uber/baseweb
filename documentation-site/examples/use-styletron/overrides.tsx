@@ -1,6 +1,6 @@
-import React from 'react';
-import {useStyletron} from 'baseui';
-import {Button} from 'baseui/button';
+import React from "react";
+import { useStyletron } from "baseui";
+import { Button } from "baseui/button";
 
 export default function Example() {
   const [css, theme] = useStyletron();

@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {isAfter, isBefore} from 'date-fns';
+import React, { useState } from "react";
+import { isAfter, isBefore } from "date-fns";
 
-import {useStyletron} from 'baseui';
-import {FormControl} from 'baseui/form-control';
-import {ArrowRight} from 'baseui/icon';
-import {DatePicker} from 'baseui/datepicker';
-import {TimePicker} from 'baseui/timepicker';
+import { useStyletron } from "baseui";
+import { FormControl } from "baseui/form-control";
+import { ArrowRight } from "baseui/icon";
+import { DatePicker } from "baseui/datepicker";
+import { TimePicker } from "baseui/timepicker";
 
 const START_DATE = new Date(2019, 3, 1, 12, 0, 0);
 const END_DATE = new Date(2019, 3, 10, 16, 0, 0);
@@ -18,22 +18,22 @@ export default function Example() {
     <div
       className={css({
         [theme.mediaQuery.medium]: {
-          display: 'flex',
-          alignItems: 'center',
+          display: "flex",
+          alignItems: "center",
         },
       })}
     >
-      <div className={css({display: 'flex'})}>
+      <div className={css({ display: "flex" })}>
         <div
           className={css({
-            width: '120px',
+            width: "120px",
             marginRight: theme.sizing.scale300,
           })}
         >
           <FormControl label="Start Date" caption="YYYY/MM/DD">
             <DatePicker
               value={dates}
-              onChange={({date}) => setDates(date as Array<Date>)}
+              onChange={({ date }) => setDates(date as Array<Date>)}
               timeSelectStart
               range
               mask="9999/99/99"
@@ -45,7 +45,7 @@ export default function Example() {
 
         <div
           className={css({
-            width: '120px',
+            width: "120px",
             marginRight: theme.sizing.scale300,
           })}
         >
@@ -68,27 +68,27 @@ export default function Example() {
 
       <div
         className={css({
-          display: 'none',
+          display: "none",
           marginRight: theme.sizing.scale300,
           [theme.mediaQuery.medium]: {
-            display: 'block',
+            display: "block",
           },
         })}
       >
         <ArrowRight size={24} />
       </div>
 
-      <div className={css({display: 'flex'})}>
+      <div className={css({ display: "flex" })}>
         <div
           className={css({
-            width: '120px',
+            width: "120px",
             marginRight: theme.sizing.scale300,
           })}
         >
           <FormControl label="End Date" caption="yyyy/MM/DD">
             <DatePicker
               value={dates}
-              onChange={({date}) => setDates(date as Array<Date>)}
+              onChange={({ date }) => setDates(date as Array<Date>)}
               timeSelectEnd
               range
               mask="9999/99/99"
@@ -100,7 +100,7 @@ export default function Example() {
 
         <div
           className={css({
-            width: '120px',
+            width: "120px",
           })}
         >
           <FormControl label="End Time" caption="HH:MM">

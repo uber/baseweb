@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Tag, VARIANT} from 'baseui/tag';
+import * as React from "react";
+import { Tag, VARIANT } from "baseui/tag";
 
 const variants = Object.values(VARIANT);
 const onClick = (kind: string) => alert(`${kind} tag is clicked`);
@@ -12,7 +12,7 @@ export default function Example() {
           <Tag
             closeable={false}
             onClick={() => {
-              onClick('neutral');
+              onClick("neutral");
             }}
             variant={variant}
             kind="neutral"
@@ -22,7 +22,7 @@ export default function Example() {
           <Tag
             closeable={false}
             onClick={() => {
-              onClick('primary');
+              onClick("primary");
             }}
             variant={variant}
             kind="primary"
@@ -32,7 +32,7 @@ export default function Example() {
           <Tag
             closeable={false}
             onClick={() => {
-              onClick('accent');
+              onClick("accent");
             }}
             variant={variant}
             kind="accent"
@@ -42,7 +42,7 @@ export default function Example() {
           <Tag
             closeable={false}
             onClick={() => {
-              onClick('positive');
+              onClick("positive");
             }}
             variant={variant}
             kind="positive"
@@ -52,7 +52,7 @@ export default function Example() {
           <Tag
             closeable={false}
             onClick={() => {
-              onClick('warning');
+              onClick("warning");
             }}
             variant={variant}
             kind="warning"
@@ -62,7 +62,7 @@ export default function Example() {
           <Tag
             closeable={false}
             onClick={() => {
-              onClick('negative');
+              onClick("negative");
             }}
             variant={variant}
             kind="negative"

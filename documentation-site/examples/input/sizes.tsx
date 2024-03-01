@@ -1,5 +1,5 @@
-import React from 'react';
-import {Input, SIZE} from 'baseui/input';
+import React from "react";
+import { Input, SIZE } from "baseui/input";
 
 export default function Example() {
   return (

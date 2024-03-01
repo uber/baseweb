@@ -1,7 +1,7 @@
-import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {Select, Value, ImperativeMethods} from 'baseui/select';
-import {Button} from 'baseui/button';
+import * as React from "react";
+import { useStyletron } from "baseui";
+import { Select, Value, ImperativeMethods } from "baseui/select";
+import { Button } from "baseui/button";
 
 export default function Example() {
   const [css] = useStyletron();
@@ -11,23 +11,21 @@ export default function Example() {
     <div>
       <div
         className={css({
-          display: 'flex',
-          justifyContent: 'space-between',
-          marginBottom: '20px',
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "20px",
         })}
       >
         <Button
           onClick={() => {
-            controlRef.current &&
-              controlRef.current.setDropdownOpen(true);
+            controlRef.current && controlRef.current.setDropdownOpen(true);
           }}
         >
           Open Dropdown
         </Button>
         <Button
           onClick={() => {
-            controlRef.current &&
-              controlRef.current.setDropdownOpen(false);
+            controlRef.current && controlRef.current.setDropdownOpen(false);
           }}
         >
           Close Dropdown
@@ -37,14 +35,14 @@ export default function Example() {
       <Select
         controlRef={controlRef}
         options={[
-          {id: 'a', label: 'apple'},
-          {id: 'b', label: 'banana'},
-          {id: 'c', label: 'orange'},
+          { id: "a", label: "apple" },
+          { id: "b", label: "banana" },
+          { id: "c", label: "orange" },
         ]}
         value={value}
-        onChange={({value}) => setValue(value)}
+        onChange={({ value }) => setValue(value)}
         overrides={{
-          ValueContainer: {props: {'data-id': 'selected'}},
+          ValueContainer: { props: { "data-id": "selected" } },
         }}
       />
     </div>

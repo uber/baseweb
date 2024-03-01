@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Toast, KIND, ToasterContainer} from 'baseui/toast';
+import * as React from "react";
+import { Toast, KIND, ToasterContainer } from "baseui/toast";
 
 export default function Example() {
   return (

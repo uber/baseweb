@@ -1,8 +1,5 @@
-import * as React from 'react';
-import {
-  FloatingMarker,
-  FLOATING_MARKER_SIZES,
-} from 'baseui/map-marker';
+import * as React from "react";
+import { FloatingMarker, FLOATING_MARKER_SIZES } from "baseui/map-marker";
 
 export default function Example() {
   return (

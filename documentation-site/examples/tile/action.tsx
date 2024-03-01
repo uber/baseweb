@@ -1,6 +1,6 @@
-import * as React from 'react';
-import {Tile, TILE_KIND, ALIGNMENT} from 'baseui/tile';
-import Calendar from 'baseui/icon/calendar';
+import * as React from "react";
+import { Tile, TILE_KIND, ALIGNMENT } from "baseui/tile";
+import Calendar from "baseui/icon/calendar";
 
 export default function Example() {
   return (
@@ -9,7 +9,7 @@ export default function Example() {
       leadingContent={() => <Calendar size={36} />}
       label="Book now"
       color
-      onClick={() => alert('booking appointment')}
+      onClick={() => alert("booking appointment")}
       headerAlignment={ALIGNMENT.center}
       bodyAlignment={ALIGNMENT.center}
     />

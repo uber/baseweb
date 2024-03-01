@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   ParagraphLarge,
   ParagraphMedium,
@@ -8,12 +8,11 @@ import {
   LabelMedium,
   LabelSmall,
   LabelXSmall,
-} from 'baseui/typography';
+} from "baseui/typography";
 
-const textString =
-  'We ignite opportunity by setting the world in motion.';
+const textString = "We ignite opportunity by setting the world in motion.";
 const bodyString =
-  'Good things happen when people can move, whether across town or towards their dreams. Opportunities appear, open up, become reality. What started as a way to tap a button to get a ride has led to billions of moments of human connection as people around the world go all kinds of places in all kinds of ways with the help of our technology.';
+  "Good things happen when people can move, whether across town or towards their dreams. Opportunities appear, open up, become reality. What started as a way to tap a button to get a ride has led to billions of moments of human connection as people around the world go all kinds of places in all kinds of ways with the help of our technology.";
 
 export default function Example() {
   return (

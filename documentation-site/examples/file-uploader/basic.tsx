@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {FileUploader} from 'baseui/file-uploader';
+import * as React from "react";
+import { FileUploader } from "baseui/file-uploader";
 
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 function useInterval(callback: any, delay: number | null) {
@@ -67,9 +67,7 @@ export default function Example() {
       // progressAmount is a number from 0 - 100 which indicates the percent of file transfer completed
       progressAmount={progressAmount}
       progressMessage={
-        progressAmount
-          ? `Uploading... ${progressAmount}% of 100%`
-          : ''
+        progressAmount ? `Uploading... ${progressAmount}% of 100%` : ""
       }
     />
   );

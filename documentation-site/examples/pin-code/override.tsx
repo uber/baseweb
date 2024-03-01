@@ -1,5 +1,5 @@
-import React from 'react';
-import {PinCode} from 'baseui/pin-code';
+import React from "react";
+import { PinCode } from "baseui/pin-code";
 
 const overrides = {
   Input: {
@@ -8,11 +8,11 @@ const overrides = {
         InputContainer: {
           style: {
             // use longhand CSS properties
-            backgroundColor: 'lightgreen',
-            borderLeftColor: 'seagreen',
-            borderRightColor: 'seagreen',
-            borderTopColor: 'seagreen',
-            borderBottomColor: 'seagreen',
+            backgroundColor: "lightgreen",
+            borderLeftColor: "seagreen",
+            borderRightColor: "seagreen",
+            borderTopColor: "seagreen",
+            borderBottomColor: "seagreen",
           },
         },
       },
@@ -21,12 +21,12 @@ const overrides = {
 };
 
 export default function Example() {
-  const [values, setValues] = React.useState(['', '', '', '']);
+  const [values, setValues] = React.useState(["", "", "", ""]);
   return (
     <PinCode
       overrides={overrides}
       values={values}
-      onChange={({values}) => {
+      onChange={({ values }) => {
         setValues(values);
       }}
     />

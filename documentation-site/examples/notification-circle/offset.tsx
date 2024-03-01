@@ -1,6 +1,6 @@
-import * as React from 'react';
-import {Tag, SIZE} from 'baseui/tag';
-import {NotificationCircle, COLOR, PLACEMENT} from 'baseui/badge';
+import * as React from "react";
+import { Tag, SIZE } from "baseui/tag";
+import { NotificationCircle, COLOR, PLACEMENT } from "baseui/badge";
 
 export default function Example() {
   return (

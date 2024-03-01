@@ -1,15 +1,15 @@
-import * as React from 'react';
-import {StatefulTabs, Tab, StyledTab} from 'baseui/tabs';
-import {LabelMedium} from 'baseui/typography';
-import {StyleObject} from 'styletron-react';
+import * as React from "react";
+import { StatefulTabs, Tab, StyledTab } from "baseui/tabs";
+import { LabelMedium } from "baseui/typography";
+import { StyleObject } from "styletron-react";
 
-function TabOverride({children, ...rest}: any) {
+function TabOverride({ children, ...rest }: any) {
   return (
     <StyledTab {...rest}>
       <LabelMedium
         overrides={{
           Block: {
-            style: {color: 'inherit', ':hover': {color: 'inherit'}},
+            style: { color: "inherit", ":hover": { color: "inherit" } },
           },
         }}
       >
@@ -19,50 +19,48 @@ function TabOverride({children, ...rest}: any) {
   );
 }
 
-const tabStyle = ({$active, $disabled, $theme}: any) => ({
+const tabStyle = ({ $active, $disabled, $theme }: any) => ({
   outlineColor: $theme.colors.white,
   color: $active ? $theme.colors.mono100 : $theme.colors.mono300,
-  ':hover': $disabled
+  ":hover": $disabled
     ? {}
     : {
         color: $theme.colors.mono100,
       },
-  ':focus': $disabled
+  ":focus": $disabled
     ? {}
     : {
         color: $theme.colors.mono100,
       },
 });
 
-const tabBarStyle = ({$theme}: any) => ({
+const tabBarStyle = ({ $theme }: any) => ({
   backgroundColor: $theme.colors.mono600,
 });
 
-const tabContentStyle = ({$theme}: any): StyleObject => ({
-  borderLeftWidth: '2px',
-  borderRightWidth: '2px',
-  borderBottomWidth: '2px',
-  borderTopWidth: '0',
-  borderLeftStyle: 'dashed',
-  borderRightStyle: 'dashed',
-  borderTopStyle: 'dashed',
-  borderBottomStyle: 'dashed',
+const tabContentStyle = ({ $theme }: any): StyleObject => ({
+  borderLeftWidth: "2px",
+  borderRightWidth: "2px",
+  borderBottomWidth: "2px",
+  borderTopWidth: "0",
+  borderLeftStyle: "dashed",
+  borderRightStyle: "dashed",
+  borderTopStyle: "dashed",
+  borderBottomStyle: "dashed",
   borderLeftColor: $theme.colors.mono600,
   borderRightColor: $theme.colors.mono600,
   borderTopColor: $theme.colors.mono600,
   borderBottomColor: $theme.colors.mono600,
 });
 
-const content = ['Tab Content 1', 'Tab Content 2', 'Tab Content 3'];
+const content = ["Tab Content 1", "Tab Content 2", "Tab Content 3"];
 
 export default function Example() {
-  const [activeKey, setActiveKey] = React.useState<string | number>(
-    '0',
-  );
+  const [activeKey, setActiveKey] = React.useState<string | number>("0");
   return (
     <StatefulTabs
-      initialState={{activeKey: activeKey}}
-      onChange={({activeKey}) => {
+      initialState={{ activeKey: activeKey }}
+      onChange={({ activeKey }) => {
         setActiveKey(activeKey);
       }}
       overrides={{
@@ -72,7 +70,7 @@ export default function Example() {
         TabContent: {
           style: tabContentStyle,
         },
-        Tab: {component: TabOverride, style: tabStyle},
+        Tab: { component: TabOverride, style: tabStyle },
       }}
     >
       <Tab title="Tab Link 1">

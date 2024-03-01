@@ -1,7 +1,7 @@
-import * as React from 'react';
-import {toaster, ToasterContainer} from 'baseui/toast';
-import {Button, SIZE} from 'baseui/button';
-import {Block} from 'baseui/block';
+import * as React from "react";
+import { toaster, ToasterContainer } from "baseui/toast";
+import { Button, SIZE } from "baseui/button";
+import { Block } from "baseui/block";
 
 export default function Example() {
   const [count, setCount] = React.useState(0);
@@ -11,14 +11,10 @@ export default function Example() {
       <Button
         onClick={() => {
           setCount(count + 1);
-          let toastKey: React.Key = '';
+          let toastKey: React.Key = "";
           const msg = `Click count: ${count}`;
           const ok = (
-            <Block
-              marginTop="15px"
-              display="flex"
-              justifyContent="center"
-            >
+            <Block marginTop="15px" display="flex" justifyContent="center">
               <Button
                 size={SIZE.compact}
                 onClick={() => toaster.clear(toastKey)}
@@ -28,11 +24,7 @@ export default function Example() {
             </Block>
           );
           const showMore = (
-            <Block
-              marginTop="15px"
-              display="flex"
-              justifyContent="center"
-            >
+            <Block marginTop="15px" display="flex" justifyContent="center">
               <Button
                 size={SIZE.compact}
                 onClick={() =>
@@ -63,11 +55,11 @@ export default function Example() {
               {showMore}
             </React.Fragment>,
             {
-              key: 'same-key',
-              onClose: () => console.log('Toast closed.'),
+              key: "same-key",
+              onClose: () => console.log("Toast closed."),
               overrides: {
                 InnerContainer: {
-                  style: {width: '100%'},
+                  style: { width: "100%" },
                 },
               },
             },

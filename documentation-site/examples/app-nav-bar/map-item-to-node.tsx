@@ -1,23 +1,19 @@
-import * as React from 'react';
+import * as React from "react";
 
-import {useStyletron} from 'baseui';
-import {
-  AppNavBar,
-  setItemActive,
-  NavItem,
-} from 'baseui/app-nav-bar';
+import { useStyletron } from "baseui";
+import { AppNavBar, setItemActive, NavItem } from "baseui/app-nav-bar";
 
 export default function Example() {
   const [css] = useStyletron();
 
   const [mainItems, setMainItems] = React.useState<NavItem[]>([
-    {label: 'main one', info: {color: 'blue'}},
-    {label: 'main two', info: {color: 'red'}},
+    { label: "main one", info: { color: "blue" } },
+    { label: "main two", info: { color: "red" } },
   ]);
 
   const userItems = [
-    {label: 'user one', info: {color: 'green'}},
-    {label: 'user two', info: {color: 'yellow'}},
+    { label: "user one", info: { color: "green" } },
+    { label: "user two", info: { color: "yellow" } },
   ];
 
   function handleMainItemSelect(item: NavItem) {
@@ -32,9 +28,7 @@ export default function Example() {
       mapItemToNode={(item) => (
         <div
           className={css({
-            border: `dashed 2px ${
-              item.info ? item.info.color : 'green'
-            }`,
+            border: `dashed 2px ${item.info ? item.info.color : "green"}`,
           })}
         >
           {item.info ? `color: ${item.info.color}` : item.label}

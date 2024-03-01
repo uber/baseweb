@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Skeleton} from 'baseui/skeleton';
+import * as React from "react";
+import { Skeleton } from "baseui/skeleton";
 
 export default function Example() {
   return (
@@ -9,8 +9,8 @@ export default function Example() {
       overrides={{
         Row: {
           style: {
-            height: '20px',
-            marginBottom: '15px',
+            height: "20px",
+            marginBottom: "15px",
           },
         },
       }}

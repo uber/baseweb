@@ -1,10 +1,5 @@
-import * as React from 'react';
-import {
-  Tile,
-  TileGroup,
-  TILE_GROUP_KIND,
-  TILE_KIND,
-} from 'baseui/tile';
+import * as React from "react";
+import { Tile, TileGroup, TILE_GROUP_KIND, TILE_KIND } from "baseui/tile";
 
 export default function Example() {
   const [selected, setSelected] = React.useState<Array<number>>([]);

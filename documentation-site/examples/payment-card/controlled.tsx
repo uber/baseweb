@@ -1,8 +1,8 @@
-import * as React from 'react';
-import {PaymentCard} from 'baseui/payment-card';
+import * as React from "react";
+import { PaymentCard } from "baseui/payment-card";
 
 export default function Example() {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState("");
   return (
     <PaymentCard
       value={value}

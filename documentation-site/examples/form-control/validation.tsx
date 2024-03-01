@@ -1,17 +1,17 @@
-import * as React from 'react';
-import {FormControl} from 'baseui/form-control';
-import {Input} from 'baseui/input';
-import {useStyletron} from 'baseui';
-import {Alert} from 'baseui/icon';
-import {validate as validateEmail} from 'email-validator'; // add this package to your repo: `$ pnpm add email-validator`
+import * as React from "react";
+import { FormControl } from "baseui/form-control";
+import { Input } from "baseui/input";
+import { useStyletron } from "baseui";
+import { Alert } from "baseui/icon";
+import { validate as validateEmail } from "email-validator"; // add this package to your repo: `$ pnpm add email-validator`
 
 function Negative() {
   const [css, theme] = useStyletron();
   return (
     <div
       className={css({
-        display: 'flex',
-        alignItems: 'center',
+        display: "flex",
+        alignItems: "center",
         paddingRight: theme.sizing.scale500,
         color: theme.colors.negative400,
       })}
@@ -22,12 +22,12 @@ function Negative() {
 }
 
 export default function Example() {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState("");
   const [isValid, setIsValid] = React.useState(false);
   const [isVisited, setIsVisited] = React.useState(false);
   const shouldShowError = !isValid && isVisited;
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const {value} = event.currentTarget;
+    const { value } = event.currentTarget;
     setIsValid(validateEmail(value));
     setValue(value);
   };
@@ -35,11 +35,7 @@ export default function Example() {
   return (
     <FormControl
       label="Your email"
-      error={
-        shouldShowError
-          ? 'Please input a valid email address'
-          : null
-      }
+      error={shouldShowError ? "Please input a valid email address" : null}
     >
       <Input
         id="input-id"
@@ -47,7 +43,7 @@ export default function Example() {
         onChange={onChange}
         onBlur={() => setIsVisited(true)}
         error={shouldShowError}
-        overrides={shouldShowError ? {After: Negative} : {}}
+        overrides={shouldShowError ? { After: Negative } : {}}
       />
     </FormControl>
   );

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Button} from 'baseui/button';
+import * as React from "react";
+import { Button } from "baseui/button";
 import {
   Modal,
   ModalHeader,
@@ -7,7 +7,7 @@ import {
   ModalFooter,
   ModalButton,
   FocusOnce,
-} from 'baseui/modal';
+} from "baseui/modal";
 
 export default function Example() {
   const [isOpen, setOpen] = React.useState(false);
@@ -20,17 +20,13 @@ export default function Example() {
         </FocusOnce>
         <ModalBody>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Maecenas quam nisl, tempor ut varius sit amet, sodales
-            sit amet mauris. Aliquam vitae sapien quis eros finibus
-            aliquet.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+            quam nisl, tempor ut varius sit amet, sodales sit amet mauris.
+            Aliquam vitae sapien quis eros finibus aliquet.
           </p>
         </ModalBody>
         <ModalFooter>
-          <ModalButton
-            kind="tertiary"
-            onClick={() => setOpen(false)}
-          >
+          <ModalButton kind="tertiary" onClick={() => setOpen(false)}>
             Close
           </ModalButton>
           <ModalButton autoFocus onClick={() => setOpen(false)}>

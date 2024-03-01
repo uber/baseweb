@@ -1,10 +1,7 @@
-import React, {useState} from 'react';
-import {Checkbox} from 'baseui/checkbox';
-import {StyledLink as Link} from 'baseui/link';
-import {
-  TableBuilder,
-  TableBuilderColumn,
-} from 'baseui/table-semantic';
+import React, { useState } from "react";
+import { Checkbox } from "baseui/checkbox";
+import { StyledLink as Link } from "baseui/link";
+import { TableBuilder, TableBuilderColumn } from "baseui/table-semantic";
 
 export default function Example() {
   type Row = {
@@ -16,20 +13,20 @@ export default function Example() {
   const [data, setData] = useState<Row[]>([
     {
       foo: 10,
-      bar: 'banana',
-      url: 'https://example.com/b',
+      bar: "banana",
+      url: "https://example.com/b",
       selected: true,
     },
     {
       foo: 1,
-      bar: 'carrot',
-      url: 'https://example.com/c',
+      bar: "carrot",
+      url: "https://example.com/c",
       selected: false,
     },
     {
       foo: 2,
-      bar: 'apple',
-      url: 'https://example.com/a',
+      bar: "apple",
+      url: "https://example.com/a",
       selected: false,
     },
   ]);
@@ -48,7 +45,7 @@ export default function Example() {
   }
 
   function toggle(event: any) {
-    const {name, checked} = event.currentTarget;
+    const { name, checked } = event.currentTarget;
 
     setData((data) =>
       data.map((row) => ({
@@ -62,8 +59,8 @@ export default function Example() {
     <TableBuilder data={data}>
       <TableBuilderColumn
         overrides={{
-          TableHeadCell: {style: {width: '1%'}},
-          TableBodyCell: {style: {width: '1%'}},
+          TableHeadCell: { style: { width: "1%" } },
+          TableBodyCell: { style: { width: "1%" } },
         }}
         header={
           <Checkbox
@@ -75,7 +72,7 @@ export default function Example() {
       >
         {(row: Row) => (
           <Checkbox
-            name={'' + row.foo}
+            name={"" + row.foo}
             checked={row.selected}
             onChange={toggle}
           />

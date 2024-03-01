@@ -1,17 +1,13 @@
-import * as React from 'react';
-import {
-  PhoneInput,
-  COUNTRIES,
-  StyledFlag,
-} from 'baseui/phone-input';
+import * as React from "react";
+import { PhoneInput, COUNTRIES, StyledFlag } from "baseui/phone-input";
 
 function CustomFlag(props: any) {
-  const {children, ...rest} = props;
+  const { children, ...rest } = props;
   return <StyledFlag iso={props.$iso} {...rest} />;
 }
 
 export default function Example() {
-  const [text, setText] = React.useState('');
+  const [text, setText] = React.useState("");
   const [country, setCountry] = React.useState(COUNTRIES.US);
   return (
     <PhoneInput

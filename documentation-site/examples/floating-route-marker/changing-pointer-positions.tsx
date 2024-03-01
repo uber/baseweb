@@ -1,20 +1,20 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   FloatingRouteMarker,
   FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
   calculateFloatingRouteMarkerOffsets,
-} from 'baseui/map-marker';
-import {styled} from 'baseui';
+} from "baseui/map-marker";
+import { styled } from "baseui";
 
-const Container = styled<{}>('div', () => ({
+const Container = styled<{}>("div", () => ({
   height: `${200}px`,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 }));
 
-const Center = styled<{}>('div', () => ({
-  position: 'absolute',
+const Center = styled<{}>("div", () => ({
+  position: "absolute",
 }));
 
 const anchors = [
@@ -52,9 +52,7 @@ export default function Example() {
           overrides={{
             Root: {
               style: () => ({
-                transform: calculateFloatingRouteMarkerOffsets(
-                  anchors[index],
-                ),
+                transform: calculateFloatingRouteMarkerOffsets(anchors[index]),
               }),
             },
           }}

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Tag, VARIANT} from 'baseui/tag';
+import * as React from "react";
+import { Tag, VARIANT } from "baseui/tag";
 
 const variants = Object.values(VARIANT);
 

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Skeleton} from 'baseui/skeleton';
+import * as React from "react";
+import { Skeleton } from "baseui/skeleton";
 
 export default function Example() {
   return (
@@ -9,7 +9,7 @@ export default function Example() {
       overrides={{
         Root: {
           style: {
-            borderRadius: '50%',
+            borderRadius: "50%",
           },
         },
       }}

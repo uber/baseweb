@@ -1,6 +1,6 @@
-import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {Checkbox} from 'baseui/checkbox';
+import * as React from "react";
+import { useStyletron } from "baseui";
+import { Checkbox } from "baseui/checkbox";
 import {
   Filter,
   StyledTable,
@@ -9,7 +9,7 @@ import {
   StyledBody,
   StyledRow,
   StyledCell,
-} from 'baseui/table';
+} from "baseui/table";
 
 const FilterCheckbox = (props: any) => (
   <Checkbox
@@ -17,12 +17,12 @@ const FilterCheckbox = (props: any) => (
     onChange={props.onChange}
     overrides={{
       Root: {
-        style: ({$theme}) => ({
+        style: ({ $theme }) => ({
           marginTop: $theme.sizing.scale400,
           marginBottom: $theme.sizing.scale400,
         }),
       },
-      Checkmark: {style: {marginLeft: 0}},
+      Checkmark: { style: { marginLeft: 0 } },
     }}
   >
     {props.children}
@@ -35,7 +35,7 @@ class FilterTable extends React.Component<any> {
   };
 
   FILTER_FUNCTIONS = Array.from(
-    {length: 10},
+    { length: 10 },
     (_, i) => (row: any) => row[0] % (i + 1) === 0,
   );
 
@@ -48,20 +48,16 @@ class FilterTable extends React.Component<any> {
     } else {
       filters[index] = this.FILTER_FUNCTIONS[index];
     }
-    this.setState({filters});
+    this.setState({ filters });
   };
 
-  handleReset = () => this.setState({filters: []});
-  handleSelectAll = () =>
-    this.setState({filters: this.FILTER_FUNCTIONS});
+  handleReset = () => this.setState({ filters: [] });
+  handleSelectAll = () => this.setState({ filters: this.FILTER_FUNCTIONS });
 
   render() {
     const filteredData = this.state.filters
       .filter(Boolean)
-      .reduce(
-        (data, filter) => data.filter(filter),
-        this.props.data,
-      );
+      .reduce((data, filter) => data.filter(filter), this.props.data);
 
     return (
       <StyledTable>
@@ -103,12 +99,9 @@ class FilterTable extends React.Component<any> {
 
 export default function Example() {
   const [css] = useStyletron();
-  const FILTER_DATA = Array.from({length: 100}, (_, i) => [
-    i,
-    'row title',
-  ]);
+  const FILTER_DATA = Array.from({ length: 100 }, (_, i) => [i, "row title"]);
   return (
-    <div className={css({height: '500px'})}>
+    <div className={css({ height: "500px" })}>
       <FilterTable data={FILTER_DATA} />
     </div>
   );

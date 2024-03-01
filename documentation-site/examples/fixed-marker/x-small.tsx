@@ -1,9 +1,9 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   FixedMarker,
   NEEDLE_SIZES,
   PINHEAD_SIZES_SHAPES,
-} from 'baseui/map-marker';
+} from "baseui/map-marker";
 
 export default function Example() {
   return (

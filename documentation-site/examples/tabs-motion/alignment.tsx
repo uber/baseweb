@@ -1,11 +1,6 @@
-import * as React from 'react';
-import {
-  Tabs,
-  Tab,
-  StyledTabList,
-  StyledTabPanel,
-} from 'baseui/tabs-motion';
-import {Grid, Cell} from 'baseui/layout-grid';
+import * as React from "react";
+import { Tabs, Tab, StyledTabList, StyledTabPanel } from "baseui/tabs-motion";
+import { Grid, Cell } from "baseui/layout-grid";
 
 const TabsOverrides = {
   TabList: {
@@ -40,7 +35,7 @@ export default function Example() {
   return (
     <Tabs
       activeKey={activeKey}
-      onChange={({activeKey}) => setActiveKey(activeKey)}
+      onChange={({ activeKey }) => setActiveKey(activeKey)}
       overrides={TabsOverrides}
     >
       <Tab title="First" overrides={TabOverrides}>

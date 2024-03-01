@@ -1,7 +1,7 @@
-import * as React from 'react';
-import {Button} from 'baseui/button';
-import {ProgressBarRounded} from 'baseui/progress-bar';
-import {useStyletron} from 'baseui';
+import * as React from "react";
+import { Button } from "baseui/button";
+import { ProgressBarRounded } from "baseui/progress-bar";
+import { useStyletron } from "baseui";
 
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 function useInterval(callback: () => void, delay: number | null) {

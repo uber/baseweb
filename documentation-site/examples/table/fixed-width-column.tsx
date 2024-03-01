@@ -1,5 +1,5 @@
-import React from 'react';
-import {withStyle, useStyletron} from 'baseui';
+import React from "react";
+import { withStyle, useStyletron } from "baseui";
 import {
   StyledTable,
   StyledHead,
@@ -7,85 +7,37 @@ import {
   StyledBody,
   StyledRow,
   StyledCell,
-} from 'baseui/table';
+} from "baseui/table";
 
 const DATA = [
-  [
-    1,
-    'Sarah',
-    'Brown',
-    31,
-    '100 Broadway st. New York City, New York',
-  ],
-  [
-    2,
-    'Jane',
-    'Smith',
-    32,
-    '100 Market st. San Francisco, California',
-  ],
-  [3, 'Joe', 'Black', 33, '100 Macquarie st. Sydney, Australia'],
-  [
-    1,
-    'Sarah',
-    'Brown',
-    31,
-    '100 Broadway st. New York City, New York',
-  ],
-  [
-    2,
-    'Jane',
-    'Smith',
-    32,
-    '100 Market st. San Francisco, California',
-  ],
-  [3, 'Joe', 'Black', 33, '100 Macquarie st. Sydney, Australia'],
-  [
-    1,
-    'Sarah',
-    'Brown',
-    31,
-    '100 Broadway st. New York City, New York',
-  ],
-  [
-    2,
-    'Jane',
-    'Smith',
-    32,
-    '100 Market st. San Francisco, California',
-  ],
-  [3, 'Joe', 'Black', 33, '100 Macquarie st. Sydney, Australia'],
-  [
-    1,
-    'Sarah',
-    'Brown',
-    31,
-    '100 Broadway st. New York City, New York',
-  ],
-  [
-    2,
-    'Jane',
-    'Smith',
-    32,
-    '100 Market st. San Francisco, California',
-  ],
-  [3, 'Joe', 'Black', 33, '100 Macquarie st. Sydney, Australia'],
+  [1, "Sarah", "Brown", 31, "100 Broadway st. New York City, New York"],
+  [2, "Jane", "Smith", 32, "100 Market st. San Francisco, California"],
+  [3, "Joe", "Black", 33, "100 Macquarie st. Sydney, Australia"],
+  [1, "Sarah", "Brown", 31, "100 Broadway st. New York City, New York"],
+  [2, "Jane", "Smith", 32, "100 Market st. San Francisco, California"],
+  [3, "Joe", "Black", 33, "100 Macquarie st. Sydney, Australia"],
+  [1, "Sarah", "Brown", 31, "100 Broadway st. New York City, New York"],
+  [2, "Jane", "Smith", 32, "100 Market st. San Francisco, California"],
+  [3, "Joe", "Black", 33, "100 Macquarie st. Sydney, Australia"],
+  [1, "Sarah", "Brown", 31, "100 Broadway st. New York City, New York"],
+  [2, "Jane", "Smith", 32, "100 Market st. San Francisco, California"],
+  [3, "Joe", "Black", 33, "100 Macquarie st. Sydney, Australia"],
 ];
 
-const COLUMNS = ['Id', 'First Name', 'Last Name', 'Age', 'Address'];
+const COLUMNS = ["Id", "First Name", "Last Name", "Age", "Address"];
 
 const SmallerHeadCell = withStyle(StyledHeadCell, {
-  maxWidth: '30px',
+  maxWidth: "30px",
 });
 
 const SmallerCell = withStyle(StyledCell, {
-  maxWidth: '30px',
+  maxWidth: "30px",
 });
 
 export default function Example() {
   const [css] = useStyletron();
   return (
-    <div className={css({height: '400px'})}>
+    <div className={css({ height: "400px" })}>
       <StyledTable>
         <StyledHead>
           <SmallerHeadCell>ID</SmallerHeadCell>

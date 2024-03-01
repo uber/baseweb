@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Badge, HIERARCHY} from 'baseui/badge';
+import * as React from "react";
+import { Badge, HIERARCHY } from "baseui/badge";
 
 export default function Example() {
   return (
@@ -8,14 +8,11 @@ export default function Example() {
       <div>
         <Badge
           hierarchy={HIERARCHY.secondary}
-          overrides={{Badge: {style: {marginRight: '8px'}}}}
+          overrides={{ Badge: { style: { marginRight: "8px" } } }}
           content="7 min"
         />
 
-        <Badge
-          hierarchy={HIERARCHY.secondary}
-          content="Closest stop"
-        />
+        <Badge hierarchy={HIERARCHY.secondary} content="Closest stop" />
       </div>
     </React.Fragment>
   );

@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import {useStyletron} from 'baseui';
-import {FormControl} from 'baseui/form-control';
-import {StatefulDatePicker} from 'baseui/datepicker';
-import {TimezonePicker} from 'baseui/timezonepicker';
-import {TimePicker} from 'baseui/timepicker';
+import { useStyletron } from "baseui";
+import { FormControl } from "baseui/form-control";
+import { StatefulDatePicker } from "baseui/datepicker";
+import { TimezonePicker } from "baseui/timezonepicker";
+import { TimePicker } from "baseui/timepicker";
 
 export default function Example() {
   const [css, theme] = useStyletron();
@@ -13,12 +13,12 @@ export default function Example() {
       Disabled state
       <div
         className={css({
-          display: 'flex',
+          display: "flex",
         })}
       >
         <div
           className={css({
-            width: '120px',
+            width: "120px",
             marginRight: theme.sizing.scale500,
           })}
         >
@@ -28,7 +28,7 @@ export default function Example() {
         </div>
         <div
           className={css({
-            width: '120px',
+            width: "120px",
             marginRight: theme.sizing.scale500,
           })}
         >
@@ -36,7 +36,7 @@ export default function Example() {
             <TimePicker disabled />
           </FormControl>
         </div>
-        <div className={css({flex: 1})}>
+        <div className={css({ flex: 1 })}>
           <FormControl label="TimezonePicker">
             <TimezonePicker disabled />
           </FormControl>
@@ -45,12 +45,12 @@ export default function Example() {
       Positive state
       <div
         className={css({
-          display: 'flex',
+          display: "flex",
         })}
       >
         <div
           className={css({
-            width: '120px',
+            width: "120px",
             marginRight: theme.sizing.scale500,
           })}
         >
@@ -60,7 +60,7 @@ export default function Example() {
         </div>
         <div
           className={css({
-            width: '120px',
+            width: "120px",
             marginRight: theme.sizing.scale500,
           })}
         >
@@ -68,7 +68,7 @@ export default function Example() {
             <TimePicker positive />
           </FormControl>
         </div>
-        <div className={css({flex: 1})}>
+        <div className={css({ flex: 1 })}>
           <FormControl label="TimezonePicker">
             <TimezonePicker positive />
           </FormControl>
@@ -77,12 +77,12 @@ export default function Example() {
       Error state
       <div
         className={css({
-          display: 'flex',
+          display: "flex",
         })}
       >
         <div
           className={css({
-            width: '120px',
+            width: "120px",
             marginRight: theme.sizing.scale500,
           })}
         >
@@ -92,7 +92,7 @@ export default function Example() {
         </div>
         <div
           className={css({
-            width: '120px',
+            width: "120px",
             marginRight: theme.sizing.scale500,
           })}
         >
@@ -100,7 +100,7 @@ export default function Example() {
             <TimePicker error />
           </FormControl>
         </div>
-        <div className={css({flex: 1})}>
+        <div className={css({ flex: 1 })}>
           <FormControl label="TimezonePicker">
             <TimezonePicker error />
           </FormControl>

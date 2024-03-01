@@ -1,13 +1,13 @@
-import * as React from 'react';
-import {FlexGrid, FlexGridItem} from 'baseui/flex-grid';
-import {BlockProps} from 'baseui/block';
+import * as React from "react";
+import { FlexGrid, FlexGridItem } from "baseui/flex-grid";
+import { BlockProps } from "baseui/block";
 
 const itemProps: BlockProps = {
-  backgroundColor: 'mono300',
-  height: 'scale1000',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  backgroundColor: "mono300",
+  height: "scale1000",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 };
 
 export default function Example() {

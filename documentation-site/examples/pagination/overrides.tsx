@@ -1,7 +1,7 @@
-import * as React from 'react';
-import {Button} from 'baseui/button';
-import {StatefulPagination} from 'baseui/pagination';
-import {expandBorderStyles} from 'baseui/styles';
+import * as React from "react";
+import { Button } from "baseui/button";
+import { StatefulPagination } from "baseui/pagination";
+import { expandBorderStyles } from "baseui/styles";
 
 export default function Example() {
   return (
@@ -9,7 +9,7 @@ export default function Example() {
       numPages={10}
       overrides={{
         Root: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             ...expandBorderStyles($theme.borders.border400),
             borderTopLeftRadius: $theme.borders.radius200,
             borderTopRightRadius: $theme.borders.radius200,
@@ -19,23 +19,23 @@ export default function Example() {
           }),
         },
         PrevButton: {
-          component: ({onClick}: any) => (
+          component: ({ onClick }: any) => (
             <Button onClick={onClick}>Left</Button>
           ),
         },
         NextButton: {
-          component: ({onClick}: any) => (
+          component: ({ onClick }: any) => (
             <Button onClick={onClick}>Right</Button>
           ),
         },
         MaxLabel: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             ...$theme.typography.font300,
             marginRight: $theme.sizing.scale1000,
           }),
         },
         DropdownContainer: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             marginLeft: $theme.sizing.scale1000,
           }),
         },
@@ -50,11 +50,11 @@ export default function Example() {
                   $isPseudoFocused,
                   $error,
                 }: any) => ({
-                  borderLeftColor: 'transparent',
-                  borderRightColor: 'transparent',
-                  borderTopColor: 'transparent',
-                  borderBottomColor: 'transparent',
-                  boxShadow: 'none',
+                  borderLeftColor: "transparent",
+                  borderRightColor: "transparent",
+                  borderTopColor: "transparent",
+                  borderBottomColor: "transparent",
+                  boxShadow: "none",
                   backgroundColor: $disabled
                     ? $theme.colors.buttonDisabledFill
                     : $isFocused || $isPseudoFocused
@@ -65,10 +65,10 @@ export default function Example() {
                 }),
               },
               SingleValue: {
-                style: ({$theme}: any) => ({
-                  position: 'relative',
-                  paddingTop: '0',
-                  paddingBottom: '0',
+                style: ({ $theme }: any) => ({
+                  position: "relative",
+                  paddingTop: "0",
+                  paddingBottom: "0",
                   paddingLeft: $theme.sizing.scale200,
                   paddingRight: $theme.sizing.scale500,
                   color: $theme.colors.buttonTertiaryText,
@@ -76,9 +76,9 @@ export default function Example() {
                 }),
               },
               SelectArrow: {
-                style: ({$theme}: any) => ({
-                  width: '24px',
-                  height: '24px',
+                style: ({ $theme }: any) => ({
+                  width: "24px",
+                  height: "24px",
                   color: $theme.colors.buttonTertiaryText,
                 }),
               },

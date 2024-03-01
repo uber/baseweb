@@ -1,8 +1,5 @@
-import * as React from 'react';
-import {
-  AspectRatioBox,
-  AspectRatioBoxBody,
-} from 'baseui/aspect-ratio-box';
+import * as React from "react";
+import { AspectRatioBox, AspectRatioBoxBody } from "baseui/aspect-ratio-box";
 
 export default function Example() {
   return (

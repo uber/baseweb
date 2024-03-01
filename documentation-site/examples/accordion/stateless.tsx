@@ -1,15 +1,12 @@
-import * as React from 'react';
-import {StatelessAccordion, Panel} from 'baseui/accordion';
+import * as React from "react";
+import { StatelessAccordion, Panel } from "baseui/accordion";
 
 export default function Example() {
-  const [expanded, setExpanded] = React.useState<React.Key[]>([
-    'P1',
-    'P2',
-  ]);
+  const [expanded, setExpanded] = React.useState<React.Key[]>(["P1", "P2"]);
   return (
     <StatelessAccordion
       expanded={expanded}
-      onChange={({key, expanded}) => {
+      onChange={({ key, expanded }) => {
         console.log(key);
         setExpanded(expanded);
       }}

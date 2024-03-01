@@ -1,8 +1,8 @@
-import * as React from 'react';
-import {Input} from 'baseui/input';
+import * as React from "react";
+import { Input } from "baseui/input";
 
 export default function Example() {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState("");
   return (
     <Input
       value={value}

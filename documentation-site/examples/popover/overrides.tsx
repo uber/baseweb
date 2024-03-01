@@ -1,21 +1,21 @@
-import * as React from 'react';
-import {Button} from 'baseui/button';
-import {StatefulPopover} from 'baseui/popover';
-import {ParagraphSmall} from 'baseui/typography';
+import * as React from "react";
+import { Button } from "baseui/button";
+import { StatefulPopover } from "baseui/popover";
+import { ParagraphSmall } from "baseui/typography";
 
 export default function Example() {
   return (
     <StatefulPopover
-      initialState={{isOpen: true}}
+      initialState={{ isOpen: true }}
       showArrow
       overrides={{
         Arrow: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             backgroundColor: $theme.colors.warning,
           }),
         },
         Body: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             backgroundColor: $theme.colors.warning,
             borderTopLeftRadius: $theme.borders.radius200,
             borderTopRightRadius: $theme.borders.radius200,
@@ -24,7 +24,7 @@ export default function Example() {
           }),
         },
         Inner: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             backgroundColor: $theme.colors.warning,
             borderTopLeftRadius: $theme.borders.radius200,
             borderTopRightRadius: $theme.borders.radius200,
@@ -34,11 +34,7 @@ export default function Example() {
           }),
         },
       }}
-      content={
-        <ParagraphSmall padding="scale500">
-          hello world
-        </ParagraphSmall>
-      }
+      content={<ParagraphSmall padding="scale500">hello world</ParagraphSmall>}
     >
       <Button>Click Me</Button>
     </StatefulPopover>

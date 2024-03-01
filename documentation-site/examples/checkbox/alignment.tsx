@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Checkbox} from 'baseui/checkbox';
+import * as React from "react";
+import { Checkbox } from "baseui/checkbox";
 
 export default function Example() {
   const [checkboxes, setCheckboxes] = React.useState([
@@ -23,9 +23,9 @@ export default function Example() {
       </Checkbox>
       <div
         style={{
-          display: 'flex',
-          justifyContent: 'center',
-          margin: '8px 0 8px 12px',
+          display: "flex",
+          justifyContent: "center",
+          margin: "8px 0 8px 12px",
         }}
       >
         <Checkbox

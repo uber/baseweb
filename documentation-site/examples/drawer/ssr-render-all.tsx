@@ -1,6 +1,6 @@
-import * as React from 'react';
-import {Button} from 'baseui/button';
-import {Drawer} from 'baseui/drawer';
+import * as React from "react";
+import { Button } from "baseui/button";
+import { Drawer } from "baseui/drawer";
 
 export default function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -10,14 +10,9 @@ export default function Example() {
       <Button onClick={() => setIsOpen(true)}>
         Open SSR Drawer (check source!)
       </Button>
-      <Drawer
-        renderAll
-        onClose={() => setIsOpen(false)}
-        isOpen={isOpen}
-      >
-        This content is SSR rendered and also rendered even if the
-        drawer is closed! View it in the source or in your
-        inspector!
+      <Drawer renderAll onClose={() => setIsOpen(false)} isOpen={isOpen}>
+        This content is SSR rendered and also rendered even if the drawer is
+        closed! View it in the source or in your inspector!
       </Drawer>
     </React.Fragment>
   );

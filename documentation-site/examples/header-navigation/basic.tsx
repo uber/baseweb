@@ -1,12 +1,12 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   HeaderNavigation,
   ALIGN,
   StyledNavigationItem as NavigationItem,
   StyledNavigationList as NavigationList,
-} from 'baseui/header-navigation';
-import {StyledLink as Link} from 'baseui/link';
-import {Button} from 'baseui/button';
+} from "baseui/header-navigation";
+import { StyledLink as Link } from "baseui/link";
+import { Button } from "baseui/button";
 
 export default function Example() {
   return (

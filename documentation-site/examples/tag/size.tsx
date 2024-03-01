@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Tag, SIZE} from 'baseui/tag';
+import * as React from "react";
+import { Tag, SIZE } from "baseui/tag";
 
 export default function Example() {
   return (

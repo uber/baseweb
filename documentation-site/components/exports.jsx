@@ -26,7 +26,7 @@ const Exports = (props) => {
     <React.Fragment>
       <H3>{title}</H3>
       <Paragraph>You can import this module like so:</Paragraph>
-      <Code>{code}</Code>
+      <Code content={code} />
       <Paragraph>
         It exports the following components or utility functions:
       </Paragraph>

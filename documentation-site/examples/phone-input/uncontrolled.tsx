@@ -1,5 +1,5 @@
-import React from 'react';
-import {StatefulPhoneInput} from 'baseui/phone-input';
+import React from "react";
+import { StatefulPhoneInput } from "baseui/phone-input";
 
 export default function Example() {
   return <StatefulPhoneInput />;

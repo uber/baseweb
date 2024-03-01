@@ -1,9 +1,9 @@
-import * as React from 'react';
-import {Textarea} from 'baseui/textarea';
+import * as React from "react";
+import { Textarea } from "baseui/textarea";
 
 export default function Example() {
-  const [valueA, setValueA] = React.useState('Positive state...');
-  const [valueB, setValueB] = React.useState('Error state...');
+  const [valueA, setValueA] = React.useState("Positive state...");
+  const [valueB, setValueB] = React.useState("Error state...");
   return (
     <React.Fragment>
       <Textarea

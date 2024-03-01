@@ -1,17 +1,17 @@
-import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {Button, KIND, SHAPE, SIZE} from 'baseui/button';
+import * as React from "react";
+import { useStyletron } from "baseui";
+import { Button, KIND, SHAPE, SIZE } from "baseui/button";
 // @ts-ignore
-import Hide from 'baseui/icon/hide';
+import Hide from "baseui/icon/hide";
 
 export default function Example() {
   const [css, theme] = useStyletron();
   return (
     <div
       className={css({
-        alignItems: 'center',
-        display: 'flex',
-        flexDirection: 'column',
+        alignItems: "center",
+        display: "flex",
+        flexDirection: "column",
       })}
     >
       <Hide size={theme.sizing.scale1600} />

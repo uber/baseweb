@@ -1,13 +1,13 @@
-import * as React from 'react';
-import {Tabs, Tab} from 'baseui/tabs-motion';
-import {Button, SIZE, SHAPE} from 'baseui/button';
+import * as React from "react";
+import { Tabs, Tab } from "baseui/tabs-motion";
+import { Button, SIZE, SHAPE } from "baseui/button";
 
 export default function Example() {
   const [activeKey, setActiveKey] = React.useState<React.Key>(0);
   return (
     <Tabs
       activeKey={activeKey}
-      onChange={({activeKey}) => setActiveKey(activeKey)}
+      onChange={({ activeKey }) => setActiveKey(activeKey)}
       endEnhancer={
         <Button size={SIZE.compact} shape={SHAPE.pill}>
           Button

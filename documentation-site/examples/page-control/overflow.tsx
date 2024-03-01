@@ -1,7 +1,7 @@
-import * as React from 'react';
-import {PageControl} from 'baseui/page-control';
-import {Button, SIZE} from 'baseui/button';
-import {ChevronLeft, ChevronRight} from 'baseui/icon';
+import * as React from "react";
+import { PageControl } from "baseui/page-control";
+import { Button, SIZE } from "baseui/button";
+import { ChevronLeft, ChevronRight } from "baseui/icon";
 
 export default function Example() {
   const NUM_PAGES = 7;
@@ -9,19 +9,19 @@ export default function Example() {
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '20px',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "20px",
       }}
     >
       <div
         style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '20px',
-          width: '100%',
-          alignItems: 'center',
+          display: "flex",
+          justifyContent: "center",
+          gap: "20px",
+          width: "100%",
+          alignItems: "center",
         }}
       >
         <Button
@@ -44,7 +44,7 @@ export default function Example() {
       <PageControl
         numPages={NUM_PAGES}
         currentPage={page}
-        onPageChange={({nextPage}) => setPage(nextPage)}
+        onPageChange={({ nextPage }) => setPage(nextPage)}
         aria-label="seven-pages"
       />
     </div>

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import {FixedMarker} from 'baseui/map-marker';
-import ReactMapGL, {Marker} from 'react-map-gl';
+import * as React from "react";
+import { FixedMarker } from "baseui/map-marker";
+import ReactMapGL, { Marker } from "react-map-gl";
 
 const uberHq = {
   latitude: 37.768495131168336,
@@ -35,9 +35,7 @@ export default function Example() {
       {...viewport}
       width="100%"
       height="500px"
-      onViewportChange={(viewport: Viewport) =>
-        setViewport(viewport)
-      }
+      onViewportChange={(viewport: Viewport) => setViewport(viewport)}
       mapboxApiAccessToken="pk.eyJ1IjoiYmFiYnN1YmVyIiwiYSI6ImNrdThqeGkxZTVwb3kyd3BpZGRlc2NlOXUifQ.qh-EtXm2DJQZVprWUJ-GFQ"
     >
       <Marker

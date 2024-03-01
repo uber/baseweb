@@ -1,17 +1,17 @@
-import * as React from 'react';
-import {Avatar} from 'baseui/avatar';
-import {useStyletron} from 'baseui';
-import {expandBorderStyles} from 'baseui/styles';
+import * as React from "react";
+import { Avatar } from "baseui/avatar";
+import { useStyletron } from "baseui";
+import { expandBorderStyles } from "baseui/styles";
 
 export default function Example() {
   const [css] = useStyletron();
   return (
     <React.Fragment>
-      <div className={css({display: 'flex', alignItems: 'center'})}>
+      <div className={css({ display: "flex", alignItems: "center" })}>
         <Avatar
           overrides={{
             Root: {
-              style: ({$theme}) => ({
+              style: ({ $theme }) => ({
                 ...expandBorderStyles($theme.borders.border500),
               }),
             },
@@ -24,7 +24,7 @@ export default function Example() {
         <Avatar
           overrides={{
             Root: {
-              style: ({$theme}) => ({
+              style: ({ $theme }) => ({
                 ...expandBorderStyles($theme.borders.border500),
               }),
             },
@@ -34,11 +34,11 @@ export default function Example() {
           src="https://not-a-real-image.png"
         />
       </div>
-      <div className={css({display: 'flex', alignItems: 'center'})}>
+      <div className={css({ display: "flex", alignItems: "center" })}>
         <Avatar
           overrides={{
             Avatar: {
-              style: ({$theme}) => ({
+              style: ({ $theme }) => ({
                 borderTopLeftRadius: $theme.borders.radius100,
                 borderTopRightRadius: $theme.borders.radius100,
                 borderBottomRightRadius: $theme.borders.radius100,
@@ -46,7 +46,7 @@ export default function Example() {
               }),
             },
             Root: {
-              style: ({$theme}) => ({
+              style: ({ $theme }) => ({
                 borderTopLeftRadius: $theme.borders.radius100,
                 borderTopRightRadius: $theme.borders.radius100,
                 borderBottomRightRadius: $theme.borders.radius100,
@@ -62,7 +62,7 @@ export default function Example() {
         <Avatar
           overrides={{
             Avatar: {
-              style: ({$theme}) => ({
+              style: ({ $theme }) => ({
                 borderTopLeftRadius: $theme.borders.radius100,
                 borderTopRightRadius: $theme.borders.radius100,
                 borderBottomRightRadius: $theme.borders.radius100,
@@ -70,7 +70,7 @@ export default function Example() {
               }),
             },
             Root: {
-              style: ({$theme}) => ({
+              style: ({ $theme }) => ({
                 borderTopLeftRadius: $theme.borders.radius100,
                 borderTopRightRadius: $theme.borders.radius100,
                 borderBottomRightRadius: $theme.borders.radius100,

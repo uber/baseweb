@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {StatefulTabs, Tab} from 'baseui/tabs-motion';
+import * as React from "react";
+import { StatefulTabs, Tab } from "baseui/tabs-motion";
 
 export default function Example() {
   return (

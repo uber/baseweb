@@ -1,19 +1,13 @@
-import * as React from 'react';
-import {Search} from 'baseui/icon';
-import {Input} from 'baseui/input';
+import * as React from "react";
+import { Search } from "baseui/icon";
+import { Input } from "baseui/input";
 
 export default function Example() {
   return (
     <React.Fragment>
-      <Input
-        startEnhancer="@"
-        placeholder="Input with a start enhancer"
-      />
+      <Input startEnhancer="@" placeholder="Input with a start enhancer" />
       <br />
-      <Input
-        endEnhancer=".00"
-        placeholder="Input with an end enhancer"
-      />
+      <Input endEnhancer=".00" placeholder="Input with an end enhancer" />
       <br />
       <Input
         startEnhancer="$"

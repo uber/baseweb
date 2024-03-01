@@ -1,8 +1,5 @@
-import * as React from 'react';
-import {
-  AspectRatioBox,
-  AspectRatioBoxBody,
-} from 'baseui/aspect-ratio-box';
+import * as React from "react";
+import { AspectRatioBox, AspectRatioBoxBody } from "baseui/aspect-ratio-box";
 
 export default function Example() {
   return (
@@ -15,14 +12,14 @@ export default function Example() {
           overrides={{
             Block: {
               style: {
-                borderLeftStyle: 'solid',
-                borderRightStyle: 'solid',
-                borderTopStyle: 'solid',
-                borderBottomStyle: 'solid',
-                borderLeftWidth: '2px',
-                borderTopWidth: '2px',
-                borderRightWidth: '2px',
-                borderBottomWidth: '2px',
+                borderLeftStyle: "solid",
+                borderRightStyle: "solid",
+                borderTopStyle: "solid",
+                borderBottomStyle: "solid",
+                borderLeftWidth: "2px",
+                borderTopWidth: "2px",
+                borderRightWidth: "2px",
+                borderBottomWidth: "2px",
                 borderLeftColor: `grey`,
                 borderTopColor: `grey`,
                 borderRightColor: `grey`,
@@ -42,14 +39,14 @@ export default function Example() {
           overrides={{
             Block: {
               style: {
-                borderLeftStyle: 'solid',
-                borderRightStyle: 'solid',
-                borderTopStyle: 'solid',
-                borderBottomStyle: 'solid',
-                borderLeftWidth: '2px',
-                borderTopWidth: '2px',
-                borderRightWidth: '2px',
-                borderBottomWidth: '2px',
+                borderLeftStyle: "solid",
+                borderRightStyle: "solid",
+                borderTopStyle: "solid",
+                borderBottomStyle: "solid",
+                borderLeftWidth: "2px",
+                borderTopWidth: "2px",
+                borderRightWidth: "2px",
+                borderBottomWidth: "2px",
                 borderLeftColor: `grey`,
                 borderTopColor: `grey`,
                 borderRightColor: `grey`,

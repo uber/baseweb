@@ -1,5 +1,5 @@
-import React from 'react';
-import {useStyletron} from 'baseui';
+import React from "react";
+import { useStyletron } from "baseui";
 import {
   StatefulDataTable,
   CategoricalColumn,
@@ -8,13 +8,13 @@ import {
   StringColumn,
   COLUMNS,
   NUMERICAL_FORMATS,
-} from 'baseui/data-table';
+} from "baseui/data-table";
 
 // https://gist.github.com/6174/6062387
 function pseudoRandomString(rowIdx: any, columnIdx: any) {
   return (
-    (0.88 * rowIdx).toString(36).replace('.', '').substring(2) +
-    (0.99 * columnIdx).toString(36).replace('.', '')
+    (0.88 * rowIdx).toString(36).replace(".", "").substring(2) +
+    (0.99 * columnIdx).toString(36).replace(".", "")
   ).slice(0, 10);
 }
 
@@ -28,30 +28,30 @@ function makeRowsFromColumns(columns: any, rowCount: number) {
           case COLUMNS.CATEGORICAL:
             switch (i % 11) {
               case 11:
-                return 'UberX';
+                return "UberX";
               case 10:
-                return 'UberXL';
+                return "UberXL";
               case 9:
-                return 'Uber Select';
+                return "Uber Select";
               case 8:
-                return 'Uber Comfort';
+                return "Uber Comfort";
               case 7:
-                return 'Uber Pool';
+                return "Uber Pool";
               case 6:
-                return 'Uber Black';
+                return "Uber Black";
               case 5:
-                return 'Uber Assist';
+                return "Uber Assist";
               case 4:
-                return 'Uber WAV';
+                return "Uber WAV";
               case 3:
-                return 'Transit';
+                return "Transit";
               case 2:
-                return 'Taxi';
+                return "Taxi";
               case 1:
-                return 'Bike';
+                return "Bike";
               case 0:
               default:
-                return 'Scooter';
+                return "Scooter";
             }
           case COLUMNS.NUMERICAL:
             return i % 2 ? i - 1 : i + 3;
@@ -60,19 +60,19 @@ function makeRowsFromColumns(columns: any, rowCount: number) {
           case COLUMNS.CUSTOM:
             switch (i % 5) {
               case 4:
-                return {color: 'red'};
+                return { color: "red" };
               case 3:
-                return {color: 'green'};
+                return { color: "green" };
               case 2:
-                return {color: 'blue'};
+                return { color: "blue" };
               case 1:
-                return {color: 'purple'};
+                return { color: "purple" };
               case 0:
               default:
-                return {color: 'yellow'};
+                return { color: "yellow" };
             }
           default:
-            return 'default' + pseudoRandomString(i, j);
+            return "default" + pseudoRandomString(i, j);
         }
       }),
     });
@@ -80,18 +80,18 @@ function makeRowsFromColumns(columns: any, rowCount: number) {
   return rows;
 }
 
-type RowDataT = [string, {color: string}, string, number];
+type RowDataT = [string, { color: string }, string, number];
 
 const columns = [
   CategoricalColumn({
-    title: 'categorical',
+    title: "categorical",
     mapDataToValue: (data: RowDataT) => data[0],
   }),
   CustomColumn<
-    {color: string},
-    {selection: Set<string>; exclude: boolean; description: string}
+    { color: string },
+    { selection: Set<string>; exclude: boolean; description: string }
   >({
-    title: 'custom color (sortable)',
+    title: "custom color (sortable)",
     filterable: true,
     sortable: true,
     minWidth: 120,
@@ -101,17 +101,17 @@ const columns = [
       return (
         <div
           className={css({
-            alignItems: 'center',
+            alignItems: "center",
             fontFamily: '"Comic Sans MS", cursive, sans-serif',
-            display: 'flex',
+            display: "flex",
           })}
         >
           <div
             className={css({
               backgroundColor: props.value.color,
-              height: '12px',
-              marginRight: '24px',
-              width: '12px',
+              height: "12px",
+              marginRight: "24px",
+              width: "12px",
             })}
           />
           <div>{props.value.color}</div>
@@ -133,10 +133,7 @@ const columns = [
           <ul>
             {Array.from(colors).map((color: any) => {
               return (
-                <li
-                  key={color}
-                  className={css({backgroundColor: color})}
-                >
+                <li key={color} className={css({ backgroundColor: color })}>
                   <input
                     type="checkbox"
                     onChange={() => {
@@ -148,9 +145,7 @@ const columns = [
                       setSelection(selection);
                     }}
                   />
-                  <span className={css({paddingLeft: '8px'})}>
-                    {color}
-                  </span>
+                  <span className={css({ paddingLeft: "8px" })}>{color}</span>
                 </li>
               );
             })}
@@ -159,7 +154,7 @@ const columns = [
             onClick={() => {
               props.setFilter({
                 selection,
-                description: Array.from(selection).join(', '),
+                description: Array.from(selection).join(", "),
                 exclude: false,
               });
               props.close();
@@ -180,11 +175,11 @@ const columns = [
     },
   }),
   StringColumn({
-    title: 'string',
+    title: "string",
     mapDataToValue: (data: RowDataT) => data[2],
   }),
   NumericalColumn({
-    title: 'accounting',
+    title: "accounting",
     format: NUMERICAL_FORMATS.ACCOUNTING,
     mapDataToValue: (data: RowDataT) => data[3],
   }),
@@ -195,7 +190,7 @@ const rows = makeRowsFromColumns(columns, 100);
 export default function Example() {
   const [css] = useStyletron();
   return (
-    <div className={css({height: '800px'})}>
+    <div className={css({ height: "800px" })}>
       <StatefulDataTable columns={columns} rows={rows} />
     </div>
   );

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {ProgressBar} from 'baseui/progress-bar';
+import * as React from "react";
+import { ProgressBar } from "baseui/progress-bar";
 
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 function useInterval(callback: () => void, delay: number | null) {

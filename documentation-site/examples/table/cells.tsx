@@ -1,7 +1,7 @@
-import React from 'react';
-import {withStyle, useStyletron} from 'baseui';
+import React from "react";
+import { withStyle, useStyletron } from "baseui";
 
-import {Block} from 'baseui/block';
+import { Block } from "baseui/block";
 import {
   ArrowUp,
   ArrowDown,
@@ -9,7 +9,7 @@ import {
   Plus,
   Delete,
   Overflow,
-} from 'baseui/icon';
+} from "baseui/icon";
 import {
   StyledTable,
   StyledHead,
@@ -18,13 +18,13 @@ import {
   StyledRow,
   StyledCell,
   StyledAction,
-} from 'baseui/table';
+} from "baseui/table";
 import {
   ParagraphXSmall,
   LabelXSmall,
   ParagraphSmall,
-} from 'baseui/typography';
-import {Theme} from 'baseui';
+} from "baseui/typography";
+import { Theme } from "baseui";
 
 const StyledHeadingCell = withStyle(StyledCell, {
   paddingTop: 0,
@@ -33,242 +33,240 @@ const StyledHeadingCell = withStyle(StyledCell, {
 
 const StyledDeltaCell = withStyle<
   typeof StyledCell,
-  {$isNegative: boolean},
-  Theme & {customThemeProp: string}
->(StyledCell, ({$isNegative, $theme}) => ({
+  { $isNegative: boolean },
+  Theme & { customThemeProp: string }
+>(StyledCell, ({ $isNegative, $theme }) => ({
   ...$theme.typography.font550,
-  alignItems: 'center',
+  alignItems: "center",
   backgroundColor: $isNegative
     ? $theme.colors.negative50
     : $theme.colors.positive50,
-  color: $isNegative
-    ? $theme.colors.negative
-    : $theme.colors.positive,
+  color: $isNegative ? $theme.colors.negative : $theme.colors.positive,
 }));
 
 const StyledLargeText = withStyle(StyledCell, {
-  alignItems: 'center',
+  alignItems: "center",
 });
 
 const DATA = [
   [
-    'Marlyn',
-    'Engineering',
-    'San Francisco',
+    "Marlyn",
+    "Engineering",
+    "San Francisco",
     -100,
     1234.5,
     {
-      title: 'New York',
-      data: '100 Broadway st. New York City, New York',
+      title: "New York",
+      data: "100 Broadway st. New York City, New York",
     },
   ],
   [
-    'Luther',
-    'Marketing',
-    'Seattle',
+    "Luther",
+    "Marketing",
+    "Seattle",
     50,
     2435.2,
     {
-      title: 'California',
-      data: '100 Market st. San Francisco, California',
+      title: "California",
+      data: "100 Market st. San Francisco, California",
     },
   ],
   [
-    'Kiera',
-    'Operations',
-    'Los Angeles',
+    "Kiera",
+    "Operations",
+    "Los Angeles",
     40,
     8348.1,
     {
-      title: 'Australia',
-      data: '100 Macquarie st. Sydney, Australia',
+      title: "Australia",
+      data: "100 Macquarie st. Sydney, Australia",
     },
   ],
   [
-    'Edna',
-    'Design',
-    'Atlanta',
+    "Edna",
+    "Design",
+    "Atlanta",
     700,
     2893.4,
     {
-      title: 'New York',
-      data: '100 Broadway st. New York City, New York',
+      title: "New York",
+      data: "100 Broadway st. New York City, New York",
     },
   ],
   [
-    'Soraya',
-    'Finance',
-    'Denver',
+    "Soraya",
+    "Finance",
+    "Denver",
     99,
     8787.3,
     {
-      title: 'California',
-      data: '100 Market st. San Francisco, California',
+      title: "California",
+      data: "100 Market st. San Francisco, California",
     },
   ],
   [
-    'Dorris',
-    'Legal',
-    'Dallas',
+    "Dorris",
+    "Legal",
+    "Dallas",
     -20,
     6325.2,
     {
-      title: 'Australia',
-      data: '100 Macquarie st. Sydney, Australia',
+      title: "Australia",
+      data: "100 Macquarie st. Sydney, Australia",
     },
   ],
   [
-    'Astrid',
-    'Product',
-    'Tempe',
+    "Astrid",
+    "Product",
+    "Tempe",
     0,
     7392.7,
     {
-      title: 'New York',
-      data: '100 Broadway st. New York City, New York',
+      title: "New York",
+      data: "100 Broadway st. New York City, New York",
     },
   ],
   [
-    'Wendie',
-    'Engineering',
-    'Pittsburgh',
+    "Wendie",
+    "Engineering",
+    "Pittsburgh",
     -15,
     9283.1,
     {
-      title: 'California',
-      data: '100 Market st. San Francisco, California',
+      title: "California",
+      data: "100 Market st. San Francisco, California",
     },
   ],
   [
-    'Marna',
-    'Marketing',
-    'Indianapolis',
+    "Marna",
+    "Marketing",
+    "Indianapolis",
     -2,
     7720.9,
     {
-      title: 'Australia',
-      data: '100 Macquarie st. Sydney, Australia',
+      title: "Australia",
+      data: "100 Macquarie st. Sydney, Australia",
     },
   ],
   [
-    'Malka',
-    'Operations',
-    'New Orleans',
+    "Malka",
+    "Operations",
+    "New Orleans",
     30,
     6273.3,
     {
-      title: 'New York',
-      data: '100 Broadway st. New York City, New York',
+      title: "New York",
+      data: "100 Broadway st. New York City, New York",
     },
   ],
   [
-    'Jospeh',
-    'Design',
-    'New York City',
+    "Jospeh",
+    "Design",
+    "New York City",
     -22,
     8837.4,
     {
-      title: 'California',
-      data: '100 Market st. San Francisco, California',
+      title: "California",
+      data: "100 Market st. San Francisco, California",
     },
   ],
   [
-    'Roselee',
-    'Finance',
-    'Oakland',
+    "Roselee",
+    "Finance",
+    "Oakland",
     4,
     9277.9,
     {
-      title: 'Australia',
-      data: '100 Macquarie st. Sydney, Australia',
+      title: "Australia",
+      data: "100 Macquarie st. Sydney, Australia",
     },
   ],
   [
-    'Justine',
-    'Legal',
-    'Louisville',
+    "Justine",
+    "Legal",
+    "Louisville",
     -9,
     7737.2,
     {
-      title: 'New York',
-      data: '100 Broadway st. New York City, New York',
+      title: "New York",
+      data: "100 Broadway st. New York City, New York",
     },
   ],
   [
-    'Marlon',
-    'Engineering',
-    'Baltimore',
+    "Marlon",
+    "Engineering",
+    "Baltimore",
     -2,
     2330.3,
     {
-      title: 'California',
-      data: '100 Market st. San Francisco, California',
+      title: "California",
+      data: "100 Market st. San Francisco, California",
     },
   ],
   [
-    'Mellissa',
-    'Marketing',
-    'Boulder',
+    "Mellissa",
+    "Marketing",
+    "Boulder",
     -30,
     4458.8,
     {
-      title: 'Australia',
-      data: '100 Macquarie st. Sydney, Australia',
+      title: "Australia",
+      data: "100 Macquarie st. Sydney, Australia",
     },
   ],
   [
-    'Fausto',
-    'Operations',
-    'Chicago',
+    "Fausto",
+    "Operations",
+    "Chicago",
     -10,
     6363.9,
     {
-      title: 'New York',
-      data: '100 Broadway st. New York City, New York',
+      title: "New York",
+      data: "100 Broadway st. New York City, New York",
     },
   ],
   [
-    'Alfredia',
-    'Design',
-    'Grand Rapids',
+    "Alfredia",
+    "Design",
+    "Grand Rapids",
     70,
     2235.2,
     {
-      title: 'California',
-      data: '100 Market st. San Francisco, California',
+      title: "California",
+      data: "100 Market st. San Francisco, California",
     },
   ],
   [
-    'Abel',
-    'Finance',
-    'Nashville',
+    "Abel",
+    "Finance",
+    "Nashville",
     30,
     9882.3,
     {
-      title: 'Australia',
-      data: '100 Macquarie st. Sydney, Australia',
+      title: "Australia",
+      data: "100 Macquarie st. Sydney, Australia",
     },
   ],
   [
-    'Winford',
-    'Legal',
-    'Sacramento',
+    "Winford",
+    "Legal",
+    "Sacramento",
     10,
     8774.7,
     {
-      title: 'New York',
-      data: '100 Broadway st. New York City, New York',
+      title: "New York",
+      data: "100 Broadway st. New York City, New York",
     },
   ],
   [
-    'Neil',
-    'Product',
-    'Columbus',
+    "Neil",
+    "Product",
+    "Columbus",
     -5,
     2673.2,
     {
-      title: 'California',
-      data: '100 Market st. San Francisco, California',
+      title: "California",
+      data: "100 Market st. San Francisco, California",
     },
   ],
 ];
@@ -276,7 +274,7 @@ const DATA = [
 export default function Example() {
   const [css] = useStyletron();
   return (
-    <div className={css({height: '400px'})}>
+    <div className={css({ height: "400px" })}>
       <StyledTable>
         <StyledHead $width="1000px">
           <StyledHeadCell>Name</StyledHeadCell>
@@ -299,20 +297,14 @@ export default function Example() {
 
               <StyledDeltaCell $isNegative={row[3] < 0}>
                 <React.Fragment>
-                  {row[3] < 0 ? (
-                    <ArrowDown size={24} />
-                  ) : (
-                    <ArrowUp size={24} />
-                  )}
+                  {row[3] < 0 ? <ArrowDown size={24} /> : <ArrowUp size={24} />}
                   {row[3]}%
                 </React.Fragment>
               </StyledDeltaCell>
 
               <StyledLargeText>
                 <Block font="font550">{row[4]}</Block>
-                <LabelXSmall paddingLeft="scale200">
-                  +1000%
-                </LabelXSmall>
+                <LabelXSmall paddingLeft="scale200">+1000%</LabelXSmall>
               </StyledLargeText>
 
               <StyledCell>

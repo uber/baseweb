@@ -1,12 +1,12 @@
-import * as React from 'react';
-import {Tabs, Tab} from 'baseui/tabs';
+import * as React from "react";
+import { Tabs, Tab } from "baseui/tabs";
 
 export default function Example() {
-  const [activeKey, setActiveKey] = React.useState('black');
+  const [activeKey, setActiveKey] = React.useState("black");
   return (
     <Tabs
       activeKey={activeKey}
-      onChange={({activeKey}) => setActiveKey(String(activeKey))}
+      onChange={({ activeKey }) => setActiveKey(String(activeKey))}
     >
       <Tab key="black" title="Black">
         <span role="img" aria-label="black">
