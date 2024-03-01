@@ -1,11 +1,11 @@
-import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {Banner, HIERARCHY, KIND} from 'baseui/banner';
+import * as React from "react";
+import { useStyletron } from "baseui";
+import { Banner, HIERARCHY, KIND } from "baseui/banner";
 
 export default function Example() {
   const [css] = useStyletron();
   return (
-    <div className={css({width: '400px'})}>
+    <div className={css({ width: "400px" })}>
       <Banner hierarchy={HIERARCHY.low} kind={KIND.info}>
         Paragraph text
       </Banner>

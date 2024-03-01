@@ -1,12 +1,12 @@
-import * as React from 'react';
-import {Button} from 'baseui/button';
+import * as React from "react";
+import { Button } from "baseui/button";
 import {
   Modal,
   ModalHeader,
   ModalBody,
   ModalFooter,
   ModalButton,
-} from 'baseui/modal';
+} from "baseui/modal";
 
 interface Props {
   children: (args: {
@@ -27,7 +27,7 @@ class ModalStateContainer extends React.Component<Props, State> {
     open = !this.state.isConfirmationOpen,
     cb: () => any = () => {},
   ) => {
-    this.setState({isConfirmationOpen: open}, cb);
+    this.setState({ isConfirmationOpen: open }, cb);
   };
   render() {
     return this.props.children({
@@ -41,23 +41,18 @@ export default function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <ModalStateContainer>
-      {({isConfirmationOpen, toggleConfirm}) => (
+      {({ isConfirmationOpen, toggleConfirm }) => (
         <React.Fragment>
-          <Button onClick={() => setIsOpen(true)}>
-            Open Modal
-          </Button>
+          <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
           <Modal onClose={() => setIsOpen(false)} isOpen={isOpen}>
             <ModalHeader>Hello world</ModalHeader>
             <ModalBody>
-              Proin ut dui sed metus pharetra hend rerit vel non mi.
-              Nulla ornare faucibus ex, non facilisis nisl. Maecenas
-              aliquet mauris ut tempus.
+              Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla
+              ornare faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut
+              tempus.
             </ModalBody>
             <ModalFooter>
-              <ModalButton
-                kind="tertiary"
-                onClick={() => setIsOpen(false)}
-              >
+              <ModalButton kind="tertiary" onClick={() => setIsOpen(false)}>
                 Cancel
               </ModalButton>
               <ModalButton onClick={() => toggleConfirm(true)}>
@@ -72,10 +67,7 @@ export default function Example() {
             <ModalHeader>Confirm</ModalHeader>
             <ModalBody>Confirm closing all.</ModalBody>
             <ModalFooter>
-              <ModalButton
-                kind="tertiary"
-                onClick={() => toggleConfirm(false)}
-              >
+              <ModalButton kind="tertiary" onClick={() => toggleConfirm(false)}>
                 No
               </ModalButton>
               <ModalButton

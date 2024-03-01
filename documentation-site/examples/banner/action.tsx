@@ -1,20 +1,20 @@
-import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {Banner, ACTION_POSITION} from 'baseui/banner';
+import * as React from "react";
+import { useStyletron } from "baseui";
+import { Banner, ACTION_POSITION } from "baseui/banner";
 // @ts-ignore
-import Delete from 'baseui/icon/delete';
+import Delete from "baseui/icon/delete";
 
-function ActionIcon({size}: {size: string}) {
+function ActionIcon({ size }: { size: string }) {
   return <Delete size={size} />;
 }
 
 export default function Example() {
   const [css] = useStyletron();
   return (
-    <div className={css({width: '400px'})}>
+    <div className={css({ width: "400px" })}>
       <Banner
         action={{
-          label: 'Label',
+          label: "Label",
           onClick: () => {},
         }}
         title="Headline text"
@@ -24,7 +24,7 @@ export default function Example() {
 
       <Banner
         action={{
-          label: 'Label',
+          label: "Label",
           icon: ActionIcon,
           onClick: () => {},
         }}
@@ -35,7 +35,7 @@ export default function Example() {
 
       <Banner
         action={{
-          label: 'Label',
+          label: "Label",
           onClick: () => {},
           position: ACTION_POSITION.below,
         }}

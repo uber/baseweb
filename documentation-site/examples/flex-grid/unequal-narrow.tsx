@@ -1,14 +1,14 @@
-import * as React from 'react';
-import {FlexGrid, FlexGridItem} from 'baseui/flex-grid';
-import {BlockProps} from 'baseui/block';
-import {LightTheme} from 'baseui';
+import * as React from "react";
+import { FlexGrid, FlexGridItem } from "baseui/flex-grid";
+import { BlockProps } from "baseui/block";
+import { LightTheme } from "baseui";
 
 const itemProps: BlockProps = {
-  backgroundColor: 'mono300',
-  height: 'scale1000',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  backgroundColor: "mono300",
+  height: "scale1000",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 };
 
 const narrowItemProps = {
@@ -16,7 +16,7 @@ const narrowItemProps = {
   overrides: {
     Block: {
       // theme type is inferred when in-lined
-      style: ({$theme}: {$theme: typeof LightTheme}) => ({
+      style: ({ $theme }: { $theme: typeof LightTheme }) => ({
         width: $theme.sizing.scale1600,
         flexGrow: 0,
       }),

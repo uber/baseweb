@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Badge, COLOR} from 'baseui/badge';
+import * as React from "react";
+import { Badge, COLOR } from "baseui/badge";
 
 export default function Example() {
   return (

@@ -1,13 +1,13 @@
-import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {Button, KIND} from 'baseui/button';
-import {TriangleDown} from 'baseui/icon';
-import {StatefulMenu} from 'baseui/menu';
-import {Pagination} from 'baseui/pagination';
-import {StatefulPopover, PLACEMENT} from 'baseui/popover';
-import {Table} from 'baseui/table';
+import * as React from "react";
+import { useStyletron } from "baseui";
+import { Button, KIND } from "baseui/button";
+import { TriangleDown } from "baseui/icon";
+import { StatefulMenu } from "baseui/menu";
+import { Pagination } from "baseui/pagination";
+import { StatefulPopover, PLACEMENT } from "baseui/popover";
+import { Table } from "baseui/table";
 
-function PaginatedTable(props: {data: any[]; columns: any[]}) {
+function PaginatedTable(props: { data: any[]; columns: any[] }) {
   const [css, theme] = useStyletron();
   const [page, setPage] = React.useState(1);
   const [limit, setLimit] = React.useState(12);
@@ -41,8 +41,8 @@ function PaginatedTable(props: {data: any[]; columns: any[]}) {
     <React.Fragment>
       <div
         className={css({
-          display: 'flex',
-          justifyContent: 'space-between',
+          display: "flex",
+          justifyContent: "space-between",
           paddingTop: theme.sizing.scale600,
           paddingBottom: theme.sizing.scale600,
         })}
@@ -69,7 +69,7 @@ function PaginatedTable(props: {data: any[]; columns: any[]}) {
           </div>
         </Button>
       </div>
-      <div className={css({height: '500px'})}>
+      <div className={css({ height: "500px" })}>
         <Table columns={props.columns} data={window()} />
       </div>
       <div
@@ -78,23 +78,23 @@ function PaginatedTable(props: {data: any[]; columns: any[]}) {
           paddingBottom: theme.sizing.scale600,
           paddingRight: theme.sizing.scale800,
           paddingLeft: theme.sizing.scale800,
-          display: 'flex',
-          justifyContent: 'space-between',
+          display: "flex",
+          justifyContent: "space-between",
         })}
       >
         <StatefulPopover
-          content={({close}) => (
+          content={({ close }) => (
             <StatefulMenu
-              items={Array.from({length: 100}, (_, i) => ({
+              items={Array.from({ length: 100 }, (_, i) => ({
                 label: i + 1,
               }))}
-              onItemSelect={({item}) => {
+              onItemSelect={({ item }) => {
                 handleLimitChange(item.label);
                 close();
               }}
               overrides={{
                 List: {
-                  style: {height: '150px', width: '100px'},
+                  style: { height: "150px", width: "100px" },
                 },
               }}
             />
@@ -109,16 +109,16 @@ function PaginatedTable(props: {data: any[]; columns: any[]}) {
         <Pagination
           currentPage={page}
           numPages={Math.ceil(props.data.length / limit)}
-          onPageChange={({nextPage}) => handlePageChange(nextPage)}
+          onPageChange={({ nextPage }) => handlePageChange(nextPage)}
         />
       </div>
     </React.Fragment>
   );
 }
 
-const COLUMNS = Array.from({length: 5}, () => 'Label');
-const DATA = Array.from({length: 45}, (_, i) =>
-  Array.from({length: 5}, () => `row: ${i + 1}`),
+const COLUMNS = Array.from({ length: 5 }, () => "Label");
+const DATA = Array.from({ length: 45 }, (_, i) =>
+  Array.from({ length: 5 }, () => `row: ${i + 1}`),
 );
 
 export default function Example() {

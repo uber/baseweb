@@ -1,16 +1,16 @@
-import * as React from 'react';
-import {Breadcrumbs} from 'baseui/breadcrumbs';
-import {StyledLink as Link} from 'baseui/link';
+import * as React from "react";
+import { Breadcrumbs } from "baseui/breadcrumbs";
+import { StyledLink as Link } from "baseui/link";
 
 export default function Example() {
   return (
     <Breadcrumbs
       overrides={{
         ListItem: {
-          style: ({$itemIndex, $theme}) => {
+          style: ({ $itemIndex, $theme }) => {
             if ($itemIndex === 0) return {};
             return {
-              ':before': {
+              ":before": {
                 content: "'>'",
                 color: $theme.colors.mono700,
                 marginLeft: $theme.sizing.scale400,

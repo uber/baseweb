@@ -1,6 +1,6 @@
-import React from 'react';
-import {useStyletron} from 'baseui';
-import {Grid, Cell} from 'baseui/layout-grid';
+import React from "react";
+import { useStyletron } from "baseui";
+import { Grid, Cell } from "baseui/layout-grid";
 
 export default function Example() {
   return (
@@ -8,15 +8,15 @@ export default function Example() {
       <Grid
         overrides={{
           Grid: {
-            style: ({$theme}) => ({
-              borderLeftWidth: '1px',
-              borderRightWidth: '1px',
-              borderTopWidth: '1px',
-              borderBottomWidth: '1px',
-              borderLeftStyle: 'solid',
-              borderTopStyle: 'solid',
-              borderRightStyle: 'solid',
-              borderBottomStyle: 'solid',
+            style: ({ $theme }) => ({
+              borderLeftWidth: "1px",
+              borderRightWidth: "1px",
+              borderTopWidth: "1px",
+              borderBottomWidth: "1px",
+              borderLeftStyle: "solid",
+              borderTopStyle: "solid",
+              borderRightStyle: "solid",
+              borderBottomStyle: "solid",
               borderLeftColor: `${$theme.colors.positive400}`,
               borderTopColor: `${$theme.colors.positive400}`,
               borderRightColor: `${$theme.colors.positive400}`,
@@ -38,7 +38,7 @@ export default function Example() {
           span={[1, 2, 3]}
           overrides={{
             Cell: {
-              style: ({$theme}) => ({
+              style: ({ $theme }) => ({
                 outline: `solid 1px ${$theme.colors.negative400}`,
               }),
             },
@@ -51,7 +51,7 @@ export default function Example() {
   );
 }
 
-const Outer: React.FunctionComponent<{}> = ({children}) => {
+const Outer: React.FunctionComponent<{}> = ({ children }) => {
   const [css, theme] = useStyletron();
   return (
     <div
@@ -64,17 +64,17 @@ const Outer: React.FunctionComponent<{}> = ({children}) => {
   );
 };
 
-const Inner: React.FunctionComponent<{}> = ({children}) => {
+const Inner: React.FunctionComponent<{}> = ({ children }) => {
   const [css, theme] = useStyletron();
   return (
     <div
       className={css({
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         background: theme.colors.accent200,
         color: theme.colors.accent700,
-        padding: '.25rem',
+        padding: ".25rem",
       })}
     >
       {children}

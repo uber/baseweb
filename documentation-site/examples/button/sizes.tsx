@@ -1,10 +1,10 @@
-import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {Button, SIZE} from 'baseui/button';
+import * as React from "react";
+import { useStyletron } from "baseui";
+import { Button, SIZE } from "baseui/button";
 
 export default function Example() {
   const [css, theme] = useStyletron();
-  const space = css({marginBottom: theme.sizing.scale300});
+  const space = css({ marginBottom: theme.sizing.scale300 });
   return (
     <React.Fragment>
       <Button size={SIZE.compact}>Compact size</Button>

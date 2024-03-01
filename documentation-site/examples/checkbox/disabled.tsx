@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Checkbox} from 'baseui/checkbox';
+import * as React from "react";
+import { Checkbox } from "baseui/checkbox";
 
 export default function Example() {
   return (

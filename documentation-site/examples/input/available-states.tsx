@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Input} from 'baseui/input';
+import * as React from "react";
+import { Input } from "baseui/input";
 
 export default function Example() {
   return (

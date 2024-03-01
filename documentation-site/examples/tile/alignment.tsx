@@ -1,6 +1,6 @@
-import * as React from 'react';
-import {Tile, TILE_KIND, ALIGNMENT} from 'baseui/tile';
-import Upload from 'baseui/icon/upload';
+import * as React from "react";
+import { Tile, TILE_KIND, ALIGNMENT } from "baseui/tile";
+import Upload from "baseui/icon/upload";
 
 export default function Example() {
   return (

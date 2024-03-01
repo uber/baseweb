@@ -1,12 +1,12 @@
-import * as React from 'react';
-import {Tabs, Tab} from 'baseui/tabs-motion';
+import * as React from "react";
+import { Tabs, Tab } from "baseui/tabs-motion";
 
 export default function Example() {
   const [activeKey, setActiveKey] = React.useState<React.Key>(0);
   return (
     <Tabs
       activeKey={activeKey}
-      onChange={({activeKey}) => setActiveKey(activeKey)}
+      onChange={({ activeKey }) => setActiveKey(activeKey)}
       activateOnFocus={false}
     >
       <Tab title="First">I must not fear.</Tab>

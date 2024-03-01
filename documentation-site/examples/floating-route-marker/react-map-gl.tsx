@@ -1,24 +1,24 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   FloatingRouteMarker,
   FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
   calculateFloatingRouteMarkerOffsets,
-} from 'baseui/map-marker';
-import ReactMapGL, {Marker, Source, Layer} from 'react-map-gl';
-import {useStyletron} from 'baseui';
+} from "baseui/map-marker";
+import ReactMapGL, { Marker, Source, Layer } from "react-map-gl";
+import { useStyletron } from "baseui";
 
 function calculateMidpoint([[x1, y1], [x2, y2]]) {
   return [(x1 + x2) / 2, (y1 + y2) / 2];
 }
 
 const geojson = {
-  type: 'FeatureCollection',
+  type: "FeatureCollection",
   features: [
     {
-      type: 'Feature',
+      type: "Feature",
       properties: {},
       geometry: {
-        type: 'LineString',
+        type: "LineString",
         coordinates: [
           [-66.12117290496826, 18.46832392198594],
           [-66.1238443851471, 18.470623748008414],
@@ -31,9 +31,7 @@ const geojson = {
 export default function Example() {
   const [, theme] = useStyletron();
 
-  const midpoint = calculateMidpoint(
-    geojson.features[0].geometry.coordinates,
-  );
+  const midpoint = calculateMidpoint(geojson.features[0].geometry.coordinates);
   const [viewport, setViewport] = React.useState({
     longitude: midpoint[0],
     latitude: midpoint[1],
@@ -52,21 +50,19 @@ export default function Example() {
           id={`background-route-line`}
           type="line"
           layout={{
-            'line-join': 'round',
-            'line-cap': 'round',
+            "line-join": "round",
+            "line-cap": "round",
           }}
           paint={{
-            'line-color': theme.colors.contentPrimary,
-            'line-width': 4,
+            "line-color": theme.colors.contentPrimary,
+            "line-width": 4,
           }}
         />
       </Source>
       <Marker longitude={midpoint[0]} latitude={midpoint[1]}>
         <FloatingRouteMarker
           label="El Morro Path"
-          anchorPosition={
-            FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft
-          }
+          anchorPosition={FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft}
           overrides={{
             Root: {
               style: () => ({

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {ProgressBar} from 'baseui/progress-bar';
+import * as React from "react";
+import { ProgressBar } from "baseui/progress-bar";
 
 const MAX_MB_VALUE = 1000;
 
@@ -38,9 +38,7 @@ export default function Example() {
     <ProgressBar
       value={value}
       getProgressLabel={(value) =>
-        `${
-          (MAX_MB_VALUE / 100) * value
-        }mb out of ${MAX_MB_VALUE}mb downloaded`
+        `${(MAX_MB_VALUE / 100) * value}mb out of ${MAX_MB_VALUE}mb downloaded`
       }
       showLabel
     />

@@ -1,11 +1,11 @@
-import * as React from 'react';
-import {Notification} from 'baseui/notification';
+import * as React from "react";
+import { Notification } from "baseui/notification";
 
 export default function Example() {
   return (
     <Notification
       overrides={{
-        Body: {style: {width: 'auto'}},
+        Body: { style: { width: "auto" } },
       }}
     >
       Default info notification

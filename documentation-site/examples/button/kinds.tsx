@@ -1,6 +1,6 @@
-import * as React from 'react';
-import {Block} from 'baseui/block';
-import {Button, KIND} from 'baseui/button';
+import * as React from "react";
+import { Block } from "baseui/block";
+import { Button, KIND } from "baseui/button";
 
 export default function Example() {
   return (

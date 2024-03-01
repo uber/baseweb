@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {StatefulPaymentCard} from 'baseui/payment-card';
+import * as React from "react";
+import { StatefulPaymentCard } from "baseui/payment-card";
 
 export default function Example() {
   return (

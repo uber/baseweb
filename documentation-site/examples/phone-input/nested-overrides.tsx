@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {PhoneInput, COUNTRIES} from 'baseui/phone-input';
+import React, { useState } from "react";
+import { PhoneInput, COUNTRIES } from "baseui/phone-input";
 
 export default function Example() {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [country, setCountry] = useState(COUNTRIES.US);
   return (
     <PhoneInput
@@ -20,7 +20,7 @@ export default function Example() {
             overrides: {
               Root: {
                 style: {
-                  width: '300px',
+                  width: "300px",
                 },
               },
             },

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Spinner, SIZE} from 'baseui/spinner';
+import * as React from "react";
+import { Spinner, SIZE } from "baseui/spinner";
 
 export default function Example() {
   return (

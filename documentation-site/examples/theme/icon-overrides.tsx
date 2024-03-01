@@ -1,9 +1,9 @@
-import * as React from 'react';
-import {StatefulPagination} from 'baseui/pagination';
+import * as React from "react";
+import { StatefulPagination } from "baseui/pagination";
 
-import {createTheme, lightThemePrimitives} from 'baseui';
-import {ThemeProvider} from 'baseui';
-import {ArrowLeft} from 'baseui/icon';
+import { createTheme, lightThemePrimitives } from "baseui";
+import { ThemeProvider } from "baseui";
+import { ArrowLeft } from "baseui/icon";
 
 const themeWithIcons = createTheme(
   {

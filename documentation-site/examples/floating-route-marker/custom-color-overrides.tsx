@@ -1,18 +1,18 @@
-import * as React from 'react';
-import {FloatingRouteMarker} from 'baseui/map-marker';
-import {styled} from 'baseui';
+import * as React from "react";
+import { FloatingRouteMarker } from "baseui/map-marker";
+import { styled } from "baseui";
 
-const Container = styled('div', () => ({
+const Container = styled("div", () => ({
   height: `${128}px`,
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
   padding: `${16}px`,
 }));
 
-const Cell = styled('div', () => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+const Cell = styled("div", () => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 }));
 
 export default function Example() {
@@ -24,17 +24,17 @@ export default function Example() {
           secondaryLabel="Avoids tolls"
           overrides={{
             Root: {
-              style: ({$theme}) => ({
+              style: ({ $theme }) => ({
                 backgroundColor: $theme.colors.warning200,
               }),
             },
             Pointer: {
-              style: ({$theme}) => ({
+              style: ({ $theme }) => ({
                 fill: $theme.colors.warning200,
               }),
             },
             Label: {
-              style: ({$theme}) => ({
+              style: ({ $theme }) => ({
                 color: $theme.colors.contentNegative,
               }),
             },
@@ -48,17 +48,17 @@ export default function Example() {
           selected={true}
           overrides={{
             Root: {
-              style: ({$theme}) => ({
+              style: ({ $theme }) => ({
                 backgroundColor: $theme.colors.backgroundAccent,
               }),
             },
             Pointer: {
-              style: ({$theme}) => ({
+              style: ({ $theme }) => ({
                 fill: $theme.colors.backgroundAccent,
               }),
             },
             SecondaryLabel: {
-              style: ({$theme}) => ({
+              style: ({ $theme }) => ({
                 color: $theme.colors.contentOnColor,
               }),
             },

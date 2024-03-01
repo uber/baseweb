@@ -1,10 +1,10 @@
-import * as React from 'react';
-import {Button} from 'baseui/button';
-import {useStyletron} from 'baseui';
+import * as React from "react";
+import { Button } from "baseui/button";
+import { useStyletron } from "baseui";
 
 export default function Example() {
   const [css, theme] = useStyletron();
-  const space = css({marginLeft: theme.sizing.scale300});
+  const space = css({ marginLeft: theme.sizing.scale300 });
   return (
     <React.Fragment>
       <Button>No state</Button>

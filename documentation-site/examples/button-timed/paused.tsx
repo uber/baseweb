@@ -4,10 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
+import * as React from "react";
 
-import {ButtonTimed} from 'baseui/button-timed';
-import {Button, KIND} from 'baseui/button';
+import { ButtonTimed } from "baseui/button-timed";
+import { Button, KIND } from "baseui/button";
 
 export default function Example() {
   const [finished1, setFinished1] = React.useState(false);
@@ -19,11 +19,8 @@ export default function Example() {
 
   return (
     <div>
-      <Button
-        kind={KIND.secondary}
-        onClick={() => setPaused(!paused)}
-      >
-        {paused ? 'Run' : 'Pause'}
+      <Button kind={KIND.secondary} onClick={() => setPaused(!paused)}>
+        {paused ? "Run" : "Pause"}
       </Button>
 
       <div>
@@ -35,9 +32,7 @@ export default function Example() {
           Countdown
         </ButtonTimed>
         {finished1 && (
-          <span style={{marginLeft: '20px', color: 'red'}}>
-            Time!
-          </span>
+          <span style={{ marginLeft: "20px", color: "red" }}>Time!</span>
         )}
       </div>
 
@@ -50,9 +45,7 @@ export default function Example() {
           Countdown
         </ButtonTimed>
         {finished2 && (
-          <span style={{marginLeft: '20px', color: 'blue'}}>
-            Time!
-          </span>
+          <span style={{ marginLeft: "20px", color: "blue" }}>Time!</span>
         )}
       </div>
 
@@ -65,9 +58,7 @@ export default function Example() {
           Countdown
         </ButtonTimed>
         {finished3 && (
-          <span style={{marginLeft: '20px', color: 'gold'}}>
-            Time!
-          </span>
+          <span style={{ marginLeft: "20px", color: "gold" }}>Time!</span>
         )}
       </div>
 
@@ -80,9 +71,7 @@ export default function Example() {
           Countdown
         </ButtonTimed>
         {finished4 && (
-          <span style={{marginLeft: '20px', color: 'green'}}>
-            Time!
-          </span>
+          <span style={{ marginLeft: "20px", color: "green" }}>Time!</span>
         )}
       </div>
     </div>

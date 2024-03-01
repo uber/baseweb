@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {FileUploader} from 'baseui/file-uploader';
+import * as React from "react";
+import { FileUploader } from "baseui/file-uploader";
 
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 function useInterval(callback: () => void, delay: number | null) {
@@ -25,19 +25,14 @@ function useInterval(callback: () => void, delay: number | null) {
 // useFakeProgress is an elaborate way to show a fake file transfer for illustrative purposes. You
 // don't need this is your application. Use metadata from your upload destination if it's available,
 // or don't provide progress.
-function useFakeProgress(): [
-  number,
-  string,
-  () => void,
-  () => void,
-] {
+function useFakeProgress(): [number, string, () => void, () => void] {
   const [fakeProgress, setFakeProgress] = React.useState(0);
   const [isActive, setIsActive] = React.useState(false);
-  const [errorMessage, setErrorMessage] = React.useState('');
+  const [errorMessage, setErrorMessage] = React.useState("");
 
   function stopFakeProgress() {
     setIsActive(false);
-    setErrorMessage('');
+    setErrorMessage("");
     setFakeProgress(0);
   }
 
@@ -49,7 +44,7 @@ function useFakeProgress(): [
     () => {
       if (fakeProgress >= 40) {
         // stopFakeProgress();
-        setErrorMessage('Upload failed... connection was lost.');
+        setErrorMessage("Upload failed... connection was lost.");
       } else {
         setFakeProgress(fakeProgress + 10);
       }
@@ -57,21 +52,12 @@ function useFakeProgress(): [
     isActive ? 500 : null,
   );
 
-  return [
-    fakeProgress,
-    errorMessage,
-    startFakeProgress,
-    stopFakeProgress,
-  ];
+  return [fakeProgress, errorMessage, startFakeProgress, stopFakeProgress];
 }
 
 export default function Example() {
-  const [
-    progressAmount,
-    errorMessage,
-    startFakeProgress,
-    stopFakeProgress,
-  ] = useFakeProgress();
+  const [progressAmount, errorMessage, startFakeProgress, stopFakeProgress] =
+    useFakeProgress();
 
   return (
     <FileUploader
@@ -86,9 +72,7 @@ export default function Example() {
       // progressAmount is a number from 0 - 100 which indicates the percent of file transfer completed
       progressAmount={progressAmount}
       progressMessage={
-        progressAmount
-          ? `Uploading... ${progressAmount}% of 100%`
-          : ''
+        progressAmount ? `Uploading... ${progressAmount}% of 100%` : ""
       }
     />
   );

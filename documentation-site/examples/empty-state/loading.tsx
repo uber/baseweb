@@ -1,15 +1,15 @@
-import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {Spinner} from 'baseui/spinner';
+import * as React from "react";
+import { useStyletron } from "baseui";
+import { Spinner } from "baseui/spinner";
 
 export default function Example() {
   const [css, theme] = useStyletron();
   return (
     <div
       className={css({
-        alignItems: 'center',
-        display: 'flex',
-        flexDirection: 'column',
+        alignItems: "center",
+        display: "flex",
+        flexDirection: "column",
       })}
     >
       <Spinner

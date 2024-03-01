@@ -1,13 +1,9 @@
-import React from 'react';
-import {format} from 'date-fns';
-import {StyledLink} from 'baseui/link';
-import {useStyletron} from 'baseui';
+import React from "react";
+import { format } from "date-fns";
+import { StyledLink } from "baseui/link";
+import { useStyletron } from "baseui";
 
-import {
-  StyledTable,
-  StyledHeadCell,
-  StyledBodyCell,
-} from 'baseui/table-grid';
+import { StyledTable, StyledHeadCell, StyledBodyCell } from "baseui/table-grid";
 
 function useCellNavigation() {
   const cells = React.useRef([]);
@@ -93,19 +89,19 @@ function useCellNavigation() {
   function handleKeyDown(event: KeyboardEvent) {
     let direction = [0, 0];
     switch (event.key) {
-      case 'ArrowUp':
+      case "ArrowUp":
         event.preventDefault();
         direction = UP;
         break;
-      case 'ArrowRight':
+      case "ArrowRight":
         event.preventDefault();
         direction = RIGHT;
         break;
-      case 'ArrowDown':
+      case "ArrowDown":
         event.preventDefault();
         direction = DOWN;
         break;
-      case 'ArrowLeft':
+      case "ArrowLeft":
         event.preventDefault();
         direction = LEFT;
         break;
@@ -113,10 +109,7 @@ function useCellNavigation() {
         break;
     }
 
-    const next = nextInDirection(
-      [columnIndex, rowIndex],
-      direction,
-    );
+    const next = nextInDirection([columnIndex, rowIndex], direction);
     if (next) {
       setColumnIndex(next[0]);
       setRowIndex(next[1]);
@@ -125,8 +118,7 @@ function useCellNavigation() {
 
   const getCellProps = React.useMemo(() => {
     return function (column: number, row: number) {
-      const isAddressable =
-        column === columnIndex && row === rowIndex;
+      const isAddressable = column === columnIndex && row === rowIndex;
       return {
         ref: (r: any) => register(r, column, row),
         tabIndex: isAddressable ? 0 : -1,
@@ -140,48 +132,39 @@ function useCellNavigation() {
     };
   }, [columnIndex, rowIndex]);
 
-  return {getCellProps};
+  return { getCellProps };
 }
 
 const row = [
-  'feat(docs-site): theme editor POC',
-  'https://github.com/uber/baseweb/pull/1296',
+  "feat(docs-site): theme editor POC",
+  "https://github.com/uber/baseweb/pull/1296",
   [
-    [new Date(2019, 6, 22), 'jh3y added a commit'],
-    [new Date(2019, 6, 22), 'chasestarr left a comment'],
-    [new Date(2019, 6, 22), 'jh3y left a comment'],
-    [new Date(2019, 6, 22), 'chasestarr left a comment'],
-    [new Date(2019, 6, 22), 'chasestarr left a comment'],
-    [new Date(2019, 6, 22), 'jh3y added a commit'],
-    [new Date(2019, 6, 22), 'jh3y added a commit'],
-    [
-      new Date(2019, 6, 22),
-      'jh3y marked this pull request as ready',
-    ],
+    [new Date(2019, 6, 22), "jh3y added a commit"],
+    [new Date(2019, 6, 22), "chasestarr left a comment"],
+    [new Date(2019, 6, 22), "jh3y left a comment"],
+    [new Date(2019, 6, 22), "chasestarr left a comment"],
+    [new Date(2019, 6, 22), "chasestarr left a comment"],
+    [new Date(2019, 6, 22), "jh3y added a commit"],
+    [new Date(2019, 6, 22), "jh3y added a commit"],
+    [new Date(2019, 6, 22), "jh3y marked this pull request as ready"],
   ],
 ];
 
 const data = [row, row, row];
 
 export default function Example() {
-  const {getCellProps} = useCellNavigation();
+  const { getCellProps } = useCellNavigation();
   const [css] = useStyletron();
   return (
-    <div className={css({height: '600px'})}>
+    <div className={css({ height: "600px" })}>
       <StyledTable
         tabIndex="0"
         role="grid"
         $gridTemplateColumns="minmax(300px, 500px) repeat(2, max-content)"
       >
-        <StyledHeadCell {...getCellProps(0, 0)}>
-          Name
-        </StyledHeadCell>
-        <StyledHeadCell {...getCellProps(1, 0)}>
-          Date
-        </StyledHeadCell>
-        <StyledHeadCell {...getCellProps(2, 0)}>
-          Event
-        </StyledHeadCell>
+        <StyledHeadCell {...getCellProps(0, 0)}>Name</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(1, 0)}>Date</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(2, 0)}>Event</StyledHeadCell>
 
         {data.map((row, rowIndex) => {
           const events = row[2] as Array<any>;
@@ -192,37 +175,27 @@ export default function Example() {
                 {...getCellProps(0, primaryRowIndex)}
                 $gridRow={`span ${row[2].length}`}
               >
-                <StyledLink href={String(row[1])}>
-                  {row[0]}
-                </StyledLink>
+                <StyledLink href={String(row[1])}>{row[0]}</StyledLink>
               </StyledBodyCell>
-              {events.map(
-                (event: [Date, string], index: number) => {
-                  const striped = index % 2 === 0;
-                  return (
-                    <React.Fragment>
-                      <StyledBodyCell
-                        {...getCellProps(
-                          1,
-                          primaryRowIndex + rowIndex,
-                        )}
-                        $striped={striped}
-                      >
-                        {format(event[0], 'yyyy-MM-dd h:mm a')}
-                      </StyledBodyCell>
-                      <StyledBodyCell
-                        {...getCellProps(
-                          2,
-                          primaryRowIndex + rowIndex,
-                        )}
-                        $striped={striped}
-                      >
-                        {event[1]}
-                      </StyledBodyCell>
-                    </React.Fragment>
-                  );
-                },
-              )}
+              {events.map((event: [Date, string], index: number) => {
+                const striped = index % 2 === 0;
+                return (
+                  <React.Fragment>
+                    <StyledBodyCell
+                      {...getCellProps(1, primaryRowIndex + rowIndex)}
+                      $striped={striped}
+                    >
+                      {format(event[0], "yyyy-MM-dd h:mm a")}
+                    </StyledBodyCell>
+                    <StyledBodyCell
+                      {...getCellProps(2, primaryRowIndex + rowIndex)}
+                      $striped={striped}
+                    >
+                      {event[1]}
+                    </StyledBodyCell>
+                  </React.Fragment>
+                );
+              })}
             </React.Fragment>
           );
         })}

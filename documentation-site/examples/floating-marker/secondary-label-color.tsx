@@ -1,8 +1,5 @@
-import * as React from 'react';
-import {
-  FloatingMarker,
-  FLOATING_MARKER_SIZES,
-} from 'baseui/map-marker';
+import * as React from "react";
+import { FloatingMarker, FLOATING_MARKER_SIZES } from "baseui/map-marker";
 
 export default function Example() {
   return (
@@ -12,7 +9,7 @@ export default function Example() {
       secondaryLabel="Mission Bay 3"
       overrides={{
         Label: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             color: $theme.colors.contentTertiary,
           }),
         },

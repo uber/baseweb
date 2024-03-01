@@ -1,6 +1,6 @@
-import * as React from 'react';
-import {Breadcrumbs} from 'baseui/breadcrumbs';
-import {StyledLink as Link} from 'baseui/link';
+import * as React from "react";
+import { Breadcrumbs } from "baseui/breadcrumbs";
+import { StyledLink as Link } from "baseui/link";
 
 export default function Example() {
   return (

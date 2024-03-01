@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
-import {Button} from 'baseui/button';
-import {StatefulSelect} from 'baseui/select';
+import React, { useState } from "react";
+import { Button } from "baseui/button";
+import { StatefulSelect } from "baseui/select";
 import {
   Modal,
   ModalHeader,
   ModalBody,
   ModalFooter,
   ModalButton,
-} from 'baseui/modal';
+} from "baseui/modal";
 
 export default function Example() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,12 +30,12 @@ export default function Example() {
         <ModalBody>
           <StatefulSelect
             options={[
-              {id: 'AliceBlue', color: '#F0F8FF'},
-              {id: 'AntiqueWhite', color: '#FAEBD7'},
-              {id: 'Aqua', color: '#00FFFF'},
-              {id: 'Aquamarine', color: '#7FFFD4'},
-              {id: 'Azure', color: '#F0FFFF'},
-              {id: 'Beige', color: '#F5F5DC'},
+              { id: "AliceBlue", color: "#F0F8FF" },
+              { id: "AntiqueWhite", color: "#FAEBD7" },
+              { id: "Aqua", color: "#00FFFF" },
+              { id: "Aquamarine", color: "#7FFFD4" },
+              { id: "Azure", color: "#F0FFFF" },
+              { id: "Beige", color: "#F5F5DC" },
             ]}
             labelKey="id"
             valueKey="color"

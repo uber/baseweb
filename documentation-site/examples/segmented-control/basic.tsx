@@ -1,12 +1,12 @@
-import * as React from 'react';
-import {SegmentedControl, Segment} from 'baseui/segmented-control';
+import * as React from "react";
+import { SegmentedControl, Segment } from "baseui/segmented-control";
 
 export default function Example() {
-  const [activeKey, setActiveKey] = React.useState('1');
+  const [activeKey, setActiveKey] = React.useState("1");
   return (
     <SegmentedControl
       activeKey={activeKey}
-      onChange={({activeKey}) => {
+      onChange={({ activeKey }) => {
         setActiveKey(activeKey);
       }}
     >

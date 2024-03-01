@@ -1,6 +1,6 @@
-import * as React from 'react';
-import {Button, SIZE} from 'baseui/button';
-import {Checkbox} from 'baseui/checkbox';
+import * as React from "react";
+import { Button, SIZE } from "baseui/button";
+import { Checkbox } from "baseui/checkbox";
 
 export default function Example() {
   const [checked, setChecked] = React.useState(true);

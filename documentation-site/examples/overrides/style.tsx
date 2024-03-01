@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Button} from 'baseui/button';
+import * as React from "react";
+import { Button } from "baseui/button";
 
 export default function Example() {
   return (
@@ -7,7 +7,7 @@ export default function Example() {
       overrides={{
         BaseButton: {
           style: {
-            backgroundColor: 'red',
+            backgroundColor: "red",
           },
         },
       }}

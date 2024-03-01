@@ -1,14 +1,14 @@
-import * as React from 'react';
-import {ChevronRight, Search} from 'baseui/icon';
-import {ListItem, ListItemLabel, ARTWORK_SIZES} from 'baseui/list';
-import {useStyletron} from 'baseui';
+import * as React from "react";
+import { ChevronRight, Search } from "baseui/icon";
+import { ListItem, ListItemLabel, ARTWORK_SIZES } from "baseui/list";
+import { useStyletron } from "baseui";
 
 export default function Example() {
   const [css] = useStyletron();
   return (
     <ul
       className={css({
-        width: '375px',
+        width: "375px",
         paddingLeft: 0,
         paddingRight: 0,
       })}
@@ -20,11 +20,7 @@ export default function Example() {
         <ListItemLabel sublist>Label Two</ListItemLabel>
       </ListItem>
 
-      <ListItem
-        artwork={Search}
-        endEnhancer={() => <ChevronRight />}
-        sublist
-      >
+      <ListItem artwork={Search} endEnhancer={() => <ChevronRight />} sublist>
         <ListItemLabel sublist>Label Three</ListItemLabel>
       </ListItem>
       <ListItem
@@ -48,9 +44,7 @@ export default function Example() {
       <ListItem
         artwork={Search}
         artworkSize={ARTWORK_SIZES.LARGE}
-        endEnhancer={() => (
-          <ListItemLabel sublist>Label Six</ListItemLabel>
-        )}
+        endEnhancer={() => <ListItemLabel sublist>Label Six</ListItemLabel>}
         sublist
       >
         <ListItemLabel sublist>Label Six</ListItemLabel>
@@ -58,9 +52,7 @@ export default function Example() {
       <ListItem
         artwork={Search}
         artworkSize={ARTWORK_SIZES.LARGE}
-        endEnhancer={() => (
-          <ListItemLabel sublist>Label Seven</ListItemLabel>
-        )}
+        endEnhancer={() => <ListItemLabel sublist>Label Seven</ListItemLabel>}
         sublist
       >
         <ListItemLabel sublist>Label Seven</ListItemLabel>
@@ -68,9 +60,7 @@ export default function Example() {
       <ListItem
         artwork={Search}
         artworkSize={ARTWORK_SIZES.LARGE}
-        endEnhancer={() => (
-          <ListItemLabel sublist>Label Eight</ListItemLabel>
-        )}
+        endEnhancer={() => <ListItemLabel sublist>Label Eight</ListItemLabel>}
         sublist
       >
         <ListItemLabel sublist>Label Eight</ListItemLabel>

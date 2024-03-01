@@ -1,6 +1,6 @@
-import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {Grid, Cell} from 'baseui/layout-grid';
+import * as React from "react";
+import { useStyletron } from "baseui";
+import { Grid, Cell } from "baseui/layout-grid";
 
 export default function Example() {
   return (
@@ -47,7 +47,7 @@ export default function Example() {
   );
 }
 
-const Outer: React.FunctionComponent<{}> = ({children}) => {
+const Outer: React.FunctionComponent<{}> = ({ children }) => {
   const [css, theme] = useStyletron();
   return (
     <div
@@ -60,17 +60,17 @@ const Outer: React.FunctionComponent<{}> = ({children}) => {
   );
 };
 
-const Inner: React.FunctionComponent<{}> = ({children}) => {
+const Inner: React.FunctionComponent<{}> = ({ children }) => {
   const [css, theme] = useStyletron();
   return (
     <div
       className={css({
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         background: theme.colors.accent200,
         color: theme.colors.accent700,
-        padding: '.25rem',
+        padding: ".25rem",
       })}
     >
       {children}

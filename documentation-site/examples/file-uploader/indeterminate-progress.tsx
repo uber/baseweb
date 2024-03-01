@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {FileUploader} from 'baseui/file-uploader';
+import * as React from "react";
+import { FileUploader } from "baseui/file-uploader";
 
 export default function Example() {
   const [isUploading, setIsUploading] = React.useState(false);
@@ -26,9 +26,7 @@ export default function Example() {
         console.log(acceptedFiles, rejectedFiles);
         startProgress();
       }}
-      progressMessage={
-        isUploading ? `Uploading... hang tight.` : ''
-      }
+      progressMessage={isUploading ? `Uploading... hang tight.` : ""}
     />
   );
 }

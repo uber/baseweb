@@ -1,12 +1,9 @@
-import * as React from 'react';
-import {
-  AspectRatioBox,
-  AspectRatioBoxBody,
-} from 'baseui/aspect-ratio-box';
-import {Button, KIND} from 'baseui/button';
-import {useStyletron} from 'baseui';
+import * as React from "react";
+import { AspectRatioBox, AspectRatioBoxBody } from "baseui/aspect-ratio-box";
+import { Button, KIND } from "baseui/button";
+import { useStyletron } from "baseui";
 
-const CalendarButton = (props: {children: React.ReactNode}) => (
+const CalendarButton = (props: { children: React.ReactNode }) => (
   <Button
     kind={KIND.tertiary}
     overrides={{
@@ -23,7 +20,7 @@ const CalendarButton = (props: {children: React.ReactNode}) => (
   />
 );
 
-const DateBox = (props: {children: React.ReactNode}) => (
+const DateBox = (props: { children: React.ReactNode }) => (
   <AspectRatioBox width={`${100 / 7}%`}>
     <AspectRatioBoxBody as={CalendarButton} {...props} />
   </AspectRatioBox>
@@ -32,7 +29,7 @@ const DateBox = (props: {children: React.ReactNode}) => (
 export default function Example() {
   const [css] = useStyletron();
   return (
-    <div className={css({display: 'flex', flexWrap: 'wrap'})}>
+    <div className={css({ display: "flex", flexWrap: "wrap" })}>
       <DateBox>Feb 1</DateBox>
       <DateBox>2</DateBox>
       <DateBox>3</DateBox>

@@ -1,11 +1,8 @@
-import * as React from 'react';
-import {Checkbox, STYLE_TYPE} from 'baseui/checkbox';
+import * as React from "react";
+import { Checkbox, STYLE_TYPE } from "baseui/checkbox";
 
 export default function Example() {
-  const [checkboxes, setCheckboxes] = React.useState([
-    false,
-    false,
-  ]);
+  const [checkboxes, setCheckboxes] = React.useState([false, false]);
   return (
     <React.Fragment>
       <Checkbox

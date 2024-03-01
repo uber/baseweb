@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Pagination} from 'baseui/pagination';
+import * as React from "react";
+import { Pagination } from "baseui/pagination";
 
 export default function Example() {
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -7,7 +7,7 @@ export default function Example() {
     <Pagination
       numPages={20}
       currentPage={currentPage}
-      onPageChange={({nextPage}) => {
+      onPageChange={({ nextPage }) => {
         setCurrentPage(Math.min(Math.max(nextPage, 1), 20));
       }}
     />

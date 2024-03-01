@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   HeadingXXLarge,
   HeadingXLarge,
@@ -6,10 +6,9 @@ import {
   HeadingMedium,
   HeadingSmall,
   HeadingXSmall,
-} from 'baseui/typography';
+} from "baseui/typography";
 
-const textString =
-  'We ignite opportunity by setting the world in motion.';
+const textString = "We ignite opportunity by setting the world in motion.";
 
 export default function Example() {
   return (

@@ -1,24 +1,21 @@
-import * as React from 'react';
-import {
-  TableBuilder,
-  TableBuilderColumn,
-} from 'baseui/table-semantic';
-import {Avatar} from 'baseui/avatar';
-import {Button, KIND, SIZE} from 'baseui/button';
-import {Tag} from 'baseui/tag';
-import {useStyletron} from 'baseui';
-import {ArrowUp, ArrowDown} from 'baseui/icon';
+import * as React from "react";
+import { TableBuilder, TableBuilderColumn } from "baseui/table-semantic";
+import { Avatar } from "baseui/avatar";
+import { Button, KIND, SIZE } from "baseui/button";
+import { Tag } from "baseui/tag";
+import { useStyletron } from "baseui";
+import { ArrowUp, ArrowDown } from "baseui/icon";
 
 const ROW = {
   foo: 10,
-  bar: 'banana',
-  url: 'https://example.com/b',
+  bar: "banana",
+  url: "https://example.com/b",
   largeNumber: 1000000,
   avatarSrc:
-    'https://avatars.dicebear.com/api/human/3.svg?width=285&mood=happy',
-  name: 'User Name',
-  title: 'Job Title',
-  list: ['One', 'Two', 'Three'],
+    "https://avatars.dicebear.com/api/human/3.svg?width=285&mood=happy",
+  name: "User Name",
+  title: "Job Title",
+  list: ["One", "Two", "Three"],
 };
 
 type Row = typeof ROW;
@@ -36,12 +33,12 @@ function AvatarCell({
 }) {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({display: 'flex', alignItems: 'center'})}>
+    <div className={css({ display: "flex", alignItems: "center" })}>
       <Avatar name={title} size="48px" src={src} />
       <div
         className={css({
           paddingLeft: theme.sizing.scale550,
-          whiteSpace: 'nowrap',
+          whiteSpace: "nowrap",
         })}
       >
         <p
@@ -56,7 +53,7 @@ function AvatarCell({
           className={css({
             ...theme.typography.ParagraphSmall,
             marginBottom: 0,
-            marginTop: '4px',
+            marginTop: "4px",
           })}
         >
           {subtitle}
@@ -66,29 +63,21 @@ function AvatarCell({
   );
 }
 
-function NumberCell({
-  value,
-  delta,
-}: {
-  value: number;
-  delta: number;
-}) {
+function NumberCell({ value, delta }: { value: number; delta: number }) {
   const [css, theme] = useStyletron();
   const positive = delta >= 0;
   return (
-    <div className={css({display: 'flex', alignItems: 'center'})}>
-      <span
-        className={css({...theme.typography.MonoParagraphSmall})}
-      >
-        {new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
+    <div className={css({ display: "flex", alignItems: "center" })}>
+      <span className={css({ ...theme.typography.MonoParagraphSmall })}>
+        {new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
         }).format(value)}
       </span>
       <div
         className={css({
-          alignItems: 'center',
-          display: 'flex',
+          alignItems: "center",
+          display: "flex",
           paddingLeft: theme.sizing.scale300,
           color: positive
             ? theme.colors.contentPositive
@@ -99,7 +88,7 @@ function NumberCell({
         <span
           className={css({
             ...theme.typography.MonoLabelSmall,
-            paddingLeft: '2px',
+            paddingLeft: "2px",
           })}
         >
           {delta}%
@@ -109,10 +98,10 @@ function NumberCell({
   );
 }
 
-function TagsCell({tags}: {tags: Array<string>}) {
+function TagsCell({ tags }: { tags: Array<string> }) {
   const [css] = useStyletron();
   return (
-    <div className={css({display: 'flex', alignItems: 'center'})}>
+    <div className={css({ display: "flex", alignItems: "center" })}>
       {tags.map((tag) => {
         return (
           <Tag key={tag} closeable={false}>
@@ -124,10 +113,10 @@ function TagsCell({tags}: {tags: Array<string>}) {
   );
 }
 
-function ButtonsCell({labels}: {labels: Array<string>}) {
+function ButtonsCell({ labels }: { labels: Array<string> }) {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({display: 'flex', alignItems: 'center'})}>
+    <div className={css({ display: "flex", alignItems: "center" })}>
       {labels.map((label, index) => {
         return (
           <Button
@@ -153,7 +142,7 @@ function ButtonsCell({labels}: {labels: Array<string>}) {
 export default function Example() {
   return (
     <TableBuilder
-      overrides={{Root: {style: {maxHeight: '300px'}}}}
+      overrides={{ Root: { style: { maxHeight: "300px" } } }}
       data={DATA}
     >
       <TableBuilderColumn<Row> header="Avatar">
@@ -167,15 +156,11 @@ export default function Example() {
       </TableBuilderColumn>
 
       <TableBuilderColumn<Row> header="Number positive">
-        {(row) => (
-          <NumberCell value={row.largeNumber} delta={0.51} />
-        )}
+        {(row) => <NumberCell value={row.largeNumber} delta={0.51} />}
       </TableBuilderColumn>
 
       <TableBuilderColumn<Row> header="Number negative">
-        {(row) => (
-          <NumberCell value={row.largeNumber} delta={-0.51} />
-        )}
+        {(row) => <NumberCell value={row.largeNumber} delta={-0.51} />}
       </TableBuilderColumn>
 
       <TableBuilderColumn<Row> header="Tags">

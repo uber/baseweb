@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
-import {DatePicker} from 'baseui/datepicker';
-import {TimezonePicker} from 'baseui/timezonepicker';
-import {FormControl} from 'baseui/form-control';
+import React, { useState } from "react";
+import { DatePicker } from "baseui/datepicker";
+import { TimezonePicker } from "baseui/timezonepicker";
+import { FormControl } from "baseui/form-control";
 
 export default function Example() {
   const [date, setDate] = useState(new Date());
   const [tz, setZone] = useState({
-    id: 'America/Fort_Nelson',
-    label: 'MST - America/Fort Nelson (GMT -07:00)',
+    id: "America/Fort_Nelson",
+    label: "MST - America/Fort Nelson (GMT -07:00)",
     offset: 420,
   });
 
@@ -15,11 +15,9 @@ export default function Example() {
     <React.Fragment>
       <FormControl label="Date">
         <DatePicker
-          onChange={({date}) => setDate(date as Date)}
+          onChange={({ date }) => setDate(date as Date)}
           value={
-            date
-              ? new Date(date.getTime() + tz.offset * 60000)
-              : undefined
+            date ? new Date(date.getTime() + tz.offset * 60000) : undefined
           }
         />
       </FormControl>

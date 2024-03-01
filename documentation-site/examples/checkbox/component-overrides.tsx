@@ -1,7 +1,7 @@
-import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {StatefulCheckbox} from 'baseui/checkbox';
-import {Alert} from 'baseui/icon';
+import * as React from "react";
+import { useStyletron } from "baseui";
+import { StatefulCheckbox } from "baseui/checkbox";
+import { Alert } from "baseui/icon";
 
 export default function Example() {
   const [css, theme] = useStyletron();
@@ -15,8 +15,8 @@ export default function Example() {
               color: props.checked
                 ? theme.colors.primary
                 : theme.colors.mono700,
-              marginTop: '3px',
-              marginRight: '3px',
+              marginTop: "3px",
+              marginRight: "3px",
             })}
           >
             <Alert />

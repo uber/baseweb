@@ -1,13 +1,13 @@
-import * as React from 'react';
-import {Tabs, Tab} from 'baseui/tabs-motion';
-import {Check} from 'baseui/icon';
+import * as React from "react";
+import { Tabs, Tab } from "baseui/tabs-motion";
+import { Check } from "baseui/icon";
 
 export default function Example() {
   const [activeKey, setActiveKey] = React.useState<React.Key>(0);
   return (
     <Tabs
       activeKey={activeKey}
-      onChange={({activeKey}) => setActiveKey(activeKey)}
+      onChange={({ activeKey }) => setActiveKey(activeKey)}
     >
       <Tab title="First" artwork={Check}>
         I must not fear.

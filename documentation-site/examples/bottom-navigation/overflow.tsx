@@ -1,28 +1,27 @@
-import * as React from 'react';
-import {styled} from 'baseui/styles';
-import {BottomNavigation, NavItem} from 'baseui/bottom-navigation';
-import {MessageCard} from 'baseui/message-card';
-import {FileUploader} from 'baseui/file-uploader';
-import {colors} from 'baseui/tokens';
-import Calendar from 'baseui/icon/calendar';
-import Alert from 'baseui/icon/alert';
-import ChevronRight from 'baseui/icon/chevron-right';
-import Show from 'baseui/icon/show';
-import Search from 'baseui/icon/search';
-import Upload from 'baseui/icon/upload';
-import deliveryHeroItalianSvg from './images/deliveryHeroItalian.svg';
-import deliveryLargeStrawberriesSvg from './images/deliveryLargeStrawberries.svg';
-import earnerLargeRiderDriverSvg from './images/earnerLargeRiderDriver.svg';
+import * as React from "react";
+import { styled } from "baseui/styles";
+import { BottomNavigation, NavItem } from "baseui/bottom-navigation";
+import { MessageCard } from "baseui/message-card";
+import { FileUploader } from "baseui/file-uploader";
+import { colors } from "baseui/tokens";
+import Calendar from "baseui/icon/calendar";
+import Alert from "baseui/icon/alert";
+import ChevronRight from "baseui/icon/chevron-right";
+import Show from "baseui/icon/show";
+import Search from "baseui/icon/search";
+import Upload from "baseui/icon/upload";
+import deliveryHeroItalianSvg from "./images/deliveryHeroItalian.svg";
+import deliveryLargeStrawberriesSvg from "./images/deliveryLargeStrawberries.svg";
+import earnerLargeRiderDriverSvg from "./images/earnerLargeRiderDriver.svg";
 
-export const TextContent = ({numParagraphs, children}) => {
+export const TextContent = ({ numParagraphs, children }) => {
   const Paragraph = () => (
     <p>
-      Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-      odit aut fugit, sed quia consequuntur magni dolores eos qui
-      ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-      qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-      velit, sed quia non numquam eius modi tempora incidunt ut
-      labore et dolore magnam aliquam quaerat voluptatem.
+      Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+      fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
+      sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit
+      amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora
+      incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
     </p>
   );
 
@@ -30,7 +29,7 @@ export const TextContent = ({numParagraphs, children}) => {
     numParagraphs > 0 ? Array(numParagraphs).fill(Paragraph) : [];
 
   return (
-    <div style={{padding: '10px'}}>
+    <div style={{ padding: "10px" }}>
       {children}
       {paragraphs.map((Paragraph, idx) => (
         <Paragraph key={idx} />
@@ -39,13 +38,13 @@ export const TextContent = ({numParagraphs, children}) => {
   );
 };
 
-const StyledIphone6 = styled('div', {
-  width: '375px',
-  height: '667px',
-  border: '1px solid #ECECEC',
-  borderRadius: '12px',
-  position: 'relative',
-  overflow: 'hidden',
+const StyledIphone6 = styled("div", {
+  width: "375px",
+  height: "667px",
+  border: "1px solid #ECECEC",
+  borderRadius: "12px",
+  position: "relative",
+  overflow: "hidden",
 });
 
 export default function Example() {
@@ -55,7 +54,7 @@ export default function Example() {
     <StyledIphone6>
       <BottomNavigation
         activeKey={activeKey}
-        onChange={({activeKey}) => setActiveKey(activeKey)}
+        onChange={({ activeKey }) => setActiveKey(activeKey)}
       >
         <NavItem title="Search" icon={Search}>
           <TextContent numParagraphs={8}>
@@ -66,9 +65,9 @@ export default function Example() {
         <NavItem title="Food" icon={Show}>
           <div
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '20px',
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
             }}
           >
             <MessageCard
@@ -78,9 +77,9 @@ export default function Example() {
               image={{
                 src: deliveryHeroItalianSvg,
                 ariaLabel:
-                  'Illustration of an Italian meal with pizza and pasta on a picnic table',
+                  "Illustration of an Italian meal with pizza and pasta on a picnic table",
               }}
-              onClick={() => console.log('Saved')}
+              onClick={() => console.log("Saved")}
               backgroundColor={colors.red200}
             />
             <MessageCard
@@ -88,9 +87,9 @@ export default function Example() {
               buttonLabel="Save now"
               image={{
                 src: deliveryLargeStrawberriesSvg,
-                ariaLabel: 'Illustration of strawberries',
+                ariaLabel: "Illustration of strawberries",
               }}
-              onClick={() => console.log('Saved')}
+              onClick={() => console.log("Saved")}
             />
             <MessageCard
               heading="Heading"
@@ -98,9 +97,9 @@ export default function Example() {
               image={{
                 src: earnerLargeRiderDriverSvg,
                 ariaLabel:
-                  'A car with a driver and a passenger both wearing masks',
+                  "A car with a driver and a passenger both wearing masks",
               }}
-              onClick={() => console.log('Saved')}
+              onClick={() => console.log("Saved")}
               backgroundColor={colors.blue300}
             />
           </div>
@@ -127,7 +126,7 @@ export default function Example() {
         <NavItem title="Upload" icon={Upload}>
           <TextContent numParagraphs={0}>
             <h1>File Upload</h1>
-            <FileUploader errorMessage={''} />
+            <FileUploader errorMessage={""} />
           </TextContent>
         </NavItem>
       </BottomNavigation>

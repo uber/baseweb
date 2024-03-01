@@ -1,9 +1,9 @@
-import * as React from 'react';
-import {Textarea} from 'baseui/textarea';
-import {Button} from 'baseui/button';
+import * as React from "react";
+import { Textarea } from "baseui/textarea";
+import { Button } from "baseui/button";
 
 export default function Example() {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState("");
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
   return (
     <React.Fragment>

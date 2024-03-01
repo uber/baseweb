@@ -1,137 +1,133 @@
-import React from 'react';
-import {format} from 'date-fns';
+import React from "react";
+import { format } from "date-fns";
 
-import {Button} from 'baseui/button';
-import {ChevronDown, ChevronRight, Overflow} from 'baseui/icon';
-import {StyledLink} from 'baseui/link';
-import {StatefulMenu} from 'baseui/menu';
-import {StatefulPopover, PLACEMENT} from 'baseui/popover';
-import {withStyle, useStyletron} from 'baseui';
-import {
-  StyledTable,
-  StyledHeadCell,
-  StyledBodyCell,
-} from 'baseui/table-grid';
-import {Tag} from 'baseui/tag';
+import { Button } from "baseui/button";
+import { ChevronDown, ChevronRight, Overflow } from "baseui/icon";
+import { StyledLink } from "baseui/link";
+import { StatefulMenu } from "baseui/menu";
+import { StatefulPopover, PLACEMENT } from "baseui/popover";
+import { withStyle, useStyletron } from "baseui";
+import { StyledTable, StyledHeadCell, StyledBodyCell } from "baseui/table-grid";
+import { Tag } from "baseui/tag";
 
 function buildRow(status: string) {
   return [
-    'Baseui Github CI Job',
+    "Baseui Github CI Job",
     status,
     new Date(2019, 6, 22),
-    'feat(side-navigation): improve item rendering performance',
-    'https://github.com/uber/baseweb/pull/1449',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
+    "feat(side-navigation): improve item rendering performance",
+    "https://github.com/uber/baseweb/pull/1449",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
     [
       [
-        'buildkite/baseui',
-        'running',
+        "buildkite/baseui",
+        "running",
         new Date(2019, 6, 22),
-        'Build #7728 passed (20 minutes, 1 second)',
-        'https://buildkite.com/uberopensource/baseui/builds/7728',
+        "Build #7728 passed (20 minutes, 1 second)",
+        "https://buildkite.com/uberopensource/baseui/builds/7728",
       ],
       [
-        'buildkite/baseui/docker-package-e2e',
-        'running',
+        "buildkite/baseui/docker-package-e2e",
+        "running",
         new Date(2019, 6, 22),
-        'Passed (6 minutes, 44 seconds)',
-        'https://buildkite.com/uberopensource/baseui/builds/7728#54927bc9-88e0-4d0b-80b0-f60b8a2298e4',
+        "Passed (6 minutes, 44 seconds)",
+        "https://buildkite.com/uberopensource/baseui/builds/7728#54927bc9-88e0-4d0b-80b0-f60b8a2298e4",
       ],
       [
-        'buildkite/baseui/docker-package-unit',
-        'passed',
+        "buildkite/baseui/docker-package-unit",
+        "passed",
         new Date(2019, 6, 22),
-        'Passed (7 minutes)',
-        'https://buildkite.com/uberopensource/baseui/builds/7728#fea8c317-b65b-4c5f-9fad-b7a329a26237',
+        "Passed (7 minutes)",
+        "https://buildkite.com/uberopensource/baseui/builds/7728#fea8c317-b65b-4c5f-9fad-b7a329a26237",
       ],
       [
-        'buildkite/baseui/documentation-site-link-checker',
-        'failed',
+        "buildkite/baseui/documentation-site-link-checker",
+        "failed",
         new Date(2019, 6, 22),
-        'Passed (1 minute, 33 seconds)',
-        'https://buildkite.com/uberopensource/baseui/builds/7728#eaa5998f-69a4-4b94-9a9b-4dd2bbd8c985',
+        "Passed (1 minute, 33 seconds)",
+        "https://buildkite.com/uberopensource/baseui/builds/7728#eaa5998f-69a4-4b94-9a9b-4dd2bbd8c985",
       ],
       [
-        'buildkite/baseui/eslint',
-        'passed',
+        "buildkite/baseui/eslint",
+        "passed",
         new Date(2019, 6, 22),
-        'Passed (1 minute, 34 seconds)',
-        'https://buildkite.com/uberopensource/baseui/builds/7728#a658a503-472f-43aa-80b5-708d39951cf7',
+        "Passed (1 minute, 34 seconds)",
+        "https://buildkite.com/uberopensource/baseui/builds/7728#a658a503-472f-43aa-80b5-708d39951cf7",
       ],
       [
-        'buildkite/baseui/flowtype',
-        'passed',
+        "buildkite/baseui/flowtype",
+        "passed",
         new Date(2019, 6, 22),
-        'Passed (1 minute, 33 seconds)',
-        'https://buildkite.com/uberopensource/baseui/builds/7728',
+        "Passed (1 minute, 33 seconds)",
+        "https://buildkite.com/uberopensource/baseui/builds/7728",
       ],
       [
-        'buildkite/baseui/jest',
-        'running',
+        "buildkite/baseui/jest",
+        "running",
         new Date(2019, 6, 22),
-        'Passed (1 minute, 33 seconds)',
-        'https://buildkite.com/uberopensource/baseui/builds/7728',
+        "Passed (1 minute, 33 seconds)",
+        "https://buildkite.com/uberopensource/baseui/builds/7728",
       ],
       [
-        'buildkite/baseui/pipeline',
-        'running',
+        "buildkite/baseui/pipeline",
+        "running",
         new Date(2019, 6, 22),
-        'Passed (1 minute, 33 seconds)',
-        'https://buildkite.com/uberopensource/baseui/builds/7728',
+        "Passed (1 minute, 33 seconds)",
+        "https://buildkite.com/uberopensource/baseui/builds/7728",
       ],
     ],
   ];
 }
 
 const data = [
-  buildRow('running'),
-  buildRow('running'),
-  buildRow('failed'),
-  buildRow('passed'),
-  buildRow('passed'),
-  buildRow('passed'),
-  buildRow('passed'),
-  buildRow('failed'),
-  buildRow('failed'),
-  buildRow('failed'),
-  buildRow('passed'),
-  buildRow('passed'),
-  buildRow('passed'),
-  buildRow('passed'),
-  buildRow('passed'),
+  buildRow("running"),
+  buildRow("running"),
+  buildRow("failed"),
+  buildRow("passed"),
+  buildRow("passed"),
+  buildRow("passed"),
+  buildRow("passed"),
+  buildRow("failed"),
+  buildRow("failed"),
+  buildRow("failed"),
+  buildRow("passed"),
+  buildRow("passed"),
+  buildRow("passed"),
+  buildRow("passed"),
+  buildRow("passed"),
 ];
 
 function statusToTagKind(status: string) {
   switch (status) {
-    case 'running': {
-      return 'primary';
+    case "running": {
+      return "primary";
     }
-    case 'passed': {
-      return 'positive';
+    case "passed": {
+      return "positive";
     }
-    case 'failed': {
-      return 'negative';
+    case "failed": {
+      return "negative";
     }
     default: {
-      return 'neutral';
+      return "neutral";
     }
   }
 }
 
-function Tasks(props: {tasks: any[]}) {
+function Tasks(props: { tasks: any[] }) {
   const [css] = useStyletron();
   return (
     <div
       className={css({
-        gridColumn: 'span 5',
-        padding: '32px 24px',
+        gridColumn: "span 5",
+        padding: "32px 24px",
       })}
     >
       <StyledTable
         role="grid"
         $gridTemplateColumns="max-content auto auto auto"
       >
-        <div role="row" className={css({display: 'contents'})}>
+        <div role="row" className={css({ display: "contents" })}>
           <StyledHeadCell $sticky={false}>Task</StyledHeadCell>
           <StyledHeadCell $sticky={false}>Status</StyledHeadCell>
           <StyledHeadCell $sticky={false}>Last Run</StyledHeadCell>
@@ -139,7 +135,7 @@ function Tasks(props: {tasks: any[]}) {
         </div>
         {props.tasks.map((task) => {
           return (
-            <div role="row" className={css({display: 'contents'})}>
+            <div role="row" className={css({ display: "contents" })}>
               <StyledBodyCell>{task[0]}</StyledBodyCell>
               <StyledBodyCell>
                 <Tag
@@ -151,7 +147,7 @@ function Tasks(props: {tasks: any[]}) {
                 </Tag>
               </StyledBodyCell>
               <StyledBodyCell>
-                {format(task[2], 'yyyy-MM-dd h:mm a')}
+                {format(task[2], "yyyy-MM-dd h:mm a")}
               </StyledBodyCell>
               <StyledBodyCell>
                 <StyledLink href={task[4]}>{task[3]}</StyledLink>
@@ -165,15 +161,15 @@ function Tasks(props: {tasks: any[]}) {
 }
 
 const CenteredBodyCell = withStyle(StyledBodyCell, {
-  display: 'flex',
-  alignItems: 'center',
+  display: "flex",
+  alignItems: "center",
 });
 
-function Row({striped, row}: any) {
+function Row({ striped, row }: any) {
   const [css] = useStyletron();
   const [expanded, setExpanded] = React.useState(false);
   return (
-    <div role="row" className={css({display: 'contents'})}>
+    <div role="row" className={css({ display: "contents" })}>
       <CenteredBodyCell $striped={striped}>
         <Button
           size="compact"
@@ -181,11 +177,7 @@ function Row({striped, row}: any) {
           onClick={() => setExpanded(!expanded)}
           shape="square"
         >
-          {expanded ? (
-            <ChevronDown size={18} />
-          ) : (
-            <ChevronRight size={18} />
-          )}
+          {expanded ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
         </Button>
         {row[0]}
       </CenteredBodyCell>
@@ -202,32 +194,32 @@ function Row({striped, row}: any) {
         <StyledLink href={row[4]}>{row[3]}</StyledLink>
       </CenteredBodyCell>
       <CenteredBodyCell $striped={striped}>
-        {format(row[2], 'yyyy-MM-dd h:mm a')}
+        {format(row[2], "yyyy-MM-dd h:mm a")}
       </CenteredBodyCell>
       <CenteredBodyCell $striped={striped}>
         <div
           className={css({
-            textOverflow: 'ellipsis',
-            maxWidth: '200px',
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
+            textOverflow: "ellipsis",
+            maxWidth: "200px",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
           })}
         >
           {row[5]}
         </div>
         <StatefulPopover
           placement={PLACEMENT.bottomLeft}
-          content={({close}) => (
+          content={({ close }) => (
             <StatefulMenu
               items={[
-                {label: 'Item One'},
-                {label: 'Item Two'},
-                {label: 'Item Three'},
-                {label: 'Item Four'},
+                { label: "Item One" },
+                { label: "Item Two" },
+                { label: "Item Three" },
+                { label: "Item Four" },
               ]}
               onItemSelect={() => close()}
               overrides={{
-                List: {style: {height: '144px', width: '138px'}},
+                List: { style: { height: "144px", width: "138px" } },
               }}
             />
           )}
@@ -245,12 +237,12 @@ function Row({striped, row}: any) {
 export default function Example() {
   const [css] = useStyletron();
   return (
-    <div className={css({height: '600px'})}>
+    <div className={css({ height: "600px" })}>
       <StyledTable
         role="grid"
         $gridTemplateColumns="max-content min-content minmax(300px, max-content) max-content auto"
       >
-        <div role="row" className={css({display: 'contents'})}>
+        <div role="row" className={css({ display: "contents" })}>
           <StyledHeadCell>Job Name</StyledHeadCell>
           <StyledHeadCell>Status</StyledHeadCell>
           <StyledHeadCell>Pull Request</StyledHeadCell>

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Table} from 'baseui/table-semantic';
+import * as React from "react";
+import { Table } from "baseui/table-semantic";
 
 const SIZER = Array(100).fill(null);
 
@@ -16,13 +16,11 @@ const DATA = SIZER.map((_row, rowIndex) => {
 const overrides = {
   Root: {
     style: {
-      maxHeight: '300px',
+      maxHeight: "300px",
     },
   },
 };
 
 export default function Example() {
-  return (
-    <Table overrides={overrides} columns={COLUMNS} data={DATA} />
-  );
+  return <Table overrides={overrides} columns={COLUMNS} data={DATA} />;
 }

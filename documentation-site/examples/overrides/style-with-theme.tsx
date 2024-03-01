@@ -1,12 +1,12 @@
-import * as React from 'react';
-import {Button} from 'baseui/button';
+import * as React from "react";
+import { Button } from "baseui/button";
 
 export default function Example() {
   return (
     <Button
       overrides={{
         BaseButton: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             backgroundColor: $theme.colors.warning,
           }),
         },

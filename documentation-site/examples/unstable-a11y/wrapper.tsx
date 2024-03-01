@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import {useStyletron} from 'baseui';
-import {Unstable_A11y as A11y} from 'baseui/a11y';
-import {Button} from 'baseui/button';
-import {FormControl} from 'baseui/form-control';
-import {StatefulInput} from 'baseui/input';
+import { useStyletron } from "baseui";
+import { Unstable_A11y as A11y } from "baseui/a11y";
+import { Button } from "baseui/button";
+import { FormControl } from "baseui/form-control";
+import { StatefulInput } from "baseui/input";
 
 export default function Example() {
-  const [inputs, setInputs] = React.useState(['']);
+  const [inputs, setInputs] = React.useState([""]);
   const [css, theme] = useStyletron();
   return (
     <A11y>
@@ -16,10 +16,7 @@ export default function Example() {
           padding: theme.sizing.scale900,
         })}
       >
-        <Button
-          size="compact"
-          onClick={() => setInputs([...inputs, ''])}
-        >
+        <Button size="compact" onClick={() => setInputs([...inputs, ""])}>
           add input component
         </Button>
 
@@ -27,9 +24,7 @@ export default function Example() {
         <br />
 
         {/* eslint-disable-next-line jsx-a11y/aria-proptypes */}
-        <div aria-hidden={'asdf' as unknown as boolean}>
-          should violate
-        </div>
+        <div aria-hidden={"asdf" as unknown as boolean}>should violate</div>
         <br />
 
         <div>should not violate</div>
