@@ -12,11 +12,9 @@ import { lightTheme } from "react-view";
 import darkTheme from "./yard/dark-theme";
 import CodeBox from "./code-box";
 
-const Code = ({ children, language }) => {
+const Code = ({ children, language, content }) => {
   const [, theme] = useStyletron();
-  const {
-    props: { children: code = "" },
-  } = children;
+  const code = content || children.props.children;
   return (
     <CodeBox>
       <Highlight

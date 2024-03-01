@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from "react";
 import Code from "./code.jsx";
 
-const JSONViewer = (props) => <Code>{JSON.stringify(props.src, null, 2)}</Code>;
+const JSONViewer = (props) => (
+  <Code content={JSON.stringify(props.src, null, 2)} />
+);
 
 export default JSONViewer;
