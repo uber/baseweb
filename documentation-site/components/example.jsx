@@ -90,42 +90,57 @@ function Example(props) {
               const data = await response.json();
               const PACKAGE_JSON = {
                 name: "stackblitz-baseui-example",
-                version: "0.0.0",
                 private: true,
+                version: "0.0.0",
+                type: "module",
+                scripts: {
+                  dev: "vite",
+                  build: "tsc && vite build",
+                  preview: "vite preview",
+                },
                 dependencies: {
-                  "@types/react": "18.2.45",
-                  "@types/react-dom": "18.2.18",
                   baseui: data.version,
-                  react: "18.2.0",
-                  "react-dom": "18.2.0",
-                  "react-scripts": "latest",
+                  react: "^18.2.0",
+                  "react-dom": "^18.2.0",
                   "styletron-engine-monolithic": "^1.0.0",
                   "styletron-react": ">=6",
                 },
-                scripts: {
-                  start: "react-scripts start",
-                  build: "react-scripts build",
-                  test: "react-scripts test --env=jsdom",
-                  eject: "react-scripts eject",
+                devDependencies: {
+                  "@types/react": "^18.2.64",
+                  "@types/react-dom": "^18.2.21",
+                  "@vitejs/plugin-react": "^4.2.1",
+                  typescript: "^5.2.2",
+                  vite: "^5.1.6",
                 },
               };
               sdk.openProject(
                 {
-                  dependencies: PACKAGE_JSON.dependencies,
                   title: "BaseWeb Code Example",
                   description:
                     "Dynamically generated code example from baseweb.design",
-                  template: "create-react-app",
+                  template: "node",
                   files: {
-                    "index.html": `<div id="app"></div>`,
-                    "index.tsx": `import { StrictMode } from 'react';
+                    "index.html": `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BaseWeb + Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>`,
+                    "src/main.tsx": `import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Client as Styletron } from 'styletron-engine-monolithic';
 import { Provider as StyletronProvider } from 'styletron-react';
 import { LightTheme, BaseProvider } from 'baseui';
-import Example from './Example';
+import Example from './Example.tsx';
 
-const root = createRoot(document.getElementById('app'));
+const root = createRoot(document.getElementById('root')!);
 
 const engine = new Styletron();
 
@@ -139,15 +154,51 @@ root.render(
   </StrictMode>
 );
 `,
-                    "Example.tsx": code,
+                    "src/Example.tsx": code,
                     "tsconfig.json": `{
   "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
     "jsx": "react-jsx",
-    "lib": ["DOM", "ES2022"],
-    "moduleResolution": "node",
-    "target": "ES2022"
-  }
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }`,
+                    "tsconfig.node.json": `{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "strict": true
+  },
+  "include": ["vite.config.ts"]
+}`,
+                    "vite.config.ts": `import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})
+`,
                     "package.json": JSON.stringify(PACKAGE_JSON, null, 2),
                   },
                   settings: {
@@ -159,7 +210,7 @@ root.render(
                 },
                 {
                   newWindow: true,
-                  openFile: ["Example.tsx"],
+                  openFile: ["src/Example.tsx"],
                 }
               );
             }}
