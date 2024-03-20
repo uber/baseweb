@@ -61,7 +61,7 @@ const VersionSelector = () => {
       <Button
         size="compact"
         kind={KIND.tertiary}
-        endEnhancer={() => <ChevronDown size={20} />}
+        endEnhancer={() => <ChevronDown size={20} title="" />}
       >
         v{version}
       </Button>

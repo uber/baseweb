@@ -34,7 +34,9 @@ export default function Example() {
         />
       )}
     >
-      <Button endEnhancer={() => <ChevronDown size={24} />}>Open Menu</Button>
+      <Button endEnhancer={() => <ChevronDown size={24} title="" />}>
+        Open Menu
+      </Button>
     </StatefulPopover>
   );
 }

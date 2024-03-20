@@ -32,7 +32,7 @@ export default function Example() {
                     ref={ref}
                     artwork={props.item.icon}
                     artworkSize={ARTWORK_SIZES.LARGE}
-                    endEnhancer={() => <ChevronRight />}
+                    endEnhancer={() => <ChevronRight title="" />}
                   >
                     <ListItemLabel description={props.item.subtitle}>
                       {props.item.title}

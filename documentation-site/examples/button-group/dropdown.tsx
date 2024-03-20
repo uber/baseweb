@@ -27,7 +27,10 @@ const Dropdown = (props: { children: React.ReactNode }) => {
         <StatefulMenu items={items} onItemSelect={() => setIsOpen(false)} />
       }
     >
-      <Button {...props} endEnhancer={() => <TriangleDown size={24} />}>
+      <Button
+        {...props}
+        endEnhancer={() => <TriangleDown size={24} title="" />}
+      >
         {props.children}
       </Button>
     </Popover>

@@ -17,7 +17,7 @@ export default function Example() {
         onClick={() => console.log("click")}
         artwork={Check}
         artworkSize={ARTWORK_SIZES.MEDIUM}
-        endEnhancer={() => <ChevronRight />}
+        endEnhancer={() => <ChevronRight title="" />}
       >
         <ListItemLabel description="description">Label</ListItemLabel>
       </ListItem>

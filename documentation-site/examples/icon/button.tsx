@@ -9,11 +9,15 @@ export default function Example() {
   return (
     <div>
       <div className={css({ paddingBottom: theme.sizing.scale300 })}>
-        <Button startEnhancer={ChevronLeft}>Start Enhancer</Button>
+        <Button startEnhancer={() => <ChevronLeft title="" />}>
+          Start Enhancer
+        </Button>
       </div>
 
       <div className={css({ paddingBottom: theme.sizing.scale300 })}>
-        <Button endEnhancer={ChevronRight}>End Enhancer</Button>
+        <Button endEnhancer={() => <ChevronRight title="" />}>
+          End Enhancer
+        </Button>
       </div>
 
       <div>

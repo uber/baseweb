@@ -16,7 +16,7 @@ export default function Example() {
       />
       <br />
       <Input
-        endEnhancer={<Search size="18px" />}
+        endEnhancer={<Search size="18px" title="" />}
         placeholder="Input with an icon enhancer"
       />
     </React.Fragment>

@@ -40,7 +40,7 @@ export default function Example() {
         <ListItemLabel>Label</ListItemLabel>
       </ListItem>
 
-      <ListItem endEnhancer={() => <ChevronRight />}>
+      <ListItem endEnhancer={() => <ChevronRight title="" />}>
         <ListItemLabel>Label</ListItemLabel>
       </ListItem>
 

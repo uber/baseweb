@@ -6,9 +6,9 @@ import { Upload } from "baseui/icon";
 export default function Example() {
   return (
     <ButtonGroup>
-      <Button startEnhancer={() => <Upload size={24} />}>Label</Button>
-      <Button startEnhancer={() => <Upload size={24} />}>Label</Button>
-      <Button startEnhancer={() => <Upload size={24} />}>Label</Button>
+      <Button startEnhancer={() => <Upload size={24} title="" />}>Label</Button>
+      <Button startEnhancer={() => <Upload size={24} title="" />}>Label</Button>
+      <Button startEnhancer={() => <Upload size={24} title="" />}>Label</Button>
     </ButtonGroup>
   );
 }
