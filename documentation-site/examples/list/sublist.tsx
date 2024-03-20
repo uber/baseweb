@@ -20,13 +20,17 @@ export default function Example() {
         <ListItemLabel sublist>Label Two</ListItemLabel>
       </ListItem>
 
-      <ListItem artwork={Search} endEnhancer={() => <ChevronRight />} sublist>
+      <ListItem
+        artwork={Search}
+        endEnhancer={() => <ChevronRight title="" />}
+        sublist
+      >
         <ListItemLabel sublist>Label Three</ListItemLabel>
       </ListItem>
       <ListItem
         artwork={Search}
         artworkSize={ARTWORK_SIZES.SMALL}
-        endEnhancer={() => <ChevronRight />}
+        endEnhancer={() => <ChevronRight title="" />}
         sublist
       >
         <ListItemLabel sublist>Label Four</ListItemLabel>
@@ -35,7 +39,7 @@ export default function Example() {
         artwork={Search}
         // Medium is aliased to Small when sublist
         artworkSize={ARTWORK_SIZES.MEDIUM}
-        endEnhancer={() => <ChevronRight />}
+        endEnhancer={() => <ChevronRight title="" />}
         sublist
       >
         <ListItemLabel sublist>Label Five</ListItemLabel>

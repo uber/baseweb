@@ -23,7 +23,7 @@ export default function ActionButtonUsage() {
 
       <div className={css({paddingBottom: '24px'})}>
         <SnackbarElement
-          startEnhancer={({size}) => <Delete size={size} />}
+          startEnhancer={({size}) => <Delete size={size} title="" />}
           message="The address was removed from your saved places"
           actionMessage="Undo"
           actionOnClick={() => {
@@ -35,7 +35,7 @@ export default function ActionButtonUsage() {
 
       <div className={css({paddingBottom: '24px'})}>
         <SnackbarElement
-          startEnhancer={({size}) => <Check size={size} />}
+          startEnhancer={({size}) => <Check size={size} title="" />}
           message="The address was added to your saved places"
           actionMessage="See list"
           actionOnClick={() => {
@@ -47,7 +47,7 @@ export default function ActionButtonUsage() {
 
       <div className={css({paddingBottom: '24px'})}>
         <SnackbarElement
-          startEnhancer={({size}) => <DeleteAlt size={size} />}
+          startEnhancer={({size}) => <DeleteAlt size={size} title="" />}
           message="Your address wasn't added"
           actionMessage="Try again"
           actionOnClick={() => {

@@ -101,7 +101,10 @@ function PaginatedTable(props: { data: any[]; columns: any[] }) {
           )}
           placement={PLACEMENT.bottom}
         >
-          <Button kind={KIND.tertiary} endEnhancer={TriangleDown}>
+          <Button
+            kind={KIND.tertiary}
+            endEnhancer={() => <TriangleDown title="" />}
+          >
             {`${limit} Rows`}
           </Button>
         </StatefulPopover>
@@ -118,7 +121,7 @@ function PaginatedTable(props: { data: any[]; columns: any[] }) {
 
 const COLUMNS = Array.from({ length: 5 }, () => "Label");
 const DATA = Array.from({ length: 45 }, (_, i) =>
-  Array.from({ length: 5 }, () => `row: ${i + 1}`),
+  Array.from({ length: 5 }, () => `row: ${i + 1}`)
 );
 
 export default function Example() {

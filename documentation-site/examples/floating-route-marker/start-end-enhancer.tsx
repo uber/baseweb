@@ -7,8 +7,8 @@ export default function Example() {
   return (
     <FloatingRouteMarker
       label="Avoids tolls"
-      startEnhancer={({ size }) => <Search size={size} />}
-      endEnhancer={({ size }) => <ChevronRight size={size} />}
+      startEnhancer={({ size }) => <Search size={size} title="" />}
+      endEnhancer={({ size }) => <ChevronRight size={size} title="" />}
     />
   );
 }

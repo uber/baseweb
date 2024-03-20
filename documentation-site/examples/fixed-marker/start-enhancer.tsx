@@ -6,7 +6,9 @@ export default function Example() {
   return (
     <FixedMarker
       label="Cloud Center"
-      startEnhancer={({ size }: { size: number }) => <Upload size={size} />}
+      startEnhancer={({ size }: { size: number }) => (
+        <Upload size={size} title="" />
+      )}
     />
   );
 }

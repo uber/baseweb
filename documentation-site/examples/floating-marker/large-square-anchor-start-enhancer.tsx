@@ -10,7 +10,9 @@ export default function Example() {
     <FloatingMarker
       label="Uber HQ"
       anchorType={FLOATING_MARKER_ANCHOR_TYPES.square}
-      startEnhancer={({ size }: { size: number }) => <Search size={size} />}
+      startEnhancer={({ size }: { size: number }) => (
+        <Search size={size} title="" />
+      )}
       size={FLOATING_MARKER_SIZES.large}
     />
   );
