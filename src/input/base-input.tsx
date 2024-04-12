@@ -165,11 +165,18 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
   };
 
   getInputType() {
+    const [MaskToggleButton] = getOverrides(
+      // @ts-ignore
+      this.props.overrides.MaskToggleButton,
+      StyledMaskToggleButton
+    );
+
     // If the type prop is equal to "password" we allow the user to toggle between
     // masked and non masked text. Internally, we toggle between type "password"
-    // and "text".
+    // and "text". If MaskToggleButton is not provided, this indicates an opt-out
+    // of this behavior and the input will always be of type "password".
     if (this.props.type === 'password') {
-      return this.state.isMasked ? 'password' : 'text';
+      return (this.state.isMasked || !MaskToggleButton) ? 'password' : 'text';
     } else {
       return this.props.type;
     }
