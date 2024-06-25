@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Tag, KIND, VARIANT } from "baseui/tag";
+import { Tag, KIND, HIERARCHY } from "baseui/tag";
 
 export default function Example() {
   return (
     <React.Fragment>
       <Tag
         color="#4327F1"
-        variant={VARIANT.solid}
+        hierarchy={HIERARCHY.primary}
         kind={KIND.custom}
         onClick={() => {}}
       >
@@ -19,7 +19,7 @@ export default function Example() {
       <br />
       <Tag
         color="#4327F1"
-        variant={VARIANT.outlined}
+        hierarchy={HIERARCHY.secondary}
         kind={KIND.custom}
         onClick={() => {}}
       >

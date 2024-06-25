@@ -5,15 +5,11 @@ export default function Example() {
   return (
     <React.Fragment>
       <React.Fragment>
-        <Tag variant="solid">solid</Tag>
+        <Tag hierarchy="primary">primary</Tag>
       </React.Fragment>
 
       <React.Fragment>
-        <Tag variant="light">light</Tag>
-      </React.Fragment>
-
-      <React.Fragment>
-        <Tag variant="outlined">outlined</Tag>
+        <Tag hierarchy="secondary">secondary</Tag>
       </React.Fragment>
     </React.Fragment>
   );

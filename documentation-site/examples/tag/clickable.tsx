@@ -1,19 +1,19 @@
 import * as React from "react";
-import { Tag, VARIANT } from "baseui/tag";
+import { Tag, HIERARCHY } from "baseui/tag";
 
-const variants = Object.values(VARIANT);
+const hierarchies = Object.values(HIERARCHY);
 const onClick = (kind: string) => alert(`${kind} tag is clicked`);
 
 export default function Example() {
   return (
     <React.Fragment>
-      {variants.map((variant, index) => (
+      {hierarchies.map((hierarchy, index) => (
         <React.Fragment key={index}>
           <Tag
             onClick={() => {
               onClick("neutral");
             }}
-            variant={variant}
+            hierarchy={hierarchy}
             kind="neutral"
           >
             neutral
@@ -22,7 +22,7 @@ export default function Example() {
             onClick={() => {
               onClick("primary");
             }}
-            variant={variant}
+            hierarchy={hierarchy}
             kind="primary"
           >
             primary
@@ -31,7 +31,7 @@ export default function Example() {
             onClick={() => {
               onClick("accent");
             }}
-            variant={variant}
+            hierarchy={hierarchy}
             kind="accent"
           >
             accent
@@ -40,7 +40,7 @@ export default function Example() {
             onClick={() => {
               onClick("positive");
             }}
-            variant={variant}
+            hierarchy={hierarchy}
             kind="positive"
           >
             positive
@@ -49,7 +49,7 @@ export default function Example() {
             onClick={() => {
               onClick("warning");
             }}
-            variant={variant}
+            hierarchy={hierarchy}
             kind="warning"
           >
             warning
@@ -58,7 +58,7 @@ export default function Example() {
             onClick={() => {
               onClick("negative");
             }}
-            variant={variant}
+            hierarchy={hierarchy}
             kind="negative"
           >
             negative

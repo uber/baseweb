@@ -1,34 +1,34 @@
 import * as React from "react";
-import { Tag, VARIANT } from "baseui/tag";
+import { Tag, HIERARCHY } from "baseui/tag";
 
-const variants = Object.values(VARIANT);
+const hierarchies = Object.values(HIERARCHY);
 
 export default function Example() {
   return (
     <React.Fragment>
-      {variants.map((variant, index) => (
+      {hierarchies.map((hierarchy, index) => (
         <React.Fragment key={index}>
-          <Tag variant={variant} kind="neutral">
+          <Tag hierarchy={hierarchy} kind="neutral">
             neutral
           </Tag>
 
-          <Tag variant={variant} kind="primary">
+          <Tag hierarchy={hierarchy} kind="primary">
             primary
           </Tag>
 
-          <Tag variant={variant} kind="accent">
+          <Tag hierarchy={hierarchy} kind="accent">
             accent
           </Tag>
 
-          <Tag variant={variant} kind="positive">
+          <Tag hierarchy={hierarchy} kind="positive">
             positive
           </Tag>
 
-          <Tag variant={variant} kind="warning">
+          <Tag hierarchy={hierarchy} kind="warning">
             warning
           </Tag>
 
-          <Tag variant={variant} kind="negative">
+          <Tag hierarchy={hierarchy} kind="negative">
             negative
           </Tag>
           <br />
