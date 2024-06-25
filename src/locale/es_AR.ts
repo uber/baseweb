@@ -103,6 +103,12 @@ const es_AR: Locale = {
     cancel: 'Cancelar',
   },
 
+  fileuploaderbeta: {
+    added: 'Cargando...',
+    error: 'Error al Subir',
+    processed: 'Subida exitosa',
+  },
+
   menu: {
     noResultsMsg: 'Sin resultados',
     parentMenuItemAriaLabel:

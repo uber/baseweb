@@ -52,7 +52,9 @@ export const StyledTitle = styled<'div', { $isActive: boolean }>(
   'div',
   ({ $theme, $isActive }) => ({
     ...$theme.typography.LabelXSmall,
-    color: $isActive ? $theme.colors.contentPrimary : $theme.colors.contentTertiary,
+    color: $isActive
+      ? $theme.colors.bottomNavigationSelectedText
+      : $theme.colors.bottomNavigationText,
   })
 );
 StyledTitle.displayName = 'StyledTitle';

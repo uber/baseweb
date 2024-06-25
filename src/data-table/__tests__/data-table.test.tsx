@@ -125,4 +125,24 @@ describe('Data Table', () => {
     expect(Array.isArray(rows) && rows[0].data).toEqual([true, 'blue', 1, 'brittle']);
     expect(Array.isArray(rows) && rows[1].data).toEqual([true, 'green', 2, 'bright']);
   });
+
+  it('renders and filters by initialTextQuery', async () => {
+    const controlRef = React.createRef() as ControlRef;
+    const { container } = render(
+      <TestBaseProvider>
+        <div style={{ height: '800px', width: '900px' }}>
+          <StatefulDataTable
+            columns={COLUMNS}
+            rows={ROWS}
+            controlRef={controlRef}
+            initialTextQuery="orange"
+          />
+        </div>
+      </TestBaseProvider>
+    );
+
+    // should find only the two rows with orange from the mock ROWS
+    const rows = controlRef.current?.getRows();
+    expect(Array.isArray(rows) && rows.length).toBe(2);
+  });
 });

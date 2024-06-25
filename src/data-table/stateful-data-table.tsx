@@ -45,7 +45,7 @@ function useResizeObserver(
 function QueryInput(props) {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState(props.textQuery);
 
   React.useEffect(() => {
     const timeout = setTimeout(() => props.onChange(value), 250);
@@ -167,6 +167,7 @@ export function StatefulDataTable(props: StatefulDataTableProps) {
       initialSelectedRowIds={props.initialSelectedRowIds}
       initialSortIndex={props.initialSortIndex}
       initialSortDirection={props.initialSortDirection}
+      initialTextQuery={props.initialTextQuery}
       onFilterAdd={props.onFilterAdd}
       onFilterRemove={props.onFilterRemove}
       onIncludedRowsChange={props.onIncludedRowsChange}
@@ -209,7 +210,7 @@ export function StatefulDataTable(props: StatefulDataTableProps) {
                     paddingTop: theme.sizing.scale500,
                   })}
                 >
-                  {searchable && <QueryInput onChange={onTextQueryChange} />}
+                  {searchable && <QueryInput onChange={onTextQueryChange} textQuery={textQuery} />}
 
                   {filterable && (
                     <React.Fragment>

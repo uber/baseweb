@@ -111,6 +111,7 @@ export type StatefulDataTableProps = {
   initialSelectedRowIds?: Set<number | string>;
   initialSortIndex?: number;
   initialSortDirection?: SortDirections;
+  initialTextQuery?: string;
   loading?: boolean;
   loadingMessage?: string | React.ComponentType<{}>;
   onFilterAdd?: (

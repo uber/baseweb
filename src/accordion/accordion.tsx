@@ -85,17 +85,17 @@ export default class Accordion extends React.Component<AccordionProps, Accordion
       lastItem.current && lastItem.current.focus();
     }
     if (e.keyCode === ARROW_UP) {
-      e.preventDefault();
       const activeItemIdx = itemRefs.findIndex((item) => item.current === document.activeElement);
-      if (activeItemIdx > 0) {
+      if (activeItemIdx >= 0) {
+        e.preventDefault();
         const prevItem = itemRefs[activeItemIdx - 1];
         prevItem.current && prevItem.current.focus();
       }
     }
     if (e.keyCode === ARROW_DOWN) {
-      e.preventDefault();
       const activeItemIdx = itemRefs.findIndex((item) => item.current === document.activeElement);
-      if (activeItemIdx < itemRefs.length - 1) {
+      if (activeItemIdx >= 0 && activeItemIdx < itemRefs.length - 1) {
+        e.preventDefault();
         const nextItem = itemRefs[activeItemIdx + 1];
         nextItem.current && nextItem.current.focus();
       }

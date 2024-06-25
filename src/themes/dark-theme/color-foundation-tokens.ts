@@ -4,15 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { colors } from '../../tokens';
-import type { FoundationColorTokens } from '../types';
+import { primitiveDarkColors } from '../../tokens';
+import type { FoundationColors } from '../types';
 
 // color constants
-export const darkColorTokens: FoundationColorTokens = {
+export const foundationColors: FoundationColors = {
   // Primary Palette
-  primaryA: colors.gray200,
-  primaryB: colors.gray900,
-  primary: colors.white,
+  primaryA: primitiveDarkColors.gray900Dark,
+  primaryB: primitiveDarkColors.gray50Dark,
+  primary: '#FFFFFF',
   primary50: '#F6F6F6',
   primary100: '#EEEEEE',
   primary200: '#E2E2E2',
@@ -22,7 +22,7 @@ export const darkColorTokens: FoundationColorTokens = {
   primary600: '#545454',
   primary700: '#333333',
   // Accent Palette
-  accent: colors.blue400,
+  accent: primitiveDarkColors.blue400Dark,
   accent50: '#EFF3FE',
   accent100: '#D4E2FC',
   accent200: '#A0BFF8',
@@ -32,7 +32,7 @@ export const darkColorTokens: FoundationColorTokens = {
   accent600: '#174291',
   accent700: '#102C60',
   // Negative Palette
-  negative: colors.red500,
+  negative: primitiveDarkColors.red400Dark,
   negative50: '#FFEFED',
   negative100: '#FED7D2',
   negative200: '#F1998E',
@@ -42,7 +42,7 @@ export const darkColorTokens: FoundationColorTokens = {
   negative600: '#870F00',
   negative700: '#5A0A00',
   // Warning Palette
-  warning: colors.yellow500,
+  warning: primitiveDarkColors.yellow400Dark,
   warning50: '#FFFAF0',
   warning100: '#FFF2D9',
   warning200: '#FFE3AC',
@@ -52,7 +52,7 @@ export const darkColorTokens: FoundationColorTokens = {
   warning600: '#996F00',
   warning700: '#674D1B',
   // Positive Palette
-  positive: colors.green400,
+  positive: primitiveDarkColors.green400Dark,
   positive50: '#E6F2ED',
   positive100: '#ADDEC9',
   positive200: '#66D19E',
@@ -75,9 +75,6 @@ export const darkColorTokens: FoundationColorTokens = {
   mono800: '#141414',
   mono900: '#111111',
   mono1000: '#000000',
-  // Rating Palette,
-  ratingInactiveFill: colors.gray500,
-  ratingStroke: colors.gray700,
 };
 
-export default darkColorTokens;
+export default foundationColors;

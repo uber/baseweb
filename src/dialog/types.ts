@@ -12,6 +12,7 @@ import type { SIZE, PLACEMENT } from './constants';
 
 export type DialogOverrides = {
   Root?: Override;
+  Overlay?: Override;
   ScrollContainer?: Override;
   Heading?: Override;
   Body?: Override;
@@ -43,4 +44,6 @@ export type DialogProps = {
   /** Determines where on the screen the dialog appears when open */
   placement?: Placement;
   size?: Size;
+  /** If true, focus will shift to the first interactive element within the modal */
+  autoFocus?: boolean;
 };

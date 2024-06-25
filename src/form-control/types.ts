@@ -21,6 +21,10 @@ export type FormControlOverrides = {
   LabelContainer?: Override;
   /** Customizes the caption element. */
   Caption?: Override;
+  /** Customizes the caption message element. */
+  CaptionMessage?: Override;
+  /** Customizes the caption icon element. */
+  CaptionIcon?: Override;
   /** Customizes the container element. */
   ControlContainer?: Override;
 };

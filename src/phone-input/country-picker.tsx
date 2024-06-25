@@ -60,16 +60,6 @@ export default function CountryPicker(props: CountrySelectProps) {
           // @ts-ignore
           [padEndDir]: sizeToRightPadding[props.$size || SIZE.default],
         };
-        // do not add positive and error color borders when not focused
-        if (!props.$isFocused && !props.$isPseudoFocused) {
-          return {
-            ...styleOverride,
-            borderLeftColor: 'transparent',
-            borderRightColor: 'transparent',
-            borderTopColor: 'transparent',
-            borderBottomColor: 'transparent',
-          };
-        }
         return styleOverride;
       },
     },

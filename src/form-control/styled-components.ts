@@ -79,10 +79,30 @@ export const Caption = styled<'div', StyleProps>('div', (props) => {
     marginRight: 0,
     marginBottom: sizing.scale300,
     marginLeft: 0,
+    display: 'flex',
   };
 });
 
 Caption.displayName = 'Caption';
+
+export const CaptionMessage = styled<'div', StyleProps>('div', {
+  fontFamily: 'inherit',
+  fontSize: 'inherit',
+  fontWeight: 'inherit',
+  lineHeight: 'inherit',
+  flexGrow: 1,
+});
+
+CaptionMessage.displayName = 'CaptionMessage';
+
+export const CaptionIcon = styled<'div', StyleProps>('div', ({ $theme }) => ({
+  display: 'flex',
+  paddingTop: $theme.sizing.scale100,
+  paddingRight: $theme.sizing.scale100,
+  flexShrink: 0,
+}));
+
+CaptionIcon.displayName = 'CaptionIcon';
 
 export const ControlContainer = styled<'div', StyleProps>('div', (props) => {
   const {

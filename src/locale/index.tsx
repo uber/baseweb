@@ -17,6 +17,7 @@ import type { DatepickerLocale as DatepickerLocaleAlias } from '../datepicker';
 import type { DataTableLocale as DataTableLocaleAlias } from '../data-table';
 import type { ButtonGroupLocale as ButtonGroupLocaleAlias } from '../button-group';
 import type { FileUploaderLocale as FileUploaderLocaleAlias } from '../file-uploader';
+import type { FileUploaderBetaLocale as FileUploaderBetaLocaleAlias } from '../file-uploader-beta';
 import type { MenuLocale as MenuLocaleAlias } from '../menu';
 import type { ModalLocale as ModalLocaleAlias } from '../modal';
 import type { DrawerLocale as DrawerLocaleAlias } from '../drawer';
@@ -39,6 +40,7 @@ const LocaleProvider: React.FC<LocaleProviderProps> = (props) => {
   return (
     // this is poorly documented but specifying true enforces that the object is deeply extended
     // https://www.npmjs.com/package/just-extend
+    // @ts-expect-error todo(ts-migration) TS2740 Type '{}' is missing the following properties from type 'Locale': accordion, breadcrumbs, datepicker, datatable, and 8 more.
     <LocaleContext.Provider value={extend(true, {}, en_US, parentLocale, locale)}>
       {children}
     </LocaleContext.Provider>
@@ -61,6 +63,8 @@ export type DataTableLocale = DataTableLocaleAlias;
 export type ButtonGroupLocale = ButtonGroupLocaleAlias;
 /** @deprecated inded use type exported from the component itself */
 export type FileUploaderLocale = FileUploaderLocaleAlias;
+/** @deprecated inded use type exported from the component itself */
+export type FileUploaderBetaLocale = FileUploaderBetaLocaleAlias;
 /** @deprecated inded use type exported from the component itself */
 export type MenuLocale = MenuLocaleAlias;
 /** @deprecated inded use type exported from the component itself */

@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import { render, fireEvent, getByText } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 
 import { Button } from '..';
 
@@ -95,5 +96,74 @@ describe('Button Component', () => {
         </Button>
       )
     ).not.toThrow();
+  });
+});
+
+describe('Link Button', () => {
+  test('renders as an anchor tag with href', () => {
+    const { container } = render(<Button href="https://example.com">content</Button>);
+    const anchor = container.querySelector('a');
+    expect(anchor).not.toBeNull();
+    expect(anchor).toHaveAttribute('href', 'https://example.com');
+  });
+
+  test('click event on anchor tag', () => {
+    const onClick = jest.fn();
+    const { container } = render(
+      <Button href="https://example.com" onClick={onClick}>
+        content
+      </Button>
+    );
+    const anchor = container.querySelector('a');
+    if (anchor) fireEvent.click(anchor);
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  test('renders as an anchor tag with href and target', () => {
+    const { container } = render(
+      <Button href="https://example.com" target="_blank">
+        content
+      </Button>
+    );
+    const anchor = container.querySelector('a');
+    expect(anchor).not.toBeNull();
+    expect(anchor).toHaveAttribute('href', 'https://example.com');
+    expect(anchor).toHaveAttribute('target', '_blank');
+  });
+
+  test('renders with href, target and other props', () => {
+    const { container } = render(
+      <Button href="https://example.com" target="_blank" startEnhancer="start" endEnhancer="end">
+        content
+      </Button>
+    );
+    const anchor = container.querySelector('a');
+    expect(anchor).toHaveAttribute('href', 'https://example.com');
+    expect(anchor).toHaveAttribute('target', '_blank');
+    getByText(container, 'start');
+    getByText(container, 'end');
+  });
+
+  test('onClick overrides default href behavior', () => {
+    const onClick = jest.fn((event) => event.preventDefault());
+    const { container } = render(
+      <Button href="https://example.com" onClick={onClick}>
+        content
+      </Button>
+    );
+    const anchor = container.querySelector('a');
+    if (anchor) fireEvent.click(anchor);
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  test('renders only an anchor tag', () => {
+    const { container } = render(<Button href="https://example.com">content</Button>);
+    const allElements = container.firstChild?.childNodes;
+    expect(allElements).toHaveLength(1);
+    const anchor = container.querySelector('a');
+    expect(anchor).not.toBeNull();
+    expect(anchor?.childNodes).toHaveLength(1);
+    expect(anchor?.firstChild?.nodeType).toBe(Node.TEXT_NODE);
+    expect(anchor?.textContent).toBe('content');
   });
 });

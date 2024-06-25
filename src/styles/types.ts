@@ -8,9 +8,9 @@ import type { ComponentType } from 'react';
 import type { IconProps } from '../icon';
 
 import type {
-  FoundationColorTokens,
-  ComponentColorTokens,
-  SemanticColorTokens,
+  FoundationColors,
+  ComponentColors,
+  SemanticColors,
   Animation,
   Breakpoints,
   Border,
@@ -23,7 +23,7 @@ import type {
   Typography,
   ZIndex,
 } from '../themes';
-import type { PrimitiveColorTokens } from '../tokens';
+import type { PrimitiveColors } from '../tokens';
 
 export type {
   Animation,
@@ -39,10 +39,10 @@ export type {
   ZIndex,
 };
 
-export type ColorTokens = PrimitiveColorTokens &
-  FoundationColorTokens &
-  ComponentColorTokens &
-  SemanticColorTokens & { [key in string]: string };
+export type ColorTokens = PrimitiveColors &
+  FoundationColors &
+  ComponentColors &
+  SemanticColors & { [key in string]: string };
 
 export type Theme = {
   name: string;
@@ -82,6 +82,7 @@ export type Icon = {
   ChevronLeftSmall?: ComponentType<IconProps> | ForwardedSVG;
   ChevronRight?: ComponentType<IconProps> | ForwardedSVG;
   ChevronRightSmall?: ComponentType<IconProps> | ForwardedSVG;
+  CircleCheckFilled?: ComponentType<IconProps> | ForwardedSVG;
   DeleteAlt?: ComponentType<IconProps> | ForwardedSVG;
   Delete?: ComponentType<IconProps> | ForwardedSVG;
   Filter?: ComponentType<IconProps> | ForwardedSVG;
@@ -89,10 +90,12 @@ export type Icon = {
   Hide?: ComponentType<IconProps> | ForwardedSVG;
   Menu?: ComponentType<IconProps> | ForwardedSVG;
   Overflow?: ComponentType<IconProps> | ForwardedSVG;
+  PaperclipFilled?: ComponentType<IconProps> | ForwardedSVG;
   Plus?: ComponentType<IconProps> | ForwardedSVG;
   Search?: ComponentType<IconProps> | ForwardedSVG;
   Show?: ComponentType<IconProps> | ForwardedSVG;
   Spinner?: ComponentType<IconProps> | ForwardedSVG;
+  TrashCanFilled?: ComponentType<IconProps> | ForwardedSVG;
   TriangleDown?: ComponentType<IconProps> | ForwardedSVG;
   TriangleLeft?: ComponentType<IconProps> | ForwardedSVG;
   TriangleRight?: ComponentType<IconProps> | ForwardedSVG;

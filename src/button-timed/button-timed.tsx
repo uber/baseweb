@@ -17,6 +17,7 @@ const ButtonTimed = (props: ButtonTimedProps) => {
     paused = false,
     onClick: onClickProp,
     disabled,
+    kind = KIND.primary,
     children,
     overrides = {},
     ...restProps
@@ -61,7 +62,7 @@ const ButtonTimed = (props: ButtonTimedProps) => {
 
   const buttonMergedOverrides = mergeOverrides(
     {
-      BaseButton: {
+      Root: {
         component: StyledBaseButtonTimed,
         props: {
           $initialTime: initialTime,
@@ -75,9 +76,7 @@ const ButtonTimed = (props: ButtonTimedProps) => {
       },
     },
     {
-      Root: buttonOverrides.Root || {},
-      // @ts-ignore
-      BaseButton: buttonOverrides.BaseButton,
+      Root: buttonOverrides.Root || buttonOverrides.BaseButton || {},
       StartEnhancer: buttonOverrides.StartEnhancer || {},
       EndEnhancer: buttonOverrides.EndEnhancer || {},
       LoadingSpinnerContainer: buttonOverrides.LoadingSpinnerContainer || {},
@@ -91,7 +90,7 @@ const ButtonTimed = (props: ButtonTimedProps) => {
       overrides={buttonMergedOverrides}
       onClick={onClick}
       size={SIZE.large}
-      kind={KIND.primary}
+      kind={kind}
       shape={SHAPE.default}
       disabled={disabled || timeRemaining === 0}
     >

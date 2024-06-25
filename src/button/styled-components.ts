@@ -4,68 +4,95 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled } from '../styles';
+import type { StyleObject } from 'styletron-standard';
+
+import { styled, type Theme } from '../styles';
 import { KIND, SIZE, SHAPE } from './constants';
 import type { SharedStyleProps } from './types';
 import type { Font } from '../themes/types';
 
-export const BaseButton = styled<'button', SharedStyleProps>(
-  'button',
-  ({
-    $theme,
-    $size,
-    $colors,
-    $kind,
-    $shape,
-    $isLoading,
-    $isSelected,
-    $disabled,
-    $isFocusVisible,
-  }) => ({
-    display: 'inline-flex',
-    // need to maintain button width while showing loading spinner
-    flexDirection: $isLoading ? 'column' : 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderLeftWidth: 0,
-    borderTopWidth: 0,
-    borderRightWidth: 0,
-    borderBottomWidth: 0,
-    borderLeftStyle: 'none',
-    borderTopStyle: 'none',
-    borderRightStyle: 'none',
-    borderBottomStyle: 'none',
-    outline: 'none',
-    boxShadow: $isFocusVisible ? `inset 0 0 0 3px ${$theme.colors.borderAccent}` : 'none',
-    textDecoration: 'none',
-    WebkitAppearance: 'none',
-    transitionProperty: 'background',
-    transitionDuration: $theme.animation.timing200,
-    transitionTimingFunction: $theme.animation.linearCurve,
-    cursor: 'pointer',
-    ':disabled': {
-      cursor: 'not-allowed',
-      ...getDisabledStyles({ $theme, $kind, $disabled, $isSelected }),
-    },
-    marginLeft: 0,
-    marginTop: 0,
-    marginRight: 0,
-    marginBottom: 0,
-    ...getFontStyles({ $theme, $size }),
-    ...getBorderRadiiStyles({ $theme, $size, $shape }),
-    ...getPaddingStyles({ $theme, $size, $shape }),
-    ...getColorStyles({
+// note: Tried doing a standard override of the styled function, but it didn't work
+// it seems like there is some bug when override $as
+type InternalStyleFn = (props: { $theme: Theme } & SharedStyleProps) => StyleObject;
+const createStyledBaseButton = <T extends 'button' | 'a'>(type: T, styleFn?: InternalStyleFn) =>
+  styled<T, SharedStyleProps>(
+    type,
+    ({
       $theme,
+      $size,
       $colors,
       $kind,
+      $shape,
       $isLoading,
       $isSelected,
       $disabled,
-    }),
-    ...getShapeStyles({ $shape, $size }),
-  })
-);
+      $isFocusVisible,
+      $as,
+    }) => ({
+      display: 'inline-flex',
+      // need to maintain button width while showing loading spinner
+      flexDirection: $isLoading ? 'column' : 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderLeftWidth: 0,
+      borderTopWidth: 0,
+      borderRightWidth: 0,
+      borderBottomWidth: 0,
+      borderLeftStyle: 'none',
+      borderTopStyle: 'none',
+      borderRightStyle: 'none',
+      borderBottomStyle: 'none',
+      outline: 'none',
+      boxShadow: $isFocusVisible ? `inset 0 0 0 3px ${$theme.colors.borderAccent}` : 'none',
+      textDecoration: 'none',
+      WebkitAppearance: 'none',
+      transitionProperty: 'background',
+      transitionDuration: $theme.animation.timing200,
+      transitionTimingFunction: $theme.animation.linearCurve,
+      cursor: 'pointer',
+      ':disabled': {
+        cursor: 'not-allowed',
+        ...getDisabledStyles({ $theme, $kind, $disabled, $isSelected }),
+      },
+      marginLeft: 0,
+      marginTop: 0,
+      marginRight: 0,
+      marginBottom: 0,
+      ...getFontStyles({ $theme, $size }),
+      ...getBorderRadiiStyles({ $theme, $size, $shape }),
+      ...getPaddingStyles({ $theme, $size, $shape }),
+      ...getColorStyles({
+        $theme,
+        $colors,
+        $kind,
+        $isLoading,
+        $isSelected,
+        $disabled,
+      }),
+      ...getAnchorDisabledStyles({ $as, $theme, $kind, $isSelected, $disabled }),
+      ...getShapeStyles({ $shape, $size }),
+      ...styleFn?.({
+        $theme,
+        $size,
+        $colors,
+        $kind,
+        $shape,
+        $isLoading,
+        $isSelected,
+        $disabled,
+        $isFocusVisible,
+        $as,
+      }),
+    })
+  );
 
+export const BaseButton = createStyledBaseButton('button');
+BaseButton.displayName = 'BaseButton';
+export const AnchorBaseButton = createStyledBaseButton(
+  'a',
+  ({ $theme, $kind, $isSelected, $disabled }) =>
+    getAnchorDisabledStyles({ $as: 'a', $theme, $kind, $isSelected, $disabled })
+);
 BaseButton.displayName = 'BaseButton';
 
 export const EndEnhancer = styled<'div', SharedStyleProps>('div', ({ $theme }) => {
@@ -235,6 +262,18 @@ function getFontStyles({ $theme, $size }): Font {
     default:
       return $theme.typography.font350;
   }
+}
+
+function getAnchorDisabledStyles({ $as, $theme, $kind, $isSelected, $disabled }) {
+  if (!($as === 'a' && $disabled)) {
+    return {};
+  }
+
+  return {
+    cursor: 'not-allowed',
+    pointerEvents: 'none',
+    ...getDisabledStyles({ $theme, $kind, $isSelected, $disabled }),
+  };
 }
 
 // @ts-ignore

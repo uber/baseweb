@@ -49,7 +49,7 @@ const MobileNavMenuItem = React.forwardRef<HTMLLIElement, any>((props, ref) => {
     // Replace with a user menu item renderer
     return (
       <UserMenuProfileListItem {...restProps} {...userMenuProfileListItemProps} ref={ref}>
-        <UserProfileTile {...item.item} />
+        <UserProfileTile {...item.item} overrides={overrides} />
       </UserMenuProfileListItem>
     );
   }

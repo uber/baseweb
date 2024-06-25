@@ -9,6 +9,8 @@ import type * as React from 'react';
 import type { KIND, SIZE, SHAPE } from './constants';
 import type { Override } from '../helpers/overrides';
 
+type AnchorProps = React.HTMLProps<HTMLAnchorElement>;
+
 export type ButtonOverrides = {
   Root?: Override;
   BaseButton?: Override;
@@ -23,7 +25,7 @@ export type CustomColors = {
   color: string;
 };
 
-export type ButtonProps = {
+interface BaseButtonProps {
   children?: React.ReactNode;
   colors?: CustomColors;
   disabled?: boolean;
@@ -46,9 +48,21 @@ export type ButtonProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   startEnhancer?: React.ReactNode | React.ComponentType<any>;
   type?: 'submit' | 'reset' | 'button';
-};
+}
 
-export type SharedStyleProps = {
+export interface LinkButtonProps {
+  /** Convert button to <a> tag allowing for opening links directly.
+   *
+   * Use this over window.open as it handles accessibility better.
+   */
+  href?: string | null;
+  /* Controls target of href */
+  target?: string;
+}
+
+export interface ButtonProps extends BaseButtonProps, LinkButtonProps {}
+
+export type SharedStyleProps<AS = React.ComponentType<any> | keyof JSX.IntrinsicElements> = {
   $colors?: CustomColors;
   $kind?: keyof typeof KIND;
   $isSelected?: boolean;
@@ -57,4 +71,5 @@ export type SharedStyleProps = {
   $isLoading?: boolean;
   $disabled?: boolean;
   $isFocusVisible?: boolean;
+  $as?: AS;
 };

@@ -5,97 +5,90 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import type {
-  FoundationColorTokens,
-  CoreSemanticColorTokens,
-  CoreExtensionSemanticColorTokens,
-  DeprecatedSemanticColorTokens,
-  SemanticColorTokens,
+  FoundationColors,
+  CoreSemanticColors,
+  CoreExtensionSemanticColors,
+  DeprecatedSemanticColors,
+  SemanticColors,
 } from '../types';
-import defaultFoundationColorTokens from './color-tokens';
+import defaultFoundationColors from './color-foundation-tokens';
 import { hexToRgb as hexToRgba } from '../../styles/util';
-import colors from '../../tokens/colors';
+import { primitiveLightColors, primitiveDarkColors } from '../../tokens/color-primitive-tokens';
 
-export default (
-  // themePrimitives or foundation colors
-  foundation: FoundationColorTokens = defaultFoundationColorTokens
-): SemanticColorTokens => {
-  const core: CoreSemanticColorTokens = {
+export default (foundation: FoundationColors = defaultFoundationColors): SemanticColors => {
+  const core: CoreSemanticColors = {
     // Background
     backgroundPrimary: foundation.primaryB,
-    backgroundSecondary: colors.gray800,
-    backgroundTertiary: colors.gray700,
-    backgroundInversePrimary: foundation.primaryA,
-    backgroundInverseSecondary: colors.gray300,
+    backgroundSecondary: primitiveDarkColors.gray100Dark,
+    backgroundTertiary: primitiveDarkColors.gray200Dark,
+    backgroundInversePrimary: primitiveDarkColors.gray800Dark,
+    backgroundInverseSecondary: primitiveDarkColors.gray700Dark,
 
     // Content
-    contentPrimary: colors.white,
-    contentSecondary: colors.gray300,
-    contentTertiary: colors.gray400,
-    contentInversePrimary: colors.black,
-    contentInverseSecondary: colors.gray700,
-    contentInverseTertiary: colors.gray600,
+    contentPrimary: foundation.primaryA,
+    contentSecondary: primitiveDarkColors.gray800Dark,
+    contentTertiary: primitiveDarkColors.gray700Dark,
+    contentInversePrimary: primitiveDarkColors.black,
+    contentInverseSecondary: primitiveDarkColors.gray200Dark,
+    contentInverseTertiary: primitiveDarkColors.gray300Dark,
 
     // Border
-    borderOpaque: colors.gray700,
-    // @ts-ignore
-    borderTransparent: hexToRgba(foundation.primaryA, '0.08'),
+    borderOpaque: primitiveDarkColors.gray100Dark,
+    borderTransparent: hexToRgba(foundation.primaryA, '0.08') || '',
     borderSelected: foundation.primaryA,
-    borderInverseOpaque: colors.gray400,
-    // @ts-ignore
-    borderInverseTransparent: hexToRgba(foundation.primaryB, '0.2'),
+    borderInverseOpaque: primitiveDarkColors.gray300Dark,
+    borderInverseTransparent: hexToRgba(foundation.primaryB, '0.2') || '',
     borderInverseSelected: foundation.primaryB,
   };
 
-  const coreExtensions: CoreExtensionSemanticColorTokens = {
+  const coreExtensions: CoreExtensionSemanticColors = {
     // Backgrounds
-    backgroundStateDisabled: colors.gray800,
-    // @ts-ignore
-    backgroundOverlay: hexToRgba(colors.black, '0.7'),
-    // @ts-ignore
-    backgroundOverlayArt: hexToRgba(colors.black, '0.16'),
+    backgroundStateDisabled: primitiveDarkColors.gray100Dark,
+    backgroundOverlay: hexToRgba(primitiveDarkColors.black, '0.7') || '',
+    backgroundOverlayArt: hexToRgba(primitiveDarkColors.black, '0.16') || '',
     backgroundAccent: foundation.accent,
     backgroundNegative: foundation.negative,
     backgroundWarning: foundation.warning,
-    backgroundPositive: colors.green500,
-    backgroundAccentLight: colors.blue700,
-    backgroundPositiveLight: colors.green700,
-    backgroundNegativeLight: colors.red700,
-    backgroundWarningLight: colors.yellow700,
-    backgroundAlwaysDark: colors.gray900,
-    backgroundAlwaysLight: colors.gray100,
+    backgroundPositive: foundation.positive,
+    backgroundAccentLight: primitiveDarkColors.blue100Dark,
+    backgroundPositiveLight: primitiveDarkColors.green100Dark,
+    backgroundNegativeLight: primitiveDarkColors.red100Dark,
+    backgroundWarningLight: primitiveDarkColors.yellow100Dark,
+    backgroundAlwaysDark: primitiveDarkColors.gray100Dark,
+    backgroundAlwaysLight: primitiveDarkColors.gray900Dark,
 
     // Content
-    contentStateDisabled: colors.gray600,
-    contentAccent: colors.blue300,
-    contentOnColor: colors.white,
-    contentOnColorInverse: colors.black,
-    contentNegative: colors.red300,
-    contentWarning: colors.yellow300,
-    contentPositive: colors.green300,
+    contentStateDisabled: primitiveDarkColors.gray400Dark,
+    contentAccent: primitiveDarkColors.blue600Dark,
+    contentOnColor: primitiveDarkColors.gray900Dark,
+    contentOnColorInverse: primitiveDarkColors.black,
+    contentNegative: primitiveDarkColors.red600Dark,
+    contentWarning: primitiveDarkColors.yellow600Dark,
+    contentPositive: primitiveDarkColors.green600Dark,
 
     // Border
-    borderStateDisabled: colors.gray800,
-    borderAccent: colors.blue400,
-    borderAccentLight: colors.blue500,
-    borderNegative: colors.red500,
-    borderWarning: colors.yellow500,
-    borderPositive: colors.green500,
-    borderNegativeLight: colors.red200,
-    borderWarningLight: colors.yellow200,
-    borderPositiveLight: colors.green200,
+    borderStateDisabled: primitiveDarkColors.gray100Dark,
+    borderAccent: primitiveDarkColors.blue500Dark,
+    borderAccentLight: primitiveDarkColors.blue400Dark,
+    borderNegative: primitiveDarkColors.red500Dark,
+    borderNegativeLight: primitiveDarkColors.red400Dark,
+    borderWarning: primitiveDarkColors.yellow500Dark,
+    borderWarningLight: primitiveDarkColors.yellow400Dark,
+    borderPositive: primitiveDarkColors.green500Dark,
+    borderPositiveLight: primitiveDarkColors.green400Dark,
 
     // Programs
-    safety: colors.blue400,
-    eatsGreen400: colors.green400,
-    freightBlue400: colors.cobalt400,
-    jumpRed400: colors.red400,
-    rewardsTier1: colors.blue400,
-    rewardsTier2: colors.yellow400,
-    rewardsTier3: colors.platinum400,
-    rewardsTier4: colors.gray200,
-    membership: colors.yellow600,
+    safety: primitiveLightColors.blue600,
+    eatsGreen400: primitiveLightColors.green600,
+    freightBlue400: primitiveLightColors.cobalt400,
+    rewardsTier1: primitiveLightColors.blue600,
+    rewardsTier2: primitiveLightColors.yellow300,
+    rewardsTier3: primitiveLightColors.platinum400,
+    rewardsTier4: primitiveLightColors.black,
+    membership: primitiveLightColors.yellow600,
   };
-  const deprecated: DeprecatedSemanticColorTokens = {
+  const deprecated: DeprecatedSemanticColors = {
+    jumpRed400: primitiveLightColors.red600,
     backgroundOverlayLight: coreExtensions.backgroundOverlay,
     backgroundOverlayDark: coreExtensions.backgroundOverlay,
     backgroundLightAccent: coreExtensions.backgroundAccentLight,
