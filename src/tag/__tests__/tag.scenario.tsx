@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* global alert */
 import * as React from 'react';
 import { useStyletron } from '../../styles';
-import { Tag, KIND, VARIANT } from '..';
+import { Tag, KIND, HIERARCHY } from '..';
 
 const customColor = '#26c6da';
 
@@ -28,7 +28,7 @@ export function Scenario() {
                 kind={kind}
                 onClick={() => alert('click')}
                 closeable={false}
-                variant={VARIANT.solid}
+                hierarchy={HIERARCHY.primary}
               >
                 Label
               </Tag>
@@ -42,7 +42,7 @@ export function Scenario() {
               </Tag>
               <Tag
                 kind={kind}
-                variant={VARIANT.solid}
+                hierarchy={HIERARCHY.primary}
                 onClick={() => alert('click')}
                 onActionClick={() => alert('action')}
               >
@@ -77,7 +77,7 @@ export function Scenario() {
               kind={kind}
               onClick={() => alert('click')}
               closeable={false}
-              variant={VARIANT.solid}
+              hierarchy={HIERARCHY.primary}
             >
               Label
             </Tag>
@@ -91,7 +91,7 @@ export function Scenario() {
             </Tag>
             <Tag
               kind={kind}
-              variant={VARIANT.solid}
+              hierarchy={HIERARCHY.primary}
               onClick={() => alert('click')}
               onActionClick={() => alert('action')}
             >
@@ -121,7 +121,7 @@ export function Scenario() {
             color={customColor}
             onClick={() => alert('click')}
             closeable={false}
-            variant={VARIANT.solid}
+            hierarchy={HIERARCHY.primary}
           >
             Label
           </Tag>
@@ -141,7 +141,7 @@ export function Scenario() {
           <Tag
             kind={KIND.custom}
             color={customColor}
-            variant={VARIANT.solid}
+            hierarchy={HIERARCHY.primary}
             onClick={() => alert('click')}
             onActionClick={() => alert('action')}
           >

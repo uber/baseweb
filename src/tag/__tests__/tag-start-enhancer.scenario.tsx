@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { Upload } from '../../icon';
 import { useStyletron } from '../../styles';
-import { Tag, KIND, SIZE, VARIANT } from '..';
+import { Tag, KIND, SIZE, HIERARCHY } from '..';
 
 const customColor = '#26c6da';
 
@@ -48,7 +48,7 @@ export function Scenario() {
                 kind={kind}
                 onClick={() => alert('click')}
                 closeable={false}
-                variant={VARIANT.solid}
+                hierarchy={HIERARCHY.primary}
               >
                 Label
               </Tag>
@@ -68,7 +68,7 @@ export function Scenario() {
               <Tag
                 startEnhancer={() => <Upload />}
                 kind={kind}
-                variant={VARIANT.solid}
+                hierarchy={HIERARCHY.primary}
                 onClick={() => alert('click')}
                 onActionClick={() => alert('action')}
               >
@@ -114,7 +114,7 @@ export function Scenario() {
               kind={kind}
               onClick={() => alert('click')}
               closeable={false}
-              variant={VARIANT.solid}
+              hierarchy={HIERARCHY.primary}
             >
               Label
             </Tag>
@@ -134,7 +134,7 @@ export function Scenario() {
             <Tag
               startEnhancer={() => <Upload />}
               kind={kind}
-              variant={VARIANT.solid}
+              hierarchy={HIERARCHY.primary}
               onClick={() => alert('click')}
               onActionClick={() => alert('action')}
             >
@@ -171,7 +171,7 @@ export function Scenario() {
             color={customColor}
             onClick={() => alert('click')}
             closeable={false}
-            variant={VARIANT.solid}
+            hierarchy={HIERARCHY.primary}
           >
             Label
           </Tag>
@@ -199,7 +199,7 @@ export function Scenario() {
             startEnhancer={() => <Upload />}
             kind={KIND.custom}
             color={customColor}
-            variant={VARIANT.solid}
+            hierarchy={HIERARCHY.primary}
             onClick={() => alert('click')}
             onActionClick={() => alert('action')}
           >
