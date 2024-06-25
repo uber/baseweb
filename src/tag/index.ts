@@ -11,5 +11,5 @@ export {
   Action as StyledAction,
   Text as StyledText,
 } from './styled-components';
-export { KIND, VARIANT, SIZE } from './constants';
+export { KIND, HIERARCHY, SIZE } from './constants';
 export * from './types';

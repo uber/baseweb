@@ -29,7 +29,9 @@ export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
   );
   const [sortDirection, setSortDirection] = React.useState(props.initialSortDirection);
   const [filters, setFilters] = React.useState(props.initialFilters || new Map());
-  const [textQuery, setTextQuery] = React.useState('');
+  const [textQuery, setTextQuery] = React.useState(
+    typeof props.initialTextQuery === 'string' ? props.initialTextQuery : ''
+  );
   const [selectedRowIds, setSelectedRowIds] = React.useState<Set<string | number>>(
     props.initialSelectedRowIds || new Set()
   );

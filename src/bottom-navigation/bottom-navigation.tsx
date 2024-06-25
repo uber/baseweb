@@ -118,7 +118,7 @@ const BottomNavigation = ({
               return (
                 <ListItem
                   artwork={(props) => <Icon {...props} />}
-                  endEnhancer={() => <ChevronRight />}
+                  endEnhancer={() => <ChevronRight title="" />}
                   onClick={() => {
                     activeKey === idx && !displayOverflow
                       ? scrollToTop(idx)

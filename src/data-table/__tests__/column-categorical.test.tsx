@@ -183,7 +183,7 @@ describe('categorical column', () => {
     expect(checkboxes.length).toBe(2);
   });
 
-  it('quick actions hide when search query present', () => {
+  it('selects all filtered options when search query is present', () => {
     const column = CategoricalColumn({
       title: 'column',
       mapDataToValue: () => '',
@@ -192,18 +192,19 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-    const { container, queryByText } = render(
+    const { container, getByText } = render(
       <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
     );
-
-    expect(queryByText('Select All')).toBeTruthy();
-    expect(queryByText('Clear')).toBeTruthy();
 
     const input = container.querySelector('[data-baseweb="input"] input');
     if (input) fireEvent.change(input, { target: { value: 'a' } });
 
-    expect(queryByText('Select All')).toBeFalsy();
-    expect(queryByText('Clear')).toBeFalsy();
+    fireEvent.click(getByText('Select All'));
+
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    expect(checkboxes.length).toBe(2); // filtered option + exclude toggle
+
+    expect((checkboxes[0] as unknown as HTMLInputElement).checked).toBe(true);
   });
 
   it('builds expected filter function', () => {

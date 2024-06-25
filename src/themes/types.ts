@@ -23,78 +23,132 @@ export type LineStyle =
   | 'ridge'
   | 'solid';
 
-export type FoundationColorTokens = {
+export type FoundationColors = {
   // Primary Palette
   primaryA: string;
   primaryB: string;
+  /** @deprecated Use semantic tokens instead. */
   primary: string;
+  /** @deprecated Use semantic tokens instead. */
   primary50: string;
+  /** @deprecated Use semantic tokens instead. */
   primary100: string;
+  /** @deprecated Use semantic tokens instead. */
   primary200: string;
+  /** @deprecated Use semantic tokens instead. */
   primary300: string;
+  /** @deprecated Use semantic tokens instead. */
   primary400: string;
+  /** @deprecated Use semantic tokens instead. */
   primary500: string;
+  /** @deprecated Use semantic tokens instead. */
   primary600: string;
+  /** @deprecated Use semantic tokens instead. */
   primary700: string;
+
   // Accent Palette
   accent: string;
+  /** @deprecated Use semantic tokens instead. */
   accent50: string;
+  /** @deprecated Use semantic tokens instead. */
   accent100: string;
+  /** @deprecated Use semantic tokens instead. */
   accent200: string;
+  /** @deprecated Use semantic tokens instead. */
   accent300: string;
+  /** @deprecated Use semantic tokens instead. */
   accent400: string;
+  /** @deprecated Use semantic tokens instead. */
   accent500: string;
+  /** @deprecated Use semantic tokens instead. */
   accent600: string;
+  /** @deprecated Use semantic tokens instead. */
   accent700: string;
+
   // Alert Palette
   negative: string;
   negative50: string;
+  /** @deprecated Use semantic tokens instead. */
   negative100: string;
+  /** @deprecated Use semantic tokens instead. */
   negative200: string;
+  /** @deprecated Use semantic tokens instead. */
   negative300: string;
+  /** @deprecated Use semantic tokens instead. */
   negative400: string;
+  /** @deprecated Use semantic tokens instead. */
   negative500: string;
+  /** @deprecated Use semantic tokens instead. */
   negative600: string;
+  /** @deprecated Use semantic tokens instead. */
   negative700: string;
+
   // Warning Palette
   warning: string;
+  /** @deprecated Use semantic tokens instead. */
   warning50: string;
+  /** @deprecated Use semantic tokens instead. */
   warning100: string;
+  /** @deprecated Use semantic tokens instead. */
   warning200: string;
+  /** @deprecated Use semantic tokens instead. */
   warning300: string;
+  /** @deprecated Use semantic tokens instead. */
   warning400: string;
+  /** @deprecated Use semantic tokens instead. */
   warning500: string;
+  /** @deprecated Use semantic tokens instead. */
   warning600: string;
+  /** @deprecated Use semantic tokens instead. */
   warning700: string;
+
   // Success Palette
   positive: string;
+  /** @deprecated Use semantic tokens instead. */
   positive50: string;
+  /** @deprecated Use semantic tokens instead. */
   positive100: string;
+  /** @deprecated Use semantic tokens instead. */
   positive200: string;
+  /** @deprecated Use semantic tokens instead. */
   positive300: string;
+  /** @deprecated Use semantic tokens instead. */
   positive400: string;
+  /** @deprecated Use semantic tokens instead. */
   positive500: string;
+  /** @deprecated Use semantic tokens instead. */
   positive600: string;
+  /** @deprecated Use semantic tokens instead. */
   positive700: string;
+
   // Monochrome Palette
+  /** @deprecated Use semantic tokens instead. */
   white: string;
+  /** @deprecated Use semantic tokens instead. */
   black: string;
+  /** @deprecated Use semantic tokens instead. */
   mono100: string;
+  /** @deprecated Use semantic tokens instead. */
   mono200: string;
+  /** @deprecated Use semantic tokens instead. */
   mono300: string;
+  /** @deprecated Use semantic tokens instead. */
   mono400: string;
+  /** @deprecated Use semantic tokens instead. */
   mono500: string;
+  /** @deprecated Use semantic tokens instead. */
   mono600: string;
+  /** @deprecated Use semantic tokens instead. */
   mono700: string;
+  /** @deprecated Use semantic tokens instead. */
   mono800: string;
+  /** @deprecated Use semantic tokens instead. */
   mono900: string;
+  /** @deprecated Use semantic tokens instead. */
   mono1000: string;
-  // Rating Palette
-  ratingInactiveFill: string;
-  ratingStroke: string;
 };
 
-export type CoreSemanticColorTokens = {
+export type CoreSemanticColors = {
   // Background
   backgroundPrimary: string;
   backgroundSecondary: string;
@@ -110,17 +164,17 @@ export type CoreSemanticColorTokens = {
   contentInverseTertiary: string;
   // Border
   borderOpaque: string;
-  borderTransparent?: string;
+  borderTransparent: string;
   borderSelected: string;
   borderInverseOpaque: string;
-  borderInverseTransparent?: string;
+  borderInverseTransparent: string;
   borderInverseSelected: string;
 };
-export type CoreExtensionSemanticColorTokens = {
+export type CoreExtensionSemanticColors = {
   // Backgrounds
   backgroundStateDisabled: string;
   backgroundOverlay: string;
-  backgroundOverlayArt?: string;
+  backgroundOverlayArt: string;
   backgroundAccent: string;
   backgroundNegative: string;
   backgroundWarning: string;
@@ -153,7 +207,6 @@ export type CoreExtensionSemanticColorTokens = {
   safety: string;
   eatsGreen400: string;
   freightBlue400: string;
-  jumpRed400: string;
   rewardsTier1: string;
   rewardsTier2: string;
   rewardsTier3: string;
@@ -161,20 +214,29 @@ export type CoreExtensionSemanticColorTokens = {
   membership: string;
 };
 
-export type DeprecatedSemanticColorTokens = {
+export type DeprecatedSemanticColors = {
+  /** @deprecated this color token is deprecated */
+  jumpRed400: string;
+  /** @deprecated this color token is deprecated */
   backgroundOverlayLight: string;
+  /** @deprecated this color token is deprecated */
   backgroundOverlayDark: string;
+  /** @deprecated this color token is deprecated */
   backgroundLightAccent: string;
+  /** @deprecated this color token is deprecated */
   backgroundLightPositive: string;
+  /** @deprecated this color token is deprecated */
   backgroundLightWarning: string;
+  /** @deprecated this color token is deprecated */
   backgroundLightNegative: string;
 };
 
-export type SemanticColorTokens = {} & CoreSemanticColorTokens &
-  CoreExtensionSemanticColorTokens &
-  DeprecatedSemanticColorTokens;
+export type SemanticColors = {} & CoreSemanticColors &
+  CoreExtensionSemanticColors &
+  DeprecatedSemanticColors;
 
-export type ComponentColorTokens = {
+export type ComponentColors = {
+  //Banner
   bannerActionLowInfo: string;
   bannerActionLowNegative: string;
   bannerActionLowPositive: string;
@@ -183,6 +245,9 @@ export type ComponentColorTokens = {
   bannerActionHighNegative: string;
   bannerActionHighPositive: string;
   bannerActionHighWarning: string;
+  // BottomNavigation
+  bottomNavigationText: string;
+  bottomNavigationSelectedText: string;
   // Buttons
   buttonPrimaryFill: string;
   buttonPrimaryText: string;
@@ -488,6 +553,9 @@ export type ComponentColorTokens = {
   // Tooltip
   tooltipBackground: string;
   tooltipText: string;
+  // Rating
+  ratingInactiveFill: string;
+  ratingStroke: string;
 };
 
 export type FontTokens = {
@@ -497,7 +565,7 @@ export type FontTokens = {
 };
 
 // TODO(#2318) Deprecate in the next major version
-export type Primitives = {} & FoundationColorTokens & FontTokens;
+export type Primitives = {} & FoundationColors & FontTokens;
 
 export type Font = {
   fontFamily: string;

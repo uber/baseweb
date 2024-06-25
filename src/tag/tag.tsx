@@ -12,7 +12,7 @@ import {
   StartEnhancerContainer as StyledStartEnhancerContainer,
   Text as StyledText,
 } from './styled-components';
-import { KIND, VARIANT, SIZE } from './constants';
+import { KIND, HIERARCHY, SIZE } from './constants';
 import { getTextFromChildren } from './utils';
 import type { TagProps, SharedPropsArg } from './types';
 import DeleteIcon from '../icon/delete';
@@ -45,7 +45,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
     overrides = {},
     startEnhancer,
     title,
-    variant = VARIANT.light,
+    hierarchy = HIERARCHY.secondary,
   } = props;
   const [focusVisible, setFocusVisible] = React.useState(false);
 
@@ -115,7 +115,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
     $isFocused: isFocused,
     $isHovered: isHovered,
     $kind: kind,
-    $variant: variant,
+    $hierarchy: hierarchy,
     $isFocusVisible: focusVisible,
     $size: size,
   };

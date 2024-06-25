@@ -4,7 +4,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { getOverrides } from '../helpers/overrides';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import { Button, KIND, SHAPE, SIZE } from '../button';
 import { Input as DefaultInput } from '../input';
 import { Plus, CheckIndeterminate } from '../icon';
@@ -39,13 +39,40 @@ export function Stepper({
     CheckIndeterminate
   );
   const [IncrementButton, incrementButtonProps] = getOverrides(
-    overrides.DecrementButton,
+    overrides.IncrementButton,
     DefaultButton
   );
   const [IncrementButtonIcon, incrementButtonIconProps] = getOverrides(
-    overrides.DecrementButtonIcon,
+    overrides.IncrementButtonIcon,
     Plus
   );
+
+  const [, theme] = useStyletron();
+
+  const defaultInputOverrides = {
+    Root: {
+      style: {
+        maxWidth: '36px',
+        height: '36px',
+        borderLeftStyle: 'none',
+        borderRightStyle: 'none',
+        borderTopStyle: 'none',
+        borderBottomStyle: 'none',
+      },
+    },
+    Input: {
+      style: {
+        paddingTop: 0,
+        paddingBottom: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+        textAlign: 'center',
+        backgroundColor: theme.colors.backgroundPrimary,
+        ...theme.typography.LabelLarge,
+      },
+    },
+  };
+  inputProps.overrides = mergeOverrides(defaultInputOverrides, inputProps.overrides);
 
   const handleInputChange = (e) => {
     const newValue = Number(e.target.value);
@@ -53,8 +80,6 @@ export function Stepper({
       setValue(newValue);
     }
   };
-
-  const [, theme] = useStyletron();
 
   return (
     <Root {...rootProps}>
@@ -71,29 +96,6 @@ export function Stepper({
         onChange={handleInputChange}
         disabled={disabled}
         aria-label="value"
-        overrides={{
-          Root: {
-            style: {
-              maxWidth: '36px',
-              height: '36px',
-              borderLeftStyle: 'none',
-              borderRightStyle: 'none',
-              borderTopStyle: 'none',
-              borderBottomStyle: 'none',
-            },
-          },
-          Input: {
-            style: {
-              paddingTop: 0,
-              paddingBottom: 0,
-              paddingLeft: 0,
-              paddingRight: 0,
-              textAlign: 'center',
-              backgroundColor: theme.colors.backgroundPrimary,
-              ...theme.typography.LabelLarge,
-            },
-          },
-        }}
         {...inputProps}
       />
       <IncrementButton

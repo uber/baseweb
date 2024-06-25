@@ -10,10 +10,9 @@ export const SIZE = {
   large: 'large',
 } as const;
 
-export const VARIANT = Object.freeze({
-  solid: 'solid',
-  light: 'light',
-  outlined: 'outlined',
+export const HIERARCHY = Object.freeze({
+  primary: 'primary',
+  secondary: 'secondary',
 } as const);
 
 // todo: dynamic identity map generation
@@ -35,4 +34,6 @@ export const KIND = {
   orange: 'orange',
   purple: 'purple',
   brown: 'brown',
+  teal: 'teal',
+  lime: 'lime',
 } as const;

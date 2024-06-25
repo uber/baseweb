@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Tag, KIND, VARIANT} from 'baseui/tag';
+import * as React from "react";
+import { Tag, KIND, HIERARCHY } from "baseui/tag";
 
 export default function Scenario() {
   return (
@@ -23,7 +23,7 @@ export default function Scenario() {
             kind={kind}
             onClick={() => alert(`click ${kind}`)}
             onActionClick={() => alert(`action ${kind}`)}
-            variant={VARIANT.solid}
+            hierarchy={HIERARCHY.primary}
           >
             {kind}
           </Tag>

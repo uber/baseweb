@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import type { ColorTokens } from '../styles/types';
 
-const foundationColorTokens = [
+const foundationColors = [
   'primaryA',
   'primaryB',
   'primary',
@@ -16,10 +16,10 @@ const foundationColorTokens = [
   'positive',
 ];
 
-export function getFoundationColorTokenOverrides(colors?: Partial<ColorTokens>) {
+export function getFoundationColorOverrides(colors?: Partial<ColorTokens>) {
   if (!colors) return {};
 
-  return foundationColorTokens.reduce((acc, key) => {
+  return foundationColors.reduce((acc, key) => {
     if (colors[key]) {
       acc[key] = colors[key];
     }

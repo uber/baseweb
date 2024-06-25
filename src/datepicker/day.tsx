@@ -241,8 +241,9 @@ export default class Day<T = Date> extends React.Component<DayProps<T>, DayState
   }
 
   clampToDayStart: (a: T) => T = (dt) => {
-    const { setSeconds, setMinutes, setHours } = this.dateHelpers;
-    return setSeconds(setMinutes(setHours(dt, 0), 0), 0);
+    const { startOfDay } = this.dateHelpers;
+
+    return startOfDay(dt);
   };
 
   // calculated for range case only

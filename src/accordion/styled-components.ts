@@ -72,7 +72,7 @@ export const ToggleIcon = styled<'svg', SharedStylePropsArg>('svg', (props) => {
   return {
     ...getSvgStyles(props),
     flexShrink: 0,
-    color: $color || $theme.colors.contentPrimary,
+    color: $color || $theme.colors.contentTierary,
     cursor: $disabled ? 'not-allowed' : 'pointer',
   };
 });

@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {
   BaseButton as StyledBaseButton,
+  AnchorBaseButton as StyledAnchorBaseButton,
   LoadingSpinner as StyledLoadingSpinner,
   LoadingSpinnerContainer as StyledLoadingSpinnerContainer,
 } from './styled-components';
@@ -80,12 +81,14 @@ class Button extends React.Component<
       ...restProps
     } = this.props;
     // Get overrides
+    const isAnchor = 'href' in restProps && Boolean(restProps?.href);
+
     const [BaseButton, baseButtonProps] = getOverrides(
       // adding both (1) BaseButton and (2) Root
       // (1) because it's a Button under the hood
       // (2) because we want consistency with the rest of the components
       overrides.BaseButton || overrides.Root,
-      StyledBaseButton
+      isAnchor ? StyledAnchorBaseButton : StyledBaseButton
     );
     const [LoadingSpinner, loadingSpinnerProps] = getOverrides<SharedStyleProps>(
       overrides.LoadingSpinner,
@@ -110,11 +113,14 @@ class Button extends React.Component<
         }
       : {};
 
+    const ariaDisabledProps = restProps?.disabled && isAnchor ? { ['aria-disabled']: true } : {};
+
     return (
       <BaseButton
         ref={forwardedRef}
         data-baseweb="button"
         {...ariaLoadingElements}
+        {...ariaDisabledProps}
         {...sharedProps}
         {...restProps}
         {...baseButtonProps}
@@ -143,10 +149,8 @@ class Button extends React.Component<
 export interface ButtonComponentType {
   <C extends React.ElementType = 'button'>(
     props: ButtonProps &
-      SharedStyleProps &
-      Omit<React.ComponentProps<C>, keyof ButtonProps | keyof SharedStyleProps> & {
-        $as?: C | React.ComponentType<any> | keyof JSX.IntrinsicElements;
-      }
+      Omit<React.ComponentProps<C>, keyof ButtonProps | keyof SharedStyleProps> &
+      SharedStyleProps<C | React.ComponentType<any> | keyof JSX.IntrinsicElements>
   ): JSX.Element;
   displayName?: string;
 }

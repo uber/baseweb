@@ -51,7 +51,7 @@ export type BannerProps = {
   // Visually convey the message text.
   artwork?: ArtworkContent;
   // Message to display.
-  children: React.ReactNode;
+  children?: React.ReactNode;
   // Determines message priority by rendering in pale or saturated colors.
   hierarchy?: Hierarchy;
   // Determines color scheme and conveys message intent.

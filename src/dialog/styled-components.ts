@@ -31,61 +31,99 @@ const getPlacementStyles = (placement: Placement, gutter: string) => {
   }
 };
 
+const getAnimationStyles = (placement: Placement) => {
+  const transformValuesByPlacement = {
+    [PLACEMENT.topLeft]: ['translateY(16px)', 'translateY(0px)'],
+    [PLACEMENT.topCenter]: [
+      'translateX(-50%) translateY(16px)',
+      'translateX(-50%) translateY(0px)',
+    ],
+    [PLACEMENT.topRight]: ['translateY(16px)', 'translateY(0px)'],
+    [PLACEMENT.bottomLeft]: ['translateY(16px)', 'translateY(0px)'],
+    [PLACEMENT.bottomCenter]: [
+      'translateX(-50%) translateY(16px)',
+      'translateX(-50%) translateY(0px)',
+    ],
+    [PLACEMENT.bottomRight]: ['translateY(16px)', 'translateY(0px)'],
+    [PLACEMENT.center]: [
+      'translateX(-50%) translateY(calc(-50% + 16px))',
+      'translateX(-50%) translateY(-50%)',
+    ],
+  };
+
+  return {
+    animationDuration: '400ms',
+    animationTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)',
+    animationName: {
+      from: {
+        opacity: 0,
+        transform: transformValuesByPlacement[placement][0],
+      },
+      to: {
+        opacity: 1,
+        transform: transformValuesByPlacement[placement][1],
+      },
+    },
+  };
+};
+
 const DIALOG_WIDTHS = {
   [SIZE.xSmall]: '480px',
   [SIZE.small]: '640px',
   [SIZE.medium]: '800px',
   [SIZE.large]: '100%',
 };
-export const StyledRoot = styled<
-  'dialog',
-  { $size: Size; $placement: Placement; $isOpen: boolean }
->('dialog', ({ $theme, $size, $placement = PLACEMENT.center, $isOpen }) => {
-  const narrowViewportGutter = '16px';
-  const wideViewportGutter = '40px';
+export const StyledRoot = styled<'div', { $size: Size; $placement: Placement }>(
+  'div',
+  ({ $theme, $size, $placement = PLACEMENT.center }) => {
+    const narrowViewportGutter = '16px';
+    const wideViewportGutter = '40px';
 
-  return {
-    position: 'fixed',
-    maxHeight: `calc(100vh - (2 * ${wideViewportGutter}))`,
-    maxWidth: `calc(100% - (2 * ${wideViewportGutter}))`,
-    borderRadius: $theme.borders.radius500,
-    boxShadow: $theme.lighting.shallowBelow,
-    backgroundColor: $theme.colors.backgroundPrimary,
-    color: $theme.colors.contentPrimary,
-    overflow: 'hidden',
-    border: 'none',
-    width: DIALOG_WIDTHS[$size],
-    ...getPlacementStyles($placement, wideViewportGutter),
-    '@media (max-width: 599px)': {
-      width: `calc(100% - (2 * ${narrowViewportGutter}))`,
-      maxWidth: 'none',
-      ...getPlacementStyles(PLACEMENT.bottomCenter, narrowViewportGutter),
-    },
-    '::backdrop': {
-      backgroundColor: $theme.colors.backgroundOverlay,
-    },
-
-    // Dialog style resets
-    marginTop: '0px',
-    marginRight: '0px',
-    marginBottom: '0px',
-    marginLeft: '0px',
-    paddingTop: '0px',
-    paddingRight: '0px',
-    paddingBottom: '0px',
-    paddingLeft: '0px',
-
-    // modifying the default `display` value for a closed dialog element causes unexpected behavior
-    ...($isOpen
-      ? {
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }
-      : {}),
-  };
-});
+    return {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      position: 'fixed',
+      maxHeight: `calc(100vh - (2 * ${wideViewportGutter}))`,
+      maxWidth: `calc(100% - (2 * ${wideViewportGutter}))`,
+      borderRadius: $theme.borders.radius500,
+      boxShadow: $theme.lighting.shallowBelow,
+      backgroundColor: $theme.colors.backgroundPrimary,
+      color: $theme.colors.contentPrimary,
+      overflow: 'hidden',
+      border: 'none',
+      width: DIALOG_WIDTHS[$size],
+      ...getPlacementStyles($placement, wideViewportGutter),
+      ...getAnimationStyles($placement),
+      '@media (max-width: 599px)': {
+        width: `calc(100% - (2 * ${narrowViewportGutter}))`,
+        maxWidth: 'none',
+        ...getPlacementStyles(PLACEMENT.bottomCenter, narrowViewportGutter),
+        ...getAnimationStyles(PLACEMENT.bottomCenter),
+      },
+    };
+  }
+);
 StyledRoot.displayName = 'StyledRoot';
+
+export const StyledOverlay = styled('div', ({ $theme }) => ({
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  backgroundColor: $theme.colors.backgroundOverlay,
+  animationDuration: '100ms',
+  animationName: {
+    from: {
+      opacity: 0,
+    },
+    to: {
+      opacity: 1,
+    },
+  },
+}));
+StyledOverlay.displayName = 'StyledOverlay';
 
 export const StyledScrollContainer = styled<'div', {}>('div', () => {
   return {

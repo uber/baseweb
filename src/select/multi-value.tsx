@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
-import { Tag, VARIANT as TAG_VARIANT } from '../tag';
+import { Tag, HIERARCHY } from '../tag';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function MultiValue(props: any) {
@@ -15,7 +15,7 @@ export default function MultiValue(props: any) {
   const [MultiValue, tagProps] = getOverrides(overrides.Tag || overrides.MultiValue, Tag);
   return (
     <MultiValue
-      variant={TAG_VARIANT.solid}
+      hierarchy={HIERARCHY.primary}
       overrides={{
         Root: {
           // @ts-ignore

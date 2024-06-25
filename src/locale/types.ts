@@ -10,6 +10,7 @@ import type { DatepickerLocale } from '../datepicker';
 import type { DataTableLocale } from '../data-table';
 import type { ButtonGroupLocale } from '../button-group';
 import type { FileUploaderLocale } from '../file-uploader';
+import type { FileUploaderBetaLocale } from '../file-uploader-beta';
 import type { MenuLocale } from '../menu';
 import type { ModalLocale } from '../modal';
 import type { DrawerLocale } from '../drawer';
@@ -24,6 +25,7 @@ export type Locale = {
   datatable: DataTableLocale;
   buttongroup: ButtonGroupLocale;
   fileuploader: FileUploaderLocale;
+  fileuploaderbeta: FileUploaderBetaLocale;
   menu: MenuLocale;
   modal: ModalLocale;
   drawer: DrawerLocale;

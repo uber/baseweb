@@ -426,6 +426,9 @@ class DateHelpers<T> {
   setMonth: (b: T, a: number) => T = (date, monthNumber) =>
     this.adapter.setMonth(date, monthNumber);
   setYear: (b: T, a: number) => T = (date, yearNumber) => this.adapter.setYear(date, yearNumber);
+  startOfDay: (a: T) => T = (date) => {
+    return this.adapter.startOfDay(date);
+  };
   getMinutes: (a: T) => number = (date) => this.adapter.getMinutes(date);
   getHours: (a: T) => number = (date) => this.adapter.getHours(date);
   getMonth: (a: T) => number = (date) => this.adapter.getMonth(date);

@@ -11,10 +11,7 @@ export type ButtonTimedOverrides = ButtonOverrides & {
   TimerContainer?: Override;
 };
 
-export type ButtonTimedProps = Omit<
-  ButtonProps,
-  'kind' | 'shape' | 'size' | 'onClick' | 'overrides'
-> & {
+export type ButtonTimedProps = Omit<ButtonProps, 'shape' | 'size' | 'onClick' | 'overrides'> & {
   initialTime: number; // in seconds
   paused?: boolean;
   onClick: (a?: React.SyntheticEvent<HTMLButtonElement>) => unknown;

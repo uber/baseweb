@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { getOverrides } from '../helpers/overrides';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import type { TileGroupOverrides, TileGroupProps } from './types';
 import { StyledTileGroupRoot } from './styled-components';
 import { isIndexSelected } from './utils';
@@ -146,14 +146,17 @@ const TileGroup = ({
               onClick(event, index);
             }
           },
-          overrides: {
-            Root: {
-              props: {
-                'aria-checked': isSelected,
-                role: isRadioGroup ? 'radio' : 'checkbox',
+          overrides: mergeOverrides(
+            {
+              Root: {
+                props: {
+                  'aria-checked': isSelected,
+                  role: isRadioGroup ? 'radio' : 'checkbox',
+                },
               },
             },
-          },
+            child.props.overrides
+          ),
         });
       })}
     </Root>

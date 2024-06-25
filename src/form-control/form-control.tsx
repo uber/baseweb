@@ -8,16 +8,18 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { getOverride, getOverrideProps } from '../helpers/overrides';
 import { UIDConsumer } from 'react-uid';
+import { Alert, Check } from '../icon';
 import {
   Label as StyledLabel,
   LabelEndEnhancer as StyledLabelEndEnhancer,
   LabelContainer as StyledLabelContainer,
   Caption as StyledCaption,
   ControlContainer as StyledControlContainer,
+  CaptionMessage as StyledCaptionMessage,
+  CaptionIcon as StyledCaptionIcon,
 } from './styled-components';
 import type { FormControlProps, FormControlState, StyleProps } from './types';
 
-// @ts-ignore
 function chooseRenderedHint(caption, error, positive, sharedProps) {
   if (!!error && typeof error !== 'boolean') {
     return typeof error === 'function' ? error(sharedProps) : error;
@@ -29,6 +31,29 @@ function chooseRenderedHint(caption, error, positive, sharedProps) {
 
   if (caption) {
     return typeof caption === 'function' ? caption(sharedProps) : caption;
+  }
+
+  return null;
+}
+
+// @ts-ignore
+function chooseRenderedHintIcon(hint, error, positive) {
+  if (!hint) {
+    return null;
+  }
+
+  if (!!error) {
+    if (typeof error === 'function') {
+      return null;
+    }
+    return <Alert size={12} aria-hidden="true" title="" />;
+  }
+
+  if (!!positive) {
+    if (typeof positive === 'function') {
+      return null;
+    }
+    return <Check size={12} aria-hidden="true" title="" />;
   }
 
   return null;
@@ -57,6 +82,10 @@ export default class FormControl extends React.Component<FormControlProps, FormC
         // @ts-ignore
         Caption: CaptionOverride,
         // @ts-ignore
+        CaptionMessage: CaptionMessageOverride,
+        // @ts-ignore
+        CaptionIcon: CaptionIconOverride,
+        // @ts-ignore
         ControlContainer: ControlContainerOverride,
       },
       label,
@@ -82,9 +111,12 @@ export default class FormControl extends React.Component<FormControlProps, FormC
     const LabelEndEnhancer = getOverride(LabelEndEnhancerOverride) || StyledLabelEndEnhancer;
     const LabelContainer = getOverride(LabelContainerOverride) || StyledLabelContainer;
     const Caption = getOverride(CaptionOverride) || StyledCaption;
+    const CaptionMessage = getOverride(CaptionMessageOverride) || StyledCaptionMessage;
+    const CaptionIcon = getOverride(CaptionIconOverride) || StyledCaptionIcon;
     const ControlContainer = getOverride(ControlContainerOverride) || StyledControlContainer;
 
     const hint = chooseRenderedHint(caption, error, positive, sharedProps);
+    const hintIcon = chooseRenderedHintIcon(hint, error, positive);
 
     if (__DEV__) {
       if (error && positive) {
@@ -191,14 +223,15 @@ export default class FormControl extends React.Component<FormControlProps, FormC
                       : sharedProps.$positive,
                 });
               })}
-              {(!!caption || !!error || positive) && (
+              {hint && (
                 <Caption
                   data-baseweb="form-control-caption"
                   id={captionId}
                   {...sharedProps}
                   {...getOverrideProps(CaptionOverride)}
                 >
-                  {hint}
+                  {hintIcon && <CaptionIcon>{hintIcon}</CaptionIcon>}
+                  <CaptionMessage>{hint}</CaptionMessage>
                 </Caption>
               )}
             </ControlContainer>

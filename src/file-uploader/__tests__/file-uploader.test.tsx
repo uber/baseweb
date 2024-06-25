@@ -111,4 +111,14 @@ describe('FileUploader', () => {
     );
     getByText(container, message);
   });
+
+  it('renders accept attribute as a string when inputted as an array', () => {
+    const { container } = render(<FileUploader accept={['test-1', 'test-2']} />);
+    expect(container.querySelector('input')?.getAttribute('accept')).toBe('test-1,test-2');
+  });
+
+  it('renders accept attribute as a string when inputted as a string', () => {
+    const { container } = render(<FileUploader accept={'test-1,test-2'} />);
+    expect(container.querySelector('input')?.getAttribute('accept')).toBe('test-1,test-2');
+  });
 });

@@ -20,10 +20,10 @@ const PlainInput = themedStyled("input", ({ $theme }) => ({
   borderRightWidth: "2px",
   borderTopWidth: "2px",
   borderBottomWidth: "2px",
-  borderLeftColor: $theme.colors.inputEnhancerFill,
-  borderRightColor: $theme.colors.inputEnhancerFill,
-  borderTopColor: $theme.colors.inputEnhancerFill,
-  borderBottomColor: $theme.colors.inputEnhancerFill,
+  borderLeftColor: $theme.colors.borderOpaque,
+  borderRightColor: $theme.colors.borderOpaque,
+  borderTopColor: $theme.colors.borderOpaque,
+  borderBottomColor: $theme.colors.borderOpaque,
   borderLeftStyle: "solid",
   borderRightStyle: "solid",
   borderTopStyle: "solid",
@@ -51,7 +51,7 @@ const PlainInput = themedStyled("input", ({ $theme }) => ({
 const SearchContainer = themedStyled("div", ({ $theme }) => ({
   display: "flex",
   alignItems: "center",
-  backgroundColor: $theme.colors.inputEnhancerFill,
+  backgroundColor: $theme.colors.borderOpaque,
   position: "relative",
 }));
 

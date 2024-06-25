@@ -155,24 +155,22 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
         />
       )}
 
-      {!query && (
-        <div
-          style={{
-            // @ts-ignore
-            marginTop: showQuery ? theme.sizing.scale600 : null,
+      <div
+        style={{
+          // @ts-ignore
+          marginTop: showQuery ? theme.sizing.scale600 : null,
+        }}
+      >
+        <FilterQuickControls
+          onSelectAll={() => {
+            filteredCategories.forEach((c) => selection.add(c));
+            setSelection(new Set(selection));
           }}
-        >
-          <FilterQuickControls
-            onSelectAll={() => {
-              categories.forEach((c) => selection.add(c));
-              setSelection(new Set(selection));
-            }}
-            onClearSelection={() => {
-              setSelection(new Set());
-            }}
-          />
-        </div>
-      )}
+          onClearSelection={() => {
+            setSelection(new Set());
+          }}
+        />
+      </div>
 
       <div
         className={css({

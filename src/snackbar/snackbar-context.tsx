@@ -16,7 +16,7 @@ import SnackbarElement from './snackbar-element';
 import { StyledPlacementContainer } from './styled-components';
 import type { SnackbarElementProps, SnackbarProviderProps, Duration } from './types';
 
-type Context = {
+export type Context = {
   enqueue: (elementProps: SnackbarElementProps, duration?: Duration) => void;
   dequeue: () => void;
 };
@@ -34,8 +34,14 @@ export const SnackbarContext: React.Context<Context> = React.createContext({
 });
 
 export function useSnackbar() {
-  const context = React.useContext(SnackbarContext);
-  return { enqueue: context.enqueue, dequeue: context.dequeue };
+  const { enqueue, dequeue } = React.useContext(SnackbarContext);
+  /* We use an empty dependency array because `enquque` and `dequeue` never change.
+     Ideally we'd memoize these functions and include them in the dependency array,
+     but that would require us to memoize many more functions in the SnackbarProvider,
+     and those functions depend on eachother in a circular way.
+  */
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  return React.useMemo(() => ({ enqueue, dequeue }), []);
 }
 
 // @ts-ignore
@@ -80,19 +86,6 @@ export default function SnackbarProvider({
     }
   }, [snackbars, prevSnackbars]);
 
-  function dequeue() {
-    setContainerHeight(0);
-
-    setSnackbars((prev) => {
-      const next = prev.slice(1);
-      if (next.length > 0) {
-        // @ts-ignore
-        enter(next[0].duration);
-      }
-      return next;
-    });
-  }
-
   // @ts-ignore
   function enter(duration) {
     setAnimating(true);
@@ -102,11 +95,19 @@ export default function SnackbarProvider({
     }, 0);
   }
 
-  function exit() {
+  function dequeue() {
     setAnimating(true);
     setTimeout(() => {
       setAnimating(false);
-      dequeue();
+      setContainerHeight(0);
+      setSnackbars((prev) => {
+        const next = prev.slice(1);
+        if (next.length > 0) {
+          // @ts-ignore
+          enter(next[0].duration);
+        }
+        return next;
+      });
     }, 1000);
   }
 
@@ -118,7 +119,7 @@ export default function SnackbarProvider({
 
     // @ts-ignore
     timeoutRef.current = setTimeout(() => {
-      exit();
+      dequeue();
     }, duration);
   }
 
@@ -135,7 +136,7 @@ export default function SnackbarProvider({
   function handleActionClick() {
     // @ts-ignore
     clearTimeout(timeoutRef.current);
-    exit();
+    dequeue();
   }
 
   React.useEffect(() => {
@@ -172,7 +173,7 @@ export default function SnackbarProvider({
   );
 
   return (
-    <SnackbarContext.Provider value={{ enqueue, dequeue: exit }}>
+    <SnackbarContext.Provider value={{ enqueue, dequeue }}>
       <div
         className={css({
           boxSizing: 'border-box',

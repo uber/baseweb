@@ -21,7 +21,9 @@ export const Selector = ({ title, icon, isActive, onChange, overrides = {} }: Se
     <Selector onClick={onChange} role="tab" aria-selected={isActive} {...SelectorProps}>
       <Icon
         size={20}
-        color={isActive ? theme.colors.contentPrimary : theme.colors.contentTertiary}
+        color={
+          isActive ? theme.colors.bottomNavigationSelectedText : theme.colors.bottomNavigationText
+        }
       />
       <Title $isActive={isActive} {...TitleProps}>
         {title}

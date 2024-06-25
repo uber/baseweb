@@ -16,6 +16,7 @@ import type {
 export { DURATION, PLACEMENT } from './constants';
 export { default as SnackbarElement } from './snackbar-element';
 export { default as SnackbarProvider, useSnackbar } from './snackbar-context';
+export type { Context as SnackbarContextT } from './snackbar-context';
 export {
   StyledRoot,
   StyledContent,

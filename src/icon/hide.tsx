@@ -26,7 +26,7 @@ function Hide(props: IconProps, ref) {
   );
   return (
     <Icon
-      viewBox="0 0 20 20"
+      viewBox="0 0 24 24"
       ref={ref}
       title={title}
       size={size}

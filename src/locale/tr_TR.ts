@@ -103,6 +103,12 @@ const tr_TR: Locale = {
     cancel: 'İptal',
   },
 
+  fileuploaderbeta: {
+    added: 'Yükleniyor...',
+    error: 'Yükleme hatası',
+    processed: 'Yükleme başarılı',
+  },
+
   menu: {
     noResultsMsg: 'Sonuç yok',
     parentMenuItemAriaLabel:

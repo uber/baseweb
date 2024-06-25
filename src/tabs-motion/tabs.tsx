@@ -162,8 +162,8 @@ export function Tabs({
     }
   }, [activeTabRef.current, orientation]);
 
-  // Update highlight on key and orientation changes.
-  React.useEffect(updateHighlight, [activeTabRef.current, orientation]);
+  // Update highlight on key, orientation and children changes.
+  React.useEffect(updateHighlight, [activeTabRef.current, orientation, children]);
 
   // Scroll active tab into view when the parent has scrollbar on mount and
   // on key change (smooth scroll). Note, if the active key changes while

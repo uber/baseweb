@@ -111,7 +111,7 @@ export type StatelessAccordionProps = {
 
 type SharedPanelProps = {
   /** The content visible when Panel is expanded. */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /** Defaults to the disabled value provided by the parent Accordion component. */
   disabled?: boolean;
   /** Id for a panel, when provided populates aria-controls

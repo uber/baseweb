@@ -18,7 +18,7 @@ import Delete from '../icon/delete';
 import { useStyletron } from '../styles/index';
 import { ThemeProvider, LightTheme } from '../';
 import { getBackgroundColorType } from './utils';
-import { colors } from '../tokens';
+import { primitiveColors as colors } from '../tokens';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import { IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE, BUTTON_KIND } from './constants';
 import type { MessageCardProps } from './types';
