@@ -140,7 +140,7 @@ function Tasks(props: { tasks: any[] }) {
               <StyledBodyCell>
                 <Tag
                   closeable={false}
-                  variant="outlined"
+                  hierarchy="secondary"
                   kind={statusToTagKind(task[1])}
                 >
                   {task[1]}
@@ -184,7 +184,7 @@ function Row({ striped, row }: any) {
       <CenteredBodyCell $striped={striped}>
         <Tag
           closeable={false}
-          variant="outlined"
+          hierarchy="secondary"
           kind={statusToTagKind(row[1])}
         >
           {row[1]}

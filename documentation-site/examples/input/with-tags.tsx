@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useStyletron } from "baseui";
 import { Input, StyledInput } from "baseui/input";
-import { Tag, VARIANT as TAG_VARIANT } from "baseui/tag";
+import { Tag, HIERARCHY } from "baseui/tag";
 
 const InputReplacement = React.forwardRef(
   ({ tags, removeTag, ...restProps }: any, ref) => {
@@ -17,7 +17,7 @@ const InputReplacement = React.forwardRef(
       >
         {tags.map((tag: string, index: number) => (
           <Tag
-            variant={TAG_VARIANT.solid}
+            hierarchy={HIERARCHY.primary}
             onActionClick={() => removeTag(tag)}
             key={index}
           >

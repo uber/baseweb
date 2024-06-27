@@ -155,7 +155,7 @@ function Tasks(props: { tasks: Task[] }) {
             <>
               <StyledBodyCell>{task[0]}</StyledBodyCell>
               <StyledBodyCell>
-                <Tag closeable={false} variant="outlined" kind={statusToTagKind(task[1])}>
+                <Tag closeable={false} hierarchy="secondary" kind={statusToTagKind(task[1])}>
                   {task[1]}
                 </Tag>
               </StyledBodyCell>
@@ -205,7 +205,7 @@ function Row(props: RowProps) {
         {props.row[0]}
       </CenteredBodyCell>
       <CenteredBodyCell {...props.getCellProps(1)} $striped={props.striped}>
-        <Tag closeable={false} variant="outlined" kind={statusToTagKind(props.row[1])}>
+        <Tag closeable={false} hierarchy="secondary" kind={statusToTagKind(props.row[1])}>
           {props.row[1]}
         </Tag>
       </CenteredBodyCell>
