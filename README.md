@@ -61,4 +61,3 @@ Both Base Web and Styletron come with [TypeScript](https://www.typescriptlang.or
 ## Docs
 
 To read the documentation, please visit [baseweb.design](https://baseweb.design). To preview more component examples, please visit [baseweb.design/ladle](https://baseweb.design/ladle).
-Test

@@ -137,6 +137,10 @@ const routes = [
             itemId: "/components/file-uploader",
           },
           {
+            title: "File Uploader Beta",
+            itemId: "/components/file-uploader-beta",
+          },
+          {
             title: "Menu",
             itemId: "/components/menu",
           },

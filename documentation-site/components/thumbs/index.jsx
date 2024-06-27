@@ -21,6 +21,7 @@ export { default as SvgTextarea } from "./components/Textarea.jsx";
 
 // Pickers
 export { default as SvgFileUploader } from "./components/FileUploader.jsx";
+export { default as SvgFileUploaderBeta } from "./components/FileUploader.jsx";
 export { default as SvgMenu } from "./components/Menu.jsx";
 export { default as SvgRating } from "./components/Rating.jsx";
 export { default as SvgSelect } from "./components/Select.jsx";
