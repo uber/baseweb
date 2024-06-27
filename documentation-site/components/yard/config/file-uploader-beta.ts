@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import { FileUploaderBeta } from "baseui/file-uploader-beta";
 import { PropTypes } from "react-view";
 import type { TConfig } from "../types";
-import buttonConfig from "./button";
+import iconConfig from "./icon";
 
 const changeHandlers = [
   "onClick",
@@ -114,15 +114,24 @@ const FileUploaderBetaConfig: TConfig = {
       description: "Lets you customize all aspects of the component.",
       custom: {
         names: [
-          { ...buttonConfig, componentName: "ButtonComponent" },
-          { ...buttonConfig, componentName: "CancelButtonComponent" },
-          { ...buttonConfig, componentName: "RetryButtonComponent" },
-          "ContentMessage",
-          "ErrorMessage",
-          "FileDragAndDrop",
-          "HiddenInput",
-          "Spinner",
-          "ProgressBar",
+          { ...iconConfig, componentName: "AlertIcon" },
+          { ...iconConfig, componentName: "CircleCheckFilledIcon" },
+          "FileRow",
+          "FileRowColumn",
+          "FileRowContent",
+          "FileRowFileName",
+          "FileRowText",
+          "FileRowUploadMessage",
+          "FileRowUploadText",
+          "FileRows",
+          "Hint",
+          "ImagePreviewThumbnail",
+          "ItemPreviewContainer",
+          "Label",
+          { ...iconConfig, componentName: "PaperclipFilledIcon" },
+          "ParentRoot",
+          { ...iconConfig, componentName: "TrashCanFilledIcon" },
+          "TrashCanFilledIconContainer",
         ],
         sharedProps: {},
       },
