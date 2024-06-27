@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 //
 import * as React from "react";
 import Yard from "../../../components/yard/index";
-import { Tag, KIND, VARIANT, SIZE } from "baseui/tag";
+import { Tag, KIND, HIERARCHY, SIZE } from "baseui/tag";
 import { PropTypes } from "react-view";
 
 const tagYardConfig = {
@@ -20,7 +20,7 @@ const tagYardConfig = {
   scope: {
     Tag,
     KIND,
-    VARIANT,
+    HIERARCHY,
     SIZE,
   },
   theme: [
@@ -115,16 +115,16 @@ const tagYardConfig = {
       type: PropTypes.String,
       description: `The color theme to be applied to a Tag. To make this custom color active, you have to set kind to custom.`,
     },
-    variant: {
-      value: "VARIANT.light",
-      defaultValue: "VARIANT.light",
-      options: VARIANT,
+    hierarchy: {
+      value: "HIERARCHY.secondary",
+      defaultValue: "HIERARCHY.secondary",
+      options: HIERARCHY,
       type: PropTypes.Enum,
       description:
-        "Defines tags look. Set it to one of VARIANT[key] values. Defaults to VARIANT.light.",
+        "Defines tags look. Set it to one of HIERARCHY[key] values. Defaults to HIERARCHY.secondary.",
       imports: {
         "baseui/tag": {
-          named: ["VARIANT"],
+          named: ["HIERARCHY"],
         },
       },
     },
