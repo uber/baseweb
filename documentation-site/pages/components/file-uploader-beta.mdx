@@ -2,6 +2,8 @@ import Example from "../../components/example";
 import Layout from "../../components/layout";
 import Exports from "../../components/exports";
 
+import FileUploaderBetaBasic from "examples/file-uploader-beta/basic.tsx";
+
 import * as FileUploaderBetaExports from "baseui/file-uploader-beta";
 
 import Yard from "../../components/yard/index";
@@ -35,6 +37,12 @@ Creates a dropzone for file uploads with file row state binding, props to contro
 By default, the file uploader does not concern itself with validating and discarding potentially malicious files, as Base Web never runs any of the uploaded files. **It's the responsibility of the consuming application to do so.** To help with that, this component supports the `accept` property, which can limit the acceptable file extensions.
 
 To learn more, read the corresponding [OWASP article on file uploads](https://www.owasp.org/index.php/Unrestricted_File_Upload).
+
+## Examples
+
+<Example title="Basic usage" path="file-uploader-beta/basic.tsx">
+  <FileUploaderBetaBasic />
+</Example>
 
 <Exports
   component={FileUploaderBetaExports}
