@@ -45,8 +45,10 @@ export default function Example() {
             borderBottomColor: theme.colors.warning,
           },
         },
-        FileRow: {
+        FileRows: {
           style: {
+            marginLeft: theme.sizing.scale0,
+            marginRight: theme.sizing.scale0,
             outline: `${theme.colors.warning} dashed`,
           },
         },
