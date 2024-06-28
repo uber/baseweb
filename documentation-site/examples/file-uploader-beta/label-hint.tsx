@@ -6,10 +6,8 @@ export default function Example() {
   return (
     <FileUploaderBeta
       fileRows={fileRows}
-      hint={
-        "Try uploading a file to see the item preview. Image files will show a thumbnail."
-      }
-      itemPreview
+      hint={"Test hint"}
+      label={"Test label"}
       setFileRows={setFileRows}
     />
   );
