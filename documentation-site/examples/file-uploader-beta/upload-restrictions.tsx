@@ -2,7 +2,30 @@ import * as React from "react";
 import { FileUploaderBeta, type FileRow } from "baseui/file-uploader-beta";
 
 export default function Example() {
-  const [fileRows, setFileRows] = React.useState<Array<FileRow>>([]);
+  // Upload files to test restrictions. For demo purposes,
+  // artificially create an array of file rows with errors.
+  const [fileRows, setFileRows] = React.useState<Array<FileRow>>([
+    {
+      file: new File(["test file 1"], "unaccepted-file-type.jpeg"),
+      status: "error",
+      errorMessage: "file type of img/jpeg is not accepted",
+    },
+    {
+      file: new File(["test file 2"], "file-too-small.png"),
+      status: "error",
+      errorMessage: "file size must be greater than 20 KB",
+    },
+    {
+      file: new File(["test file 3"], "file-too-big.png"),
+      status: "error",
+      errorMessage: "file size must be less than 100 KB",
+    },
+    {
+      file: new File(["test file 4"], "file-count-too-many.png"),
+      status: "error",
+      errorMessage: "cannot process more than ${props.maxFiles} file(s)",
+    },
+  ]);
 
   const processFileOnDrop = (
     file: File,
