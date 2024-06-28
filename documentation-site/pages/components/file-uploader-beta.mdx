@@ -13,15 +13,22 @@ export default Layout;
 
 <Yard placeholderHeight={120} {...fileUploaderBetaYardConfig} />
 
-Creates a dropzone for file uploads with file row state binding, props to control errors, and props to control uploads. Inherits all style props from the `FileUploader` component.
+Creates a dropzone for file uploads with file row state binding, props to control errors, and props to control uploads.
 
 ## Accessibility
 
 - "Browse files" has `aria-controls="fileupload"` set.
 
-## When to use
+## Inheritance
+
+- Inherits all props from the `FileUploader` component except for `onDrop`, `onDropAccepted`, and `onDropRejected`. These three props are replaced by the `processFileOnDrop` function prop.
+- Inherits all style props from the `FileUploader` component.
+
+## How to use
 
 - Enable file(s) upload through drag and drop or the system _Browse files_ dialog.
+- Leverage `accept`, `maxFiles`, `maxSize`, and `minSize` for built in error handling.
+- Leverage `processFileOnDrop` for custom error handling and upload capabilities. Should take a `file: File` and input and return `Promise<{ errorMessage: string | null; fileInfo?: any }>` where `errorMessage` determines if an error is shown.
 
 ## Security considerations
 
