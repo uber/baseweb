@@ -19,9 +19,6 @@ const changeHandlers = [
   "onDragEnter",
   "onDragOver",
   "onDragLeave",
-  "onDrop",
-  "onDropAccepted",
-  "onDropRejected",
   "onFileDialogCancel",
   "onCancel",
   "onRetry",
@@ -43,16 +40,37 @@ const FileUploaderBetaConfig: TConfig = {
       description:
         "Set accepted file types. See https://github.com/okonet/attr-accept for more information",
     },
+    disabled: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: "Renders component in disabled state.",
+    },
     fileRows: {
       value: "[]",
       type: PropTypes.Array,
       description: "Array of file objects.",
       stateful: true,
     },
-    setFileRows: {
-      value: "newFileRows => setFileRows(newFileRows)",
-      type: PropTypes.Function,
-      description: "Function to set file rows.",
+    hint: {
+      value: undefined,
+      type: PropTypes.String,
+      description: "Hint text to be displayed below the file rows.",
+    },
+    itemPreview: {
+      value: false,
+      type: PropTypes.Boolean,
+      description:
+        "Renders a file preview thumbnail. Works best with image files.",
+    },
+    label: {
+      value: undefined,
+      type: PropTypes.String,
+      description: "Label text to be displayed above the file uploader.",
+    },
+    maxFiles: {
+      value: undefined,
+      type: PropTypes.Number,
+      description: "Maximum number of files that can be uploaded.",
     },
     maxSize: {
       value: undefined,
@@ -64,27 +82,36 @@ const FileUploaderBetaConfig: TConfig = {
       type: PropTypes.Number,
       description: "Minimum file size (in bytes).",
     },
+    processFileOnDrop: {
+      value: undefined,
+      type: PropTypes.Function,
+      description:
+        "Application defined callback function that runs on file drop. Takes a File as input and returns a Promise<{ errorMessage: string | null; fileInfo?: any }>.",
+    },
+    setFileRows: {
+      value: "newFileRows => setFileRows(newFileRows)",
+      type: PropTypes.Function,
+      description: "Function to set file rows.",
+    },
     multiple: {
       value: undefined,
       type: PropTypes.Boolean,
       description:
         "Allow drag n drop (or selection from the file dialog) of multiple files",
+      hidden: true,
     },
     disableClick: {
       value: undefined,
       type: PropTypes.Boolean,
       description:
         "Disallow clicking on the dropzone container to open file dialog.",
-    },
-    disabled: {
-      value: false,
-      type: PropTypes.Boolean,
-      description: "Renders component in disabled state.",
+      hidden: true,
     },
     errorMessage: {
       value: undefined,
       type: PropTypes.String,
       description: "Error message to be displayed.",
+      hidden: true,
     },
     ...changeHandlers.reduce((acc, current) => {
       //@ts-ignore
