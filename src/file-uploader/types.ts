@@ -10,14 +10,11 @@ import type { Override } from '../helpers/overrides';
 
 export type StyleProps = {
   $afterFileDrop: boolean;
-  $alt: string;
-  $color: string;
   $disabled: boolean;
   $isDragActive: boolean;
   $isDragAccept: boolean;
   $isDragReject: boolean;
   $isFocused: boolean;
-  $src: string;
 };
 
 export type FileUploaderOverrides = {

@@ -6,13 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import {
+  act,
   render,
   getByRole,
   getByTestId,
   getByText,
-  queryByRole,
   queryByTestId,
   queryAllByRole,
+  fireEvent,
+  waitFor,
 } from '@testing-library/react';
 
 import { FileUploader } from '..';
@@ -110,6 +112,30 @@ describe('FileUploader', () => {
       <FileUploader progressMessage="uploading..." errorMessage={message} />
     );
     getByText(container, message);
+  });
+
+  it('calls onRetry if errorMessage provided and retry button is clicked', async () => {
+    const message = 'error!';
+    const onRetry = jest.fn();
+    const { container } = render(<FileUploader errorMessage={message} onRetry={onRetry} />);
+    await act(() => {
+      fireEvent.click(getByText(container, 'Retry Upload'));
+    });
+    await waitFor(() => {
+      expect(onRetry).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it('calls onCancel if progressMessage provided and cancel button clicked', async () => {
+    const message = 'progress!';
+    const onCancel = jest.fn();
+    const { container } = render(<FileUploader progressMessage={message} onCancel={onCancel} />);
+    await act(() => {
+      fireEvent.click(getByText(container, 'Cancel'));
+    });
+    await waitFor(() => {
+      expect(onCancel).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('renders accept attribute as a string when inputted as an array', () => {
