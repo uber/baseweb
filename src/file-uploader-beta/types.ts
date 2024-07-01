@@ -6,17 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 import type { Override } from '../helpers/overrides';
 import type { FILE_STATUS } from './constants';
-import type { FileUploaderOverrides, FileUploaderProps } from '../file-uploader/types';
+import type {
+  FileUploaderOverrides,
+  FileUploaderProps,
+  StyleProps as FileUploaderBasicStyleProps,
+} from '../file-uploader/types';
 
-export type StyleProps = {
-  $afterFileDrop: boolean;
+export type StyleProps = FileUploaderBasicStyleProps & {
   $alt: string;
   $color: string;
-  $disabled: boolean;
-  $isDragActive: boolean;
-  $isDragAccept: boolean;
-  $isDragReject: boolean;
-  $isFocused: boolean;
+  $fileCount: number;
   $src: string;
 };
 

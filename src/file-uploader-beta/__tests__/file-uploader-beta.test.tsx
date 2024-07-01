@@ -27,6 +27,45 @@ describe('FileUploaderBeta', () => {
     expect(container).toBeDefined();
   });
 
+  it('renders gracefully with different style override types', () => {
+    const { container } = render(
+      <>
+        <FileUploaderBeta
+          overrides={{
+            ButtonComponent: {
+              props: {
+                overrides: {
+                  BaseButton: {
+                    style: {
+                      backgroundColor: 'red',
+                    },
+                  },
+                },
+              },
+            },
+          }}
+        />{' '}
+        <FileUploaderBeta
+          overrides={{
+            ButtonComponent: {
+              props: {
+                overrides: {
+                  BaseButton: {
+                    style: ({ $theme }) => ({
+                      outline: `${$theme.colors.warning600} solid`,
+                      backgroundColor: $theme.colors.warning600,
+                    }),
+                  },
+                },
+              },
+            },
+          }}
+        />
+      </>
+    );
+    expect(container).toBeDefined();
+  });
+
   it('throws errors when invalid props are passed in', () => {
     const original = console.error;
     console.error = jest.fn();

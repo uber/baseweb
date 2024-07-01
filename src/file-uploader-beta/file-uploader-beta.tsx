@@ -26,7 +26,7 @@ import {
   StyledTrashCanFilledIconContainer,
 } from './styled-components';
 import { FILE_STATUS, FILE_STATUS_TO_COLOR_MAP } from './constants';
-import { formatBytes } from './utils';
+import { destructureStyleOverride, formatBytes } from './utils';
 import AlertIconComponent from '../icon/alert';
 import CircleCheckFilledIconComponent from '../icon/circle-check-filled';
 import PaperclipFilledIconComponent from '../icon/paperclip-filled';
@@ -275,7 +275,7 @@ export default function FileUploaderBeta(props: FileUploaderBetaProps) {
               style: {
                 marginTop: 0,
                 // @ts-expect-error
-                ...props.overrides?.ButtonComponent?.props?.style,
+                ...destructureStyleOverride(props.overrides?.ButtonComponent?.props?.style, theme),
               },
               overrides: {
                 // @ts-expect-error
@@ -285,8 +285,11 @@ export default function FileUploaderBeta(props: FileUploaderBetaProps) {
                   ...props.overrides?.ButtonComponent?.props?.overrides?.BaseButton,
                   style: {
                     backgroundColor: theme.colors.backgroundPrimary,
-                    // @ts-expect-error
-                    ...props.overrides?.ButtonComponent?.props?.overrides?.BaseButton?.style,
+                    ...destructureStyleOverride(
+                      // @ts-expect-error
+                      props.overrides?.ButtonComponent?.props?.overrides?.BaseButton?.style,
+                      theme
+                    ),
                   },
                 },
               },
@@ -296,7 +299,7 @@ export default function FileUploaderBeta(props: FileUploaderBetaProps) {
             style: {
               ...theme.typography.ParagraphMedium,
               color: theme.colors.contentTertiary,
-              ...props.overrides?.ContentMessage?.style,
+              ...destructureStyleOverride(props.overrides?.ContentMessage?.style, theme),
             },
           },
           FileDragAndDrop: {
@@ -309,7 +312,14 @@ export default function FileUploaderBeta(props: FileUploaderBetaProps) {
               paddingLeft: theme.sizing.scale600,
               paddingRight: theme.sizing.scale600,
               paddingTop: theme.sizing.scale600,
-              ...props.overrides?.FileDragAndDrop?.style,
+              ...destructureStyleOverride(props.overrides?.FileDragAndDrop?.style, theme),
+            },
+          },
+          Root: {
+            style: {
+              zIndex: 1,
+              ...destructureStyleOverride(props.overrides?.Root?.style, theme),
+              ...props.overrides?.Root?.style,
             },
           },
         }}
@@ -475,7 +485,11 @@ export default function FileUploaderBeta(props: FileUploaderBetaProps) {
         </LocaleContext.Consumer>
       )}
       {props.hint && (
-        <Hint data-baseweb="file-uploader-beta-hint" {...hintProps}>
+        <Hint
+          data-baseweb="file-uploader-beta-hint"
+          $fileCount={props.fileRows.length}
+          {...hintProps}
+        >
           {props.hint}
         </Hint>
       )}
