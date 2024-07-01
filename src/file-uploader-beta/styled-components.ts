@@ -9,9 +9,26 @@ import type { StyleProps } from './types';
 
 export const StyledFileRow = styled<'li', StyleProps>('li', (props) => {
   const {
-    $theme: { sizing },
+    $theme: { animation, sizing },
   } = props;
   return {
+    animationDuration: animation.timing400,
+    animationFillMode: 'forwards',
+    animationIterationCount: 1,
+    animationTimingFunction: animation.easeOutQuinticCurve,
+    animationName: {
+      '0%': {
+        transform: 'translateY(-32px)',
+        opacity: 0,
+      },
+      '50%': {
+        opacity: 1,
+      },
+      '100%': {
+        transform: 'translateY(0px)',
+        opacity: 1,
+      },
+    },
     paddingTop: sizing.scale500,
     paddingRight: sizing.scale500,
     paddingBottom: sizing.scale500,
@@ -117,9 +134,20 @@ StyledFileRowUploadText.displayName = 'StyledFileRowUploadText';
 
 export const StyledFileRows = styled<'ul', StyleProps>('ul', (props) => {
   const {
-    $theme: { borders, sizing },
+    $theme: { animation, borders, sizing },
   } = props;
   return {
+    animationDuration: animation.timing500,
+    animationIterationCount: 1,
+    animationTimingFunction: animation.easeInOutQuinticCurve,
+    animationName: {
+      '0%': {
+        transform: 'translateY(-32px)',
+      },
+      '100%': {
+        transform: 'translateX(-0px)',
+      },
+    },
     ...borders.border200,
     borderRadius: borders.radius400,
     borderWidth: sizing.scale0,
@@ -133,10 +161,28 @@ StyledFileRows.displayName = 'StyledFileRows';
 
 export const StyledHint = styled<'div', StyleProps>('div', (props) => {
   const {
-    $theme: { colors, typography },
+    $fileCount,
+    $theme: { animation, colors, typography },
   } = props;
   let fontColor = colors.contentTertiary;
+  const animations =
+    $fileCount > 0
+      ? {
+          animationDuration: animation.timing500,
+          animationIterationCount: 1,
+          animationTimingFunction: animation.easeInOutQuinticCurve,
+          animationName: {
+            '0%': {
+              transform: 'translateY(-32px)',
+            },
+            '100%': {
+              transform: 'translateX(-0px)',
+            },
+          },
+        }
+      : {};
   return {
+    ...animations,
     ...typography.font100,
     color: fontColor,
   };

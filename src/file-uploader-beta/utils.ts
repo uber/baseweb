@@ -4,6 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+import type { Theme } from '../styles';
+
+export const destructureStyleOverride = (styleOverride: any, theme: Theme) => {
+  if (typeof styleOverride === 'function') {
+    return styleOverride({ $theme: theme });
+  } else {
+    return styleOverride;
+  }
+};
+
 export const formatBytes = (bytes: number): string => {
   if (bytes === 0) return '0 bytes';
   const k = 1000;
