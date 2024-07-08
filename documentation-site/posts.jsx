@@ -1,5 +1,17 @@
 const posts = [
   {
+    path: "/blog/file-uploader",
+    author: "Emerson Pfeiffer",
+    authorLink: "https://github.com/epfeiffe",
+    title: "Introducing the File Uploader Component",
+    tagline: "Adding state to a reusable file uploader component",
+    date: "12 July 2024",
+    coverImage: "/images/blog/file-uploader/file-uploader.gif",
+    coverImageWidth: 960,
+    coverImageHeight: 575,
+    keyWords: ["Base Web", "File Upload", "React", "react-dropzone"],
+  },
+  {
     path: "/blog/open-source-engagement",
     author: "Vojtech Miksu",
     authorLink: "https://github.com/tajo",
