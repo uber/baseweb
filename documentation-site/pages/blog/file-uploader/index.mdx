@@ -1,0 +1,185 @@
+import Layout from "../../../components/layout";
+import { BlogImage, Meta, Caption } from "../../../components/blog";
+import { Block } from "baseui/block";
+import { StatefulInput } from "baseui/input";
+import { StatefulSelect } from "baseui/select";
+import { StatefulPaymentCard } from "baseui/payment-card";
+import { StatefulPhoneInput } from "baseui/phone-input";
+import { FileUploaderBeta } from "baseui/file-uploader-beta";
+import architectureDiagram from "../../../public/images/blog/file-uploader/file-uploader-architecture-diagram.png";
+import carouselView from "../../../public/images/blog/file-uploader/carousel-view.png";
+import gridView from "../../../public/images/blog/file-uploader/grid-view.png";
+import listView from "../../../public/images/blog/file-uploader/list-view.png";
+import metadata from "./metadata.json";
+
+export default Layout;
+
+<Meta data={metadata} />
+
+In July of 2024, we introduced a new [File Uploader](/components/file-uploader-beta) component to Base Web.
+
+<FileUploaderBeta />
+<Caption>The new File Uploader component</Caption>
+
+## Background
+
+In December of 2018, the baseweb team implemented the basic [File Uploader](/components/file-uploader) component.
+However, this component lacks [statefulness](https://github.com/uber/baseweb/pull/795).
+Demand at Uber has grown for an advanced component that can handle complex use cases.
+Several teams implemented their own custom file uploader components, leading to UI/UX inconsistencies.
+Additionally, new product requests required stateful file upload handling on Uber's [Insurance Tech](https://www.uber.com/blog/insuretech-insurance-compliance/) team.
+
+This was an opportunity to provide immediate impact on the insurance team, save enginerring time across Uber, and improve UI/UX consistency.
+
+## Goals
+
+1. Maintain an internal state across file uploads each time the user selects "Browse files"
+
+```js
+import type { FileRow } from 'baseui/file-uploader-beta';
+
+const [fileRows, setFileRows] = React.useState<Array<FileRow>>([]);
+```
+
+2. Provides a UI for each uploaded file including the filename, file size in a human-readable format, and one of three states: 1. Success 2. Error (e.g. invalid file type, file too large, etc.) 3. Loading
+   <FileUploaderBeta
+     fileRows={[
+       {
+         file: new File(["test file 1"], "success.jpeg"),
+         status: "processed",
+         errorMessage: null,
+       },
+       {
+         file: new File(["test file 2"], "error.jpeg"),
+         status: "error",
+         errorMessage: "file type of img/jpeg is not accepted",
+       },
+       {
+         file: new File(["test file 3"], "loading.jpeg"),
+         status: "added",
+         errorMessage: null,
+       },
+     ]}
+   />
+3. Provide a delete operation that removes files from the internal state, represented by a trash can icon
+   <FileUploaderBeta
+     fileRows={[
+       {
+         file: new File(["test file 1"], "success.jpeg"),
+         status: "processed",
+         errorMessage: null,
+       },
+     ]}
+   />
+
+## Design considerations
+
+### Architecture
+
+<BlogImage src={architectureDiagram} />
+
+A `processFileOnDrop` function is passed as a parameter.
+It is executed on each file upload.
+It is extensible, allowing for applications to run any synchronous or asynchronous code.
+
+### Dropzone
+
+The file uploader leverages the [react-dropzone](https://react-dropzone.js.org/) package under the hood to handle file drops directly.
+Serious considerations were made to upgrade this package to the latest version.
+The largest improvement would be the inclusion of a new `validator` prop.
+This prop runs before the `onDrop` callback, sorting files into two buckets: `acceptedFiles` and `rejectedFiles`.
+Application code could pass their own custom validation function to show errors, while also keeping the `onDrop` callback for file processing.
+
+However, there were significat drawbacks to this approach.
+Most notable, the `validator` prop [runs synchronously](https://github.com/react-dropzone/react-dropzone/blob/99b43e802e42f949b9c19aaf74556d611584353d/src/index.js#L582).
+Erros that are identifiable in client side code such as "file size exceeded" or "maximun number of files uploaded" would be caught and displayed with a friendly error message.
+However, asynchronous errors due to API upload errors or server side security checks would not be caught.
+To show friendly error messages for these cases, applications would have to modify file state in the `onDrop` callback.
+This violates [seperation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns); applications code AND the file uploader component would be responsible for file state management.
+
+### Server side support
+
+Instead of demanding applications to pass a `processFileOnDrop` function prop, another consideration was to implement server side handling within the component.
+Plenty of third-party options exist such as [filepond](https://pqina.nl/filepond/) and (uppy)[https://uppy.io/].
+Each of these libraries have their own pros and cons, but provide out of the box support for server side handling.
+However, introducing server side handling comes with notable drawbacks:
+
+1. Reduced flexibility for applications to handle server side integrations.
+2. Potential security risks. Applications have to trust the third-party library to handle file uploads securely.
+3. Each component in the Base Web library lives entierly on browser rendered code. Indroducing reusable server code would be a significant deviation from the current paradigm.
+
+## Feature improvements
+
+### Statefulness
+
+As mentioned in the Goals section, the new File Uploader component is stateful.
+It leverages the `useState` hook to maintain an internal state across file uploads.
+
+```js
+import React from 'react';
+import { type FileRow, FileUploaderBeta } from 'baseui/file-uploader-beta';
+
+const myApplicationComponent = () => {
+  const [fileRows, setFileRows] = React.useState<Array<FileRow>>([]);
+
+  return <FileUploaderBeta fileRows={fileRows} setFileRows={setFileRows} />
+}
+```
+
+### Error handling
+
+Some browser side errors are handled out of the box using the [FileReader](https://developer.mozilla.org/en-US/docs/Web/API/FileReader) API.
+They can be leverages with the `accept`, `minSize`, `maxSize`, and `maxFiles` props.
+Applications can use these props from browser side error handling and `processFileOnDrop` for server side error handling.
+
+<FileUploaderBeta
+  fileRows={[
+    {
+      file: new File(["test file 1"], "unaccepted-file-type.jpeg"),
+      status: "error",
+      errorMessage: "file type of img/jpeg is not accepted",
+    },
+    {
+      file: new File(["test file 2"], "file-too-small.png"),
+      status: "error",
+      errorMessage: "file size must be greater than 20 KB",
+    },
+    {
+      file: new File(["test file 3"], "file-too-big.png"),
+      status: "error",
+      errorMessage: "file size must be less than 100 KB",
+    },
+    {
+      file: new File(["test file 4"], "file-count-too-many.png"),
+      status: "error",
+      errorMessage: "cannot process more than 3 file(s)",
+    },
+  ]}
+/>
+
+### Future considerations
+
+Size adjustments and additional layouts were considered for the file uploader component.
+The component can extend to support these use cases in future iterations.
+These include:
+
+#### List view
+
+<BlogImage
+  caption={"Implemented in the initial release with the itemPreview prop"}
+  src={listView}
+/>
+
+#### Grid view
+
+<BlogImage caption={"Not included in the initial release"} src={gridView} />
+
+#### Carousel view
+
+<BlogImage caption={"Not included in the initial release"} src={carouselView} />
+
+## Conclusion
+
+The new File Uploader component is stateful, extensible, and provides a consistent user experience.
+By building out file row state binding, props to control errors, and props to control uploads, application developers can quickly implement file upload functionality.
+Stay tuned for future updates to the Base Web library.
