@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { render, fireEvent, getAllByRole, getByText } from '@testing-library/react';
-
+import { getByPlaceholderText } from '@testing-library/dom';
 import { TestBaseProvider } from '../../test/test-utils';
 import type { ControlRef } from '../index';
 import {
@@ -144,5 +144,23 @@ describe('Data Table', () => {
     // should find only the two rows with orange from the mock ROWS
     const rows = controlRef.current?.getRows();
     expect(Array.isArray(rows) && rows.length).toBe(2);
+  });
+
+  it('renders textQueryPlaceholder', async () => {
+    const { container } = render(
+      <TestBaseProvider>
+        <div style={{ height: '800px', width: '900px' }}>
+          <StatefulDataTable
+            columns={COLUMNS}
+            rows={ROWS}
+            initialTextQuery="Initial Test Query"
+            textQueryPlaceholder={'Test Placeholder'}
+          />
+        </div>
+      </TestBaseProvider>
+    );
+
+    // should find element with textQueryPlaceholder
+    expect(getByPlaceholderText(container, 'Test Placeholder')).toBeTruthy();
   });
 });

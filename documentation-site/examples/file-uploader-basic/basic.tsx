@@ -1,8 +1,8 @@
 import * as React from "react";
-import { FileUploader } from "baseui/file-uploader";
+import { FileUploaderBasic } from "baseui/file-uploader-basic";
 
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
-function useInterval(callback: () => void, delay: number | null) {
+function useInterval(callback: any, delay: number | null) {
   const savedCallback = React.useRef(() => {});
 
   // Remember the latest callback.
@@ -25,14 +25,12 @@ function useInterval(callback: () => void, delay: number | null) {
 // useFakeProgress is an elaborate way to show a fake file transfer for illustrative purposes. You
 // don't need this is your application. Use metadata from your upload destination if it's available,
 // or don't provide progress.
-function useFakeProgress(): [number, string, () => void, () => void] {
+function useFakeProgress(): [number, () => void, () => void] {
   const [fakeProgress, setFakeProgress] = React.useState(0);
   const [isActive, setIsActive] = React.useState(false);
-  const [errorMessage, setErrorMessage] = React.useState("");
 
   function stopFakeProgress() {
     setIsActive(false);
-    setErrorMessage("");
     setFakeProgress(0);
   }
 
@@ -42,9 +40,8 @@ function useFakeProgress(): [number, string, () => void, () => void] {
 
   useInterval(
     () => {
-      if (fakeProgress >= 40) {
-        // stopFakeProgress();
-        setErrorMessage("Upload failed... connection was lost.");
+      if (fakeProgress >= 100) {
+        stopFakeProgress();
       } else {
         setFakeProgress(fakeProgress + 10);
       }
@@ -52,17 +49,15 @@ function useFakeProgress(): [number, string, () => void, () => void] {
     isActive ? 500 : null,
   );
 
-  return [fakeProgress, errorMessage, startFakeProgress, stopFakeProgress];
+  return [fakeProgress, startFakeProgress, stopFakeProgress];
 }
 
 export default function Example() {
-  const [progressAmount, errorMessage, startFakeProgress, stopFakeProgress] =
+  const [progressAmount, startFakeProgress, stopFakeProgress] =
     useFakeProgress();
 
   return (
-    <FileUploader
-      errorMessage={errorMessage}
-      onRetry={stopFakeProgress}
+    <FileUploaderBasic
       onCancel={stopFakeProgress}
       onDrop={(acceptedFiles, rejectedFiles) => {
         // handle file upload...

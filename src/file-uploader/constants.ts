@@ -19,3 +19,10 @@ export const FILE_STATUS_TO_COLOR_MAP = (
   [FILE_STATUS.error]: $theme.colors.negative,
   [FILE_STATUS.processed]: $theme.colors.positive,
 });
+
+export enum ARIA_LIVE_ELEMENT_ID {
+  ADDITION = 'file-uploader-addition',
+  REMOVAL = 'file-uploader-removal',
+}
+
+export const ARIA_LIVE_TIMEOUT_MS = 5000;

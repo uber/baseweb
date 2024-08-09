@@ -42,6 +42,7 @@ export type DataTableLocale = {
   selectRow: string;
   selectAllRows: string;
   sortColumn: string;
+  textQueryPlaceholder: string;
 };
 
 const locale = {
@@ -83,6 +84,7 @@ const locale = {
   selectRow: 'Select row',
   selectAllRows: 'Select all rows',
   sortColumn: 'Sort column',
+  textQueryPlaceholder: 'Search...',
 };
 
 export default locale;

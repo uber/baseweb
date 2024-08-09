@@ -89,6 +89,7 @@ const tr_TR: Locale = {
     selectRow: 'satır seç',
     selectAllRows: 'Tüm satırları seç',
     sortColumn: 'Sıralama sütunu',
+    textQueryPlaceholder: 'Aramak...',
   },
 
   buttongroup: {
@@ -96,17 +97,19 @@ const tr_TR: Locale = {
   },
 
   fileuploader: {
+    added: 'Yükleniyor...',
+    buttonText: 'Dosyalara göz atın',
+    contentMessage: 'veya yüklemek için bırakın',
+    error: 'Yükleme hatası',
+    processed: 'Yükleme başarılı',
+  },
+
+  fileuploaderbasic: {
     dropFilesToUpload: 'Dosyaları yüklemek için buraya bırakın...',
     or: '',
     browseFiles: 'Dosyalara göz atın',
     retry: 'Yüklemeyi Yeniden Dene',
     cancel: 'İptal',
-  },
-
-  fileuploaderbeta: {
-    added: 'Yükleniyor...',
-    error: 'Yükleme hatası',
-    processed: 'Yükleme başarılı',
   },
 
   menu: {

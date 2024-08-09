@@ -10,7 +10,7 @@ import datepicker from '../datepicker/locale';
 import datatable from '../data-table/locale';
 import buttongroup from '../button-group/locale';
 import fileuploader from '../file-uploader/locale';
-import fileuploaderbeta from '../file-uploader-beta/locale';
+import fileuploaderbasic from '../file-uploader-basic/locale';
 import menu from '../menu/locale';
 import modal from '../modal/locale';
 import drawer from '../drawer/locale';
@@ -26,7 +26,7 @@ const en_US: Locale = {
   datatable,
   buttongroup,
   fileuploader,
-  fileuploaderbeta,
+  fileuploaderbasic,
   menu,
   modal,
   drawer,

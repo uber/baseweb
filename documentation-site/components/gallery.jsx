@@ -66,8 +66,8 @@ const COMPONENTS = {
       Component: thumbnails.SvgFileUploader,
     },
     {
-      href: "/components/file-uploader-beta",
-      Component: thumbnails.SvgFileUploaderBeta,
+      href: "/components/file-uploader-basic",
+      Component: thumbnails.SvgFileUploaderBasic,
     },
     {
       href: "/components/menu",

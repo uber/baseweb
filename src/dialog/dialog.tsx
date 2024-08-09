@@ -75,7 +75,7 @@ const Dialog = ({
   artwork,
   buttonDock,
   children,
-  handleDismiss,
+  onDismiss,
   showDismissButton = true,
   hasOverlay = true,
   heading,
@@ -122,14 +122,14 @@ const Dialog = ({
       e.target &&
       e.target instanceof HTMLElement &&
       e.target.contains(overlayRef.current) &&
-      handleDismiss
+      onDismiss
     ) {
-      handleDismiss();
+      onDismiss();
     }
   }
 
   function handleEscape() {
-    handleDismiss && handleDismiss();
+    onDismiss && onDismiss();
   }
 
   return isOpen ? (
@@ -144,8 +144,8 @@ const Dialog = ({
           aria-labelledby="dialog-title"
           {...rootProps}
         >
-          {handleDismiss && showDismissButton && (
-            <DismissButton onClick={() => handleDismiss()} {...dismissButtonProps} />
+          {onDismiss && showDismissButton && (
+            <DismissButton onClick={() => onDismiss()} {...dismissButtonProps} />
           )}
 
           <ScrollContainer {...scrollContainerProps} tabIndex={0}>

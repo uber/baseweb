@@ -31,8 +31,8 @@ export type DialogProps = {
   /** The contents of the body of Dialog */
   children?: React.ReactNode | (() => React.ReactNode);
   /** Determine if and how dialog can be dismissed */
-  handleDismiss?: () => void | null;
-  /** Should Dialog include a dedicated X button to dismiss the dialog. Ignored if handleDismiss is not supplied. */
+  onDismiss?: () => void | null;
+  /** Should Dialog include a dedicated X button to dismiss the dialog. Ignored if onDismiss is not supplied. */
   showDismissButton?: boolean;
   /** Determines whether the background behind the Dialog is dimmed when Dialog is open  */
   hasOverlay?: boolean;

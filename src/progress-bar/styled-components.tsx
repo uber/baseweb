@@ -341,13 +341,11 @@ const _StyledProgressBarRoundedTrackForeground = styled<
     $pathLength: number;
     $pathProgress: number;
   }
->('path', ({ $theme, $size, $visible, $pathLength, $pathProgress }) => {
+>('path', ({ $theme, $size, $visible }) => {
   return {
     visibility: $visible ? 'visible' : 'hidden',
     stroke: $theme.colors.borderAccent,
     strokeWidth: PROGRESS_BAR_ROUNDED_SIZES[$size].strokeWidth + 'px',
-    strokeDasharray: $pathLength,
-    strokeDashoffset: $pathLength * (1 - $pathProgress) + '',
   };
 });
 
@@ -357,7 +355,17 @@ export const StyledProgressBarRoundedTrackForeground = withWrapper(
   _StyledProgressBarRoundedTrackForeground,
   (Styled) =>
     function StyledProgressBarRoundedSvg(props) {
-      return <Styled d={PROGRESS_BAR_ROUNDED_SIZES[props.$size].d} {...props} />;
+      return (
+        <Styled
+          d={PROGRESS_BAR_ROUNDED_SIZES[props.$size].d}
+          // We're using inline styles here to avoid the change on the class name on every update
+          style={{
+            strokeDasharray: props.$pathLength,
+            strokeDashoffset: props.$pathLength * (1 - props.$pathProgress) + '',
+          }}
+          {...props}
+        />
+      );
     }
 );
 

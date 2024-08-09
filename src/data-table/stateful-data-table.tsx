@@ -75,6 +75,7 @@ function QueryInput(props) {
         onChange={(event) => setValue(event.target.value)}
         value={value}
         clearable
+        placeholder={props.textQueryPlaceholder || locale.datatable.textQueryPlaceholder}
       />
     </div>
   );
@@ -210,7 +211,13 @@ export function StatefulDataTable(props: StatefulDataTableProps) {
                     paddingTop: theme.sizing.scale500,
                   })}
                 >
-                  {searchable && <QueryInput onChange={onTextQueryChange} textQuery={textQuery} />}
+                  {searchable && (
+                    <QueryInput
+                      onChange={onTextQueryChange}
+                      textQuery={textQuery}
+                      textQueryPlaceholder={props.textQueryPlaceholder}
+                    />
+                  )}
 
                   {filterable && (
                     <React.Fragment>

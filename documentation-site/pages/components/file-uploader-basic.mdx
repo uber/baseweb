@@ -1,0 +1,77 @@
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
+
+import FileUploaderBasic from "examples/file-uploader-basic/basic.tsx";
+import FileUploaderBasicError from "examples/file-uploader-basic/error.tsx";
+import FileUploaderBasicIndeterminate from "examples/file-uploader-basic/indeterminate-progress.tsx";
+import FileUploaderBasicDisabled from "examples/file-uploader-basic/disabled.tsx";
+import FileUploaderBasicOverrides from "examples/file-uploader-basic/overrides.tsx";
+
+import OverridesExample from "examples/file-uploader-basic/_overrides_component.tsx";
+import * as FileUploaderBasicExports from "baseui/file-uploader-basic";
+
+import Yard from "../../components/yard/index";
+import fileUploaderBasicYardConfig from "../../components/yard/config/file-uploader-basic";
+
+export default Layout;
+
+# File Uploader Basic
+
+<Yard placeholderHeight={180} {...fileUploaderBasicYardConfig} />
+
+Creates a dropzone for file uploads.
+
+## Accessibility
+
+- "Browse files" has `aria-controls="fileupload"` set.
+
+## When to use
+
+- Enable file(s) upload through drag and drop or the system _Browse files_ dialog.
+
+## Security considerations
+
+By default, the file uploader basic does not concern itself with validating and discarding potentially malicious files, as Base Web never runs any of the uploaded files. **It's the responsibility of the consuming application to do so.** To help with that, this component supports the `accept` property, which can limit the acceptable file extensions.
+
+To learn more, read the corresponding [OWASP article on file uploads](https://www.owasp.org/index.php/Unrestricted_File_Upload).
+
+## Examples
+
+<Example title="File uploader basic usage" path="file-uploader-basic/basic.tsx">
+  <FileUploaderBasic />
+</Example>
+
+<Example
+  title="File upload basic with error"
+  path="file-uploader-basic/error.tsx"
+>
+  <FileUploaderBasicError />
+</Example>
+
+<Example
+  title="File upload basic with unknown progress"
+  path="file-uploader-basic/indeterminate-progress.tsx"
+>
+  <FileUploaderBasicIndeterminate />
+</Example>
+
+<Example
+  title="File uploader basic in disabled state"
+  path="file-uploader-basic/disabled.tsx"
+>
+  <FileUploaderBasicDisabled />
+</Example>
+
+<Example
+  title="File uploader basic with overrides"
+  path="file-uploader-basic/overrides.tsx"
+>
+  <FileUploaderBasicOverrides />
+</Example>
+
+<Exports
+  component={FileUploaderBasicExports}
+  title="File uploader basic exports"
+  path="baseui/file-uploader-basic"
+/>

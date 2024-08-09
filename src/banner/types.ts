@@ -42,6 +42,7 @@ export type BannerOverrides = {
   Title?: Override;
   TrailingContent?: Override;
   TrailingButtonContainer?: Override;
+  TrailingButton?: Override;
   TrailingIconButton?: Override;
 };
 

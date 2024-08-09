@@ -2,7 +2,7 @@ import * as React from "react";
 import { styled } from "baseui/styles";
 import { BottomNavigation, NavItem } from "baseui/bottom-navigation";
 import { MessageCard } from "baseui/message-card";
-import { FileUploader } from "baseui/file-uploader";
+import { FileUploaderBasic } from "baseui/file-uploader-basic";
 import { colors } from "baseui/tokens";
 import Calendar from "baseui/icon/calendar";
 import Alert from "baseui/icon/alert";
@@ -126,7 +126,7 @@ export default function Example() {
         <NavItem title="Upload" icon={Upload}>
           <TextContent numParagraphs={0}>
             <h1>File Upload</h1>
-            <FileUploader errorMessage={""} />
+            <FileUploaderBasic errorMessage={""} />
           </TextContent>
         </NavItem>
       </BottomNavigation>
