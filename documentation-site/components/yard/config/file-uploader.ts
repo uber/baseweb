@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import { FileUploader } from "baseui/file-uploader";
 import { PropTypes } from "react-view";
 import type { TConfig } from "../types";
-import buttonConfig from "./button";
+import iconConfig from "./icon";
 
 const changeHandlers = [
   "onClick",
@@ -19,9 +19,6 @@ const changeHandlers = [
   "onDragEnter",
   "onDragOver",
   "onDragLeave",
-  "onDrop",
-  "onDropAccepted",
-  "onDropRejected",
   "onFileDialogCancel",
   "onCancel",
   "onRetry",
@@ -33,7 +30,7 @@ const FileUploaderConfig: TConfig = {
     "baseui/file-uploader": { named: ["FileUploader"] },
   },
   scope: {
-    FileUploader,
+    FileUploader: FileUploader,
   },
   theme: [],
   props: {
@@ -42,6 +39,38 @@ const FileUploaderConfig: TConfig = {
       type: PropTypes.String,
       description:
         "Set accepted file types. See https://github.com/okonet/attr-accept for more information",
+    },
+    disabled: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: "Renders component in disabled state.",
+    },
+    fileRows: {
+      value: "[]",
+      type: PropTypes.Array,
+      description: "Array of file objects.",
+      stateful: true,
+    },
+    hint: {
+      value: undefined,
+      type: PropTypes.String,
+      description: "Hint text to be displayed below the file rows.",
+    },
+    itemPreview: {
+      value: false,
+      type: PropTypes.Boolean,
+      description:
+        "Renders a file preview thumbnail. Works best with image files.",
+    },
+    label: {
+      value: undefined,
+      type: PropTypes.String,
+      description: "Label text to be displayed above the file uploader.",
+    },
+    maxFiles: {
+      value: undefined,
+      type: PropTypes.Number,
+      description: "Maximum number of files that can be uploaded.",
     },
     maxSize: {
       value: undefined,
@@ -53,28 +82,36 @@ const FileUploaderConfig: TConfig = {
       type: PropTypes.Number,
       description: "Minimum file size (in bytes).",
     },
+    processFileOnDrop: {
+      value: undefined,
+      type: PropTypes.Function,
+      description:
+        "Application defined callback function that runs on file drop. Takes a File as input and returns a Promise<{ errorMessage: string | null; fileInfo?: any }>.",
+    },
+    setFileRows: {
+      value: "newFileRows => setFileRows(newFileRows)",
+      type: PropTypes.Function,
+      description: "Function to set file rows.",
+    },
     multiple: {
       value: undefined,
       type: PropTypes.Boolean,
       description:
         "Allow drag n drop (or selection from the file dialog) of multiple files",
+      hidden: true,
     },
     disableClick: {
       value: undefined,
       type: PropTypes.Boolean,
       description:
         "Disallow clicking on the dropzone container to open file dialog.",
-    },
-    disabled: {
-      value: false,
-      type: PropTypes.Boolean,
-      description: "Renders component in disabled state.",
+      hidden: true,
     },
     errorMessage: {
-      value: "",
+      value: undefined,
       type: PropTypes.String,
       description: "Error message to be displayed.",
-      stateful: true,
+      hidden: true,
     },
     ...changeHandlers.reduce((acc, current) => {
       //@ts-ignore
@@ -104,15 +141,24 @@ const FileUploaderConfig: TConfig = {
       description: "Lets you customize all aspects of the component.",
       custom: {
         names: [
-          { ...buttonConfig, componentName: "ButtonComponent" },
-          { ...buttonConfig, componentName: "CancelButtonComponent" },
-          { ...buttonConfig, componentName: "RetryButtonComponent" },
-          "ContentMessage",
-          "ErrorMessage",
-          "FileDragAndDrop",
-          "HiddenInput",
-          "Spinner",
-          "ProgressBar",
+          { ...iconConfig, componentName: "AlertIcon" },
+          { ...iconConfig, componentName: "CircleCheckFilledIcon" },
+          "FileRow",
+          "FileRowColumn",
+          "FileRowContent",
+          "FileRowFileName",
+          "FileRowText",
+          "FileRowUploadMessage",
+          "FileRowUploadText",
+          "FileRows",
+          "Hint",
+          "ImagePreviewThumbnail",
+          "ItemPreviewContainer",
+          "Label",
+          { ...iconConfig, componentName: "PaperclipFilledIcon" },
+          "ParentRoot",
+          { ...iconConfig, componentName: "TrashCanFilledIcon" },
+          "TrashCanFilledIconContainer",
         ],
         sharedProps: {},
       },

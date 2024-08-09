@@ -17,7 +17,7 @@ import type { DatepickerLocale as DatepickerLocaleAlias } from '../datepicker';
 import type { DataTableLocale as DataTableLocaleAlias } from '../data-table';
 import type { ButtonGroupLocale as ButtonGroupLocaleAlias } from '../button-group';
 import type { FileUploaderLocale as FileUploaderLocaleAlias } from '../file-uploader';
-import type { FileUploaderBetaLocale as FileUploaderBetaLocaleAlias } from '../file-uploader-beta';
+import type { FileUploaderBasicLocale as FileUploaderBasicLocaleAlias } from '../file-uploader-basic';
 import type { MenuLocale as MenuLocaleAlias } from '../menu';
 import type { ModalLocale as ModalLocaleAlias } from '../modal';
 import type { DrawerLocale as DrawerLocaleAlias } from '../drawer';
@@ -64,7 +64,7 @@ export type ButtonGroupLocale = ButtonGroupLocaleAlias;
 /** @deprecated inded use type exported from the component itself */
 export type FileUploaderLocale = FileUploaderLocaleAlias;
 /** @deprecated inded use type exported from the component itself */
-export type FileUploaderBetaLocale = FileUploaderBetaLocaleAlias;
+export type FileUploaderBasicLocale = FileUploaderBasicLocaleAlias;
 /** @deprecated inded use type exported from the component itself */
 export type MenuLocale = MenuLocaleAlias;
 /** @deprecated inded use type exported from the component itself */

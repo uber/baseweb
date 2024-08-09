@@ -18,6 +18,7 @@ export { default as ChevronLeft } from './chevron-left';
 export { default as ChevronRight } from './chevron-right';
 export { default as ChevronUp } from './chevron-up';
 export { default as CircleCheckFilled } from './circle-check-filled';
+export { default as CircleExclamationPointFilled } from './circle-exclamation-point-filled';
 export { default as DeleteAlt } from './delete-alt';
 export { default as Delete } from './delete';
 export { default as Filter } from './filter';

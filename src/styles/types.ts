@@ -83,6 +83,7 @@ export type Icon = {
   ChevronRight?: ComponentType<IconProps> | ForwardedSVG;
   ChevronRightSmall?: ComponentType<IconProps> | ForwardedSVG;
   CircleCheckFilled?: ComponentType<IconProps> | ForwardedSVG;
+  CircleExclamationPointFilled?: ComponentType<IconProps> | ForwardedSVG;
   DeleteAlt?: ComponentType<IconProps> | ForwardedSVG;
   Delete?: ComponentType<IconProps> | ForwardedSVG;
   Filter?: ComponentType<IconProps> | ForwardedSVG;

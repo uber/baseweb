@@ -3,12 +3,11 @@ import Layout from "../../components/layout";
 import Exports from "../../components/exports";
 
 import FileUploaderBasic from "examples/file-uploader/basic.tsx";
-import FileUploaderError from "examples/file-uploader/error.tsx";
-import FileUploaderIndeterminate from "examples/file-uploader/indeterminate-progress.tsx";
-import FileUploaderDisabled from "examples/file-uploader/disabled.tsx";
+import FileUploaderItemPreview from "examples/file-uploader/item-preview.tsx";
+import FileUploaderLabelHint from "examples/file-uploader/label-hint.tsx";
+import FileUploaderUploadRestrictions from "examples/file-uploader/upload-restrictions.tsx";
 import FileUploaderOverrides from "examples/file-uploader/overrides.tsx";
 
-import OverridesExample from "examples/file-uploader/_overrides_component.tsx";
 import * as FileUploaderExports from "baseui/file-uploader";
 
 import Yard from "../../components/yard/index";
@@ -18,17 +17,25 @@ export default Layout;
 
 # File Uploader
 
-<Yard placeholderHeight={180} {...fileUploaderYardConfig} />
+<Yard placeholderHeight={120} {...fileUploaderYardConfig} />
 
-Creates a dropzone for file uploads.
+Creates a dropzone for file uploads with file row state binding, props to control errors, and props to control uploads.
 
 ## Accessibility
 
 - "Browse files" has `aria-controls="fileupload"` set.
 
-## When to use
+## Inheritance
+
+- Inherits all props from the `FileUploaderBasic` component except for `onDrop`, `onDropAccepted`, and `onDropRejected`. These three props are replaced by the `processFileOnDrop` function prop.
+- Inherits all style props from the `FileUploaderBasic` component.
+
+## How to use
 
 - Enable file(s) upload through drag and drop or the system _Browse files_ dialog.
+- Leverage `accept`, `maxFiles`, `maxSize`, and `minSize` for built in error handling.
+- Leverage `processFileOnDrop` for custom error handling and upload capabilities. Should take a `file: File` and input and return `Promise<{ errorMessage: string | null; fileInfo?: any }>` where `errorMessage` determines if an error is shown.
+- Component will be `disabled` while files are uploading. This prevents invalid state while React re-renders via `useState` hook.
 
 ## Security considerations
 
@@ -38,32 +45,26 @@ To learn more, read the corresponding [OWASP article on file uploads](https://ww
 
 ## Examples
 
-<Example title="File uploader basic usage" path="file-uploader/basic.tsx">
+<Example title="Basic usage" path="file-uploader/basic.tsx">
   <FileUploaderBasic />
 </Example>
 
-<Example title="File upload with error" path="file-uploader/error.tsx">
-  <FileUploaderError />
+<Example title="Item preview" path="file-uploader/item-preview.tsx">
+  <FileUploaderItemPreview />
+</Example>
+
+<Example title="Label and hint" path="file-uploader/label-hint.tsx">
+  <FileUploaderLabelHint />
 </Example>
 
 <Example
-  title="File upload with unknown progress"
-  path="file-uploader/indeterminate-progress.tsx"
+  title="Upload restrictions"
+  path="file-uploader/upload-restrictions.tsx"
 >
-  <FileUploaderIndeterminate />
+  <FileUploaderUploadRestrictions />
 </Example>
 
-<Example
-  title="File uploader in disabled state"
-  path="file-uploader/disabled.tsx"
->
-  <FileUploaderDisabled />
-</Example>
-
-<Example
-  title="File uploader with overrides"
-  path="file-uploader/overrides.tsx"
->
+<Example title="Overrides" path="file-uploader/overrides.tsx">
   <FileUploaderOverrides />
 </Example>
 

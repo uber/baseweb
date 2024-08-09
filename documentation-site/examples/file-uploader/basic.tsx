@@ -1,74 +1,39 @@
 import * as React from "react";
-import { FileUploader } from "baseui/file-uploader";
-
-// https://overreacted.io/making-setinterval-declarative-with-react-hooks/
-function useInterval(callback: any, delay: number | null) {
-  const savedCallback = React.useRef(() => {});
-
-  // Remember the latest callback.
-  React.useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  // Set up the interval.
-  React.useEffect((): any => {
-    function tick() {
-      savedCallback.current();
-    }
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
-}
-
-// useFakeProgress is an elaborate way to show a fake file transfer for illustrative purposes. You
-// don't need this is your application. Use metadata from your upload destination if it's available,
-// or don't provide progress.
-function useFakeProgress(): [number, () => void, () => void] {
-  const [fakeProgress, setFakeProgress] = React.useState(0);
-  const [isActive, setIsActive] = React.useState(false);
-
-  function stopFakeProgress() {
-    setIsActive(false);
-    setFakeProgress(0);
-  }
-
-  function startFakeProgress() {
-    setIsActive(true);
-  }
-
-  useInterval(
-    () => {
-      if (fakeProgress >= 100) {
-        stopFakeProgress();
-      } else {
-        setFakeProgress(fakeProgress + 10);
-      }
-    },
-    isActive ? 500 : null,
-  );
-
-  return [fakeProgress, startFakeProgress, stopFakeProgress];
-}
+import { FileUploader, type FileRow } from "baseui/file-uploader";
 
 export default function Example() {
-  const [progressAmount, startFakeProgress, stopFakeProgress] =
-    useFakeProgress();
+  const [fileRows, setFileRows] = React.useState<Array<FileRow>>([
+    {
+      file: new File(["test file"], "file.txt"),
+      id: "0",
+      status: "processed",
+      errorMessage: null,
+    },
+  ]);
+
+  const processFileOnDrop = (
+    file: File,
+  ): Promise<{ errorMessage: string | null; fileInfo?: any }> => {
+    return new Promise((resolve) => {
+      // Fake an upload process for 2 seconds
+      // For a real-world scenario, replace this with application upload logic
+      setTimeout(() => {
+        let fileInfo = {
+          file,
+          objectID: "1234",
+          uploadID: "1234",
+          uploadStatus: "success",
+        };
+        resolve({ errorMessage: null, fileInfo });
+      }, 2000);
+    });
+  };
 
   return (
     <FileUploader
-      onCancel={stopFakeProgress}
-      onDrop={(acceptedFiles, rejectedFiles) => {
-        // handle file upload...
-        console.log(acceptedFiles, rejectedFiles);
-        startFakeProgress();
-      }}
-      // progressAmount is a number from 0 - 100 which indicates the percent of file transfer completed
-      progressAmount={progressAmount}
-      progressMessage={
-        progressAmount ? `Uploading... ${progressAmount}% of 100%` : ""
-      }
+      fileRows={fileRows}
+      processFileOnDrop={processFileOnDrop}
+      setFileRows={setFileRows}
     />
   );
 }

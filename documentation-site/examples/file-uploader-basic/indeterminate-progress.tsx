@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FileUploader } from "baseui/file-uploader";
+import { FileUploaderBasic } from "baseui/file-uploader-basic";
 
 export default function Example() {
   const [isUploading, setIsUploading] = React.useState(false);
@@ -11,7 +11,7 @@ export default function Example() {
   }
 
   // startProgress is only illustrative. Use the progress info returned
-  // from your upload endpoint. This example shows how the file-uploader operates
+  // from your upload endpoint. This example shows how the file-uploader-basic operates
   // if there is no progress info available.
   function startProgress() {
     setIsUploading(true);
@@ -19,7 +19,7 @@ export default function Example() {
   }
 
   return (
-    <FileUploader
+    <FileUploaderBasic
       onCancel={reset}
       onDrop={(acceptedFiles, rejectedFiles) => {
         // handle file upload...

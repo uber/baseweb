@@ -94,6 +94,5 @@ describe('Tile Component', () => {
     const { container } = render(<Tile tileKind={TILE_KIND.action} label={LabelComponent} />);
 
     expect(getByText(container, 'Not a string')).toBeInTheDocument();
-    screen.debug();
   });
 });

@@ -89,6 +89,7 @@ const es_AR: Locale = {
     selectRow: 'Seleccionar fila',
     selectAllRows: 'Seleccionar todas las filas',
     sortColumn: 'Clasificar columna',
+    textQueryPlaceholder: 'Buscar...',
   },
 
   buttongroup: {
@@ -96,17 +97,19 @@ const es_AR: Locale = {
   },
 
   fileuploader: {
+    added: 'Cargando...',
+    buttonText: 'Buscar archivos',
+    contentMessage: 'o soltar para subir',
+    error: 'Error al Subir',
+    processed: 'Subida exitosa',
+  },
+
+  fileuploaderbasic: {
     dropFilesToUpload: 'Arrastra archivos aquí para subir...',
     or: '',
     browseFiles: 'Buscar archivos',
     retry: 'Reintentar',
     cancel: 'Cancelar',
-  },
-
-  fileuploaderbeta: {
-    added: 'Cargando...',
-    error: 'Error al Subir',
-    processed: 'Subida exitosa',
   },
 
   menu: {

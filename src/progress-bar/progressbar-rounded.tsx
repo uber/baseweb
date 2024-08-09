@@ -101,7 +101,7 @@ function ProgressBarRounded({
     <Root
       data-baseweb="progressbar-rounded"
       role="progressbar"
-      aria-valuenow={progress}
+      aria-valuenow={progress.toFixed(2).replace(/\.?0+$/, '')}
       aria-valuemin={0}
       aria-valuemax={1}
       $size={size}
