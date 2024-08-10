@@ -5,7 +5,7 @@ const posts = [
     authorLink: "https://github.com/epfeiffe",
     title: "Introducing the File Uploader Component",
     tagline: "Adding state to a reusable file uploader component",
-    date: "12 July 2024",
+    date: "12 August 2024",
     coverImage: "/images/blog/file-uploader/file-uploader.gif",
     coverImageWidth: 960,
     coverImageHeight: 575,
