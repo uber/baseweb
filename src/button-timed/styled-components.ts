@@ -14,6 +14,7 @@ export const StyledBaseButtonTimed = withStyle<
   // @ts-ignore
 >(StyledBaseButton, ({ $theme, $initialTime, $timeElapsed }) => {
   const completionPercentage = ($timeElapsed / $initialTime) * 100;
+  const restPercentage = 100 - completionPercentage;
   const timeLeft = $initialTime - $timeElapsed;
   return {
     position: 'relative',
@@ -23,10 +24,10 @@ export const StyledBaseButtonTimed = withStyle<
             animationDuration: `${timeLeft}s`,
             animationName: {
               from: {
-                transform: `translateX(${completionPercentage}%)`,
+                transform: `translateX(${completionPercentage}%) scaleX(${restPercentage}%)`,
               },
               to: {
-                transform: 'translateX(100%)',
+                transform: 'translateX(100%) scaleX(0)',
               },
             },
             animationTimingFunction: 'linear',
@@ -37,6 +38,7 @@ export const StyledBaseButtonTimed = withStyle<
             zIndex: '1',
             position: 'absolute',
             backgroundColor: hexToRgba($theme.colors.backgroundPrimary, '0.2'),
+            transformOrigin: 'left',
           },
         }
       : {}),

@@ -162,11 +162,16 @@ function Trailing({ action, backgroundColor, color, overrides, nested }) {
     StyledTrailingButtonContainer
   );
 
+  const trailingButtonOverrides = overrides?.TrailingButton;
+  const trailingButtonBackgroundColor = trailingButtonOverrides?.style?.backgroundColor
+    ? trailingButtonOverrides.style.backgroundColor
+    : backgroundColor;
+
   if (action.label) {
     return (
       <TrailingButtonContainer {...trailingButtonContainerProps}>
         <Button
-          colors={{ backgroundColor, color }}
+          colors={{ backgroundColor: trailingButtonBackgroundColor, color }}
           onClick={action.onClick}
           size={BUTTON_SIZE.compact}
           shape={BUTTON_SHAPE.pill}

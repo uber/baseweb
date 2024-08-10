@@ -1,12 +1,12 @@
-import * as React from 'react';
-import {FileUploader} from 'baseui/file-uploader';
-import {FileUploaderOverrides} from 'baseui/file-uploader';
+import * as React from "react";
+import { FileUploaderBasic } from "baseui/file-uploader-basic";
+import { FileUploaderBasicOverrides } from "baseui/file-uploader-basic";
 
 export default class Uploader extends React.Component<
-  {overrides: FileUploaderOverrides},
-  {progressAmount: number}
+  { overrides: FileUploaderBasicOverrides },
+  { progressAmount: number }
 > {
-  state = {progressAmount: 0};
+  state = { progressAmount: 0 };
   intervalId: number = 0;
 
   // startProgress method is only illustrative. Use the progress info returned
@@ -26,13 +26,13 @@ export default class Uploader extends React.Component<
   // reset the component to its original state. use this to cancel/retry the upload.
   reset = () => {
     clearInterval(this.intervalId);
-    this.setState({progressAmount: 0});
+    this.setState({ progressAmount: 0 });
   };
 
   render() {
     return (
       <React.Fragment>
-        <FileUploader
+        <FileUploaderBasic
           onCancel={this.reset}
           onDrop={() => {
             // handle file upload...
@@ -42,24 +42,24 @@ export default class Uploader extends React.Component<
           progressMessage={
             this.state.progressAmount
               ? `Uploading... ${this.state.progressAmount}% of 100%`
-              : ''
+              : ""
           }
           overrides={this.props.overrides}
         />
         <br />
         <br />
-        <FileUploader
+        <FileUploaderBasic
           onCancel={this.reset}
           onDrop={() => {
             // handle file upload...
             this.startProgress();
           }}
           progressAmount={this.state.progressAmount}
-          errorMessage={'Something went wrong. Sorry!'}
+          errorMessage={"Something went wrong. Sorry!"}
           progressMessage={
             this.state.progressAmount
               ? `Uploading... ${this.state.progressAmount}% of 100%`
-              : ''
+              : ""
           }
           overrides={this.props.overrides}
         />

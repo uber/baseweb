@@ -292,4 +292,28 @@ describe('Datepicker', () => {
     );
     expect(next.length).toBe(1);
   });
+
+  it('works when startTime ms > endTime ms within a rangepicker', () => {
+    const onChange = jest.fn();
+    const { container } = render(
+      <TestBaseProvider>
+        <Datepicker
+          onChange={onChange}
+          value={[new Date('2024-05-23T16:51:54.990Z'), new Date('2024-05-23T16:52:54.088Z')]}
+          range
+          timeSelectStart
+          timeSelectEnd
+          overrides={{
+            Input: {
+              props: { overrides: { Input: { props: { 'data-testid': 'input' } } } },
+            },
+          }}
+        />
+      </TestBaseProvider>
+    );
+
+    expect(() => {
+      fireEvent.focus(getByTestId(container, 'input'));
+    }).not.toThrowError();
+  });
 });

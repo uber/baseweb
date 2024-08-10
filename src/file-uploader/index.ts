@@ -8,12 +8,19 @@ export { default as FileUploader } from './file-uploader';
 
 // Styled elements
 export {
-  StyledRoot,
-  StyledFileDragAndDrop,
-  StyledContentMessage,
-  StyledContentSeparator,
-  StyledErrorMessage,
-  StyledHiddenInput,
+  StyledFileRow,
+  StyledFileRowColumn,
+  StyledFileRowContent,
+  StyledFileRowFileName,
+  StyledFileRowText,
+  StyledFileRowUploadMessage,
+  StyledFileRowUploadText,
+  StyledFileRows,
+  StyledHint,
+  StyledImagePreviewThumbnail,
+  StyledItemPreviewContainer,
+  StyledLabel,
+  StyledParentRoot,
 } from './styled-components';
 
 // Flow

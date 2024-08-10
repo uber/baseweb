@@ -1,100 +1,57 @@
 import * as React from "react";
-import { FileUploader } from "baseui/file-uploader";
-
-// https://overreacted.io/making-setinterval-declarative-with-react-hooks/
-function useInterval(callback: any, delay: number | null) {
-  const savedCallback = React.useRef(() => {});
-
-  // Remember the latest callback.
-  React.useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  // Set up the interval.
-  React.useEffect((): any => {
-    function tick() {
-      savedCallback.current();
-    }
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
-}
-
-// useFakeProgress is an elaborate way to show a fake file transfer for illustrative purposes. You
-// don't need this is your application. Use metadata from your upload destination if it's available,
-// or don't provide progress.
-function useFakeProgress(): [number, () => void, () => void] {
-  const [fakeProgress, setFakeProgress] = React.useState(0);
-  const [isActive, setIsActive] = React.useState(false);
-
-  function stopFakeProgress() {
-    setIsActive(false);
-    setFakeProgress(0);
-  }
-
-  function startFakeProgress() {
-    setIsActive(true);
-  }
-
-  useInterval(
-    () => {
-      if (fakeProgress >= 100) {
-        stopFakeProgress();
-      } else {
-        setFakeProgress(fakeProgress + 10);
-      }
-    },
-    isActive ? 500 : null,
-  );
-
-  return [fakeProgress, startFakeProgress, stopFakeProgress];
-}
+import { FileUploader, type FileRow } from "baseui/file-uploader";
+import { useStyletron } from "baseui";
 
 export default function Example() {
-  const [progressAmount, startFakeProgress, stopFakeProgress] =
-    useFakeProgress();
-
+  const [fileRows, setFileRows] = React.useState<Array<FileRow>>([
+    {
+      file: new File(["test file 1"], "file-1.txt"),
+      id: "0",
+      status: "processed",
+      errorMessage: null,
+    },
+    {
+      file: new File(["test file 2"], "file-2.txt"),
+      id: "1",
+      status: "error",
+      errorMessage: "Failed to upload",
+    },
+  ]);
+  const [, theme] = useStyletron();
   return (
     <FileUploader
-      onCancel={stopFakeProgress}
-      onDrop={(acceptedFiles, rejectedFiles) => {
-        // handle file upload...
-        console.log(acceptedFiles, rejectedFiles);
-        startFakeProgress();
-      }}
-      // progressAmount is a number from 0 - 100 which indicates the percent of file transfer completed
-      progressAmount={progressAmount}
-      progressMessage={
-        progressAmount ? `Uploading... ${progressAmount}% of 100%` : ""
-      }
+      fileRows={fileRows}
+      setFileRows={setFileRows}
       overrides={{
-        FileDragAndDrop: {
-          style: (props) => ({
-            borderLeftColor: props.$isDragActive
-              ? props.$theme.colors.positive
-              : props.$theme.colors.warning,
-            borderRightColor: props.$isDragActive
-              ? props.$theme.colors.positive
-              : props.$theme.colors.warning,
-            borderTopColor: props.$isDragActive
-              ? props.$theme.colors.positive
-              : props.$theme.colors.warning,
-            borderBottomColor: props.$isDragActive
-              ? props.$theme.colors.positive
-              : props.$theme.colors.warning,
-          }),
+        ButtonComponent: {
+          props: {
+            overrides: {
+              BaseButton: {
+                style: {
+                  outline: `${theme.colors.warning} solid`,
+                },
+              },
+            },
+          },
         },
         ContentMessage: {
-          style: (props) => ({
-            color: props.$theme.colors.warning,
-          }),
+          style: {
+            color: theme.colors.warning,
+          },
         },
-        ContentSeparator: {
-          style: (props) => ({
-            color: props.$theme.colors.warning,
-          }),
+        FileDragAndDrop: {
+          style: {
+            borderColor: theme.colors.warning,
+            borderStyle: "dashed",
+            borderWidth: theme.sizing.scale0,
+          },
+        },
+        FileRows: {
+          style: {
+            marginLeft: theme.sizing.scale0,
+            marginRight: theme.sizing.scale0,
+            outline: `${theme.colors.warning} dashed`,
+          },
         },
       }}
     />
