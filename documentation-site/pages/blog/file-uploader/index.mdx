@@ -41,7 +41,7 @@ import type { FileRow } from 'baseui/file-uploader';
 const [fileRows, setFileRows] = React.useState<Array<FileRow>>([]);
 ```
 
-2. Provides a UI for each uploaded file including the filename, file size in a human-readable format, and one of three states: 1. Success 2. Error (e.g. invalid file type, file too large, etc.) 3. Loading
+2. Provide a UI for each uploaded file including the filename, file size in a human-readable format, and one of three states: 1. Success 2. Error (e.g. invalid file type, file too large, etc.) 3. Loading
    <FileUploader
      fileRows={[
        {
@@ -82,7 +82,7 @@ const [fileRows, setFileRows] = React.useState<Array<FileRow>>([]);
 
 <BlogImage src={architectureDiagram} />
 
-A `processFileOnDrop` function is passed as a parameter.
+A `processFileOnDrop` function is passed as a prop.
 It is executed on each file upload.
 It is extensible, allowing applications to run synchronous or asynchronous code.
 
