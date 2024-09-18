@@ -23,6 +23,8 @@ export default Layout;
 
 <Yard placeholderHeight={48} {...paymentCardYardConfig} />
 
+**⚠️ This component is deprecated as of October 5th, 2024** when it becomes non-compliant with the requirements of PCI DSS v4. The component fails to meet the new compliance standards because it can access raw cardholder data directly. Ensuring PCI compliance requires that all sensitive cardholder data must be isolated within secure iframes or similar secure mechanisms.
+
 The Payment Card input **automatically detects and formats credit card types**. It shows a small thumbnail icon of the parsed credit card brand to let users know they have entered their card in the correct format. The supported credit card brands are listed here:
 
 <Table
