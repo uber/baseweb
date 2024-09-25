@@ -97,8 +97,7 @@ const Index = (props) => (
     </Block>
     <H1>Base Web React UI framework</H1>
     <Banner>
-      Uber devs, check <a href="https://p.uber.com/basegpt">BaseGPT</a>, an AI
-      assistant that codes in Base Web.
+      Uber is hiring in Amsterdam. Do you want to work on Base Web and other things? <a href="https://www.uber.com/global/en/careers/list/130852/">Please apply!</a>
     </Banner>
     <Markdown.p>
       Base Web is a foundation for initiating, evolving, and unifying web
