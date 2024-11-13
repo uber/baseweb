@@ -1,0 +1,41 @@
+import Layout from "../../components/layout";
+
+export default Layout;
+
+# Colors
+
+There are three layers of color tokens in Base Web:
+
+### 1) Primitive colors
+
+These are the tokens that map directly to CSS hex values.
+
+Examples: `green100`, `yellow600`, `magenta200`
+
+### 2) Semantic colors
+
+These tokens play a fundamental semantic role in the Base design language. They map to layer 1 primitive color tokens.
+
+Examples: `contentPrimary`, `backgroundTeriary`, `borderWarning`
+
+### 3) Component colors
+
+These tokens are referenced inside Base Web styled components. They map both to primitive and semantic color tokens.
+
+Examples: `buttonPrimaryText`, `linkHover`
+
+### Deprecated colors
+
+The foundation color tokens are deprecated. These tokens include `primaryA`, `primaryB`, `accent`, `positive`, `negative`, `warning`, and all of their variations. They are a legacy holdover from the previous theme creation API, intended to provide a quick way to "skin" our standard light and dark themes. They will be removed in a future version of Base Web.
+
+## Using colors in your own components
+
+All of the color tokens can be accessed via your application's theme object. It's rarely necessary to use primitive color tokens directly in your application. In most cases, semantic color tokens are the best choice. They are named according to the role they play in the design system, making them easier to use and understand in the context of your application. This helps assure that your components will be accessible and consistent with the rest of the design system. They also adjust between light and dark themes automatically. See the [Semantic tokens](/guides/styling/#semantic-tokens) section of the style guide for examples.
+
+In some cases it may also make sense to use component color tokens. For example, if you create a custom button-like component, you can ensure consistency with other button components by using the collection of button-specific component color tokens that Base Web uses internally for styling its native button components.
+
+## Customizing colors
+
+To customize a specific instance of a component, use component overrides. For everything else, use the `overrides` argument of the [`createTheme`](./theming.mdx#createTheme) function.
+
+As with using color tokens, it is usually best to customize your theme by targeting semantic color tokens and remapping them onto Base Web's primitive color tokens.

@@ -1,3 +1,5 @@
+import { Notification, KIND } from "baseui/notification";
+
 import Example from "../../components/example";
 import Layout from "../../components/layout";
 import Exports from "../../components/exports";
@@ -8,6 +10,15 @@ import Heading from "examples/typography/heading.tsx";
 import Text from "examples/typography/text.tsx";
 
 export default Layout;
+
+<Notification
+  overrides={{ Body: { style: { width: "auto" } } }}
+  kind={KIND.warning}
+>
+  These typography components are built on top of the Block component, which we
+  no longer recommend. Refer to the <a href="/guides/styling/">Styling</a> guide
+  to understand how to use Base Web typography in your components.
+</Notification>
 
 # Typography
 
