@@ -132,7 +132,9 @@ Let's use `$isDragged` to change the label color when dragged:
   overrides={{
     Label: {
       style: ({ $theme, $isDragged }) => ({
-        color: $isDragged ? $theme.colors.primary : $theme.colors.accent400,
+        color: $isDragged
+          ? $theme.colors.backgroundPrimary
+          : $theme.colors.backgroundAccent,
       }),
     },
   }}

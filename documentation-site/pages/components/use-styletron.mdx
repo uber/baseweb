@@ -50,9 +50,9 @@ on the given component:
 
 To understand overrides better, go [here](/guides/understanding-overrides/).
 
-## Custom themes and Flow type
+## Custom themes and types
 
-The `styled` and `withStyle` functions imported from `baseui` provide flow type support for the
+The `styled` and `withStyle` functions imported from `baseui` provide type support for the
 default [theme shape](/guides/theming/#theme-properties). However, if you create a custom theme with additional fields,
 flow will show an error. To help, baseui exports two utility functions `createThemedStyled` and
 `createThemedWithStyle`. These will return their respective functions with a provided theme type.
@@ -68,27 +68,27 @@ Doing so saves you from needing to import the custom theme type around. See belo
 +  createThemedUseStyletron,
  } from 'baseui';
 
- type CustomThemeT = {myBlue: string, myRed: string};
+ type CustomTheme = {myBlue: string, myRed: string};
 
 // you'll likely want to import these functions from a relative path in your application
-+const themedStyled = createThemedStyled<CustomThemeT>();
-+const themedWithStyle = createThemedWithStyle<CustomThemeT>();
-+const themedUseStyletron = createThemedUseStyletron<CustomThemeT>();
++const themedStyled = createThemedStyled<CustomTheme>();
++const themedWithStyle = createThemedWithStyle<CustomTheme>();
++const themedUseStyletron = createThemedUseStyletron<CustomTheme>();
 
- type PropsT = {
+ type Props = {
    $active: boolean
--  $theme: CustomThemeT
+-  $theme: CustomTheme
  };
 
--const First = styled<PropsT>('div', props => {
-+const First = themedStyled<PropsT>('div', props => {
+-const First = styled<Props>('div', props => {
++const First = themedStyled<Props>('div', props => {
    return {
      backgroundColor: props.$active ? props.$theme.colors.myBlue : props.$theme.colors.myRed,
    };
  });
 
--const Second = withStyle<PropsT>('div', props => {
-+const Second = themedWithStyle<PropsT>(First, props => {
+-const Second = withStyle<Props>('div', props => {
++const Second = themedWithStyle<Props>(First, props => {
    return {
      color: props.$active ? props.$theme.colors.myBlue : props.$theme.colors.myRed,
    };
@@ -99,7 +99,7 @@ const Third = () => {
 + const [css, theme] = themedUseStyletron();
 
 return (
-- <div className={css({color: theme.colors.primary})}>
+- <div className={css({color: theme.colors.contentPrimary})}>
 + <div className={css({color: theme.myBlue)}>
     test
   </div>

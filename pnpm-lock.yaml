@@ -11,6 +11,9 @@ dependencies:
   '@date-io/moment':
     specifier: ^2.13.1
     version: 2.17.0(moment@2.29.4)
+  baseui:
+    specifier: ^14.0.0
+    version: 14.0.0(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(styletron-react@6.1.1)
   card-validator:
     specifier: ^6.2.0
     version: 6.2.0
@@ -93,7 +96,7 @@ dependencies:
     specifier: 1.5.1
     version: 1.5.1
   styletron-react:
-    specifier: '>=6'
+    specifier: ^6.1.1
     version: 6.1.1(react@18.2.0)
   styletron-standard:
     specifier: ^3.1.0
@@ -3014,6 +3017,7 @@ packages:
 
   /acorn-import-assertions@1.9.0(acorn@8.11.2):
     resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
+    deprecated: package has been renamed to acorn-import-attributes
     peerDependencies:
       acorn: ^8
     dependencies:
@@ -3295,6 +3299,51 @@ packages:
   /base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
     dev: true
+
+  /baseui@14.0.0(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(styletron-react@6.1.1):
+    resolution: {integrity: sha512-+lKgTfMow9jAfugBwmxo0QSi2vSo88UThQZoMxDiNwPGP85xGGSaK+Rqlo0FfshqJYJp0mlc8QyEKQgUsWLmbQ==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: '>=18 || 18'
+      react-dom: '>=18 || 18'
+      styletron-react: '>=6'
+    dependencies:
+      '@date-io/date-fns': 2.17.0(date-fns@2.30.0)
+      '@date-io/moment': 2.17.0(moment@2.29.4)
+      card-validator: 6.2.0
+      csstype: 2.6.11
+      d3: 6.7.0
+      d3-array: 2.4.0
+      date-fns: 2.30.0
+      date-fns-tz: 1.3.8(date-fns@2.30.0)
+      just-extend: 4.1.1
+      memoize-one: 5.0.0
+      mockdate: 2.0.5
+      moment: 2.29.4
+      polished: 4.2.2
+      popper.js: 1.16.1
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-dropzone: 9.0.0(react@18.2.0)
+      react-focus-lock: 2.9.6(@types/react@18.2.45)(react@18.2.0)
+      react-hook-form: 7.49.2(react@18.2.0)
+      react-input-mask: 2.0.4(react-dom@18.2.0)(react@18.2.0)
+      react-is: 17.0.2
+      react-map-gl: 5.2.13(react-dom@18.2.0)(react@18.2.0)
+      react-movable: 3.0.4(react-dom@18.2.0)(react@18.2.0)
+      react-multi-ref: 1.0.1
+      react-range: 1.8.14(react-dom@18.2.0)(react@18.2.0)
+      react-uid: 2.3.0(@types/react@18.2.45)(react@18.2.0)
+      react-virtualized: 9.22.5(react-dom@18.2.0)(react@18.2.0)
+      react-virtualized-auto-sizer: 1.0.2(react-dom@18.2.0)(react@18.2.0)
+      react-window: 1.8.5(react-dom@18.2.0)(react@18.2.0)
+      resize-observer-polyfill: 1.5.1
+      styletron-react: 6.1.1(react@18.2.0)
+      styletron-standard: 3.1.0
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: false
 
   /bcp-47-match@2.0.3:
     resolution: {integrity: sha512-JtTezzbAibu8G0R9op9zb3vcWZd9JF6M0xOYGPn0fNCd7wOpRB1mU2mH9T8gaBGbAAyIIVgB2G7xG0GP98zMAQ==}
@@ -8638,6 +8687,7 @@ packages:
 
   /trim@0.0.1:
     resolution: {integrity: sha512-YzQV+TZg4AxpKxaTHK3c3D+kRDCGVEE7LemdlQZoQXn0iennk10RsIoY6ikzAqJTc9Xjl9C1/waHom/J86ziAQ==}
+    deprecated: Use String.prototype.trim() instead
     dev: true
 
   /trough@1.0.5:

@@ -21,7 +21,6 @@ In this guide, we will cover the basics of theming Base Web components. We'll go
 - [Setting up Base Web with a theme](#setting-up-baseweb-with-a-theme)
 - [Toggling between light and dark themes](#toggling-between-light-and-dark)
 - [Customizing your theme](#customizing-your-theme)
-- [Customizing typography](#customizing-typography)
 - [Customizing icons](#customizing-icons)
 - [Extending the theme](#extending-the-theme-type)
 - [Accessing your theme through styling utilities](#accessing-your-theme-through-styling-utilities)
@@ -59,10 +58,10 @@ The theme object itself is nothing special—just an object with specific proper
     },
   }}
 >
-  Make sure to reference the Flow/TypesScript definitions when customizing your
-  theme object. Base Web components assume certain properties are on the theme
-  object at run-time. A missing property on the theme object can lead to a
-  runtime error.
+  Make sure to reference the TypesScript definitions when customizing your theme
+  object. Base Web components assume certain properties are on the theme object
+  at run-time. A missing property on the theme object can lead to a runtime
+  error.
 </Notification>
 
 ### Default themes
@@ -149,185 +148,52 @@ However, before you go down either road, you should know that Base Web exports a
 As you might expect, `createTheme` is a factory function for Base Web-compliant theme objects. We provide it as a utility for you to quickly create a custom theme.
 
 ```js
-import {createTheme} from 'baseui';
+import { createTheme } from "baseui";
 
-const theme = createTheme(/* primitives */, /* overrides */);
+const theme = createTheme(/* overrides */);
 ```
 
-#### `primitives`
-
-Our theme object has a lot of properties. Most of these properties are assigned to a subset of recurring values. We call these reoccurring values theme building `primitives`. Primitives are made up mostly of colors (`primary`, `accent`, etc.), gradients of those colors (`primary100`, `primary200`, etc.), and a `primaryFontFamily`. To see the exact shape for `primitives`, reference the [Flow](https://github.com/uber/baseweb/blob/master/src/themes/types.js#L560) or [TypeScript](https://github.com/uber/baseweb/blob/master/src/theme.ts#L777) definitions.
-
-These are passed as the first argument to `createTheme`.
+The only parameter for createTheme is an `overrides` object. `overrides` is just a convenient shortcut for deep-merging assignments onto your theme object.
 
 ```js
 import { createTheme } from "baseui";
 
-const primitives = {
-  accent: "#F127E4", // hot pink
-  accent50: "#FDEDFC",
-  accent100: "#FCD3F9",
-  accent200: "#F89FF3",
-  accent300: "#F45AEA",
-  accent400: "#F127E4",
-  accent500: "#B71DAD",
-  accent600: "#901788",
-  accent700: "#600F5B",
+const colorOverrides = {
+  accent: theme.colors.magenta300,
+  linkText: theme.colors.accent,
+  linkVisited: theme.colors.accent,
 };
 
-const theme = createTheme(primitives);
-```
-
-`createTheme` will use these primitive values to fill out all required properties on your theme object. Note: you don't have to assign every primitive right away. The primitives you pass into `createTheme` will override our default primitives so you can gradually build up your theme.
-
-Once you've passed some primitives in, `createTheme` _maps_ this small set of `primitives` to a much larger set of theme properties in a sensible manner.
-
-But what if the default _mapping_ (of primitives to theme properties) is not quite what you want?
-
-#### `overrides`
-
-The second parameter for createTheme is an `overrides` object.
-
-The `overrides` object will be deep-merged with the initial result of mapping `primitives` to all the theme properties. `overrides` is just a convenient shortcut for deep-merging assignments onto your theme object.
-
-```js
-import { createTheme } from "baseui";
-
-const primitives = {
-  accent: "#F127E4", // hot pink
-  accent50: "#FDEDFC",
-  accent100: "#FCD3F9",
-  accent200: "#F89FF3",
-  accent300: "#F45AEA",
-  accent400: "#F127E4",
-  accent500: "#B71DAD",
-  accent600: "#901788",
-  accent700: "#600F5B",
+const iconsOverrides = {
+  Alert: Alarm,
+  Menu: ThreeLinesFilled,
+  TriangleDown: ChevronDown,
+  TriangleUp: ChevronUp,
 };
 
-const overrides = {
-  colors: {
-    buttonSecondaryFill: primitives.accent100,
-    buttonSecondaryText: primitives.accent,
-    buttonSecondaryHover: primitives.accent200,
-    buttonSecondaryActive: primitives.accent300,
-    buttonSecondarySelectedFill: primitives.accent200,
-    buttonSecondarySelectedText: primitives.accent,
-    buttonSecondarySpinnerForeground: primitives.accent700,
-    buttonSecondarySpinnerBackground: primitives.accent300,
+const typographyOverrides = {
+  DisplayLarge: {
+    fontFamily: "Georgia",
   },
 };
 
-const theme = createTheme(primitives, overrides);
+const overrides = {
+  colors: colorOverrides,
+  icons: iconsOverrides,
+  typography: typographyOverrides,
+};
+
+const theme = createTheme(overrides);
 ```
 
-In this example, we first reassign the accent color on our theme primitives to hot pink. Then we use `overrides` to re-map the secondary button colors to use our hot pink accent colors rather than the default primary colors.
+In this example, we first reassign our theme's accent color to a shade of magenta. Then we re-map the link colors to use our hot magenta accent color rather than the default colors. See the section on customizing colors for more information about how the various layers of color tokens map onto eachother.
+
+Next we replace some of the default icons with custom icons. And lastly, we override the `DisplayLarge` typography level to use the `Georgia` font family without affecting the font size, weight, or line height properties (or any of the other typography levels).
 
 ### `createDarkTheme`
 
-One of the main reasons to have a dynamic theme is to toggle your app between light and dark modes. `createTheme` will by default map `primitives` to theme colors in a way suited to light themes. If you want to create a custom theme on top of our dark theme, you can instead use the `createDarkTheme` function.
-
-```js
-import { createDarkTheme } from "baseui";
-
-const primitives = {
-  accent: "#F127E4", // hot pink
-  accent50: "#FDEDFC",
-  accent100: "#FCD3F9",
-  accent200: "#F89FF3",
-  accent300: "#F45AEA",
-  accent400: "#F127E4",
-  accent500: "#B71DAD",
-  accent600: "#901788",
-  accent700: "#600F5B",
-};
-
-const darkTheme = createDarkTheme(primitives);
-```
-
-This works exactly the same as `createTheme`, but `createDarkTheme` will map all your `primitives` to theme properties in a way that’s better suited to dark themes. Note: `createDarkTheme` also accepts an optional `overrides` object as the second argument.
-
-```js
-import { createDarkTheme } from "baseui";
-
-const primitives = {
-  accent: "#F127E4", // hot pink
-  accent50: "#FDEDFC",
-  accent100: "#FCD3F9",
-  accent200: "#F89FF3",
-  accent300: "#F45AEA",
-  accent400: "#F127E4",
-  accent500: "#B71DAD",
-  accent600: "#901788",
-  accent700: "#600F5B",
-};
-
-const overrides = {
-  colors: {
-    buttonSecondaryFill: primitives.accent100,
-    buttonSecondaryText: primitives.accent,
-    buttonSecondaryHover: primitives.accent200,
-    buttonSecondaryActive: primitives.accent300,
-    buttonSecondarySelectedFill: primitives.accent200,
-    buttonSecondarySelectedText: primitives.accent,
-    buttonSecondarySpinnerForeground: primitives.accent700,
-    buttonSecondarySpinnerBackground: primitives.accent300,
-  },
-};
-
-const darkTheme = createDarkTheme(primitives, overrides);
-```
-
-This is equivalent to our earlier `overrides` example, only the result is a dark theme rather than a light theme.
-
-If you aren't sure why this change in mapping is necessary, try creating a dark theme with `createTheme`. You might notice that the colors look somewhat off. This is because, in a typical light theme, things start light and then get darker as they require more attention; in a dark theme, things start dark and become lighter. We need to know which direction (light/dark) to go when assigning your primitive colors to theme properties. By separating the assignment logic for light and dark theme creation, we can better estimate which values to assign to various properties.
-
-### Customizing typography
-
-The `primitives` object has an optional property, `primaryFontFamily`, which allows you to set a custom font family string for typography components.
-
-```js
-import { createTheme } from "baseui";
-
-const primitives = {
-  primaryFontFamily: "Verdana",
-};
-
-const theme = createTheme(primitives);
-```
-
-In this example, we assign `primaryFontFamily` to the vastly underrated `Verdana` font family. With this change, all Base Web components will use `Verdana`.
-
-But what if we wanted to use `Georgia` for Display typography? For this purpose, you would need to use `overrides`.
-
-```js
-import { createTheme } from "baseui";
-
-const primitives = {
-  primaryFontFamily: "Verdana",
-};
-
-const overrides = {
-  typography: {
-    DisplayLarge: {
-      fontFamily: "Georgia",
-    },
-    DisplayMedium: {
-      fontFamily: "Georgia",
-    },
-    DisplaySmall: {
-      fontFamily: "Georgia",
-    },
-    DisplayXSmall: {
-      fontFamily: "Georgia",
-    },
-  },
-};
-
-const theme = createTheme(primitives, overrides);
-```
-
-Initially, `Verdana` will be mapped to every typography value as a `primitive`. By using `overrides`, we can easily deep-merge some reassignments over the theme object. In this case, we set our `Display` typography levels to use the `Georgia` font. We use this same `overrides` technique for our applications.
+One of the main reasons to have a dynamic theme is to toggle your app between light and dark modes. `createTheme` is an alias of `createLightTheme`; it will use the light theme color primitives as the foundation for the higher layer theme colors (read our [colors guide](./colors.mdx) to better understand about our higher layer color tokens map onto the color primitives). If you want to create a custom theme on top of our dark theme, you can instead use the `createDarkTheme` function.
+It works exactly the same as `createTheme`, but `createDarkTheme` will use the dark theme color primitives as the foundation for your theme's color scheme.
 
 ### Customizing icons
 
@@ -379,64 +245,6 @@ All the icons that can be found on the Icon component page can be overridden usi
 </Notification>
 
 There may be a scenario where you want to extend our default theme. We do not recommend removing theme properties, as this may lead to a runtime error when a component references a missing property. _Adding_ new properties, though is perfectly acceptable.
-
-```js
-import type { ThemeT } from "baseui";
-
-const CustomThemeT = ThemeT & { customColor: string };
-```
-
-You will notice, however, that you can't use `createTheme` with your `CustomThemeT`. If you want to use `createTheme`, we recommend that you first create a normal theme with `createTheme` and then _extend_ it with your custom properties.
-
-```js
-import { createTheme } from "baseui";
-import type { ThemeT } from "baseui";
-
-const CustomThemeT = ThemeT & { customColor: string };
-
-const theme = createTheme(/*primitives, overrides*/);
-const customTheme: CustomThemeT = {
-  ...theme,
-  customColor: "pink",
-};
-
-function App() {
-  return (
-    <BaseProvider theme={customTheme}>
-      {/* ... */}
-    </BaseProvider>
-  );
-}
-```
-
-Note: you can use the custom type theme object with our provider as so long as it _extends_ the default `ThemeT`. Base Web components will essentially ignore the additional properties, but the theme object will be available in component overrides.
-
-If you’re using Flow and want to use a custom theme shape with our various styling utilities, you can create new `styled`, `withStyle`, and `useStyletron` methods that respect your custom theme type.
-
-```js
-// my-style-utils.js
-
-import {
- createThemedStyled,
- createThemedWithStyle,
- createThemedUseStyletron
-} from 'baseui';
-
-export const themedStyled = createThemedStyled<CustomThemeT>();
-export const themedWithStyle = createThemedWithStyle<CustomThemeT>();
-export const themedUseStyletron = createThemedUseStyletron<CustomThemeT>();
-```
-
-You can import these custom themed utilities wherever you want access to your custom theme.
-
-```js
-import { themedUseStyletron as useStyletron } from "path/to/my-style-utils.jsx";
-
-function Foo() {
-  const [css, theme] = useStyletron();
-  return <div className={css({ color: theme.customColor })}>Okay</div>;
-}
-```
 
 ## Accessing your Theme through style utilities
 
@@ -613,13 +421,6 @@ Control the media query widths used to establish responsive breakpoints.
 
 Control literal and semantic color values. These differ between light and dark themes.
 
-<Color name="primaryA" />
-<Color name="primaryB" />
-<Color name="accent" />
-<Color name="negative" />
-<Color name="warning" />
-<Color name="positive" />
-
 <Color name="backgroundPrimary" />
 <Color name="backgroundSecondary" />
 <Color name="backgroundTertiary" />
@@ -670,55 +471,6 @@ Control literal and semantic color values. These differ between light and dark t
 <Color name="borderWarning" />
 <Color name="borderPositive" />
 
-The following colors are "primitive" colors used to construct the theme when using `createTheme`. We make them available directly on the `theme.colors` object for your convenience.
-
-<Color name="primaryA" />
-<Color name="primaryB" />
-<Color name="primary" />
-<Color name="primary50" />
-<Color name="primary100" />
-<Color name="primary200" />
-<Color name="primary300" />
-<Color name="primary400" />
-<Color name="primary500" />
-<Color name="primary600" />
-<Color name="primary700" />
-<Color name="accent" />
-<Color name="accent50" />
-<Color name="accent100" />
-<Color name="accent200" />
-<Color name="accent300" />
-<Color name="accent400" />
-<Color name="accent500" />
-<Color name="accent600" />
-<Color name="accent700" />
-<Color name="negative" />
-<Color name="negative50" />
-<Color name="negative100" />
-<Color name="negative200" />
-<Color name="negative300" />
-<Color name="negative400" />
-<Color name="negative500" />
-<Color name="negative600" />
-<Color name="negative700" />
-<Color name="warning" />
-<Color name="warning50" />
-<Color name="warning100" />
-<Color name="warning200" />
-<Color name="warning300" />
-<Color name="warning400" />
-<Color name="warning500" />
-<Color name="warning600" />
-<Color name="warning700" />
-<Color name="positive" />
-<Color name="positive50" />
-<Color name="positive100" />
-<Color name="positive200" />
-<Color name="positive300" />
-<Color name="positive400" />
-<Color name="positive500" />
-<Color name="positive600" />
-<Color name="positive700" />
 <Color name="white" />
 <Color name="black" />
 <Color name="mono100" />

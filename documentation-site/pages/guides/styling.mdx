@@ -202,7 +202,7 @@ export default function StyledFancyLink(props) {
   return (
     <StyledLink
       $style={({ $theme }) => ({
-        color: $theme.colors.primary,
+        color: $theme.colors.contentPrimary,
       })}
       {...props}
     />
@@ -219,7 +219,7 @@ import { withStyle } from "baseui";
 import { StyledLink } from "./link";
 
 export const StyledFancyLink = withStyle(StyledLink, ({ $theme }) => ({
-  color: $theme.colors.primary,
+  color: $theme.colors.contentPrimary,
 }));
 ```
 
@@ -359,37 +359,6 @@ There are three main techniques for styling Base Web components: the theme, `wit
 
 The [theming guide](/guides/theming) is your best resource for understanding the nuances of theming Base Web components. Theming is the first strategy we would recommend trying out when styling Base Web components. You can modify spacing, border radii, colors, typography scales- a whole slew of systemic theme tokens which will change the look of Base Web.
 
-```js
-import { createLightTheme } from "baseui";
-const primitives = {
-  accent: "#F127E4", // hot pink
-  accent50: "#FDEDFC",
-  accent100: "#FCD3F9",
-  accent200: "#F89FF3",
-  accent300: "#F45AEA",
-  accent400: "#F127E4",
-  accent500: "#B71DAD",
-  accent600: "#901788",
-  accent700: "#600F5B",
-};
-
-const overrides = {
-  colors: {
-    buttonSecondaryFill: primitives.accent100,
-    buttonSecondaryText: primitives.accent,
-    buttonSecondaryHover: primitives.accent200,
-    buttonSecondaryActive: primitives.accent300,
-    buttonSecondarySelectedFill: primitives.accent200,
-    buttonSecondarySelectedText: primitives.accent,
-    buttonSecondarySpinnerForeground: primitives.accent700,
-    buttonSecondarySpinnerBackground: primitives.accent300,
-  },
-};
-
-export const lightTheme = createLightTheme(primitives, overrides);
-export const darkTheme = createDarkTheme(primitives, overrides);
-```
-
 We think you can get pretty far with just the theming layer alone. When it isn’t enough there are a few more techniques available to you.
 
 ### withStyle
@@ -401,7 +370,7 @@ import { withStyle } from "baseui";
 import { StyledLink } from "baseui/link";
 
 export const MyStyledLink = withStyle(StyledLink, ({ $theme }) => ({
-  borderBottom: `solid 2px ${theme.colors.primary}`,
+  borderBottom: `solid 2px ${theme.colors.contentPrimary}`,
 }));
 ```
 

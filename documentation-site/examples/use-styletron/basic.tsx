@@ -1,10 +1,10 @@
-import React from 'react';
-import {useStyletron} from 'baseui';
+import React from "react";
+import { useStyletron } from "baseui";
 
 function UseStyletronExample() {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({color: theme.colors.accent})}>
+    <div className={css({ color: theme.colors.backgroundAccent })}>
       This is a blue div
     </div>
   );

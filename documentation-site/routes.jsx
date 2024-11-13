@@ -50,6 +50,10 @@ const routes = [
         itemId: "/guides/understanding-overrides",
       },
       {
+        title: "Colors",
+        itemId: "/guides/colors",
+      },
+      {
         title: "API Cheat Sheet",
         itemId: "/cheat-sheet",
       },
