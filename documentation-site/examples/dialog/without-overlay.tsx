@@ -16,12 +16,12 @@ export default function Example() {
         </Button>
       </div>
       <Dialog
-        heading="This long heading is configured to truncate after one line and should not go onto two lines"
+        heading="This is the heading"
         numHeadingLines={1}
         size={SIZE.medium}
         hasOverlay={false}
         isOpen={isOpen}
-        handleDismiss={() => setIsOpen(false)}
+        onDismiss={() => setIsOpen(false)}
         buttonDock={{
           primaryAction: <Button>Primary Action</Button>,
           dismissiveAction: <Button kind={KIND.tertiary}>Dismiss</Button>,

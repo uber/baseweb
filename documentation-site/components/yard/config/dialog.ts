@@ -39,7 +39,7 @@ const DialogConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: "Optional leading icon or content.",
     },
-    handleDismiss: {
+    onDismiss: {
       value: "() => setIsOpen(false);",
       type: PropTypes.Function,
       description: "A callback that controls dimissle of the dialog.",
@@ -62,11 +62,6 @@ const DialogConfig: TConfig = {
     buttonDock: {
       value: `{
         primaryAction: <Button>Primary Action</Button>,
-        dismissiveAction: (
-          <Button kind={KIND.tertiary}>
-            Dismiss
-          </Button>
-        ),
         secondaryActions: [
           <Button kind={KIND.secondary} key="first">
             Secondary Action
