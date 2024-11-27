@@ -1,0 +1,44 @@
+import Example from "../../components/example";
+import Exports from "../../components/exports";
+import Layout from "../../components/layout";
+
+import WithoutOverlay from "examples/dialog/without-overlay.tsx";
+import WithBackgroundImage from "examples/dialog/with-background-image.tsx";
+
+import { Dialog, SIZE, PLACEMENT, CLOSE_KIND } from "baseui/dialog";
+import * as DialogExports from "baseui/dialog";
+
+import Yard from "../../components/yard/index";
+import dialogYardConfig from "../../components/yard/config/dialog";
+
+export default Layout;
+
+# Dialog
+
+<Yard placeholderHeight={52} {...dialogYardConfig} />
+
+A dialog is a container that floats on top of another surface. Dialogs focus a user's attention on a single-step task, question, or message.
+
+Dialogs can be presented both modally (i.e. accompanied by a grayed out background) and nonmodally (akin to a popup).
+
+When the content of the dialog is longer than the available vertical space, the body content and artwork will scroll internally, leaving the heading stuck to the top and the button dock unaffected.
+
+## Examples
+
+<Example title="Non-modal dialog" path="dialog/without-overlay.tsx">
+  <WithoutOverlay />
+</Example>
+
+By default, Dialog is presented with an overlay that grays out the background content. When `hasOverlay` is false, Dialog will be presented without the overlay, and will function as more of a popup than a modal.
+
+<Example title="Artwork" path="dialog/with-background-image.tsx">
+  <WithBackgroundImage />
+</Example>
+
+The `artwork` prop can accommodate a react component or a rendered element. In this example, the artwork is decorative, so we use the `background-image` css property. If the artwork has semantic meaning, it is appropriate to use an img element.
+
+<Exports
+  component={DialogExports}
+  title="Dialog exports"
+  path="baseui/dialog"
+/>
