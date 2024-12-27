@@ -6,28 +6,32 @@ export default function Example() {
   // artificially create an array of file rows with errors.
   const [fileRows, setFileRows] = React.useState<Array<FileRow>>([
     {
+      errorMessage: "file type of img/jpeg is not accepted",
       file: new File(["test file 1"], "unaccepted-file-type.jpeg"),
       id: "0",
+      progressAmount: 20,
       status: "error",
-      errorMessage: "file type of img/jpeg is not accepted",
     },
     {
+      errorMessage: "file size must be greater than 20 KB",
       file: new File(["test file 2"], "file-too-small.png"),
       id: "1",
+      progressAmount: 20,
       status: "error",
-      errorMessage: "file size must be greater than 20 KB",
     },
     {
+      errorMessage: "file size must be less than 100 KB",
       file: new File(["test file 3"], "file-too-big.png"),
       id: "2",
+      progressAmount: 20,
       status: "error",
-      errorMessage: "file size must be less than 100 KB",
     },
     {
+      errorMessage: "cannot process more than 3 file(s)",
       file: new File(["test file 4"], "file-count-too-many.png"),
       id: "3",
+      progressAmount: 20,
       status: "error",
-      errorMessage: "cannot process more than 3 file(s)",
     },
   ]);
 

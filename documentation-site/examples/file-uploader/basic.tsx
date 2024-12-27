@@ -4,10 +4,11 @@ import { FileUploader, type FileRow } from "baseui/file-uploader";
 export default function Example() {
   const [fileRows, setFileRows] = React.useState<Array<FileRow>>([
     {
+      errorMessage: null,
       file: new File(["test file"], "file.txt"),
       id: "0",
+      progressAmount: 100,
       status: "processed",
-      errorMessage: null,
     },
   ]);
 

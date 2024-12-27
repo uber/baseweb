@@ -135,6 +135,13 @@ const FileUploaderConfig: TConfig = {
       description: `Sets aria-describedby attribute.`,
       hidden: true,
     },
+    progressAmountStartValue: {
+      value: undefined,
+      type: PropTypes.Number,
+      description:
+        "Sets the progress amount the loading bar begins at. It is a number between 1 and 100. It is particularly useful for the 'Dynamic loading' example.",
+      hidden: true,
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
