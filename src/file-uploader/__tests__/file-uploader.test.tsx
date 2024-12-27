@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
 Copyright (c) Uber Technologies, Inc.
 
@@ -87,9 +86,10 @@ describe('FileUploader', () => {
         onDrop={() => {}}
         onDropAccepted={() => {}}
         onDropRejected={() => {}}
+        progressAmount={50}
       />
     );
-    expect(console.error).toHaveBeenCalledTimes(3);
+    expect(console.error).toHaveBeenCalledTimes(4);
     expect(console.error).toHaveBeenNthCalledWith(1, 'onDrop is not a prop for FileUploader.');
     expect(console.error).toHaveBeenNthCalledWith(
       2,
@@ -98,6 +98,10 @@ describe('FileUploader', () => {
     expect(console.error).toHaveBeenNthCalledWith(
       3,
       'onDropRejected is not a prop for FileUploader.'
+    );
+    expect(console.error).toHaveBeenNthCalledWith(
+      4,
+      'progressAmount is not a prop for FileUploader.'
     );
     console.error = original;
   });
@@ -120,6 +124,7 @@ describe('FileUploader', () => {
             file: mockFileAdded,
             id: '1',
             imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+            progressAmount: 20,
             status: 'added',
           },
           {
@@ -127,6 +132,7 @@ describe('FileUploader', () => {
             file: mockFileError,
             id: '2',
             imagePreviewThumbnail: '',
+            progressAmount: 100,
             status: 'error',
           },
           {
@@ -134,6 +140,7 @@ describe('FileUploader', () => {
             file: mockFileProcessed,
             id: '3',
             imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+            progressAmount: 100,
             status: 'processed',
           },
         ]}
@@ -186,6 +193,7 @@ describe('FileUploader', () => {
           file: mockAcceptedFile,
           id: '1',
           imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+          progressAmount: 100,
           status: 'processed',
         },
         {
@@ -193,6 +201,7 @@ describe('FileUploader', () => {
           file: mockRejectedFile,
           id: '1',
           imagePreviewThumbnail: '',
+          progressAmount: 100,
           status: 'processed',
         },
       ]);
@@ -245,6 +254,7 @@ describe('FileUploader', () => {
           file: mockFile,
           id: '1',
           imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+          progressAmount: 100,
           status: 'error',
         },
       ]);
@@ -270,6 +280,7 @@ describe('FileUploader', () => {
           file: mockFile,
           id: '1',
           imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+          progressAmount: 100,
           status: 'error',
         },
       ]);
@@ -295,6 +306,7 @@ describe('FileUploader', () => {
           file: mockFile,
           id: '1',
           imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+          progressAmount: 100,
           status: 'error',
         },
       ]);
@@ -320,6 +332,7 @@ describe('FileUploader', () => {
           file: mockFile,
           id: '1',
           imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+          progressAmount: 100,
           status: 'error',
         },
       ]);
@@ -345,6 +358,7 @@ describe('FileUploader', () => {
           file: mockFile,
           id: '1',
           imagePreviewThumbnail: '',
+          progressAmount: 100,
           status: 'error',
         },
       ]);
@@ -373,7 +387,16 @@ describe('FileUploader', () => {
     });
     await waitFor(() => {
       expect(mockProcessFileOnDrop).toHaveBeenCalledTimes(1);
-      expect(mockProcessFileOnDrop).toHaveBeenCalledWith(mockFile);
+      expect(mockProcessFileOnDrop).toHaveBeenCalledWith(mockFile, '1', [
+        {
+          errorMessage: 'test error',
+          file: mockFile,
+          id: '1',
+          imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+          progressAmount: 100,
+          status: 'error',
+        },
+      ]);
       expect(mockSetFileRows).toHaveBeenCalledTimes(3);
       expect(mockSetFileRows).toHaveBeenNthCalledWith(3, [
         {
@@ -381,6 +404,7 @@ describe('FileUploader', () => {
           file: mockFile,
           id: '1',
           imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+          progressAmount: 100,
           status: 'error',
         },
       ]);
@@ -409,7 +433,17 @@ describe('FileUploader', () => {
     });
     await waitFor(() => {
       expect(mockProcessFileOnDrop).toHaveBeenCalledTimes(1);
-      expect(mockProcessFileOnDrop).toHaveBeenCalledWith(mockFile);
+      expect(mockProcessFileOnDrop).toHaveBeenCalledWith(mockFile, '1', [
+        {
+          errorMessage: null,
+          file: mockFile,
+          fileInfo: 'test-file-info',
+          id: '1',
+          imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+          progressAmount: 100,
+          status: 'processed',
+        },
+      ]);
       expect(mockSetFileRows).toHaveBeenCalledTimes(3);
       expect(mockSetFileRows).toHaveBeenNthCalledWith(3, [
         {
@@ -418,7 +452,43 @@ describe('FileUploader', () => {
           fileInfo: 'test-file-info',
           id: '1',
           imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+          progressAmount: 100,
           status: 'processed',
+        },
+      ]);
+    });
+  });
+
+  it('calls setFilesRows with progressAmountStartValue when processFileOnDrop returns with success', async () => {
+    const mockFile = new File(['(⌐□_□)'], 'test.png', {
+      type: 'image/png',
+    });
+    const mockProcessFileOnDrop = jest.fn((file) =>
+      Promise.resolve({ errorMessage: null, fileInfo: 'test-file-info' })
+    );
+    const mockSetFileRows = jest.fn();
+    render(
+      <FileUploader
+        fileRows={[]}
+        processFileOnDrop={mockProcessFileOnDrop}
+        progressAmountStartValue={0}
+        setFileRows={mockSetFileRows}
+      />
+    );
+    await act(async () => {
+      await fireEvent.drop(screen.getByText(locale.contentMessage), {
+        target: { files: [mockFile] },
+      });
+    });
+    await waitFor(() => {
+      expect(mockSetFileRows).toHaveBeenNthCalledWith(1, [
+        {
+          errorMessage: null,
+          file: mockFile,
+          id: '1',
+          imagePreviewThumbnail: '',
+          progressAmount: 0,
+          status: 'added',
         },
       ]);
     });
@@ -447,7 +517,16 @@ describe('FileUploader', () => {
     });
     await waitFor(() => {
       expect(mockProcessFileOnDrop).toHaveBeenCalledTimes(1);
-      expect(mockProcessFileOnDrop).toHaveBeenCalledWith(mockFile);
+      expect(mockProcessFileOnDrop).toHaveBeenCalledWith(mockFile, '1', [
+        {
+          errorMessage: 'unknown processing error',
+          file: mockFile,
+          id: '1',
+          imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+          progressAmount: 100,
+          status: 'error',
+        },
+      ]);
       expect(console.error).toHaveBeenCalledTimes(1);
       expect(console.error).toHaveBeenCalledWith('error with processFileOnDrop', mockError);
       expect(mockSetFileRows).toHaveBeenCalledTimes(3);
@@ -457,6 +536,7 @@ describe('FileUploader', () => {
           file: mockFile,
           id: '1',
           imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+          progressAmount: 100,
           status: 'error',
         },
       ]);
@@ -494,6 +574,7 @@ describe('FileUploader', () => {
             file: mockFile,
             id: '1',
             imagePreviewThumbnail: '',
+            progressAmount: 20,
             status: 'added',
           },
         ]}
@@ -527,6 +608,7 @@ describe('FileUploader', () => {
             file: mockFileAdded,
             id: '1',
             imagePreviewThumbnail: '',
+            progressAmount: 20,
             status: 'added',
           },
           {
@@ -534,6 +616,7 @@ describe('FileUploader', () => {
             file: mockFileProcessed,
             id: '2',
             imagePreviewThumbnail: '',
+            progressAmount: 100,
             status: 'processed',
           },
         ]}
@@ -582,6 +665,7 @@ describe('FileUploader', () => {
           file: mockFile,
           id: '1',
           imagePreviewThumbnail: '',
+          progressAmount: 100,
           status: 'error',
         },
       ]);
@@ -601,6 +685,7 @@ describe('FileUploader', () => {
             file: mockFile,
             id: '1',
             imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+            progressAmount: 100,
             status: 'processed',
           },
         ]}
@@ -633,6 +718,7 @@ describe('FileUploader', () => {
             file: mockDocumentFile,
             id: '1',
             imagePreviewThumbnail: '',
+            progressAmount: 100,
             status: 'processed',
           },
           {
@@ -640,6 +726,7 @@ describe('FileUploader', () => {
             file: mockImageFile,
             id: '2',
             imagePreviewThumbnail: 'data:image/png;base64,KOKMkOKWoV/ilqEp',
+            progressAmount: 100,
             status: 'processed',
           },
         ]}

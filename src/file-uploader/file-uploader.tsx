@@ -24,7 +24,13 @@ import {
   StyledLabel,
   StyledParentRoot,
 } from './styled-components';
-import { ARIA_LIVE_ELEMENT_ID, FILE_STATUS, FILE_STATUS_TO_COLOR_MAP } from './constants';
+import {
+  ARIA_LIVE_ELEMENT_ID,
+  PROGRESS_AMOUNT_LOADING,
+  PROGRESS_AMOUNT_LOADING_COMPLETE,
+  FILE_STATUS,
+  FILE_STATUS_TO_COLOR_MAP,
+} from './constants';
 import { destructureStyleOverride, formatBytes, handleAriaLiveUpdates } from './utils';
 import CircleCheckFilledIconComponent from '../icon/circle-check-filled';
 import CircleExclamationPointFilled from '../icon/circle-exclamation-point-filled';
@@ -47,6 +53,9 @@ export default function FileUploader(props: FileUploaderProps) {
   if (props['onDropRejected']) {
     console.error('onDropRejected is not a prop for FileUploader.');
   }
+  if (props['progressAmount']) {
+    console.error('progressAmount is not a prop for FileUploader.');
+  }
 
   // Isolate props that are not meant to be passed to FileUploaderBasic
   const {
@@ -57,6 +66,7 @@ export default function FileUploader(props: FileUploaderProps) {
     maxFiles,
     overrides = {},
     processFileOnDrop,
+    progressAmountStartValue,
     setFileRows,
     ...fileUploaderBasicProps
   } = props;
@@ -162,6 +172,7 @@ export default function FileUploader(props: FileUploaderProps) {
           file,
           id: uid(file),
           imagePreviewThumbnail: '',
+          progressAmount: progressAmountStartValue ?? PROGRESS_AMOUNT_LOADING,
           status: FILE_STATUS.added,
         });
         props.setFileRows([...newFileRows]);
@@ -174,6 +185,7 @@ export default function FileUploader(props: FileUploaderProps) {
           reader.onerror = () => {
             newFileRows[index].errorMessage = 'cannot read file';
             newFileRows[index].status = FILE_STATUS.error;
+            newFileRows[index].progressAmount = PROGRESS_AMOUNT_LOADING_COMPLETE;
             handleAriaLiveUpdates(
               ARIA_LIVE_ELEMENT_ID.ADDITION,
               `${newFileRows[index].file.name} added, upload failed: ${newFileRows[index].errorMessage}`
@@ -196,6 +208,7 @@ export default function FileUploader(props: FileUploaderProps) {
                 index
               ].errorMessage = `cannot process more than ${props.maxFiles} file(s)`;
               newFileRows[index].status = FILE_STATUS.error;
+              newFileRows[index].progressAmount = PROGRESS_AMOUNT_LOADING_COMPLETE;
               handleAriaLiveUpdates(
                 ARIA_LIVE_ELEMENT_ID.ADDITION,
                 `${newFileRows[index].file.name} added, upload failed: ${newFileRows[index].errorMessage}`
@@ -211,6 +224,7 @@ export default function FileUploader(props: FileUploaderProps) {
                 props.minSize
               )}`;
               newFileRows[index].status = FILE_STATUS.error;
+              newFileRows[index].progressAmount = PROGRESS_AMOUNT_LOADING_COMPLETE;
               handleAriaLiveUpdates(
                 ARIA_LIVE_ELEMENT_ID.ADDITION,
                 `${newFileRows[index].file.name} added, upload failed: ${newFileRows[index].errorMessage}`
@@ -226,6 +240,7 @@ export default function FileUploader(props: FileUploaderProps) {
                 props.maxSize
               )}`;
               newFileRows[index].status = FILE_STATUS.error;
+              newFileRows[index].progressAmount = PROGRESS_AMOUNT_LOADING_COMPLETE;
               handleAriaLiveUpdates(
                 ARIA_LIVE_ELEMENT_ID.ADDITION,
                 `${newFileRows[index].file.name} added, upload failed: ${newFileRows[index].errorMessage}`
@@ -237,6 +252,7 @@ export default function FileUploader(props: FileUploaderProps) {
                 ? `file type of ${fileRow.file.type} is not accepted`
                 : 'file type is not accepted';
               newFileRows[index].status = FILE_STATUS.error;
+              newFileRows[index].progressAmount = PROGRESS_AMOUNT_LOADING_COMPLETE;
               handleAriaLiveUpdates(
                 ARIA_LIVE_ELEMENT_ID.ADDITION,
                 `${newFileRows[index].file.name} added, upload failed: ${newFileRows[index].errorMessage}`
@@ -245,7 +261,7 @@ export default function FileUploader(props: FileUploaderProps) {
             } else if (props.processFileOnDrop) {
               // If caller passed in file process function
               props
-                .processFileOnDrop(fileRow.file)
+                .processFileOnDrop(fileRow.file, fileRow.id, newFileRows)
                 .then(
                   ({ errorMessage, fileInfo }: { errorMessage: string | null; fileInfo?: any }) => {
                     if (fileInfo) {
@@ -254,8 +270,10 @@ export default function FileUploader(props: FileUploaderProps) {
                     if (errorMessage) {
                       newFileRows[index].errorMessage = errorMessage;
                       newFileRows[index].status = FILE_STATUS.error;
+                      newFileRows[index].progressAmount = PROGRESS_AMOUNT_LOADING_COMPLETE;
                     } else {
                       newFileRows[index].status = FILE_STATUS.processed;
+                      newFileRows[index].progressAmount = PROGRESS_AMOUNT_LOADING_COMPLETE;
                     }
                   }
                 )
@@ -263,6 +281,7 @@ export default function FileUploader(props: FileUploaderProps) {
                   console.error('error with processFileOnDrop', error);
                   newFileRows[index].errorMessage = 'unknown processing error';
                   newFileRows[index].status = FILE_STATUS.error;
+                  newFileRows[index].progressAmount = PROGRESS_AMOUNT_LOADING_COMPLETE;
                   handleAriaLiveUpdates(
                     ARIA_LIVE_ELEMENT_ID.ADDITION,
                     `${newFileRows[index].file.name} added, upload failed: ${newFileRows[index].errorMessage}`
@@ -274,6 +293,7 @@ export default function FileUploader(props: FileUploaderProps) {
             } else {
               // If no errors and no file process function
               newFileRows[index].status = FILE_STATUS.processed;
+              newFileRows[index].progressAmount = PROGRESS_AMOUNT_LOADING_COMPLETE;
               handleAriaLiveUpdates(
                 ARIA_LIVE_ELEMENT_ID.ADDITION,
                 `${newFileRows[index].file.name} added, upload successful`
@@ -349,13 +369,13 @@ export default function FileUploader(props: FileUploaderProps) {
             </Label>
           )}
           <FileUploaderBasic
-            buttonIcon={() => <Upload />}
+            buttonIcon={() => <Upload aria-hidden={'true'} />}
             buttonText={locale.fileuploader.buttonText}
             contentMessage={locale.fileuploader.contentMessage}
             overrides={{
               ButtonComponent: {
                 props: {
-                  'aria-label': `${locale.fileuploader.buttonText} ${props.hint || ''}`,
+                  'aria-describedby': 'file-uploader-hint',
                   shape: SHAPE.default,
                   size: SIZE.default,
                   ...props.overrides?.ButtonComponent?.props,
@@ -435,6 +455,7 @@ export default function FileUploader(props: FileUploaderProps) {
             onDrop={onDrop}
             onDropAccepted={(_: Array<File>) => {}}
             onDropRejected={(_: Array<File>) => {}}
+            progressAmount={undefined}
           />
           {props.fileRows.length > 0 && (
             <FileRows data-baseweb="file-uploader-file-rows" {...fileRowsProps}>
@@ -498,7 +519,9 @@ export default function FileUploader(props: FileUploaderProps) {
                               />
                               <FileRowUploadText
                                 aria-errormessage={fileRow.errorMessage}
+                                aria-invalid={true}
                                 data-baseweb="file-uploader-file-row-upload-message-text"
+                                id={`file-uploader-file-row-upload-message-text-${index}`}
                                 {...fileRowUploadTextProps}
                               >
                                 {locale.fileuploader.error}
@@ -584,7 +607,7 @@ export default function FileUploader(props: FileUploaderProps) {
                         },
                       }}
                       size={PROGRESS_BAR_SIZE.small}
-                      value={fileRow.status === FILE_STATUS.processed ? 100 : 20}
+                      value={fileRow.progressAmount ?? PROGRESS_AMOUNT_LOADING_COMPLETE}
                       {...progressBarProps}
                     />
                   </FileRowColumn>
