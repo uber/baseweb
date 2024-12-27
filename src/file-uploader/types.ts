@@ -48,6 +48,7 @@ export type FileRow = {
   // TODO: switch to leverage a generic <T> so applications can define the shape of fileInfo
   fileInfo?: any;
   imagePreviewThumbnail?: any;
+  progressAmount: number;
   /** Defines the status of a file */
   status: keyof typeof FILE_STATUS;
 };
@@ -63,6 +64,11 @@ export type FileUploaderProps = Omit<
   maxFiles?: number;
   overrides?: FileUploaderBasicOverrides & FileUploaderOverrides;
   /** Function to run on each file, returns "errorMessage: null" on success and "errorMessage: string" for failures */
-  processFileOnDrop?: (file: File) => Promise<{ errorMessage: string | null; fileInfo?: any }>;
+  processFileOnDrop?: (
+    fileToProcess: File,
+    fileToProcessId: string,
+    fileRows: FileRow[]
+  ) => Promise<{ errorMessage: string | null; fileInfo?: any }>;
+  progressAmountStartValue?: number;
   setFileRows: (fileRows: FileRow[]) => void;
 };

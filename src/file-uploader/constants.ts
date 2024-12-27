@@ -26,3 +26,5 @@ export enum ARIA_LIVE_ELEMENT_ID {
 }
 
 export const ARIA_LIVE_TIMEOUT_MS = 5000;
+export const PROGRESS_AMOUNT_LOADING = 20;
+export const PROGRESS_AMOUNT_LOADING_COMPLETE = 100;
