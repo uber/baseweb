@@ -27,7 +27,7 @@ export default function Example() {
       file: new File(["test file 4"], "file-count-too-many.png"),
       id: "3",
       status: "error",
-      errorMessage: "cannot process more than ${props.maxFiles} file(s)",
+      errorMessage: "cannot process more than 3 file(s)",
     },
   ]);
 
