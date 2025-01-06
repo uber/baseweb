@@ -5,16 +5,18 @@ import { useStyletron } from "baseui";
 export default function Example() {
   const [fileRows, setFileRows] = React.useState<Array<FileRow>>([
     {
+      errorMessage: null,
       file: new File(["test file 1"], "file-1.txt"),
       id: "0",
+      progressAmount: 100,
       status: "processed",
-      errorMessage: null,
     },
     {
+      errorMessage: "Failed to upload",
       file: new File(["test file 2"], "file-2.txt"),
       id: "1",
+      progressAmount: 20,
       status: "error",
-      errorMessage: "Failed to upload",
     },
   ]);
   const [, theme] = useStyletron();
