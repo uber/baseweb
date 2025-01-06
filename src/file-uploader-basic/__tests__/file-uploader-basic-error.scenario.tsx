@@ -6,12 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { FileUploader } from '..';
+import { FileUploaderBasic } from '..';
 
 export function Scenario() {
   return (
-    <React.Fragment>
-      <FileUploader />
-    </React.Fragment>
+    <FileUploaderBasic
+      progressAmount={40}
+      progressMessage="Uploading... 8.24 of 45.08MB"
+      errorMessage="Upload failed... connection was lost."
+    />
   );
 }

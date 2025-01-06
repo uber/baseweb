@@ -6,12 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { FileUploader } from '..';
+import { FileUploaderBasic } from '..';
 
 export function Scenario() {
-  return (
-    <React.Fragment>
-      <FileUploader progressMessage="uploading..." progressAmount={40} />
-    </React.Fragment>
-  );
+  return <FileUploaderBasic progressMessage="Uploading... hang tight." />;
 }
