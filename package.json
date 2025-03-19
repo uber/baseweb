@@ -45,7 +45,7 @@
     "react-input-mask": "^2.0.4",
     "react-is": "^17.0.2",
     "react-map-gl": "5.2.13",
-    "react-movable": "^3.0.4",
+    "react-movable": "^3.4.1",
     "react-multi-ref": "^1.0.0",
     "react-range": "^1.8.12",
     "react-uid": "2.3.0",
