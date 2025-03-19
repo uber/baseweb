@@ -81,11 +81,6 @@ const ListItemConfig: TConfig = {
       type: PropTypes.Boolean,
       description: "Renders the list item smaller to convey hierarchy.",
     },
-    hasDivider: {
-      value: true,
-      type: PropTypes.Boolean,
-      description: "Renders the divider under the list item.",
-    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,

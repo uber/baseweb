@@ -25,7 +25,6 @@
   "dependencies": {
     "@date-io/date-fns": "^2.13.1",
     "@date-io/moment": "^2.13.1",
-    "baseui": "^14.0.0",
     "card-validator": "^6.2.0",
     "csstype": "2.6.11",
     "d3": "^6.7.0",
@@ -58,7 +57,7 @@
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18",
-    "styletron-react": "^6.1.1"
+    "styletron-react": ">=6"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.4",
