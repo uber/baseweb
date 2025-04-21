@@ -1,0 +1,223 @@
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
+import Yard from "../../components/yard/index";
+import systemBannerYardConfig from "../../components/yard/config/system-banner";
+
+import Basic from "examples/system-banner/basic.tsx";
+import WithActions from "examples/system-banner/with-actions.tsx";
+import WithArtwork from "examples/system-banner/with-artwork.tsx";
+import WithStyleOverrides from "examples/system-banner/with-style-overrides.tsx";
+import ClickableBanner from "examples/system-banner/clickable-banner.tsx";
+import MultipleActions from "examples/system-banner/multiple-actions.tsx";
+import WithIcons from "examples/system-banner/with-icons.tsx";
+
+import * as SystemBannerExports from "baseui/system-banner";
+
+export default Layout;
+
+# System Banner
+
+<Yard placeholderHeight={52} {...systemBannerYardConfig} />
+
+A System Banner is a contextual message component designed to communicate system-wide states or updates at the top of a page.
+It extends the functionality of the [Banner](/components/banner) with specific enhancements for system-level notifications.
+
+System Banners are always displayed with high-contrast colors to ensure visibility and importance, using `HIERARCHY.high` internally.
+
+## When to use
+
+- For critical system-wide alerts or notifications (maintenance, outages, updates)
+- When communicating important updates that affect the entire application
+- When users need a banner with prominent, clickable primary and secondary actions
+- For persistent messages that require high visibility
+
+## When not to use
+
+- For inline form validations or contextual feedback (use [Banner](/components/banner) instead)
+- For ephemeral notifications that should disappear (use [Toast](/components/toast) or [Snackbar](/components/snackbar))
+- For passive information that doesn't require user action (use [Notification](/components/notification))
+
+## Examples
+
+<Example title="Basic usage" path="system-banner/basic.tsx">
+  <Basic />
+</Example>
+
+<Example title="With actions" path="system-banner/with-actions.tsx">
+  <WithActions />
+</Example>
+
+<Example title="With custom artwork" path="system-banner/with-artwork.tsx">
+  <WithArtwork />
+</Example>
+
+<Example
+  title="With style overrides"
+  path="system-banner/with-style-overrides.tsx"
+>
+  <WithStyleOverrides />
+</Example>
+
+## API differences from Banner
+
+System Banner extends the standard Banner component with the following key differences:
+
+1. **Fixed hierarchy**: Always uses high-contrast colors (`HIERARCHY.high`) for maximum visibility
+2. **Simplified action API**:
+   - `primaryAction`: Object with `label`, `onClick`, and optional `icon` properties
+   - `secondaryAction`: Object with `label`, `onClick`, and optional `icon` properties
+   - No need to specify `position` or create complex action objects
+3. **Simplified artwork API**: Uses `artworkIcon` prop instead of the more complex `artwork` object
+
+## Usage patterns
+
+### Using as a clickable banner
+
+When using only a `primaryAction` without a `secondaryAction`, the entire banner becomes clickable, triggering the primary action:
+
+<Example title="Clickable banner" path="system-banner/clickable-banner.tsx">
+  <ClickableBanner />
+</Example>
+
+```jsx
+<SystemBanner
+  kind={KIND.info}
+  primaryAction={{
+    label: "View details",
+    onClick: () => navigate("/details"),
+  }}
+>
+  New system update available
+</SystemBanner>
+```
+
+### Using with multiple actions
+
+When both `primaryAction` and `secondaryAction` are provided, they appear as separate buttons:
+
+<Example title="Multiple actions" path="system-banner/multiple-actions.tsx">
+  <MultipleActions />
+</Example>
+
+```jsx
+<SystemBanner
+  kind={KIND.warning}
+  primaryAction={{
+    label: "Update now",
+    onClick: handleUpdate,
+  }}
+  secondaryAction={{
+    label: "Remind me later",
+    onClick: handleDismiss,
+  }}
+>
+  Critical security update required
+</SystemBanner>
+```
+
+### Using with icons
+
+Icons can be used for both artwork and actions:
+
+<Example title="With icons" path="system-banner/with-icons.tsx">
+  <WithIcons />
+</Example>
+
+```jsx
+<SystemBanner
+  kind={KIND.positive}
+  artworkIcon={({ size }) => <Check size={size} />}
+  primaryAction={{
+    label: "View changes",
+    icon: ({ size }) => <ChevronRight size={size} />,
+    onClick: viewChanges,
+  }}
+>
+  System successfully updated
+</SystemBanner>
+```
+
+### Icon usage patterns
+
+When using icons with SystemBanner, they must be wrapped in a function that receives and applies the `size` parameter:
+
+#### For artwork icons:
+
+```jsx
+// ✓ Correct - pass the size parameter to the icon
+artworkIcon={({ size }) => <Check size={size} />}
+
+// ✗ Incorrect - will cause errors
+artworkIcon={Check}
+```
+
+#### For action icons:
+
+```jsx
+// ✓ Correct - pass the size parameter to the icon
+primaryAction={{
+  label: "View changes",
+  icon: ({ size }) => <ChevronRight size={size} />,
+  onClick: handleClick
+}}
+
+// ✗ Incorrect - will cause errors
+primaryAction={{
+  label: "View changes",
+  icon: ChevronRight,
+  onClick: handleClick
+}}
+```
+
+## Accessibility
+
+SystemBanner implements the following accessibility features:
+
+- Uses the `complementary` ARIA role to indicate its content is supporting information
+- Provides appropriate `aria-label` attributes for actions
+- Maintains appropriate color contrast ratios for all alert types
+- When a SystemBanner becomes clickable (with only a primaryAction), it receives proper focus indicators
+
+## Customizing with overrides
+
+System Banner supports extensive customization through overrides for styling:
+
+- **Root**: Container element for the entire banner
+- **LeadingContent**: Area for the artwork or icon
+- **MessageContent**: Container for title and message
+- **Title**: Banner title element
+- **Message**: Main banner message text
+- **TrailingContent**: Right-side area for actions or buttons
+- **TrailingButtonContainer**: Container for action buttons
+- **TrailingIconButton**: Container for trailing icons
+- **BelowContent**: Area that displays below the main content
+
+### Override example
+
+```jsx
+<SystemBanner
+  kind={KIND.info}
+  overrides={{
+    Root: {
+      style: {
+        borderRadius: "8px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+      },
+    },
+    Title: {
+      style: ({ $theme }) => ({
+        ...$theme.typography.HeadingSmall,
+      }),
+    },
+  }}
+>
+  Custom styled banner
+</SystemBanner>
+```
+
+<Exports
+  component={SystemBannerExports}
+  title="System Banner exports"
+  path="baseui/system-banner"
+/>

@@ -16,6 +16,7 @@
     "dev:docs": "next dev documentation-site",
     "dev:ladle": "ladle serve",
     "build:docs": "next build documentation-site",
+    "start:docs": "npx serve@latest documentation-site/out",
     "build:ladle": "ladle build",
     "build:lib": "NODE_ENV=production babel ./src --out-dir ./dist --config-file ./publish/.babelrc.js --extensions '.ts,.tsx,.js' --ignore **.test.*,**/__tests__/**,**/e2e.*,**/template-component/**,**/test/**",
     "build:lib:dts": "tsc -p tsconfig.dist.json || true",
