@@ -1,5 +1,3 @@
-**Uber is hiring in Amsterdam. Do you want to work on Base Web and other things? <a href="https://www.uber.com/global/en/careers/list/130852/">Please apply!</a>**
-
 <h1>Base Web React Components</h1>
 
 - [Documentation](https://baseweb.design)
