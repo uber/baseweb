@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
 Copyright (c) Uber Technologies, Inc.
 
@@ -149,7 +148,7 @@ describe('FileUploader', () => {
       />
     );
     getByText(container, 'test.jpg');
-    getByText(container, 'Description');
+    getByText(container, 'Uploading');
     getByText(container, 'test.pdf');
     getByText(container, 'Upload failed: custom error message');
     getByText(container, 'test.png');

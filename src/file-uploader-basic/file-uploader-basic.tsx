@@ -124,7 +124,6 @@ function FileUploaderBasic(props: FileUploaderBasicProps) {
                             shape={SHAPE.pill}
                             size={BUTTON_SIZE.compact}
                             onClick={open}
-                            role="button"
                             overrides={{
                               BaseButton: {
                                 // @ts-ignore
@@ -173,7 +172,6 @@ function FileUploaderBasic(props: FileUploaderBasicProps) {
                             shape={SHAPE.pill}
                             size={BUTTON_SIZE.compact}
                             onClick={open}
-                            role="button"
                             overrides={{
                               BaseButton: {
                                 // @ts-ignore
