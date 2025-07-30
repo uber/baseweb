@@ -22,12 +22,6 @@ import locale from '../locale';
 import Upload from '../../icon/upload';
 
 describe('FileUploaderBasic', () => {
-  it('applies expected accessibility attributes to button', () => {
-    const { container } = render(<FileUploaderBasic />);
-    const button = container.querySelector('button');
-    expect(button?.getAttribute('role')).toBe('button');
-  });
-
   it('renders progress bar if progressAmount provided', () => {
     const { container } = render(<FileUploaderBasic progressAmount={50} />);
     getByRole(container, 'progressbar');

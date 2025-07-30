@@ -13,7 +13,7 @@ export type FileUploaderLocale = {
 };
 
 const locale = {
-  added: 'Description',
+  added: 'Uploading',
   buttonText: 'Browse files',
   contentMessage: 'or drop to upload',
   error: 'Upload failed: ',
