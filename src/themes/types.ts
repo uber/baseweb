@@ -169,6 +169,16 @@ export type CoreSemanticColors = {
   borderInverseOpaque: string;
   borderInverseTransparent: string;
   borderInverseSelected: string;
+  // Brand theme colors
+  brandBackgroundPrimary: string;
+  brandBackgroundSecondary: string;
+  brandBackgroundDisabled: string;
+  brandContentPrimary: string;
+  brandContentOnPrimary: string;
+  brandContentOnSecondary: string;
+  brandContentDisabled: string;
+  brandBorderAccessible: string;
+  brandBorderSubtle: string;
 };
 export type CoreExtensionSemanticColors = {
   // Backgrounds
@@ -708,8 +718,11 @@ export type Lighting = {
 };
 
 export type Animation = {
+  timing0: string;
   timing100: string;
+  timing150: string;
   timing200: string;
+  timing250: string;
   timing300: string;
   timing400: string;
   timing500: string;
@@ -718,6 +731,10 @@ export type Animation = {
   timing800: string;
   timing900: string;
   timing1000: string;
+  timing1500: string;
+  timing3000: string;
+  timing5000: string;
+  timing7000: string;
   easeOutCurve: string;
   easeInCurve: string;
   easeInOutCurve: string;
@@ -725,6 +742,11 @@ export type Animation = {
   easeOutQuinticCurve: string;
   easeInOutQuinticCurve: string;
   linearCurve: string;
+  easeLinear: string;
+  easeDecelerate: string;
+  easeAccelerate: string;
+  easeAccelerateDecelerate: string;
+  easeResponsiveAccelerate: string;
 };
 
 export type Border = {

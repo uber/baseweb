@@ -54,6 +54,7 @@ export type ListProps = {
   overrides?: ListOverrides;
   role?: string;
   sublist?: boolean;
+  hasDivider?: boolean;
 };
 
 export type LabelOverrides = {

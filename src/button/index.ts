@@ -8,7 +8,7 @@ import type { CustomColors } from './types';
 
 export { default as Button } from './button';
 // Constants
-export { KIND, SIZE, SHAPE } from './constants';
+export { KIND, SIZE, SHAPE, MIN_HIT_AREA } from './constants';
 // Styled elements
 export {
   BaseButton as StyledBaseButton,

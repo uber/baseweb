@@ -228,6 +228,8 @@ function FilterMenu(props: Props) {
   const [query, setQuery] = React.useState('');
 
   const [activeColumn, setActiveColumn] = React.useState(null);
+  // todo(automated-eslint-suppression) Expected the first argument to be an inline function expression
+  // eslint-disable-next-line react-compiler/react-compiler
   const handleOptionClick = React.useCallback(setActiveColumn, []);
   const handleClose = React.useCallback(() => {
     setIsOpen(false);

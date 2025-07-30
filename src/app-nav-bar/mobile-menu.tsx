@@ -134,7 +134,7 @@ export default function MobileMenu(props: AppNavBarProps) {
         },
       },
       // eslint-disable-next-line react/display-name
-      ListItem: React.forwardRef((listItemProps, ref) => {
+      ListItem: React.forwardRef<HTMLLIElement, any>((listItemProps, ref) => {
         return (
           <MobileNavMenuItem
             ref={ref}

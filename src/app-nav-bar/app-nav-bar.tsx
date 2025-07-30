@@ -71,7 +71,7 @@ function MainMenuItem(props) {
       $active={item.active}
       $isFocusVisible={focusVisible}
       $kind={kind}
-      aria-selected={item.active}
+      aria-current={item.active ? 'page' : undefined}
       onFocus={handleFocus}
       onBlur={handleBlur}
       onClick={handleClick}

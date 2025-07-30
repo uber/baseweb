@@ -9,9 +9,8 @@ import type { ReactNode, ComponentType } from 'react';
 import FocusLock from 'react-focus-lock';
 
 import { Layer } from '../layer';
-import { useStyletron } from '../styles/index';
 import { getOverrides } from '../helpers/overrides';
-import { ButtonDock } from '../button-dock';
+import { ButtonDock as BaseButtonDock } from '../button-dock';
 import { Button, KIND, SHAPE } from '../button';
 import { Delete } from '../icon';
 import {
@@ -21,7 +20,7 @@ import {
   StyledScrollContainer,
   StyledOverlay,
 } from './styled-components';
-import { PLACEMENT, SIZE } from './constants';
+import { PLACEMENT, SIZE, CLOSE_SOURCE } from './constants';
 import type { DialogProps, Artwork } from './types';
 
 function renderArtwork(artwork?: Artwork): ReactNode {
@@ -57,20 +56,6 @@ const DefaultDismissButton = (props) => {
   );
 };
 
-const DefaultButtonDock = (props) => {
-  const [, theme] = useStyletron();
-  const overrides = {
-    Root: {
-      style: {
-        paddingRight: theme.sizing.scale800,
-        paddingLeft: theme.sizing.scale800,
-        marginBottom: theme.sizing.scale800,
-      },
-    },
-  };
-  return <ButtonDock overrides={overrides} {...props} />;
-};
-
 const Dialog = ({
   artwork,
   buttonDock,
@@ -94,7 +79,7 @@ const Dialog = ({
   const [Heading, headingProps] = getOverrides(overrides.Heading, StyledHeading);
   const [Overlay, overlayProps] = getOverrides(overrides.Overlay, StyledOverlay);
   const [Body, bodyProps] = getOverrides(overrides.Body, StyledBody);
-  const [ButtonDock, buttonDockProps] = getOverrides(overrides.ButtonDock, DefaultButtonDock);
+  const [ButtonDock, buttonDockProps] = getOverrides(overrides.ButtonDock, BaseButtonDock);
   const [DismissButton, dismissButtonProps] = getOverrides(
     overrides.DismissButton,
     DefaultDismissButton
@@ -124,12 +109,12 @@ const Dialog = ({
       e.target.contains(overlayRef.current) &&
       onDismiss
     ) {
-      onDismiss();
+      onDismiss({ closeSource: CLOSE_SOURCE.backdrop });
     }
   }
 
   function handleEscape() {
-    onDismiss && onDismiss();
+    onDismiss && onDismiss({ closeSource: CLOSE_SOURCE.escape });
   }
 
   return isOpen ? (
@@ -145,12 +130,20 @@ const Dialog = ({
           {...rootProps}
         >
           {onDismiss && showDismissButton && (
-            <DismissButton onClick={() => onDismiss()} {...dismissButtonProps} />
+            <DismissButton
+              onClick={() => onDismiss({ closeSource: CLOSE_SOURCE.dismissButton })}
+              {...dismissButtonProps}
+            />
           )}
 
           <ScrollContainer {...scrollContainerProps} tabIndex={0}>
             {renderArtwork(artwork)}
-            <Heading $numHeadingLines={numHeadingLines} id="dialog-title" {...headingProps}>
+            <Heading
+              $numHeadingLines={numHeadingLines}
+              $shiftLeft={showDismissButton}
+              id="dialog-title"
+              {...headingProps}
+            >
               {heading}
             </Heading>
             <Body {...bodyProps}>{children}</Body>

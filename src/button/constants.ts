@@ -19,8 +19,16 @@ export const SHAPE = {
 } as const;
 
 export const SIZE = {
-  mini: 'mini',
-  default: 'default',
-  compact: 'compact',
-  large: 'large',
+  mini: 'mini', // 'xSmall'
+  default: 'default', // 'medium'
+  compact: 'compact', // 'small'
+  large: 'large', // 'large'
+  xSmall: 'xSmall',
+  small: 'small',
+  medium: 'medium',
+} as const;
+
+export const MIN_HIT_AREA = {
+  tap: 'tap',
+  click: 'click',
 } as const;

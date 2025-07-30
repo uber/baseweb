@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { setItemActive } from '..';
+import { defaultMapItemToNode } from '../utils';
 
 describe('setItemActive', () => {
   it('sets specified item active', () => {
@@ -85,5 +86,34 @@ describe('setItemActive', () => {
 
     expect(nextItems[0].active).toBe(true);
     expect(nextItems[1].active).toBe(false);
+  });
+});
+describe('defaultMapItemToNode', () => {
+  it('returns the label of the item', () => {
+    const item = { label: 'test' };
+    const result = defaultMapItemToNode(item);
+    expect(result).toBe('test');
+  });
+
+  it('throws an error if item.label is missing in development mode', () => {
+    const originalDev = global.__DEV__;
+    global.__DEV__ = true;
+
+    const item = {};
+    // @ts-expect-error
+    expect(() => defaultMapItemToNode(item)).toThrow();
+
+    global.__DEV__ = originalDev;
+  });
+
+  it('does not throw an error if item.label is missing in production mode', () => {
+    const originalDev = global.__DEV__;
+    global.__DEV__ = false;
+
+    const item = {};
+    // @ts-expect-error
+    expect(() => defaultMapItemToNode(item)).not.toThrow();
+
+    global.__DEV__ = originalDev;
   });
 });

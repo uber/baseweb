@@ -20,3 +20,10 @@ export const PLACEMENT = Object.freeze({
   bottomCenter: 'bottomCenter',
   bottomRight: 'bottomRight',
 } as const);
+
+// From `Modal`. Changed `closeButton` to `dismissButton`.
+export const CLOSE_SOURCE = Object.freeze({
+  dismissButton: 'dismissButton',
+  backdrop: 'backdrop',
+  escape: 'escape',
+} as const);

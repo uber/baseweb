@@ -97,7 +97,7 @@ const tr_TR: Locale = {
   },
 
   fileuploader: {
-    added: 'Yükleniyor...',
+    added: 'Yükleniyor',
     buttonText: 'Dosyalara göz atın',
     contentMessage: 'veya yüklemek için bırakın',
     error: 'Yükleme hatası',
@@ -114,6 +114,8 @@ const tr_TR: Locale = {
 
   menu: {
     noResultsMsg: 'Sonuç yok',
+    noResultsStatus: 'Seçenekler mevcut değil',
+    itemsAvailableStatus: (count: number) => `${count} öğe mevcut`,
     parentMenuItemAriaLabel:
       'Şu anda iç içe bir liste kutusu açan bir öğedesiniz. Bu öğeye girmek için sağ ok ve geri dönmek için sol ok tuşuna basın.',
   },

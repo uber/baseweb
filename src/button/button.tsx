@@ -1,6 +1,9 @@
 /*
 Copyright (c) Uber Technologies, Inc.
 
+
+
+
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
@@ -17,20 +20,22 @@ import { defaultProps } from './default-props';
 import { getOverrides } from '../helpers/overrides';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
-import type { ButtonProps, SharedStyleProps } from './types';
+import type { BaseButtonProps, SharedStyleProps } from './types';
 
 import type { SyntheticEvent, ComponentProps, ComponentPropsWithoutRef } from 'react';
 
 class Button extends React.Component<
-  ButtonProps & {
+  BaseButtonProps & {
     forwardedRef: React.Ref<HTMLElement>;
   } & ComponentPropsWithoutRef<'button'>,
   {
     isFocusVisible: boolean;
+    isHovered: boolean;
+    isPressed: boolean;
   }
 > {
   static defaultProps = defaultProps;
-  state = { isFocusVisible: false };
+  state = { isFocusVisible: false, isHovered: false, isPressed: false };
 
   // @ts-ignore
   internalOnClick = (...args) => {
@@ -56,6 +61,38 @@ class Button extends React.Component<
     }
   };
 
+  handleHovered = (event: React.MouseEvent<HTMLButtonElement>) => {
+    this.setState({ isHovered: true });
+    // Forward the mouse enter event to user handler if provided
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(event);
+    }
+  };
+
+  handleNotHovered = (event: React.MouseEvent<HTMLButtonElement>) => {
+    this.setState({ isHovered: false });
+    // Forward the mouse leave event to user handler if provided
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(event);
+    }
+  };
+
+  handlePressed = (event: React.MouseEvent<HTMLButtonElement>) => {
+    this.setState({ isPressed: true });
+    // Forward the mouse down event to user handler if provided
+    if (this.props.onMouseDown) {
+      this.props.onMouseDown(event);
+    }
+  };
+
+  handleNotPressed = (event: React.MouseEvent<HTMLButtonElement>) => {
+    this.setState({ isPressed: false });
+    // Forward the mouse up event to user handler if provided
+    if (this.props.onMouseUp) {
+      this.props.onMouseUp(event);
+    }
+  };
+
   render() {
     const {
       overrides = {},
@@ -65,6 +102,8 @@ class Button extends React.Component<
       kind,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       shape,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      minHitArea,
       isLoading,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       isSelected,
@@ -80,7 +119,8 @@ class Button extends React.Component<
       colors,
       ...restProps
     } = this.props;
-    // Get overrides
+
+    // Get overrides.
     const isAnchor = 'href' in restProps && Boolean(restProps?.href);
 
     const [BaseButton, baseButtonProps] = getOverrides(
@@ -101,6 +141,8 @@ class Button extends React.Component<
     const sharedProps: SharedStyleProps = {
       ...getSharedProps(this.props),
       $isFocusVisible: this.state.isFocusVisible,
+      $isHovered: this.state.isHovered,
+      $isPressed: this.state.isPressed,
     };
     const ariaLoadingElements = isLoading
       ? {
@@ -128,18 +170,32 @@ class Button extends React.Component<
         onClick={this.internalOnClick}
         onFocus={forkFocus({ ...restProps, ...baseButtonProps }, this.handleFocus)}
         onBlur={forkBlur({ ...restProps, ...baseButtonProps }, this.handleBlur)}
+        onMouseEnter={this.handleHovered}
+        onMouseLeave={this.handleNotHovered}
+        onMouseDown={this.handlePressed}
+        onMouseUp={this.handleNotPressed}
       >
         {isLoading ? (
           <React.Fragment>
             {/* This is not meant to be overridable by users */}
-            <ButtonInternals {...this.props} />
+            <ButtonInternals
+              {...this.props}
+              isHovered={this.state.isHovered}
+              isPressed={this.state.isPressed}
+              isFocused={this.state.isFocusVisible}
+            />
 
             <LoadingSpinnerContainer {...sharedProps} {...loadingSpinnerContainerProps}>
               <LoadingSpinner {...sharedProps} {...loadingSpinnerProps} />
             </LoadingSpinnerContainer>
           </React.Fragment>
         ) : (
-          <ButtonInternals {...this.props} />
+          <ButtonInternals
+            {...this.props}
+            isHovered={this.state.isHovered}
+            isPressed={this.state.isPressed}
+            isFocused={this.state.isFocusVisible}
+          />
         )}
       </BaseButton>
     );
@@ -148,8 +204,8 @@ class Button extends React.Component<
 
 export interface ButtonComponentType {
   <C extends React.ElementType = 'button'>(
-    props: ButtonProps &
-      Omit<React.ComponentProps<C>, keyof ButtonProps | keyof SharedStyleProps> &
+    props: BaseButtonProps &
+      Omit<React.ComponentProps<C>, keyof BaseButtonProps | keyof SharedStyleProps> &
       SharedStyleProps<C | React.ComponentType<any> | keyof JSX.IntrinsicElements>
   ): JSX.Element;
   displayName?: string;

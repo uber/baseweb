@@ -1,15 +1,16 @@
 /*
 Copyright (c) Uber Technologies, Inc.
 
+
+
+
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import type * as React from 'react';
 
-import type { KIND, SIZE, SHAPE } from './constants';
+import type { KIND, SIZE, SHAPE, MIN_HIT_AREA } from './constants';
 import type { Override } from '../helpers/overrides';
-
-type AnchorProps = React.HTMLProps<HTMLAnchorElement>;
 
 export type ButtonOverrides = {
   Root?: Override;
@@ -25,13 +26,15 @@ export type CustomColors = {
   color: string;
 };
 
-interface BaseButtonProps {
+interface BaseButtonSharedProps {
   children?: React.ReactNode;
   colors?: CustomColors;
   disabled?: boolean;
   /** A helper rendered at the end of the button. */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   endEnhancer?: React.ReactNode | React.ComponentType<any>;
+  /** Defines the minimum height of the hit target area */
+  minHitArea?: keyof typeof MIN_HIT_AREA;
   /** Show loading button style and spinner. */
   isLoading?: boolean;
   /** Indicates that the button is selected */
@@ -60,10 +63,30 @@ export interface LinkButtonProps {
   target?: string;
 }
 
-export interface ButtonProps extends BaseButtonProps, LinkButtonProps {}
+export interface ButtonProps extends BaseButtonSharedProps, LinkButtonProps {}
+
+// Used in the Button component of baseui; ButtonProps is widely used and overridden in the other projects
+export type BaseButtonProps = Omit<ButtonProps, 'children'> & {
+  /** Children can be either React nodes or a function that returns React nodes */
+  children?:
+    | React.ReactNode
+    | ((props: {
+        isHovered: boolean;
+        isPressed: boolean;
+        isFocused: boolean;
+        artworkSize: string;
+      }) => React.ReactNode);
+};
+
+export type ButtonInternalsProps = BaseButtonProps & {
+  isHovered?: boolean;
+  isPressed?: boolean;
+  isFocused?: boolean;
+};
 
 export type SharedStyleProps<AS = React.ComponentType<any> | keyof JSX.IntrinsicElements> = {
   $colors?: CustomColors;
+  $minHitArea?: keyof typeof MIN_HIT_AREA;
   $kind?: keyof typeof KIND;
   $isSelected?: boolean;
   $shape?: keyof typeof SHAPE;
@@ -71,5 +94,8 @@ export type SharedStyleProps<AS = React.ComponentType<any> | keyof JSX.Intrinsic
   $isLoading?: boolean;
   $disabled?: boolean;
   $isFocusVisible?: boolean;
+  $isHovered?: boolean;
+  $isPressed?: boolean;
+  $isFocused?: boolean;
   $as?: AS;
 };

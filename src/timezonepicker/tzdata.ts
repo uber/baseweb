@@ -125,6 +125,7 @@ export const zones = [
   'Africa/Abidjan',
   'Pacific/Rarotonga',
   'America/Santiago',
+  'America/Coyhaique',
   'America/Punta_Arenas',
   'Pacific/Easter',
   'Africa/Douala',

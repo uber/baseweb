@@ -105,6 +105,16 @@ export type PrimitiveColors = {
   magenta700: string;
   magenta800: string;
   magenta900: string;
+  periwinkle50: string;
+  periwinkle100: string;
+  periwinkle200: string;
+  periwinkle300: string;
+  periwinkle400: string;
+  periwinkle500: string;
+  periwinkle600: string;
+  periwinkle700: string;
+  periwinkle800: string;
+  periwinkle900: string;
   purple50: string;
   purple100: string;
   purple200: string;
@@ -135,6 +145,36 @@ export type PrimitiveColors = {
   lime700: string;
   lime800: string;
   lime900: string;
+  brandDefault50: string;
+  brandDefault100: string;
+  brandDefault200: string;
+  brandDefault300: string;
+  brandDefault400: string;
+  brandDefault500: string;
+  brandDefault600: string;
+  brandDefault700: string;
+  brandDefault800: string;
+  brandDefault900: string;
+  brandAI50: string;
+  brandAI100: string;
+  brandAI200: string;
+  brandAI300: string;
+  brandAI400: string;
+  brandAI500: string;
+  brandAI600: string;
+  brandAI700: string;
+  brandAI800: string;
+  brandAI900: string;
+  brandOffersyellow50: string;
+  brandOffersyellow100: string;
+  brandOffersyellow200: string;
+  brandOffersyellow300: string;
+  brandOffersyellow400: string;
+  brandOffersyellow500: string;
+  brandOffersyellow600: string;
+  brandOffersyellow700: string;
+  brandOffersyellow800: string;
+  brandOffersyellow900: string;
   /** @deprecated use orange color tokens instead */
   brown50: string;
   /** @deprecated use orange color tokens instead */
@@ -268,6 +308,17 @@ export type PrimitiveColors = {
   blue800Dark: string;
   blue900Dark: string;
 
+  periwinkle50Dark: string;
+  periwinkle100Dark: string;
+  periwinkle200Dark: string;
+  periwinkle300Dark: string;
+  periwinkle400Dark: string;
+  periwinkle500Dark: string;
+  periwinkle600Dark: string;
+  periwinkle700Dark: string;
+  periwinkle800Dark: string;
+  periwinkle900Dark: string;
+
   purple50Dark: string;
   purple100Dark: string;
   purple200Dark: string;
@@ -289,6 +340,37 @@ export type PrimitiveColors = {
   magenta700Dark: string;
   magenta800Dark: string;
   magenta900Dark: string;
+
+  brandDefault50Dark: string;
+  brandDefault100Dark: string;
+  brandDefault200Dark: string;
+  brandDefault300Dark: string;
+  brandDefault400Dark: string;
+  brandDefault500Dark: string;
+  brandDefault600Dark: string;
+  brandDefault700Dark: string;
+  brandDefault800Dark: string;
+  brandDefault900Dark: string;
+  brandAI50Dark: string;
+  brandAI100Dark: string;
+  brandAI200Dark: string;
+  brandAI300Dark: string;
+  brandAI400Dark: string;
+  brandAI500Dark: string;
+  brandAI600Dark: string;
+  brandAI700Dark: string;
+  brandAI800Dark: string;
+  brandAI900Dark: string;
+  brandOffersyellow50Dark: string;
+  brandOffersyellow100Dark: string;
+  brandOffersyellow200Dark: string;
+  brandOffersyellow300Dark: string;
+  brandOffersyellow400Dark: string;
+  brandOffersyellow500Dark: string;
+  brandOffersyellow600Dark: string;
+  brandOffersyellow700Dark: string;
+  brandOffersyellow800Dark: string;
+  brandOffersyellow900Dark: string;
 };
 
 export type PrimitiveLightColors = {

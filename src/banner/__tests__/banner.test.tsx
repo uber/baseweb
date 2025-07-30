@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { render, fireEvent, getByLabelText, getByText } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { Banner, ACTION_POSITION } from '../index';
 
@@ -41,5 +42,17 @@ describe('banner', () => {
     const button = getByText(container, label);
     fireEvent.click(button);
     expect(handleClick.mock.calls.length).toBe(1);
+  });
+
+  it('renders endEnhancer when action has endEnhancer', () => {
+    const EndEnhancer = <div>endEnhancer</div>;
+
+    const { container } = render(
+      <Banner action={{ label: 'label', endEnhancer: EndEnhancer, onClick: jest.fn() }}>
+        message
+      </Banner>
+    );
+    const button = getByText(container, 'endEnhancer');
+    expect(button).toBeInTheDocument();
   });
 });

@@ -165,6 +165,8 @@ export default function TreeView(props: TreeViewProps) {
             treeItemRefs[id] = ref;
           }}
           removeRef={(id: TreeNodeId) => {
+            // todo(automated-eslint-suppression) This mutates a variable that React considers immutable
+            // eslint-disable-next-line react-compiler/react-compiler
             delete treeItemRefs[id];
           }}
           isFocusVisible={focusVisible}

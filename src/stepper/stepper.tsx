@@ -27,6 +27,7 @@ export function Stepper({
   setValue,
   minValue = 0,
   maxValue,
+  step = 1,
 }: StepperProps) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [Input, inputProps] = getOverrides(overrides.Input, DefaultInput);
@@ -84,7 +85,7 @@ export function Stepper({
   return (
     <Root {...rootProps}>
       <DecrementButton
-        onClick={() => setValue(value - 1)}
+        onClick={() => setValue(value - step)}
         disabled={disabled || value <= minValue}
         aria-label="decrement value"
         {...decrementButtonProps}
@@ -99,9 +100,8 @@ export function Stepper({
         {...inputProps}
       />
       <IncrementButton
-        onClick={() => setValue(value + 1)}
-        // @ts-expect-error todo(ts-migration) TS18048 'maxValue' is possibly 'undefined'.
-        disabled={disabled || value >= maxValue}
+        onClick={() => setValue(value + step)}
+        disabled={disabled || (maxValue !== undefined && value >= maxValue)}
         aria-label="increment value"
         {...incrementButtonProps}
       >

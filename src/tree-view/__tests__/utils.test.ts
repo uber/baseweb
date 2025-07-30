@@ -11,6 +11,7 @@ import {
   getFirstChildId,
   getEndId,
   getExpandableSiblings,
+  toggleIsExpanded,
   getCharMatchId,
   defaultGetId as getId,
 } from '../utils';
@@ -215,5 +216,40 @@ describe('getCharMatchId', () => {
 
   test('full text match', () => {
     expect(getCharMatchId(data, 1, '7', null, getId)).toBe(7);
+  });
+});
+
+describe('toggleIsExpanded', () => {
+  test('toggles isExpanded of the specified root node', () => {
+    const toggledNode: TreeNodeData = { id: 1, label: 'Label 1' };
+    const result = toggleIsExpanded(data, toggledNode, getId);
+    expect(result[0].isExpanded).toBe(false);
+  });
+
+  test('toggles isExpanded of a deep node', () => {
+    const toggledNode: TreeNodeData = { id: 3, label: 'Label 3' };
+    const result = toggleIsExpanded(data, toggledNode, getId);
+    expect(result[0].children![0].children![0].isExpanded).toBe(true);
+  });
+
+  test('does not modify other nodes', () => {
+    const toggledNode: TreeNodeData = { id: 4, label: 'Label 4' };
+    const result = toggleIsExpanded(data, toggledNode, getId);
+    expect(result[0].isExpanded).toBe(true);
+    expect(result[1].isExpanded).toBe(false);
+  });
+
+  test('returns a new tree without mutating the original tree', () => {
+    const toggledNode: TreeNodeData = { id: 5, label: 'Label 5' };
+    const originalData = JSON.parse(JSON.stringify(data));
+    const result = toggleIsExpanded(data, toggledNode, getId);
+    expect(data).toEqual(originalData);
+    expect(result).not.toBe(data);
+  });
+
+  test('does nothing if node is not found', () => {
+    const toggledNode: TreeNodeData = { id: 999, label: 'Non-existent Node' };
+    const result = toggleIsExpanded(data, toggledNode, getId);
+    expect(result).toEqual(data);
   });
 });

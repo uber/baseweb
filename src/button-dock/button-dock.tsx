@@ -6,13 +6,22 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import type { ButtonDockProps } from './types';
-import { StyledRoot, StyledActionContainer, StyledActionSubContainer } from './styled-components';
+import {
+  StyledRoot,
+  StyledTopAccessoryContainer,
+  StyledActionContainer,
+  StyledActionSubContainer,
+} from './styled-components';
 import { getOverrides } from '../helpers/overrides';
 
 const ButtonDock = (props: ButtonDockProps) => {
   const { primaryAction, secondaryActions, dismissiveAction, topAccessory, overrides = {} } = props;
 
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [TopAccessoryContainer, topAccessoryContainerProps] = getOverrides(
+    overrides.TopAccessoryContainer,
+    StyledTopAccessoryContainer
+  );
   const [ActionContainer, actionContainerProps] = getOverrides(
     overrides.ActionContainer,
     StyledActionContainer
@@ -24,7 +33,11 @@ const ButtonDock = (props: ButtonDockProps) => {
 
   return (
     <Root {...rootProps}>
-      {topAccessory}
+      {topAccessory && (
+        <TopAccessoryContainer {...topAccessoryContainerProps}>
+          {topAccessory}
+        </TopAccessoryContainer>
+      )}
       <ActionContainer {...actionContainerProps}>
         <ActionSubContainer {...actionSubContainerProps}>{secondaryActions}</ActionSubContainer>
         <ActionSubContainer $reverseWhenWide {...actionSubContainerProps}>

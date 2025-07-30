@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import type { SelectProps, Option, Options, Optgroups, Value } from '../types';
 
-function groupedOptionsToArray(groupedOptions: Optgroups): Value {
+export function groupedOptionsToArray(groupedOptions: Optgroups): Value {
   return Object.keys(groupedOptions).reduce((arr, optgroup) => {
     const optgroupOptions = groupedOptions[optgroup];
     return arr.concat(

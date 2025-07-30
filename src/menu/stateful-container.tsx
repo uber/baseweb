@@ -26,6 +26,7 @@ const DEFAULT_PROPS = {
     // We start the index at -1 to indicate that no highlighting exists initially
     highlightedIndex: -1,
     isFocused: false,
+    isKeyboardFocused: false,
   },
   typeAhead: true,
   keyboardControlNode: { current: null } as {
@@ -132,6 +133,7 @@ class MenuStatefulContainerInner extends React.Component<
     if (this.props.forceHighlight && this.state.highlightedIndex === -1 && range > 0) {
       this.internalSetState(STATE_CHANGE_TYPES.enter, {
         highlightedIndex: 0,
+        isKeyboardFocused: true,
       });
     }
     if (range === 0 && this.state.highlightedIndex !== -1) {
@@ -253,6 +255,7 @@ class MenuStatefulContainerInner extends React.Component<
     }
     this.internalSetState(STATE_CHANGE_TYPES.character, {
       highlightedIndex: nextIndex,
+      isKeyboardFocused: true,
     });
 
     if (this.refList[nextIndex]) {
@@ -277,24 +280,28 @@ class MenuStatefulContainerInner extends React.Component<
       nextIndex = Math.max(0, prevIndex - 1);
       this.internalSetState(STATE_CHANGE_TYPES.moveUp, {
         highlightedIndex: nextIndex,
+        isKeyboardFocused: true,
       });
     } else if (event.key === KEY_STRINGS.ArrowDown) {
       event.preventDefault();
       nextIndex = Math.min(prevIndex + 1, this.getItems().length - 1);
       this.internalSetState(STATE_CHANGE_TYPES.moveDown, {
         highlightedIndex: nextIndex,
+        isKeyboardFocused: true,
       });
     } else if (event.key === KEY_STRINGS.Home) {
       event.preventDefault();
       nextIndex = 0;
       this.internalSetState(STATE_CHANGE_TYPES.moveUp, {
         highlightedIndex: nextIndex,
+        isKeyboardFocused: true,
       });
     } else if (event.key === KEY_STRINGS.End) {
       event.preventDefault();
       nextIndex = this.getItems().length - 1;
       this.internalSetState(STATE_CHANGE_TYPES.moveDown, {
         highlightedIndex: nextIndex,
+        isKeyboardFocused: true,
       });
     } else if (event.key === KEY_STRINGS.ArrowLeft) {
       if (this.props.getParentMenu) {
@@ -340,6 +347,7 @@ class MenuStatefulContainerInner extends React.Component<
       this.internalSetState(STATE_CHANGE_TYPES.click, {
         highlightedIndex: index,
         activedescendantId: this.optionIds[index],
+        isKeyboardFocused: false,
       });
     }
   };
@@ -348,6 +356,7 @@ class MenuStatefulContainerInner extends React.Component<
     this.internalSetState(STATE_CHANGE_TYPES.mouseEnter, {
       highlightedIndex: index,
       activedescendantId: this.optionIds[index],
+      isKeyboardFocused: false,
     });
   };
 
@@ -372,6 +381,7 @@ class MenuStatefulContainerInner extends React.Component<
       ref: itemRef,
       isFocused: this.state.isFocused,
       isHighlighted: this.state.highlightedIndex === index,
+      isKeyboardFocused: this.state.isKeyboardFocused && this.state.highlightedIndex === index,
       resetMenu: this.resetMenu,
       // binds so that in-line functions can be avoided. this is to ensure
       // referential equality when option-list compares props in memoized component
@@ -416,6 +426,7 @@ class MenuStatefulContainerInner extends React.Component<
       isFocused: false,
       highlightedIndex: -1,
       activedescendantId: null,
+      isKeyboardFocused: false,
     });
   };
 
@@ -453,6 +464,7 @@ class MenuStatefulContainerInner extends React.Component<
       handleMouseLeave: this.handleMouseLeave,
       highlightedIndex: this.state.highlightedIndex,
       isFocused: this.state.isFocused,
+      isKeyboardFocused: this.state.isKeyboardFocused,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       // @ts-ignore
       handleKeyDown: this.props.keyboardControlNode.current ? (event) => {} : this.onKeyDown,

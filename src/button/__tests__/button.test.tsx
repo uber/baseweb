@@ -1,15 +1,19 @@
 /*
 Copyright (c) Uber Technologies, Inc.
 
+
+
+
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
 import * as React from 'react';
+import { flushSync } from 'react-dom';
 import { render, fireEvent, getByText } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 
-import { Button } from '..';
+import { Button, MIN_HIT_AREA } from '..';
 
 describe('Button Component', () => {
   test('basic render', () => {
@@ -165,5 +169,113 @@ describe('Link Button', () => {
     expect(anchor?.childNodes).toHaveLength(1);
     expect(anchor?.firstChild?.nodeType).toBe(Node.TEXT_NODE);
     expect(anchor?.textContent).toBe('content');
+  });
+});
+
+describe('Button Mouse Events', () => {
+  test('handles mouse enter and leave events', () => {
+    const onMouseEnter = jest.fn();
+    const onMouseLeave = jest.fn();
+
+    const { container } = render(
+      <Button onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+        Hover me
+      </Button>
+    );
+
+    const button = container.querySelector('button');
+    expect(button).not.toBeNull();
+
+    if (button) {
+      flushSync(() => {
+        fireEvent.mouseEnter(button);
+      });
+      expect(onMouseEnter).toHaveBeenCalledTimes(1);
+
+      flushSync(() => {
+        fireEvent.mouseLeave(button);
+      });
+      expect(onMouseLeave).toHaveBeenCalledTimes(1);
+    }
+  });
+
+  test('handles mouse down and up events', () => {
+    const onMouseDown = jest.fn();
+    const onMouseUp = jest.fn();
+
+    const { container } = render(
+      <Button onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
+        Click me
+      </Button>
+    );
+
+    const button = container.querySelector('button');
+    expect(button).not.toBeNull();
+
+    if (button) {
+      flushSync(() => {
+        fireEvent.mouseDown(button);
+      });
+      expect(onMouseDown).toHaveBeenCalledTimes(1);
+
+      flushSync(() => {
+        fireEvent.mouseUp(button);
+      });
+      expect(onMouseUp).toHaveBeenCalledTimes(1);
+    }
+  });
+
+  test('handles mouse over and out events', () => {
+    const onMouseOver = jest.fn();
+    const onMouseOut = jest.fn();
+
+    const { container } = render(
+      <Button onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
+        Hover over me
+      </Button>
+    );
+
+    const button = container.querySelector('button');
+    expect(button).not.toBeNull();
+
+    if (button) {
+      flushSync(() => {
+        fireEvent.mouseOver(button);
+      });
+      expect(onMouseOver).toHaveBeenCalledTimes(1);
+
+      flushSync(() => {
+        fireEvent.mouseOut(button);
+      });
+      expect(onMouseOut).toHaveBeenCalledTimes(1);
+    }
+  });
+});
+
+describe('Button minHitArea', () => {
+  test('tap minHitArea accepts clicks', () => {
+    const onClick = jest.fn();
+    const { container } = render(
+      <Button minHitArea={MIN_HIT_AREA.tap} onClick={onClick}>
+        Tap Button
+      </Button>
+    );
+    const button = container.querySelector('button');
+
+    if (button) fireEvent.click(button);
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  test('click minHitArea accepts clicks', () => {
+    const onClick = jest.fn();
+    const { container } = render(
+      <Button minHitArea={MIN_HIT_AREA.click} onClick={onClick}>
+        Click Button
+      </Button>
+    );
+    const button = container.querySelector('button');
+
+    if (button) fireEvent.click(button);
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });

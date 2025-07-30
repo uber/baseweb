@@ -40,6 +40,8 @@ export function useSnackbar() {
      but that would require us to memoize many more functions in the SnackbarProvider,
      and those functions depend on eachother in a circular way.
   */
+  // todo(automated-eslint-suppression) React Compiler has skipped optimizing this component because one or more React ESLint rules were disabled. React Compiler only works when your components follow all the rules of React, disabling them may result in unexpected or incorrect behavior
+  // eslint-disable-next-line react-compiler/react-compiler
   // eslint-disable-next-line react-hooks/exhaustive-deps
   return React.useMemo(() => ({ enqueue, dequeue }), []);
 }

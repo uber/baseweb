@@ -59,6 +59,8 @@ export type RenderItemProps = {
   isFocused?: boolean;
   // indicates when the item is visually focused
   isHighlighted?: boolean;
+  // indicates when the item is focused specifically via keyboard navigation
+  isKeyboardFocused?: boolean;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   onMouseEnter?: (event: React.MouseEvent<HTMLElement>) => void;
   resetMenu?: () => void;
@@ -80,6 +82,8 @@ export type StatefulContainerState = {
   // indicates when the menu can be navigated by keyboard and affects menu item option rendering
   // see https://github.com/uber/baseweb/issues/993 for a description.
   isFocused: boolean;
+  // indicates when the current highlight was achieved via keyboard navigation
+  isKeyboardFocused: boolean;
 };
 
 export type InitialState = {
@@ -90,6 +94,8 @@ export type InitialState = {
   // indicates when the menu can be navigated by keyboard and affects menu item option rendering
   // see https://github.com/uber/baseweb/issues/993 for a description.
   isFocused?: boolean;
+  // indicates when the current highlight was achieved via keyboard navigation
+  isKeyboardFocused?: boolean;
 };
 
 export type RenderProps = StatefulContainerState & {
@@ -267,6 +273,8 @@ export type OptionListProps = {
   $isHighlighted?: boolean;
   /** Is the parent menu focused. determines if highlighted item should be blue or black */
   $isFocused?: boolean;
+  /** Indicates if the item is focused via keyboard navigation */
+  $isKeyboardFocused?: boolean;
   /** Renders all menu content for SEO purposes regardless of menu  state */
   renderAll?: boolean;
   /** Is the item disabled */

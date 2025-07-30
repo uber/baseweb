@@ -218,6 +218,7 @@ export type SelectState = {
   isFocused: boolean;
   isOpen: boolean;
   isPseudoFocused: boolean;
+  openedViaKeyboard: boolean;
 };
 
 export type State = {
@@ -273,6 +274,7 @@ export type DropdownProps = {
   valueKey: string;
   width: number | undefined | null;
   keyboardControlNode?: React.Ref<HTMLElement>;
+  openedViaKeyboard?: boolean;
 };
 
 export type AutosizeInputOverrides = {

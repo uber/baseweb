@@ -95,7 +95,7 @@ type HistogramProps = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Histogram = React.memo<any>(function Histogram({
+const Histogram = React.memo(function Histogram({
   data,
   lower,
   upper,

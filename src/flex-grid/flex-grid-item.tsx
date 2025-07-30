@@ -181,7 +181,7 @@ const FlexGridItem: React.FC<FlexGridItemProps & { forwardedRef: React.Ref<HTMLE
     </Block>
   );
 };
-interface FlexGridItemComponentType<D extends React.ElementType> {
+export interface FlexGridItemComponentType<D extends React.ElementType> {
   <C extends React.ElementType = D>(
     props: FlexGridItemProps<C> &
       (React.ComponentProps<C> extends { ref?: infer R } ? { ref?: R } : {}) &

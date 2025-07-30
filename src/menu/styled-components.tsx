@@ -112,33 +112,53 @@ export const StyledListItemAnchor = styled<'a', StyledProps>('a', (props) => {
   };
 });
 StyledListItemAnchor.displayName = 'StyledListItemAnchor';
-export const StyledListItemElement = styled<'li', StyledProps>('li', (props) => {
-  const { $disabled, $theme, $size } = props;
-  return {
-    ...($size === OPTION_LIST_SIZE.compact ? $theme.typography.font100 : $theme.typography.font200),
-    boxSizing: 'border-box',
-    position: 'relative',
-    display: 'block',
-    color: getFontColor(props),
-    cursor: $disabled ? 'not-allowed' : 'pointer',
-    backgroundColor: getBackgroundColor(props),
-    transitionProperty: 'color, background-color',
-    transitionDuration: $theme.animation.timing200,
-    transitionTimingFunction: $theme.animation.easeOutCurve,
-    marginBottom: 0,
-    paddingTop:
-      $size === OPTION_LIST_SIZE.compact ? $theme.sizing.scale100 : $theme.sizing.scale300,
-    paddingBottom:
-      $size === OPTION_LIST_SIZE.compact ? $theme.sizing.scale100 : $theme.sizing.scale300,
-    paddingRight:
-      $size === OPTION_LIST_SIZE.compact ? $theme.sizing.scale900 : $theme.sizing.scale600,
-    paddingLeft:
-      $size === OPTION_LIST_SIZE.compact ? $theme.sizing.scale900 : $theme.sizing.scale600,
-    ':focus': {
-      outline: 'none',
-    },
-  };
-});
+export const StyledListItemElement = styled<'li', StyledProps & { $isKeyboardFocused?: boolean }>(
+  'li',
+  (props) => {
+    const { $disabled, $theme, $size, $isKeyboardFocused } = props;
+    return {
+      ...($size === OPTION_LIST_SIZE.compact
+        ? $theme.typography.font100
+        : $theme.typography.font200),
+      boxSizing: 'border-box',
+      position: 'relative',
+      display: 'block',
+      color: getFontColor(props),
+      cursor: $disabled ? 'not-allowed' : 'pointer',
+      backgroundColor: getBackgroundColor(props),
+      transitionProperty: 'color, background-color',
+      transitionDuration: $theme.animation.timing200,
+      transitionTimingFunction: $theme.animation.easeOutCurve,
+      borderTopWidth: '2px',
+      borderRightWidth: '2px',
+      borderBottomWidth: '2px',
+      borderLeftWidth: '2px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'transparent',
+      borderRightColor: 'transparent',
+      borderBottomColor: 'transparent',
+      borderLeftColor: 'transparent',
+      marginBottom: 0,
+      paddingTop:
+        $size === OPTION_LIST_SIZE.compact ? $theme.sizing.scale100 : $theme.sizing.scale300,
+      paddingBottom:
+        $size === OPTION_LIST_SIZE.compact ? $theme.sizing.scale100 : $theme.sizing.scale300,
+      paddingRight:
+        $size === OPTION_LIST_SIZE.compact ? $theme.sizing.scale900 : $theme.sizing.scale600,
+      paddingLeft:
+        $size === OPTION_LIST_SIZE.compact ? $theme.sizing.scale900 : $theme.sizing.scale600,
+      ':focus': {
+        outline: 'none',
+      },
+      ':not(:hover)': {
+        borderColor: $isKeyboardFocused ? $theme.colors.accent : 'transparent',
+      },
+    };
+  }
+);
 
 StyledListItemElement.displayName = 'StyledListItemElement';
 
@@ -249,3 +269,31 @@ export const StyledMenuDivider = styled<'li', StyledProps>('li', ({ $theme }) =>
   height: 0,
 }));
 StyledProfileBody.displayName = 'StyledMenuDivider';
+
+export const VisuallyHiddenStatus = styled<'div', StyledProps>('div', {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '1px',
+  height: '1px',
+  paddingTop: 0,
+  paddingRight: 0,
+  paddingBottom: 0,
+  paddingLeft: 0,
+  marginTop: '-1px',
+  marginRight: '-1px',
+  marginBottom: '-1px',
+  marginLeft: '-1px',
+  overflow: 'hidden',
+  clip: 'rect(0, 0, 0, 0)',
+  clipPath: 'inset(50%)',
+  whiteSpace: 'nowrap',
+  borderTopWidth: 0,
+  borderRightWidth: 0,
+  borderBottomWidth: 0,
+  borderLeftWidth: 0,
+  borderTopStyle: 'none',
+  borderRightStyle: 'none',
+  borderBottomStyle: 'none',
+  borderLeftStyle: 'none',
+});

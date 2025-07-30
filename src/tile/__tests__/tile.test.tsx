@@ -9,7 +9,7 @@ import * as React from 'react';
 import { render, fireEvent, getByText, screen } from '@testing-library/react';
 import { ArrowRight } from '../../icon';
 import { Tile, TILE_KIND, StyledParagraph } from '..';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 
 describe('Tile Component', () => {
   it('basic render', () => {

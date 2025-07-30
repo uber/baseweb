@@ -286,7 +286,7 @@ export const COUNTRIES = {
   TG: { label: 'Togo', id: 'TG', dialCode: '+228' },
   TK: { label: 'Tokelau', id: 'TK', dialCode: '+690' },
   TO: { label: 'Tonga', id: 'TO', dialCode: '+676' },
-  TT: { label: 'Trinisoad and Tobago', id: 'TT', dialCode: '+1868' },
+  TT: { label: 'Trinidad and Tobago', id: 'TT', dialCode: '+1868' },
   TN: { label: 'Tunisia (‫تونس‬‎)', id: 'TN', dialCode: '+216' },
   TR: { label: 'Turkey (Türkiye)', id: 'TR', dialCode: '+90' },
   TM: { label: 'Turkmenistan', id: 'TM', dialCode: '+993' },

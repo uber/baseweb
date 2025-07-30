@@ -31,6 +31,8 @@ const ButtonTimed = (props: ButtonTimedProps) => {
     if (!paused) {
       setStartTime(Date.now() - (initialTimeMs - timeRemaining));
     }
+    // todo(automated-eslint-suppression) React Compiler has skipped optimizing this component because one or more React ESLint rules were disabled. React Compiler only works when your components follow all the rules of React, disabling them may result in unexpected or incorrect behavior
+    // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/exhaustive-deps -- don't re-run this effect when timeRemaining changes
   }, [paused, initialTimeMs]);
 
@@ -94,8 +96,25 @@ const ButtonTimed = (props: ButtonTimedProps) => {
       shape={SHAPE.default}
       disabled={disabled || timeRemaining === 0}
     >
-      {children}
-      <TimerContainer {...timerContainerProps}>{`(${formatTime(timeRemaining)})`}</TimerContainer>
+      {typeof children === 'function' ? (
+        (props) => {
+          return (
+            <React.Fragment>
+              {children(props)}
+              <TimerContainer {...timerContainerProps}>{`(${formatTime(
+                timeRemaining
+              )})`}</TimerContainer>
+            </React.Fragment>
+          );
+        }
+      ) : (
+        <React.Fragment>
+          {children}
+          <TimerContainer {...timerContainerProps}>{`(${formatTime(
+            timeRemaining
+          )})`}</TimerContainer>
+        </React.Fragment>
+      )}
     </Button>
   );
 };

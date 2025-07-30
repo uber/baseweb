@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { Block, type BlockComponentType } from '../block';
 
-export const DisplayLarge = React.forwardRef((props, ref) => (
+export const DisplayLarge = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-displaylarge"
     {...props}
@@ -18,7 +18,7 @@ export const DisplayLarge = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'div'>;
 DisplayLarge.displayName = 'DisplayLarge';
 
-export const DisplayMedium = React.forwardRef((props, ref) => (
+export const DisplayMedium = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-displaymedium"
     {...props}
@@ -29,7 +29,7 @@ export const DisplayMedium = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'div'>;
 DisplayMedium.displayName = 'DisplayMedium';
 
-export const DisplaySmall = React.forwardRef((props, ref) => (
+export const DisplaySmall = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-displaysmall"
     {...props}
@@ -40,7 +40,7 @@ export const DisplaySmall = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'div'>;
 DisplaySmall.displayName = 'DisplaySmall';
 
-export const DisplayXSmall = React.forwardRef((props, ref) => (
+export const DisplayXSmall = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-displayxsmall"
     {...props}
@@ -123,7 +123,7 @@ export const HeadingXSmall = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'h6'>;
 HeadingXSmall.displayName = 'HeadingXSmall';
 
-export const LabelLarge = React.forwardRef((props, ref) => (
+export const LabelLarge = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-labellarge"
     {...props}
@@ -134,7 +134,7 @@ export const LabelLarge = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'div'>;
 LabelLarge.displayName = 'LabelLarge';
 
-export const LabelMedium = React.forwardRef((props, ref) => (
+export const LabelMedium = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-labelmedium"
     {...props}
@@ -145,7 +145,7 @@ export const LabelMedium = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'div'>;
 LabelMedium.displayName = 'LabelMedium';
 
-export const LabelSmall = React.forwardRef((props, ref) => (
+export const LabelSmall = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-labelsmall"
     {...props}
@@ -156,7 +156,7 @@ export const LabelSmall = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'div'>;
 LabelSmall.displayName = 'LabelSmall';
 
-export const LabelXSmall = React.forwardRef((props, ref) => (
+export const LabelXSmall = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-labelxsmall"
     {...props}
@@ -215,7 +215,7 @@ export const ParagraphXSmall = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'p'>;
 ParagraphXSmall.displayName = 'ParagraphXSmall';
 
-export const MonoDisplayLarge = React.forwardRef((props, ref) => (
+export const MonoDisplayLarge = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-monodisplaylarge"
     {...props}
@@ -226,7 +226,7 @@ export const MonoDisplayLarge = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'div'>;
 MonoDisplayLarge.displayName = 'MonoDisplayLarge';
 
-export const MonoDisplayMedium = React.forwardRef((props, ref) => (
+export const MonoDisplayMedium = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-monodisplaymedium"
     {...props}
@@ -237,7 +237,7 @@ export const MonoDisplayMedium = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'div'>;
 MonoDisplayMedium.displayName = 'MonoDisplayMedium';
 
-export const MonoDisplaySmall = React.forwardRef((props, ref) => (
+export const MonoDisplaySmall = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-monodisplaysmall"
     {...props}
@@ -248,7 +248,7 @@ export const MonoDisplaySmall = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'div'>;
 MonoDisplaySmall.displayName = 'MonoDisplaySmall';
 
-export const MonoDisplayXSmall = React.forwardRef((props, ref) => (
+export const MonoDisplayXSmall = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-monodisplayxsmall"
     {...props}
@@ -331,7 +331,7 @@ export const MonoHeadingXSmall = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'h6'>;
 MonoHeadingXSmall.displayName = 'MonoHeadingXSmall';
 
-export const MonoLabelLarge = React.forwardRef((props, ref) => (
+export const MonoLabelLarge = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-monolabellarge"
     {...props}
@@ -342,7 +342,7 @@ export const MonoLabelLarge = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'div'>;
 MonoLabelLarge.displayName = 'MonoLabelLarge';
 
-export const MonoLabelMedium = React.forwardRef((props, ref) => (
+export const MonoLabelMedium = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-monolabelmedium"
     {...props}
@@ -353,7 +353,7 @@ export const MonoLabelMedium = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'div'>;
 MonoLabelMedium.displayName = 'MonoLabelMedium';
 
-export const MonoLabelSmall = React.forwardRef((props, ref) => (
+export const MonoLabelSmall = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-monolabelsmall"
     {...props}
@@ -364,7 +364,7 @@ export const MonoLabelSmall = React.forwardRef((props, ref) => (
 )) as BlockComponentType<'div'>;
 MonoLabelSmall.displayName = 'MonoLabelSmall';
 
-export const MonoLabelXSmall = React.forwardRef((props, ref) => (
+export const MonoLabelXSmall = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <Block
     data-baseweb="typo-monolabelxsmall"
     {...props}

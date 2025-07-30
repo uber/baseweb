@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import type { StyleObject } from 'styletron-standard';
 
 import { styled, type Theme } from '../styles';
-import { KIND, SIZE, SHAPE } from './constants';
+import { KIND, SIZE, SHAPE, MIN_HIT_AREA } from './constants';
 import type { SharedStyleProps } from './types';
 import type { Font } from '../themes/types';
 
@@ -27,6 +27,7 @@ const createStyledBaseButton = <T extends 'button' | 'a'>(type: T, styleFn?: Int
       $isSelected,
       $disabled,
       $isFocusVisible,
+      $minHitArea,
       $as,
     }) => ({
       display: 'inline-flex',
@@ -71,6 +72,7 @@ const createStyledBaseButton = <T extends 'button' | 'a'>(type: T, styleFn?: Int
       }),
       ...getAnchorDisabledStyles({ $as, $theme, $kind, $isSelected, $disabled }),
       ...getShapeStyles({ $shape, $size }),
+      ...getMinHitAreaStyles({ $minHitArea, $size, $shape }),
       ...styleFn?.({
         $theme,
         $size,
@@ -81,6 +83,7 @@ const createStyledBaseButton = <T extends 'button' | 'a'>(type: T, styleFn?: Int
         $isSelected,
         $disabled,
         $isFocusVisible,
+        $minHitArea,
         $as,
       }),
     })
@@ -120,7 +123,12 @@ export const LoadingSpinnerContainer = styled<'div', SharedStyleProps>(
   ({ $theme, $size }) => {
     // we don't have a theming value for this
     let margins = '3px';
-    if ($size === SIZE.mini || $size === SIZE.compact) {
+    if (
+      $size === SIZE.mini ||
+      $size === SIZE.xSmall ||
+      $size === SIZE.compact ||
+      $size === SIZE.small
+    ) {
       margins = $theme.sizing.scale0;
     }
     if ($size === SIZE.large) {
@@ -129,7 +137,7 @@ export const LoadingSpinnerContainer = styled<'div', SharedStyleProps>(
 
     return {
       lineHeight: 0,
-      position: 'static',
+      position: 'static' as const,
       marginBottom: margins,
       marginTop: margins,
     };
@@ -148,7 +156,12 @@ export const LoadingSpinner = styled<'span', SharedStyleProps>(
     });
 
     let dimension = $theme.sizing.scale550;
-    if ($size === SIZE.mini || $size === SIZE.compact) {
+    if (
+      $size === SIZE.mini ||
+      $size === SIZE.xSmall ||
+      $size === SIZE.compact ||
+      $size === SIZE.small
+    ) {
       dimension = $theme.sizing.scale500;
     }
     if ($size === SIZE.large) {
@@ -229,7 +242,7 @@ function getBorderRadiiStyles({ $theme, $size, $shape }) {
   let value = $theme.borders.buttonBorderRadius;
 
   if ($shape === SHAPE.pill) {
-    if ($size === SIZE.compact) {
+    if ($size === SIZE.compact || $size === SIZE.small) {
       value = '30px';
     } else if ($size === SIZE.large) {
       value = '42px';
@@ -238,7 +251,7 @@ function getBorderRadiiStyles({ $theme, $size, $shape }) {
     }
   } else if ($shape === SHAPE.circle || $shape === SHAPE.round) {
     value = '50%';
-  } else if ($size === SIZE.mini) {
+  } else if ($size === SIZE.mini || $size === SIZE.xSmall) {
     value = $theme.borders.buttonBorderRadiusMini;
   }
 
@@ -253,8 +266,10 @@ function getBorderRadiiStyles({ $theme, $size, $shape }) {
 // @ts-ignore
 function getFontStyles({ $theme, $size }): Font {
   switch ($size) {
+    case SIZE.xSmall:
     case SIZE.mini:
       return $theme.typography.font150;
+    case SIZE.small:
     case SIZE.compact:
       return $theme.typography.font250;
     case SIZE.large:
@@ -303,6 +318,7 @@ function getPaddingStyles({ $theme, $size, $shape }) {
   const iconShape = $shape === SHAPE.square || $shape === SHAPE.circle || $shape === SHAPE.round;
   switch ($size) {
     case SIZE.mini:
+    case SIZE.xSmall:
       return {
         paddingTop: $theme.sizing.scale200,
         paddingBottom: $theme.sizing.scale200,
@@ -310,6 +326,7 @@ function getPaddingStyles({ $theme, $size, $shape }) {
         paddingRight: iconShape ? $theme.sizing.scale200 : $theme.sizing.scale300,
       };
     case SIZE.compact:
+    case SIZE.small:
       return {
         paddingTop: $theme.sizing.scale400,
         paddingBottom: $theme.sizing.scale400,
@@ -456,10 +473,12 @@ function getShapeStyles({ $shape, $size }): {
     let height, width;
     switch ($size) {
       case SIZE.mini:
+      case SIZE.xSmall:
         height = '28px';
         width = '28px';
         break;
       case SIZE.compact:
+      case SIZE.small:
         height = '36px';
         width = '36px';
         break;
@@ -468,6 +487,7 @@ function getShapeStyles({ $shape, $size }): {
         width = '56px';
         break;
       case SIZE.default:
+      case SIZE.medium:
       default:
         height = '48px';
         width = '48px';
@@ -484,4 +504,42 @@ function getShapeStyles({ $shape, $size }): {
   } else {
     return {};
   }
+}
+
+export const getArtworkSize = ({ $theme, $size }: { $theme: Theme; $size?: keyof typeof SIZE }) => {
+  switch ($size) {
+    case SIZE.mini:
+    case SIZE.xSmall:
+      return $theme.sizing.scale500;
+    case SIZE.compact:
+    case SIZE.small:
+      return $theme.sizing.scale600;
+    case SIZE.large:
+      return $theme.sizing.scale800;
+    case SIZE.default:
+    case SIZE.medium:
+    default:
+      return $theme.sizing.scale700;
+  }
+};
+
+// @ts-ignore
+function getMinHitAreaStyles({ $minHitArea, $size, $shape }) {
+  if (!$minHitArea || $minHitArea !== MIN_HIT_AREA.tap) {
+    return {};
+  }
+
+  return {
+    '::before': {
+      content: '""',
+      position: 'absolute' as const,
+      top: '50%',
+      left: 0,
+      right: 0,
+      height: '48px',
+      minHeight: '48px',
+      transform: 'translateY(-50%)',
+    },
+    position: 'relative' as const,
+  };
 }

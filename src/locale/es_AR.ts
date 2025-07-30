@@ -97,7 +97,7 @@ const es_AR: Locale = {
   },
 
   fileuploader: {
-    added: 'Cargando...',
+    added: 'Subiendo',
     buttonText: 'Buscar archivos',
     contentMessage: 'o soltar para subir',
     error: 'Error al Subir',
@@ -114,6 +114,9 @@ const es_AR: Locale = {
 
   menu: {
     noResultsMsg: 'Sin resultados',
+    noResultsStatus: 'Sin opciones disponibles',
+    itemsAvailableStatus: (count: number) =>
+      `${count} ${count === 1 ? 'elemento disponible' : 'elementos disponibles'}`,
     parentMenuItemAriaLabel:
       'Actualmente se encuentra en un elemento que abre un cuadro de lista anidado. Presione la flecha derecha para ingresar a ese elemento y la flecha izquierda para regresar.',
   },

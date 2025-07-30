@@ -28,7 +28,11 @@ function Column<Value, FilterParams>(
     // todo(flow->ts) add proper type annotation
     // eslint-disable-next-line @typescript-eslint/no-explicit-any,react/display-name
     renderCell: React.forwardRef((props, ref: any) => {
+      // todo(automated-eslint-suppression) Hooks must be called at the top level in the body of a function component or custom hook, and may not be called within function expressions. See the Rules of Hooks (https://react.dev/warnings/invalid-hook-call-warning)
+      // eslint-disable-next-line react-compiler/react-compiler
       const locale = React.useContext(LocaleContext);
+      // todo(automated-eslint-suppression) Hooks must be called at the top level in the body of a function component or custom hook, and may not be called within function expressions. See the Rules of Hooks (https://react.dev/warnings/invalid-hook-call-warning)
+      // eslint-disable-next-line react-compiler/react-compiler
       const [css, theme] = useStyletron();
       const ProvidedCell = options.renderCell;
 

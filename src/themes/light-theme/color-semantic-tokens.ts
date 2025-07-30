@@ -48,6 +48,17 @@ export default (
       hexToRgba(defaultFoundationColors.primaryB, '0.2') ||
       '',
     borderInverseSelected: foundation.primaryB,
+
+    // Brand theme colors
+    brandBackgroundPrimary: primitiveLightColors.brandDefault600,
+    brandBackgroundSecondary: primitiveLightColors.brandDefault50,
+    brandBackgroundDisabled: primitiveLightColors.brandDefault50,
+    brandContentPrimary: primitiveLightColors.brandDefault600,
+    brandContentOnPrimary: primitiveLightColors.white,
+    brandContentOnSecondary: primitiveLightColors.brandDefault700,
+    brandContentDisabled: primitiveLightColors.brandDefault300,
+    brandBorderAccessible: primitiveLightColors.brandDefault600,
+    brandBorderSubtle: primitiveLightColors.brandDefault100,
   };
 
   const coreExtensions: CoreExtensionSemanticColors = {

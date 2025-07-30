@@ -153,6 +153,7 @@ export default class SelectDropdown extends React.Component<DropdownProps> {
           initialState={{
             isFocused: true,
             highlightedIndex: highlightedIndex,
+            isKeyboardFocused: this.props.openedViaKeyboard || false,
           }}
           typeAhead={false}
           keyboardControlNode={this.props.keyboardControlNode}

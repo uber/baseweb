@@ -16,6 +16,8 @@ export type Kind = (typeof KIND)[keyof typeof KIND];
 export type ActionContent = {
   // Text shown within action button or applied to aria label.
   label: string;
+  // Element displayed, usually an icon, on end of action button
+  endEnhancer?: React.ReactNode;
   // If provided renders this icon instead of the text label.
   icon?: (a: { size: string }) => React.ReactNode;
   // Called when action button is activated.

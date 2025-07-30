@@ -31,6 +31,7 @@ const Panel = (
     onChange = () => {},
     onClick = () => {},
     onKeyDown = () => {},
+    onPanelOpened = () => {},
     overrides = {},
     title = '',
     renderAll = false,
@@ -208,6 +209,7 @@ const Panel = (
             $height={contentHeight}
             onTransitionEnd={() => {
               if (localState.animationInProgress) {
+                typeof onPanelOpened === 'function' && onPanelOpened();
                 setLocalState({ ...localState, animationInProgress: false });
               }
             }}

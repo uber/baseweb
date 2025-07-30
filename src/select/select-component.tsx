@@ -116,6 +116,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     isFocused: false,
     isOpen: this.props.startOpen,
     isPseudoFocused: false,
+    openedViaKeyboard: false,
   };
 
   isItMounted = false;
@@ -255,9 +256,9 @@ class Select extends React.Component<SelectProps, SelectState> {
     if (!this.props.searchable) {
       this.focus();
       if (this.state.isOpen) {
-        this.setState({ isOpen: false, isFocused: false });
+        this.setState({ isOpen: false, isFocused: false, openedViaKeyboard: false });
       } else {
-        this.setState({ isOpen: true, isFocused: true });
+        this.setState({ isOpen: true, isFocused: true, openedViaKeyboard: false });
       }
 
       return;
@@ -298,11 +299,13 @@ class Select extends React.Component<SelectProps, SelectState> {
         inputValue: '',
         isOpen: false,
         isPseudoFocused: this.state.isFocused && !this.props.multi,
+        openedViaKeyboard: false,
       });
     } else {
       this.setState({
         isOpen: false,
         isPseudoFocused: this.state.isFocused && !this.props.multi,
+        openedViaKeyboard: false,
       });
     }
   }
@@ -318,6 +321,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     this.setState({
       isFocused: true,
       isOpen: !!toOpen,
+      openedViaKeyboard: false,
     });
 
     this.focusAfterClear = false;
@@ -346,6 +350,7 @@ class Select extends React.Component<SelectProps, SelectState> {
         isOpen: false,
         isPseudoFocused: false,
         inputValue: this.props.onBlurResetsInput ? '' : this.state.inputValue,
+        openedViaKeyboard: false,
       });
     }
   };
@@ -369,6 +374,7 @@ class Select extends React.Component<SelectProps, SelectState> {
       inputValue: newInputValue,
       isOpen: true,
       isPseudoFocused: false,
+      openedViaKeyboard: false,
     });
     if (this.props.onInputChange) {
       this.props.onInputChange(event);
@@ -389,6 +395,7 @@ class Select extends React.Component<SelectProps, SelectState> {
           isPseudoFocused: false,
           isFocused: false,
           isOpen: false,
+          openedViaKeyboard: false,
           inputValue:
             !this.props.onCloseResetsInput || !this.props.onBlurResetsInput
               ? prevState.inputValue
@@ -407,31 +414,31 @@ class Select extends React.Component<SelectProps, SelectState> {
         }
         event.preventDefault();
         if (!this.state.isOpen) {
-          this.setState({ isOpen: true });
+          this.setState({ isOpen: true, openedViaKeyboard: true });
         }
         break;
       case 38: // up
         event.preventDefault();
         if (!this.state.isOpen) {
-          this.setState({ isOpen: true });
+          this.setState({ isOpen: true, openedViaKeyboard: true });
         }
         break;
       case 40: // down
         event.preventDefault();
         if (!this.state.isOpen) {
-          this.setState({ isOpen: true });
+          this.setState({ isOpen: true, openedViaKeyboard: true });
         }
         break;
       case 33: // page up
         event.preventDefault();
         if (!this.state.isOpen) {
-          this.setState({ isOpen: true });
+          this.setState({ isOpen: true, openedViaKeyboard: true });
         }
         break;
       case 34: // page down
         event.preventDefault();
         if (!this.state.isOpen) {
-          this.setState({ isOpen: true });
+          this.setState({ isOpen: true, openedViaKeyboard: true });
         }
         break;
       case 35: // end key
@@ -440,7 +447,7 @@ class Select extends React.Component<SelectProps, SelectState> {
         }
         event.preventDefault();
         if (!this.state.isOpen) {
-          this.setState({ isOpen: true });
+          this.setState({ isOpen: true, openedViaKeyboard: true });
         }
         break;
       case 36: // home key
@@ -449,7 +456,7 @@ class Select extends React.Component<SelectProps, SelectState> {
         }
         event.preventDefault();
         if (!this.state.isOpen) {
-          this.setState({ isOpen: true });
+          this.setState({ isOpen: true, openedViaKeyboard: true });
         }
         break;
       case 46: // delete
@@ -626,6 +633,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     this.setState({
       inputValue: '',
       isOpen: false,
+      openedViaKeyboard: false,
     });
 
     this.focus();
@@ -750,6 +758,7 @@ class Select extends React.Component<SelectProps, SelectState> {
           {/* $FlowExpectedError[cannot-spread-inexact] */}
           <input
             aria-hidden
+            role="combobox"
             // @ts-ignore
             id={this.props.id || null}
             ref={this.handleInputRef}
@@ -1062,6 +1071,7 @@ class Select extends React.Component<SelectProps, SelectState> {
                     valueKey: this.props.valueKey,
                     width: this.anchor.current ? this.anchor.current.clientWidth : null,
                     keyboardControlNode: this.anchor,
+                    openedViaKeyboard: this.state.openedViaKeyboard,
                   };
 
                   // @ts-ignore

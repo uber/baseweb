@@ -15,6 +15,7 @@ export default function <C extends React.ComponentType>(Component: C, displayNam
       );
     }
 
+    // @ts-expect-error Type '{ ref: ForwardedRef<any>; }' is not assignable to type 'LibraryManagedAttributes<C, {}>'.ts(2322)
     return <Component {...props} ref={ref} />;
   });
   DeprecatedComponent.displayName = 'DeprecatedComponent';

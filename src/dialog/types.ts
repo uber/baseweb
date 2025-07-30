@@ -8,7 +8,7 @@ import type * as React from 'react';
 import type { ComponentType, ReactElement } from 'react';
 import type { Override } from '../helpers/overrides';
 import type { ButtonDockProps } from '../button-dock';
-import type { SIZE, PLACEMENT } from './constants';
+import type { SIZE, PLACEMENT, CLOSE_SOURCE } from './constants';
 
 export type DialogOverrides = {
   Root?: Override;
@@ -23,6 +23,7 @@ export type DialogOverrides = {
 export type Size = (typeof SIZE)[keyof typeof SIZE];
 export type Placement = (typeof PLACEMENT)[keyof typeof PLACEMENT];
 export type Artwork = ReactElement | ComponentType<{}>;
+export type CloseSource = (typeof CLOSE_SOURCE)[keyof typeof CLOSE_SOURCE];
 
 export type DialogProps = {
   artwork?: Artwork;
@@ -31,7 +32,7 @@ export type DialogProps = {
   /** The contents of the body of Dialog */
   children?: React.ReactNode | (() => React.ReactNode);
   /** Determine if and how dialog can be dismissed */
-  onDismiss?: () => void | null;
+  onDismiss?: (args?: { closeSource?: CloseSource }) => void | null;
   /** Should Dialog include a dedicated X button to dismiss the dialog. Ignored if onDismiss is not supplied. */
   showDismissButton?: boolean;
   /** Determines whether the background behind the Dialog is dimmed when Dialog is open  */

@@ -20,6 +20,7 @@ export type StepperProps = {
   setValue: (newValue: number) => void;
   minValue?: number;
   maxValue?: number;
+  step?: number;
   disabled?: boolean;
   overrides?: MobileHeaderOverrides;
 };

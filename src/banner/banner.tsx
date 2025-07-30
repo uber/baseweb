@@ -122,6 +122,7 @@ function Below({ action, backgroundColor, color }) {
         onClick={action.onClick}
         size={BUTTON_SIZE.compact}
         shape={BUTTON_SHAPE.pill}
+        endEnhancer={action.endEnhancer}
       >
         {action.label}
       </Button>
@@ -176,6 +177,7 @@ function Trailing({ action, backgroundColor, color, overrides, nested }) {
           size={BUTTON_SIZE.compact}
           shape={BUTTON_SHAPE.pill}
           overrides={{ BaseButton: { style: { whiteSpace: 'nowrap' } } }}
+          endEnhancer={action.endEnhancer}
         >
           {action.label}
         </Button>

@@ -8,6 +8,7 @@ import type { Override } from '../helpers/overrides';
 
 export type ButtonDockOverrides = {
   Root?: Override;
+  TopAccessoryContainer?: Override;
   ActionContainer?: Override;
   ActionSubContainer?: Override;
 };

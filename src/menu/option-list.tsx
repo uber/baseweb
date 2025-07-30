@@ -33,6 +33,7 @@ function OptionList(
     resetMenu = () => {},
     size = OPTION_LIST_SIZE.default,
     $isHighlighted,
+    $isKeyboardFocused,
     renderAll,
     ...restProps
   } = props;
@@ -73,11 +74,13 @@ function OptionList(
             aria-label={
               getChildMenu && getChildMenu(item) ? locale.menu.parentMenuItemAriaLabel : null
             }
+            tabIndex={0}
             item={item}
             onClick={onClick}
             onMouseEnter={onMouseEnter}
             $size={size}
             $isHighlighted={$isHighlighted}
+            $isKeyboardFocused={$isKeyboardFocused}
             {...restProps}
             {...listItemProps}
           >
@@ -106,6 +109,7 @@ function compare(prevProps, nextProps) {
   return (
     prevProps.$isHighlighted === nextProps.$isHighlighted &&
     prevProps.$isFocused === nextProps.$isFocused &&
+    prevProps.$isKeyboardFocused === nextProps.$isKeyboardFocused &&
     areEqualShallow(prevProps.item, nextProps.item) &&
     areEqualShallow(prevProps.overrides, nextProps.overrides) &&
     prevProps.size === nextProps.size &&

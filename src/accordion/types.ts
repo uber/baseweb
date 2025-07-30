@@ -127,6 +127,8 @@ type SharedPanelProps = {
   onClick?: (e: Event) => unknown;
   /** Handler for the Header's keyDown events. */
   onKeyDown?: (e: KeyboardEvent) => unknown;
+  /** Handler for when the Panel is fully opened. */
+  onPanelOpened?: () => unknown;
   overrides?: PanelOverrides;
   /** The title of an accordion panel. */
   title?: React.ReactNode;

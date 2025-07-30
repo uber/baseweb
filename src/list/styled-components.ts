@@ -54,9 +54,10 @@ StyledRoot.displayName = 'StyledRoot';
 export const StyledContent = styled<'div', StyledContentProps>(
   'div',
   // @ts-ignore
-  ({ $mLeft, $sublist, $theme }) => {
-    return {
+  ({ $mLeft, $sublist, $theme, $hasDivider = true }) => {
+    const styles = {
       ...expandBorderStyles($theme.borders.border100),
+      boxSizing: 'border-box', // to make the min-height=64px including the border width.
       alignItems: 'center',
       borderTopStyle: 'none',
       borderRightStyle: 'none',
@@ -75,6 +76,10 @@ export const StyledContent = styled<'div', StyledContentProps>(
             marginLeft: $mLeft ? $theme.sizing.scale600 : null,
           }),
     };
+    if ($hasDivider === false) {
+      styles['borderBottomColor'] = 'transparent';
+    }
+    return styles;
   }
 );
 
@@ -121,6 +126,8 @@ export const StyledLabelRoot = styled('div', ({ $theme }) => {
   return {
     paddingTop: $theme.sizing.scale500,
     paddingBottom: $theme.sizing.scale500,
+    display: 'grid',
+    gridGap: $theme.sizing.scale0,
   };
 });
 

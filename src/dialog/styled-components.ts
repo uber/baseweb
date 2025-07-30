@@ -92,11 +92,13 @@ export const StyledRoot = styled<'div', { $size: Size; $placement: Placement }>(
       color: $theme.colors.contentPrimary,
       overflow: 'hidden',
       border: 'none',
+      paddingBottom: $theme.sizing.scale800,
       width: DIALOG_WIDTHS[$size],
       ...getPlacementStyles($placement, wideViewportGutter),
       ...getAnimationStyles($placement),
       '@media (max-width: 599px)': {
         width: `calc(100% - (2 * ${narrowViewportGutter}))`,
+        paddingBottom: 0,
         maxWidth: 'none',
         ...getPlacementStyles(PLACEMENT.bottomCenter, narrowViewportGutter),
         ...getAnimationStyles(PLACEMENT.bottomCenter),
@@ -150,19 +152,20 @@ function getLineWrapStyle(numHeadingLines) {
   };
 }
 
-export const StyledHeading = styled<'div', { $numHeadingLines: number }>(
+export const StyledHeading = styled<'div', { $numHeadingLines?: number; $shiftLeft: boolean }>(
   'div',
   // @ts-ignore-next-line - TODO: StyledObject does not support whiteSpace property?
-  ({ $theme, $numHeadingLines = 2 }) => {
+  ({ $theme, $numHeadingLines = 2, $shiftLeft }) => {
     return {
       position: 'sticky',
       top: 0,
       paddingTop: $theme.sizing.scale800,
       paddingLeft: $theme.sizing.scale800,
-      paddingRight: $theme.sizing.scale800,
+      paddingRight: $shiftLeft ? '52px' : $theme.sizing.scale800,
+      paddingBottom: $theme.sizing.scale300,
       '@media (max-width: 599px)': {
         paddingLeft: $theme.sizing.scale600,
-        paddingRight: $theme.sizing.scale600,
+        paddingRight: $shiftLeft ? '52px' : $theme.sizing.scale600,
       },
       backgroundColor: $theme.colors.backgroundPrimary,
       ...getLineWrapStyle($numHeadingLines),
@@ -174,7 +177,6 @@ StyledHeading.displayName = 'StyledHeading';
 
 export const StyledBody = styled<'div', {}>('div', ({ $theme }) => {
   return {
-    marginTop: $theme.sizing.scale300,
     marginBottom: $theme.sizing.scale800,
     paddingLeft: $theme.sizing.scale800,
     paddingRight: $theme.sizing.scale800,

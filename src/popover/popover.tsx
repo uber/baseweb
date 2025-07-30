@@ -370,8 +370,11 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
 
     const isValidElement = React.isValidElement(anchor);
     const anchorProps = this.getAnchorProps();
-
-    if (typeof anchor === 'object' && isValidElement) {
+    const anchorEl = anchor as any;
+    const forwardsRef =
+      typeof anchorEl.type === 'string' ||
+      anchorEl.type?.$$typeof === Symbol.for('react.forward_ref');
+    if (typeof anchor === 'object' && isValidElement && forwardsRef) {
       return React.cloneElement(anchor, anchorProps);
     }
     return (

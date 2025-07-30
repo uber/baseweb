@@ -52,6 +52,7 @@ const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, r
   }, [props.artworkSize, props.sublist]);
 
   const isTapTarget = Boolean(props.onClick);
+  const hasDivider = Boolean(props?.hasDivider ?? true);
 
   const getMainTextFromChild = (child: React.ReactNode | React.ReactNode[] | string) => {
     if (typeof child === 'string') {
@@ -103,7 +104,12 @@ const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, r
         </ArtworkContainer>
       )}
 
-      <Content $mLeft={!Artwork} $sublist={!!props.sublist} {...contentProps}>
+      <Content
+        $mLeft={!Artwork}
+        $sublist={!!props.sublist}
+        $hasDivider={hasDivider}
+        {...contentProps}
+      >
         {props.children}
         {EndEnhancer &&
           // @ts-expect-error todo(flow->ts) it is not expected to be a number

@@ -12,6 +12,7 @@ import {
   StyledEmptyState,
   StyledOptgroupHeader,
   StyledMenuDivider,
+  VisuallyHiddenStatus,
 } from './styled-components';
 import OptionList from './option-list';
 import { getOverrides } from '../helpers/overrides';
@@ -35,6 +36,8 @@ export default function Menu(props: StatelessMenuProps) {
     handleKeyDown = (event: KeyboardEvent) => {},
     renderAll = false,
   } = props;
+
+  const localeContextState = React.useContext(LocaleContext);
 
   const [focusVisible, setFocusVisible] = React.useState(false);
   const handleFocus = (event: SyntheticEvent) => {
@@ -86,6 +89,7 @@ export default function Menu(props: StatelessMenuProps) {
           disabled,
           isFocused,
           isHighlighted,
+          isKeyboardFocused,
           resetMenu = () => {},
           ...restProps
         } = getRequiredItemProps(item, itemIndex);
@@ -101,6 +105,7 @@ export default function Menu(props: StatelessMenuProps) {
             $disabled={disabled}
             $isFocused={isFocused}
             $isHighlighted={isHighlighted}
+            $isKeyboardFocused={isKeyboardFocused}
             aria-disabled={disabled}
             aria-selected={isHighlighted && isFocused}
             {...restProps}
@@ -116,38 +121,63 @@ export default function Menu(props: StatelessMenuProps) {
   // @ts-ignore
   const isEmpty = optgroups.every((optgroup) => !groupedItems[optgroup].length);
 
+  const totalNumberOfItems = React.useMemo(
+    () => optgroups.reduce((acc, optgroup) => acc + groupedItems[optgroup].length, 0),
+    [optgroups, groupedItems]
+  );
+
+  // Use content-based announcements
+  const [statusMessage, setStatusMessage] = React.useState<React.ReactNode>('');
+
+  React.useEffect(() => {
+    const timerId = setTimeout(() => {
+      if (isEmpty) {
+        // set the status message to the no results message
+        setStatusMessage(localeContextState.menu.noResultsStatus);
+      } else {
+        setStatusMessage(localeContextState.menu.itemsAvailableStatus(totalNumberOfItems));
+      }
+    }, 100);
+    return () => clearTimeout(timerId);
+  }, [totalNumberOfItems, isEmpty]);
+
   return (
     <LocaleContext.Consumer>
       {(locale: Locale) => (
-        <List
-          aria-activedescendant={props.activedescendantId || null}
-          role="listbox"
-          aria-label={ariaLabel}
-          ref={rootRef}
-          onMouseEnter={focusMenu}
-          onMouseLeave={handleMouseLeave}
-          onMouseOver={focusMenu}
-          onFocus={forkFocus({ onFocus: focusMenu }, handleFocus)}
-          onBlur={forkBlur({ onBlur: unfocusMenu }, handleBlur)}
-          // @ts-ignore
-          onKeyDown={(event) => {
-            if (props.isFocused) {
-              handleKeyDown(event);
-            }
-          }}
-          tabIndex={0}
-          data-baseweb="menu"
-          $isFocusVisible={focusVisible}
-          {...listProps}
-        >
-          {isEmpty ? (
-            <EmptyState aria-live="polite" aria-atomic {...emptyStateProps}>
-              {props.noResultsMsg || locale.menu.noResultsMsg}
-            </EmptyState>
-          ) : (
-            elements
-          )}
-        </List>
+        <>
+          <List
+            aria-activedescendant={props.activedescendantId || null}
+            role="listbox"
+            aria-label={ariaLabel}
+            ref={rootRef}
+            onMouseEnter={focusMenu}
+            onMouseLeave={handleMouseLeave}
+            onMouseOver={focusMenu}
+            onFocus={forkFocus({ onFocus: focusMenu }, handleFocus)}
+            onBlur={forkBlur({ onBlur: unfocusMenu }, handleBlur)}
+            // @ts-ignore
+            onKeyDown={(event) => {
+              if (props.isFocused) {
+                handleKeyDown(event);
+              }
+            }}
+            tabIndex={0}
+            data-baseweb="menu"
+            $isFocusVisible={focusVisible}
+            {...listProps}
+          >
+            {isEmpty ? (
+              <EmptyState role="status" aria-live="polite" aria-atomic="true" {...emptyStateProps}>
+                {props.noResultsMsg || locale.menu.noResultsMsg}
+              </EmptyState>
+            ) : (
+              elements
+            )}
+          </List>
+          <VisuallyHiddenStatus role="status" aria-live="polite" aria-atomic="true">
+            {statusMessage}
+          </VisuallyHiddenStatus>
+        </>
       )}
     </LocaleContext.Consumer>
   );

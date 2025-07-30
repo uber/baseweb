@@ -87,7 +87,7 @@ describe('radio-group focus and a11y management', () => {
     expect(three).not.toHaveFocus();
   });
 
-  it('focus selected radio', () => {
+  it('focus selected radio', async () => {
     const { getByDisplayValue } = render(
       <StatefulRadioGroup name="numbers" initialState={{ value: '3' }}>
         <Radio value="1" />
@@ -99,17 +99,14 @@ describe('radio-group focus and a11y management', () => {
     const one = getByDisplayValue('1');
     const two = getByDisplayValue('2');
     const three = getByDisplayValue('3');
-
-    act(() => {
-      userEvent.tab();
-    });
+    await userEvent.tab();
 
     expect(one).not.toHaveFocus();
     expect(two).not.toHaveFocus();
     expect(three).toHaveFocus();
   });
 
-  it('focus first radio if no value is selected', () => {
+  it('focus first radio if no value is selected', async () => {
     const { getByDisplayValue } = render(
       <StatefulRadioGroup name="numbers" initialState={{ value: undefined }}>
         <Radio value="1" />
@@ -129,10 +126,7 @@ describe('radio-group focus and a11y management', () => {
     expect(one).toHaveAttribute('tabindex', '0');
     expect(two).toHaveAttribute('tabindex', '-1');
     expect(three).toHaveAttribute('tabindex', '-1');
-
-    act(() => {
-      userEvent.tab();
-    });
+    await userEvent.tab();
 
     expect(one).toHaveFocus();
     expect(two).not.toHaveFocus();

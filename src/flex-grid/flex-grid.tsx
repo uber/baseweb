@@ -11,15 +11,17 @@ import { flattenFragments } from '../helpers/react-helpers';
 import { getOverrides } from '../helpers/overrides';
 import type { FlexGridProps } from './types';
 
-export const BaseFlexGrid = React.forwardRef(({ display, flexWrap, ...restProps }, ref) => (
-  <Block
-    display={display || 'flex'}
-    flexWrap={flexWrap || flexWrap === false ? flexWrap : true}
-    data-baseweb="flex-grid"
-    {...restProps}
-    ref={ref}
-  />
-)) as BlockComponentType<'div'>;
+export const BaseFlexGrid = React.forwardRef<HTMLDivElement, any>(
+  ({ display, flexWrap, ...restProps }, ref) => (
+    <Block
+      display={display || 'flex'}
+      flexWrap={flexWrap || flexWrap === false ? flexWrap : true}
+      data-baseweb="flex-grid"
+      {...restProps}
+      ref={ref}
+    />
+  )
+) as BlockComponentType<'div'>;
 BaseFlexGrid.displayName = 'BaseFlexGrid';
 
 const FlexGrid: React.FC<
@@ -69,7 +71,7 @@ const FlexGrid: React.FC<
   );
 };
 
-interface FlexGridComponentType<D extends React.ElementType> {
+export interface FlexGridComponentType<D extends React.ElementType> {
   <C extends React.ElementType = D>(
     props: FlexGridProps<C> &
       (React.ComponentProps<C> extends { ref?: infer R } ? { ref?: R } : {}) &
