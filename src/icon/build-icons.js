@@ -31,8 +31,12 @@ function removeChevronFromTitle(str) {
 
 // transform svg string to properly styled jsx
 function reactify(svgString) {
+  let previous;
+  do {
+    previous = svgString;
+    svgString = svgString.replace(/<!--.*-->\n/gm, '');
+  } while (svgString !== previous);
   return svgString
-    .replace(/<!--.*-->\n/gm, '')
     .replace(/<\/?svg[^>]*>/gm, '')
     .replace(/^\s*\n/gm, '')
     .replace(/\n$/, '')
