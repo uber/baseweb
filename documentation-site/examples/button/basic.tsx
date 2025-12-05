@@ -2,5 +2,11 @@ import * as React from "react";
 import { Button } from "baseui/button";
 
 export default function Example() {
-  return <Button onClick={() => alert("thank you 🙂")}>Click me!</Button>;
+  const [clicked, setClicked] = React.useState(false);
+
+  return (
+    <Button onClick={() => setClicked(!clicked)}>
+      {clicked ? "Clicked!" : "Click me"}
+    </Button>
+  );
 }
