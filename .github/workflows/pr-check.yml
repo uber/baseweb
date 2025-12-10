@@ -1,0 +1,33 @@
+name: PR Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.5
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build library
+        run: pnpm build:lib
+
+      - name: Build d.ts files
+        run: pnpm build:lib:dts
