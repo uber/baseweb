@@ -14,6 +14,7 @@ import {
   CloseHandle as StyledCloseHandle,
   Label as StyledLabel,
 } from './styled-components';
+// @ts-ignore - react-movable is an ES module but we're in a CommonJS context
 import { List as MovableList } from 'react-movable';
 import Grab from '../icon/grab';
 import Delete from '../icon/delete';

@@ -40,8 +40,7 @@ const LocaleProvider: React.FC<LocaleProviderProps> = (props) => {
   return (
     // this is poorly documented but specifying true enforces that the object is deeply extended
     // https://www.npmjs.com/package/just-extend
-    // @ts-expect-error todo(ts-migration) TS2740 Type '{}' is missing the following properties from type 'Locale': accordion, breadcrumbs, datepicker, datatable, and 8 more.
-    <LocaleContext.Provider value={extend(true, {}, en_US, parentLocale, locale)}>
+    <LocaleContext.Provider value={extend(true, {}, en_US, parentLocale, locale) as Locale}>
       {children}
     </LocaleContext.Provider>
   );

@@ -94,8 +94,7 @@ type HistogramProps = {
   precision;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Histogram = React.memo<any>(function Histogram({
+const Histogram = React.memo<HistogramProps>(function Histogram({
   data,
   lower,
   upper,
@@ -110,7 +109,6 @@ const Histogram = React.memo<any>(function Histogram({
     const bins = bin().thresholds(Math.min(data.length, MAX_BIN_COUNT))(data);
 
     const xScale = scaleLinear()
-      // @ts-expect-error todo(ts-migration) TS2345 Argument of type '(number | undefined)[]' is not assignable to parameter of type 'Iterable<NumberValue>'.
       .domain([bins[0].x0, bins[bins.length - 1].x1])
       .range([0, HISTOGRAM_SIZE.width])
       .clamp(true);
@@ -146,10 +144,8 @@ const Histogram = React.memo<any>(function Histogram({
       <svg {...HISTOGRAM_SIZE}>
         {/* @ts-ignore */}
         {bins.map((d, index) => {
-          // @ts-expect-error todo(ts-migration) TS2345 Argument of type 'number | undefined' is not assignable to parameter of type 'NumberValue'.
           const x = xScale(d.x0) + 1;
           const y = yScale(d.length);
-          // @ts-expect-error todo(ts-migration) TS2345 Argument of type 'number | undefined' is not assignable to parameter of type 'NumberValue'.
           const width = Math.max(0, xScale(d.x1) - xScale(d.x0) - 1);
           const height = yScale(0) - yScale(d.length);
 
@@ -157,9 +153,7 @@ const Histogram = React.memo<any>(function Histogram({
           if (singleIndexNearest != null) {
             included = index === singleIndexNearest;
           } else {
-            // @ts-expect-error todo(ts-migration) TS18048 'd.x1' is possibly 'undefined'.
             const withinLower = d.x1 > lower;
-            // @ts-expect-error todo(ts-migration) TS18048 'd.x0' is possibly 'undefined'.
             const withinUpper = d.x0 <= upper;
             included = withinLower && withinUpper;
           }
@@ -255,11 +249,9 @@ function NumericalFilter(props) {
     // once the user is done inputting.
     // we validate then format to the given precision
     let l = isRange ? lv : sv;
-    // @ts-expect-error todo(ts-migration) TS2322 Type 'string | number | undefined' is not assignable to type 'number'.
     l = validateInput(l) ? l : min;
     let h = validateInput(uv) ? uv : max;
 
-    // @ts-expect-error todo(ts-migration) TS2345 Argument of type 'string | number | undefined' is not assignable to parameter of type 'number'.
     return [roundToFixed(l, precision), roundToFixed(h, precision)];
   }, [isRange, focused, sv, lv, uv, precision]);
 
@@ -268,7 +260,6 @@ function NumericalFilter(props) {
   const sliderScale = React.useMemo(
     () =>
       scaleLinear()
-        // @ts-expect-error todo(ts-migration) TS2345 Argument of type '(string | undefined)[]' is not assignable to parameter of type 'Iterable<NumberValue>'.
         .domain([min, max])
         .rangeRound([1, MAX_BIN_COUNT])
         // We clamp the values within our min and max even if a user enters a huge number
@@ -422,7 +413,6 @@ function NumericalFilter(props) {
           justifyContent: 'space-between',
         })}
       >
-        {/* @ts-expect-error todo(ts-migration) TS2769 No overload matches this call. */}
         <Input
           min={min}
           max={max}
@@ -442,7 +432,6 @@ function NumericalFilter(props) {
           onBlur={() => setFocus(false)}
         />
         {isRange && (
-          // @ts-expect-error todo(ts-migration) TS2769 No overload matches this call.
           <Input
             min={min}
             max={max}
