@@ -144,6 +144,7 @@ export const Sheet = ({
 
             {progressBar ? (
               <ProgressBar
+                size={SIZE.small}
                 overrides={{ BarContainer: { style: { marginTop: 0, marginBottom: 0 } } }}
                 {...progressBar}
               />
