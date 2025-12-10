@@ -119,7 +119,6 @@ export function MobileHeader({
       {actionButtons.length > 0 && (
         <ActionButtonsContainer {...actionButtonsContainerProps}>
           {actionButtons.map((button, idx) => {
-            // @ts-expect-error todo(ts-migration) TS2339 Property 'renderIcon' does not exist on type 'IconButton | undefined'.
             const { renderIcon, onClick, label } = button;
             return (
               <HeaderButton

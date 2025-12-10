@@ -11,6 +11,7 @@ import type {
   StateChangeType,
   StateReducer,
 } from './types';
+// @ts-ignore - react-movable is an ES module but we're in a CommonJS context
 import { arrayMove, arrayRemove } from 'react-movable';
 
 const defaultStateReducer: StateReducer = (type, nextState) => nextState;

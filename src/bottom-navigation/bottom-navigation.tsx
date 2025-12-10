@@ -47,7 +47,6 @@ const BottomNavigation = ({
   const NavItemPanelRefs = React.useRef([]);
 
   function scrollToTop(idx) {
-    // @ts-expect-error todo(ts-migration) TS2339 Property 'scrollTo' does not exist on type 'never'.
     NavItemPanelRefs.current[idx].scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }
 
@@ -55,7 +54,6 @@ const BottomNavigation = ({
     if (displayOverflow) {
       setDisplayOverflow(false);
     }
-    // @ts-expect-error todo(ts-migration) TS2722 Cannot invoke an object which is possibly 'undefined'.
     onChange({ activeKey });
   }
 
@@ -97,7 +95,6 @@ const BottomNavigation = ({
         return (
           <Panel
             isActive={isActive}
-            // @ts-expect-error todo(ts-migration) TS2345 Argument of type 'unknown' is not assignable to parameter of type 'never'.
             ref={(element) => NavItemPanelRefs.current.push(element)}
             overrides={navItem.props.overrides}
             key={idx}

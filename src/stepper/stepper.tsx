@@ -100,7 +100,6 @@ export function Stepper({
       />
       <IncrementButton
         onClick={() => setValue(value + 1)}
-        // @ts-expect-error todo(ts-migration) TS18048 'maxValue' is possibly 'undefined'.
         disabled={disabled || value >= maxValue}
         aria-label="increment value"
         {...incrementButtonProps}

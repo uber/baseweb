@@ -4,6 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+// @ts-ignore - react-movable is an ES module but we're in a CommonJS context
 import { arrayMove, arrayRemove } from 'react-movable';
 import type { SharedStylePropsArg } from './types';
 

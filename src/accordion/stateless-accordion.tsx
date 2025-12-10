@@ -24,16 +24,13 @@ function StatelessAccordion({
   return (
     <Root data-baseweb="accordion" {...rootProps}>
       {React.Children.map(children, (child, index) => {
-        let normalizedChild =
-          isElement(child) || isPortal(child) ? (
-            child
-          ) : (
-            // if primitive value - wrap it in a fragment
-            <>{child}</>
-          );
-        const key = normalizedChild.key || String(index);
-        return React.cloneElement(normalizedChild, {
-          disabled: normalizedChild.props.disabled || disabled,
+        if (!isElement(child) && !isPortal(child)) {
+          return child;
+        }
+        const element = child as React.ReactElement;
+        const key = element.key || String(index);
+        return React.cloneElement(element, {
+          disabled: element.props.disabled || disabled,
           expanded: expanded.includes(key),
           key,
           onChange:
@@ -59,7 +56,7 @@ function StatelessAccordion({
                   onChange({ key, expanded: next });
                 }
               : onChange,
-          overrides: normalizedChild.props.overrides || PanelOverrides,
+          overrides: element.props.overrides || PanelOverrides,
           renderAll,
         });
       })}

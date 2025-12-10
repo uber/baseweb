@@ -15,7 +15,7 @@ export const flattenFragments = (
   // @ts-ignore
   React.Children.toArray(children).reduce(
     (acc: React.ReactNode[], child: React.ReactNode, i: number): React.ReactNode[] => {
-      if (isFragment(child)) {
+      if (isFragment(child) && React.isValidElement(child)) {
         acc.push(...flattenFragments(child.props.children, ChildWrapper, depth + 1));
       } else if (React.isValidElement(child)) {
         if (ChildWrapper) {

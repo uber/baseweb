@@ -93,7 +93,6 @@ const PageControl = ({
             key={page}
             aria-label={`page ${page}`}
             name={name}
-            // @ts-expect-error todo(ts-migration) TS2722 Cannot invoke an object which is possibly 'undefined'.
             onChange={() => onPageChange({ nextPage: page })}
             tabIndex={isActive(page) ? 0 : -1}
             type="radio"

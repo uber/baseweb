@@ -64,7 +64,6 @@ export function SystemBanner(props: SystemBannerProps) {
 
   return (
     <Banner
-      // @ts-expect-error todo(ts-migration) TS2322 Type '{ icon?: ArtworkIcon | undefined; onClick: ((a: SyntheticEvent<HTMLButtonElement, Event>) => unknown) | null; label: string; } | { ...; } | null' is not assignable to type 'ActionContent | undef...
       action={
         secondaryAction
           ? { onClick: null, ...secondaryAction }

@@ -144,7 +144,6 @@ export const Sheet = ({
 
             {progressBar ? (
               <ProgressBar
-                // @ts-expect-error todo(ts-migration) TS2783 'size' is specified more than once, so this usage will be overwritten.
                 size={SIZE.small}
                 overrides={{ BarContainer: { style: { marginTop: 0, marginBottom: 0 } } }}
                 {...progressBar}
