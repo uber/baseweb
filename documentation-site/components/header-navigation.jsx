@@ -169,30 +169,6 @@ export default function HeaderNavigation({
           },
         })}
       >
-        {/* Slack */}
-        <Button
-          $as="a"
-          href="https://join.slack.com/t/baseui/shared_invite/zt-5f1s4d10-1D2uywAECAG50m64PTH9cw"
-          target="_blank"
-          rel="noopener noreferrer"
-          size={SIZE.compact}
-          kind={KIND.tertiary}
-          shape={SHAPE.square}
-          title="Join our Slack channel"
-          overrides={{
-            BaseButton: {
-              style: {
-                display: "none",
-                [mq(500)]: {
-                  display: "flex",
-                },
-              },
-            },
-          }}
-        >
-          <SlackLogo size={24} color={theme.colors.contentPrimary} />
-        </Button>
-
         {/* GitHub */}
         <Button
           $as="a"
