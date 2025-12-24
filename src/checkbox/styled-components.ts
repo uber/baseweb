@@ -260,13 +260,12 @@ export const Toggle = styled<'div', SharedStyleProps>('div', (props) => {
 Toggle.displayName = 'Toggle';
 
 export const ToggleTrack = styled<'div', SharedStyleProps>('div', (props) => {
-  let backgroundColor = props.$theme.colors.toggleTrackFill;
-  if (props.$disabled) {
-    backgroundColor = props.$theme.colors.toggleTrackFillDisabled;
-  } else if (props.$error && props.$checked) {
-    backgroundColor = props.$theme.colors.tickFillError;
-  }
+  const backgroundColor = props.$disabled
+    ? props.$theme.colors.toggleTrackFillDisabled
+    : props.$theme.colors.toggleTrackFill;
+
   return {
+    flex: '0 0 auto',
     alignItems: 'center',
     backgroundColor,
     borderTopLeftRadius: '7px',
