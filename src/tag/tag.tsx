@@ -35,7 +35,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
     disabled = false,
     isFocused = false,
     isHovered = false,
-    kind = KIND.primary,
+    kind = KIND.gray,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onActionClick = (event) => {},
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -67,7 +67,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
       return;
     }
     const key = event.key;
-    if (onClick && key === 'Enter') {
+    if (onClick && (key === 'Enter' || key === ' ')) {
       onClick(event);
     }
     if (closeable && (key === 'Backspace' || key === 'Delete')) {
@@ -122,6 +122,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
   const titleText = title || getTextFromChildren(children);
   const isButton = (clickable || closeable) && !disabled;
   const actionSize = {
+    [SIZE.xSmall]: 12,
     [SIZE.small]: 12,
     [SIZE.medium]: 16,
     [SIZE.large]: 20,
@@ -136,9 +137,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
       ref={ref as any}
       data-baseweb="tag"
       aria-label={
-        isButton && closeable
-          ? `${typeof children === 'string' ? `${children}, ` : ''}close by backspace`
-          : null
+        isButton && closeable ? `Remove${typeof children === 'string' ? ` ${children}` : ''}` : null
       }
       aria-disabled={disabled ? true : null}
       role={isButton ? 'button' : null}
@@ -153,8 +152,12 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
       {StartEnhancer &&
         // @ts-expect-error todo(flow->ts) it is not expected to be a number
         StartEnhancer !== 0 && (
-          <StartEnhancerContainer {...startEnhancerContainerProps}>
-            <StartEnhancer />
+          <StartEnhancerContainer
+            aria-hidden={true}
+            role="presentation"
+            {...startEnhancerContainerProps}
+          >
+            <StartEnhancer size={actionSize} />
           </StartEnhancerContainer>
         )}
 

@@ -45,9 +45,9 @@ export type TagProps = {
   color?: string;
   /** Text to display in native OS tooltip on long hover. */
   title?: string;
-  /** onClick handler for the action button element. */
+  /** onClick handler for the action button(the "x" button) element. */
   onActionClick?: (e: Event, children?: React.ReactNode) => unknown;
-  /** keydown handler for the action button element. */
+  /** keydown handler for the action button(the "x" button) element. */
   onActionKeyDown?: (e: Event, children?: React.ReactNode) => unknown;
   /** onClick handler for the tag. Passing an onClick handler also makes the tag clickable. */
   onClick?: null | ((event: Event) => unknown);
@@ -55,7 +55,7 @@ export type TagProps = {
   onKeyDown?: null | ((event: Event) => unknown);
   /** Determines the size of the Tag. */
   size?: TagSize;
-  startEnhancer?: React.ComponentType<{}>;
+  startEnhancer?: React.ComponentType<{ size?: number | string }>;
   contentMaxWidth?: string | null;
 };
 
