@@ -1,8 +1,6 @@
 import * as React from "react";
 import { Tag, KIND, HIERARCHY } from "baseui/tag";
 
-console.log(KIND);
-
 export default function Scenario() {
   return (
     <React.Fragment>
