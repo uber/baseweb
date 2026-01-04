@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { Button, KIND, SIZE, SHAPE } from "baseui/button";
+import { Button, KIND, SIZE, SHAPE, WIDTH_TYPE } from "baseui/button";
 import { PropTypes } from "react-view";
 import type { TConfig } from "../types";
 
@@ -20,6 +20,7 @@ const ButtonConfig: TConfig = {
     KIND,
     SIZE,
     SHAPE,
+    WIDTH_TYPE,
   },
   theme: [
     "buttonPrimaryFill",
@@ -84,8 +85,8 @@ const ButtonConfig: TConfig = {
       },
     },
     size: {
-      value: "SIZE.default",
-      defaultValue: "SIZE.default",
+      value: "SIZE.medium",
+      defaultValue: "SIZE.medium",
       options: SIZE,
       type: PropTypes.Enum,
       description: "Defines the size of the button.",
@@ -96,8 +97,8 @@ const ButtonConfig: TConfig = {
       },
     },
     shape: {
-      value: "SHAPE.default",
-      defaultValue: "SHAPE.default",
+      value: "SHAPE.rectangular",
+      defaultValue: "SHAPE.rectangular",
       options: SHAPE,
       type: PropTypes.Enum,
       description: "Defines the shape of the button.",
@@ -106,6 +107,19 @@ const ButtonConfig: TConfig = {
           named: ["SHAPE"],
         },
       },
+    },
+    widthType: {
+      value: "WIDTH_TYPE.hug",
+      defaultValue: "WIDTH_TYPE.hug",
+      options: WIDTH_TYPE,
+      type: PropTypes.Enum,
+      description: `Controls the button's width behavior.`,
+      imports: {
+        "baseui/button": {
+          named: ["WIDTH_TYPE"],
+        },
+      },
+      enumName: "WIDTH_TYPE",
     },
     colors: {
       value: undefined,
@@ -122,6 +136,11 @@ const ButtonConfig: TConfig = {
       value: false,
       type: PropTypes.Boolean,
       description: "Indicates that the button is selected.",
+    },
+    backgroundSafe: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: "Applies styles for a floating action button.",
     },
     overrides: {
       value: undefined,

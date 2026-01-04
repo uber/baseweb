@@ -6,10 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import type * as React from 'react';
 
-import type { KIND, SIZE, SHAPE } from './constants';
+import type { KIND, SIZE, SHAPE, MIN_HIT_AREA, WIDTH_TYPE } from './constants';
 import type { Override } from '../helpers/overrides';
-
-type AnchorProps = React.HTMLProps<HTMLAnchorElement>;
 
 export type ButtonOverrides = {
   Root?: Override;
@@ -18,6 +16,7 @@ export type ButtonOverrides = {
   EndEnhancer?: Override;
   LoadingSpinnerContainer?: Override;
   LoadingSpinner?: Override;
+  StartEnhancerButtonContentContainer?: Override;
 };
 
 export type CustomColors = {
@@ -25,13 +24,22 @@ export type CustomColors = {
   color: string;
 };
 
-interface BaseButtonProps {
+interface BaseButtonSharedProps {
+  /** Sets a11y attributes */
+  /** For icon only buttons, aria-label is mandatory; aria-hidden needs to be true on svg elements */
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+  'aria-describedby'?: string;
+  /** floating action button */
+  backgroundSafe?: boolean;
   children?: React.ReactNode;
   colors?: CustomColors;
   disabled?: boolean;
   /** A helper rendered at the end of the button. */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   endEnhancer?: React.ReactNode | React.ComponentType<any>;
+  /** Defines the minimum height of the hit target area */
+  minHitArea?: keyof typeof MIN_HIT_AREA;
   /** Show loading button style and spinner. */
   isLoading?: boolean;
   /** Indicates that the button is selected */
@@ -48,6 +56,12 @@ interface BaseButtonProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   startEnhancer?: React.ReactNode | React.ComponentType<any>;
   type?: 'submit' | 'reset' | 'button';
+  /**
+   * Controls the button’s width behavior.
+   * "hug" allows the button to adjust its width based on the content (hug),
+   * while "fill" lets the button maintain a specified, filled or fixed width (parent container will provide the width or developer can use overrides to set the width)
+   */
+  widthType?: keyof typeof WIDTH_TYPE;
 }
 
 export interface LinkButtonProps {
@@ -60,10 +74,30 @@ export interface LinkButtonProps {
   target?: string;
 }
 
-export interface ButtonProps extends BaseButtonProps, LinkButtonProps {}
+export interface ButtonProps extends BaseButtonSharedProps, LinkButtonProps {}
+
+// Used in the Button component of baseui; ButtonProps is widely used and overridden in the other projects
+export type BaseButtonProps = Omit<ButtonProps, 'children'> & {
+  /** Children can be either React nodes or a function that returns React nodes */
+  children?:
+    | React.ReactNode
+    | ((props: {
+        isHovered: boolean;
+        isPressed: boolean;
+        isFocused: boolean;
+        artworkSize: string;
+      }) => React.ReactNode);
+};
+
+export type ButtonInternalsProps = BaseButtonProps & {
+  isHovered?: boolean;
+  isPressed?: boolean;
+  isFocused?: boolean;
+};
 
 export type SharedStyleProps<AS = React.ComponentType<any> | keyof JSX.IntrinsicElements> = {
   $colors?: CustomColors;
+  $minHitArea?: keyof typeof MIN_HIT_AREA;
   $kind?: keyof typeof KIND;
   $isSelected?: boolean;
   $shape?: keyof typeof SHAPE;
@@ -71,5 +105,10 @@ export type SharedStyleProps<AS = React.ComponentType<any> | keyof JSX.Intrinsic
   $isLoading?: boolean;
   $disabled?: boolean;
   $isFocusVisible?: boolean;
+  $isHovered?: boolean;
+  $isPressed?: boolean;
+  $isFocused?: boolean;
   $as?: AS;
+  $backgroundSafe?: boolean;
+  $widthType?: keyof typeof WIDTH_TYPE;
 };

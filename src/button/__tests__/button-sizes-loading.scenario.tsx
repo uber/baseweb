@@ -6,12 +6,18 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { Button } from '..';
-import { SIZE } from '../constants';
+import { Button, SIZE } from '..';
+import { styled } from '../..';
+
+const Container = styled('div', ({ $theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: $theme.sizing.scale100,
+}));
 
 export function Scenario() {
   return (
-    <React.Fragment>
+    <Container>
       <Button size={SIZE.mini}>Mini</Button>
       <Button isLoading size={SIZE.mini}>
         Mini
@@ -29,6 +35,6 @@ export function Scenario() {
       <Button isLoading size={SIZE.large}>
         Large
       </Button>
-    </React.Fragment>
+    </Container>
   );
 }

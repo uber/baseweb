@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { useStyletron } from '../..';
-import { Button, SIZE } from '..';
+import { Button } from '..';
 import ArrowRight from '../../icon/arrow-right';
 
 export function Scenario() {
@@ -14,14 +14,14 @@ export function Scenario() {
 
   return (
     <div className={css({ display: 'flex', gap: '4px' })}>
-      <Button size={SIZE.compact}>Primary</Button>
-      <Button size={SIZE.compact} startEnhancer={ArrowRight}>
+      <Button isLoading={true}>Primary</Button>
+      <Button isLoading={true} startEnhancer={ArrowRight}>
         Start Enhancer
       </Button>
-      <Button size={SIZE.compact} endEnhancer={ArrowRight}>
+      <Button isLoading={true} endEnhancer={ArrowRight}>
         End Enhancer
       </Button>
-      <Button size={SIZE.compact} startEnhancer={ArrowRight} endEnhancer={ArrowRight}>
+      <Button isLoading={true} startEnhancer={ArrowRight} endEnhancer={ArrowRight}>
         Both Enhancers
       </Button>
     </div>

@@ -6,8 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { styled } from '../..';
-// Normally, BUTTON_GROUP_EXCLUSIVE_KINDS should be passed from the ButtonGroup component instead of directly passing to Button component.
-import { Button, KIND, BUTTON_GROUP_EXCLUSIVE_KINDS } from '..';
+import { Button, KIND } from '..';
 
 const GridContainer = styled('div', ({ $theme }) => ({
   display: 'grid',
@@ -53,38 +52,32 @@ export function Scenario() {
       <HeaderCell>Disabled Loading</HeaderCell>
 
       {/* Button Rows */}
-      {Object.values({ ...KIND, ...BUTTON_GROUP_EXCLUSIVE_KINDS }).map((kind) => {
+      {Object.values(KIND).map((kind) => {
         return (
           <React.Fragment key={kind}>
-            <KindCell>
-              {/* @ts-ignore */}
-              {!!BUTTON_GROUP_EXCLUSIVE_KINDS[kind] ? `Button Group Exclusive: ${kind}` : kind}
-            </KindCell>
+            <KindCell>{kind}</KindCell>
             <ButtonCell>
-              {/* @ts-ignore the kinds in BUTTON_GROUP_EXCLUSIVE_KINDS are not supposed to be used directly on Button component */}
-              <Button kind={kind}>Move</Button>
-            </ButtonCell>
-            <ButtonCell>
-              {/* @ts-ignore the kinds in BUTTON_GROUP_EXCLUSIVE_KINDS are not supposed to be used directly on Button component */}
-              <Button kind={kind} isSelected>
+              <Button kind={kind} href="https://uber.com" target="_blank">
                 Move
               </Button>
             </ButtonCell>
             <ButtonCell>
-              {/* @ts-ignore the kinds in BUTTON_GROUP_EXCLUSIVE_KINDS are not supposed to be used directly on Button component */}
-              <Button kind={kind} isLoading>
+              <Button kind={kind} isSelected href="https://uber.com" target="_blank">
                 Move
               </Button>
             </ButtonCell>
             <ButtonCell>
-              {/* @ts-ignore the kinds in BUTTON_GROUP_EXCLUSIVE_KINDS are not supposed to be used directly on Button component */}
-              <Button kind={kind} disabled>
+              <Button kind={kind} isLoading href="https://uber.com" target="_blank">
                 Move
               </Button>
             </ButtonCell>
             <ButtonCell>
-              {/* @ts-ignore the kinds in BUTTON_GROUP_EXCLUSIVE_KINDS are not supposed to be used directly on Button component */}
-              <Button kind={kind} disabled isLoading>
+              <Button kind={kind} disabled href="https://uber.com" target="_blank">
+                Move
+              </Button>
+            </ButtonCell>
+            <ButtonCell>
+              <Button kind={kind} disabled isLoading href="https://uber.com" target="_blank">
                 Move
               </Button>
             </ButtonCell>

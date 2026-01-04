@@ -5,10 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { useStyletron } from '../../styles';
+import { useStyletron } from '../..';
 import { Button, SHAPE } from '..';
 
-function Container({ backgroundColor, children }) {
+function Container({ backgroundColor, children }: { backgroundColor: string; children: React.ReactNode }) {
   const [css] = useStyletron();
   return <div className={css({ backgroundColor, padding: '16px' })}>{children}</div>;
 }
@@ -57,6 +57,11 @@ export function Scenario() {
       <Container backgroundColor="#ffefed">
         <Button shape={SHAPE.pill} colors={{ backgroundColor: '#fed7d2', color: 'black' }}>
           Label
+        </Button>
+      </Container>
+      <Container backgroundColor="#276ef1">
+        <Button disabled shape={SHAPE.pill} colors={{ backgroundColor: '#1e54b7', color: 'white' }}>
+          Disabled
         </Button>
       </Container>
     </div>
