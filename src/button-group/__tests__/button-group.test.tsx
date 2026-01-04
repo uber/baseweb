@@ -9,12 +9,12 @@ import { render, fireEvent } from '@testing-library/react';
 
 import { Button } from '../../button';
 
-import { ButtonGroup } from '..';
+import { ButtonGroup, MODE } from '..';
 import type { ButtonGroupProps } from '../types';
 
 function buildSimpleWrapper(props: Partial<ButtonGroupProps> = {}) {
   return render(
-    <ButtonGroup {...props}>
+    <ButtonGroup mode={MODE.checkbox} {...props}>
       <Button />
       <Button />
       <Button />
@@ -116,7 +116,7 @@ describe('ButtonGroup', () => {
 
   it('should respect isSelected value if the consumer passes the prop to Button', () => {
     const { queryByTitle } = render(
-      <ButtonGroup>
+      <ButtonGroup mode={MODE.checkbox}>
         <Button isSelected title="testButton" />
         <Button />
         <Button />

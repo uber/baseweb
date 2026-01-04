@@ -45,10 +45,14 @@ describe('StatefulButtonGroup', () => {
 
   describe('default mode', () => {
     it('does not update state when clicked', () => {
-      const { container } = buildSimpleWrapper();
+      const stateReducerMock = jest.fn();
+      const { container } = buildSimpleWrapper({ stateReducer: stateReducerMock });
+
       const index = 0;
       clickChildAtIndex(container, index);
-      expectSelectedValueAtIndex(container, index, 'false');
+
+      // we can't check aria-checked because it's not set in default mode
+      expect(stateReducerMock).not.toHaveBeenCalled();
     });
   });
 

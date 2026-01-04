@@ -6,15 +6,18 @@ LICENSE file in the root directory of this source tree.
 */
 import type * as React from 'react';
 
-import type { SIZE, SHAPE, KIND } from '../button';
+import type { SIZE, SHAPE } from '../button';
+import type { KIND } from './index';
 import type { Override } from '../helpers/overrides';
-import type { MODE, STATE_CHANGE_TYPE } from './constants';
+import type { MODE, STATE_CHANGE_TYPE, PADDING } from './constants';
 
 // button-group
 export type ButtonGroupProps = {
   /** Accessible label. */
   ariaLabel?: string;
   'aria-label'?: string;
+  'aria-labelledby'?: string;
+  'aria-describedby'?: string;
   /** Set of more than one `Button` components */
   children: Array<React.ReactNode>;
   /** Defines if the button group is disabled. */
@@ -43,6 +46,10 @@ export type ButtonGroupProps = {
   size?: (typeof SIZE)[keyof typeof SIZE];
   /** Defines the `kind` of the buttons in the group */
   kind?: (typeof KIND)[keyof typeof KIND];
+  /** Defines if the button group should wrap. (when it's set to false, the button group will be displayed in a single line and overflow if necessary)*/
+  wrap?: boolean;
+  /** Defines the padding of the buttons in the button group. 'none' by default - no padding, 'default' - 8px horizontal padding, 'custom' - expect custom padding from developer */
+  padding?: (typeof PADDING)[keyof typeof PADDING];
 };
 
 type ButtonGroupOverrides = {

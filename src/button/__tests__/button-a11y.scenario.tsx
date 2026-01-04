@@ -16,8 +16,6 @@ export function Scenario() {
   const [css] = useStyletron();
   const [isSelected, setIsSelected] = React.useState(false);
 
-  console.log('isSelected', isSelected);
-
   return (
     <React.Fragment>
       <HeadingMedium marginTop="0" marginBottom="0">

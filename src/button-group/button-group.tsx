@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { KIND, SIZE, SHAPE } from '../button';
-import { MODE } from './constants';
+import { MODE, PADDING } from './constants';
 import { getOverrides } from '../helpers/overrides';
 import { LocaleContext } from '../locale';
 
@@ -38,11 +38,12 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
     shape: SHAPE.default,
     size: SIZE.default,
     kind: KIND.secondary,
+    padding: PADDING.none,
   };
   render() {
     const {
       overrides = {},
-      mode = MODE.checkbox,
+      mode,
       children,
       selected,
       disabled,
@@ -50,10 +51,15 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
       kind,
       shape,
       size,
+      wrap,
+      padding,
     } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const ariaLabel = this.props['aria-label'] || this.props.ariaLabel;
     const isRadio = mode === MODE.radio;
+    const isSimpleClickableBtnGroup =
+      (!mode || Object.values(MODE).every((val) => val !== mode)) &&
+      typeof selected === 'undefined'; // button group for simple clickable buttons(not checkbox or radio buttons)
 
     const numItems = React.Children.count(children);
 
@@ -62,10 +68,13 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
         {(locale) => (
           <Root
             aria-label={ariaLabel || locale.buttongroup.ariaLabel}
+            aria-labelledby={this.props['aria-labelledby']}
+            aria-describedby={this.props['aria-describedby']}
             data-baseweb="button-group"
             role={isRadio ? 'radiogroup' : 'group'}
-            $shape={shape}
-            $length={children.length}
+            $size={size}
+            $padding={padding}
+            $wrap={wrap}
             {...rootProps}
           >
             {React.Children.map(children, (child, index) => {
@@ -75,23 +84,27 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
 
               const isSelected = child.props.isSelected
                 ? child.props.isSelected
+                : isSimpleClickableBtnGroup
+                ? undefined // avoid adding aria-pressed to buttons in actionable button group
                 : isIndexSelected(selected, index);
 
               if (isRadio) {
                 this.childRefs[index] = React.createRef<HTMLButtonElement>();
               }
               return React.cloneElement(child, {
-                // @ts-ignore
                 disabled: disabled || child.props.disabled,
                 isSelected,
                 ref: isRadio ? this.childRefs[index] : undefined,
                 tabIndex:
                   !isRadio ||
                   isSelected ||
-                  (isRadio && (!selected || selected === -1) && index === 0)
+                  (isRadio &&
+                    (!selected ||
+                      selected === -1 ||
+                      (Array.isArray(selected) && selected.length === 0)) &&
+                    index === 0)
                     ? 0
                     : -1,
-                // @ts-ignore
                 onKeyDown: (e) => {
                   if (!isRadio) return;
                   const value = Number(selected) ? Number(selected) : 0;
@@ -109,7 +122,6 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
                   }
                 },
                 kind,
-                // @ts-ignore
                 onClick: (event) => {
                   if (disabled) {
                     return;
@@ -127,30 +139,20 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
                 size,
                 overrides: {
                   BaseButton: {
-                    // @ts-ignore
-                    style: ({ $theme }) => {
-                      // Even though baseui's buttons have square corners, some applications override to
-                      // rounded. Maintaining corner radius in this circumstance is ideal to avoid further
-                      // customization.
-                      if (children.length === 1) {
-                        return {};
-                      }
-
-                      if (shape !== SHAPE.default) {
-                        return {
-                          marginLeft: $theme.sizing.scale100,
-                          marginRight: $theme.sizing.scale100,
-                        };
-                      }
-
-                      return {
-                        marginLeft: '0.5px',
-                        marginRight: '0.5px',
-                      };
-                    },
                     props: {
-                      'aria-checked': isSelected,
-                      role: isRadio ? 'radio' : 'checkbox',
+                      ...(typeof child.props['aria-checked'] === 'boolean'
+                        ? {
+                            'aria-checked': child.props['aria-checked'],
+                          }
+                        : isSimpleClickableBtnGroup
+                        ? {}
+                        : { 'aria-checked': isSelected }),
+                      role:
+                        child.props.role || isRadio
+                          ? 'radio'
+                          : !isSimpleClickableBtnGroup
+                          ? 'checkbox'
+                          : undefined,
                     },
                   },
 
