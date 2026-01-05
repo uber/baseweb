@@ -6,10 +6,10 @@ export default function Example() {
   return (
     <React.Fragment>
       <p>
-        <Button>Default shape</Button>
+        <Button>Rectangular shape</Button>
       </p>
       <p>
-        <Button shape={SHAPE.pill}>Pill shape</Button>
+        <Button shape={SHAPE.rounded}>Rounded shape</Button>
       </p>
       <p>
         <Button shape={SHAPE.square}>

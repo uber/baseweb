@@ -10,6 +10,7 @@ import type {
   CoreExtensionSemanticColors,
   DeprecatedSemanticColors,
   SemanticColors,
+  HoveredAndPressedSemanticColors,
 } from '../types';
 import defaultFoundationColors from './color-foundation-tokens';
 import { hexToRgb as hexToRgba } from '../../styles/util';
@@ -74,6 +75,7 @@ export default (
     contentNegative: primitiveLightColors.red600,
     contentWarning: primitiveLightColors.yellow600,
     contentPositive: primitiveLightColors.green600,
+    tagRedContentSecondary: primitiveLightColors.red700,
 
     // Border
     borderStateDisabled: primitiveLightColors.gray50,
@@ -85,6 +87,7 @@ export default (
     borderWarningLight: primitiveLightColors.yellow200,
     borderPositive: primitiveLightColors.green600,
     borderPositiveLight: primitiveLightColors.green300,
+    tagRedBorderSecondarySelected: primitiveLightColors.red700,
 
     // Programs
     safety: primitiveLightColors.blue600,
@@ -199,11 +202,20 @@ export default (
     tagLimeBorderSecondaryUnselected: primitiveLightColors.lime100,
     tagLimeBorderSecondarySelected: primitiveLightColors.lime700,
   }
+  const hoveredAndPressedColors: HoveredAndPressedSemanticColors = {
+    hoverOverlayInverseAlpha: 'rgba(255, 255, 255, 0.1)',
+    hoverOverlayAlpha: 'rgba(0, 0, 0, 0.04)',
+    hoverNegativeAlpha: 'rgba(222, 17, 53, 0.1)',
+    pressedOverlayAlpha: 'rgba(0, 0, 0, 0.08)',
+    pressedOverlayInverseAlpha: 'rgba(255, 255, 255, 0.2)',
+    pressedNegativeAlpha: 'rgba(222, 17, 53, 0.15)',
+  };
 
   return {
     ...core,
     ...coreExtensions,
     ...tagTokens,
+    ...hoveredAndPressedColors,
     ...deprecated,
   };
 };

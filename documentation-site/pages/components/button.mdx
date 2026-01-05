@@ -11,7 +11,10 @@ import States from "examples/button/states.tsx";
 import Shapes from "examples/button/shapes.tsx";
 import Dropdown from "examples/button/dropdown.tsx";
 import ButtonAsAnAnchor from "examples/button/as-an-anchor.tsx";
+import WidthTypes from "examples/button/widthTypes.tsx";
+import BackgroundSafe from "examples/button/backgroundSafe.tsx";
 
+import { Notification, KIND as NOTIFICATION_KIND } from "baseui/notification";
 import { Button, KIND } from "baseui/button";
 import * as ButtonExports from "baseui/button";
 import Upload from "baseui/icon/upload";
@@ -31,6 +34,17 @@ export default Layout;
 
 <Yard placeholderHeight={52} {...buttonYardConfig} />
 
+<Notification
+  overrides={{ Body: { style: { width: "auto", margin: "16px 0 0 0" } } }}
+  kind={NOTIFICATION_KIND.warning}
+>
+  Some variants will be deprecated in next major release, please avoid using them in new codes. We encourage you to migrate your current implementations to equivalent or similar variants.
+  <ul>
+    <li>Shape: default -> rectangular, pill -> rounded, round will be removed.</li>
+    <li>Size: mini -> xSmall, compact -> small, default -> medium.</li>
+  </ul>
+</Notification>
+
 Buttons provide cues for actions and events. These fundamental components allow users to process actions or navigate an experience.
 
 ## When to use
@@ -40,7 +54,7 @@ When a person:
 - submits a form,
 - starts a new task / action.
 
-The Button component has 4 different `kind` variants: `primary`, `secondary` and `tertiary`.
+The Button component has 6 different `kind` variants: `primary`, `secondary`, `tertiary`, `dangerPrimary`, `dangerSecondary` and `dangerTertiary`.
 
 **Primary** buttons are intended to be used as the leading trigger or cue of action. Primary buttons are
 bold with a dominant color background and white text/icons. These are to be used sparingly as the
@@ -76,6 +90,14 @@ primary button action. As the name implies, it’s offered to supplement to crea
 
 <Example title="Adding enhancers" path="button/with-enhancers.tsx">
   <WithEnhancer />
+</Example>
+
+<Example title="Width Types" path="button/widthTypes.tsx">
+  <WidthTypes />
+</Example>
+
+<Example title="BackgroundSafe" path="button/backgroundSafe.tsx">
+  <BackgroundSafe />
 </Example>
 
 <Example title="As a dropdown" path="button/dropdown.tsx">

@@ -10,6 +10,7 @@ import type {
   CoreExtensionSemanticColors,
   DeprecatedSemanticColors,
   SemanticColors,
+  HoveredAndPressedSemanticColors,
 } from '../types';
 import defaultFoundationColors from './color-foundation-tokens';
 import { hexToRgb as hexToRgba } from '../../styles/util';
@@ -66,6 +67,7 @@ export default (foundation: FoundationColors = defaultFoundationColors): Semanti
     contentNegative: primitiveDarkColors.red600Dark,
     contentWarning: primitiveDarkColors.yellow600Dark,
     contentPositive: primitiveDarkColors.green600Dark,
+    tagRedContentSecondary: primitiveDarkColors.red700Dark,
 
     // Border
     borderStateDisabled: primitiveDarkColors.gray100Dark,
@@ -77,6 +79,7 @@ export default (foundation: FoundationColors = defaultFoundationColors): Semanti
     borderWarningLight: primitiveDarkColors.yellow400Dark,
     borderPositive: primitiveDarkColors.green500Dark,
     borderPositiveLight: primitiveDarkColors.green400Dark,
+    tagRedBorderSecondarySelected: primitiveDarkColors.red800Dark,
 
     // Programs
     safety: primitiveLightColors.blue600,
@@ -97,7 +100,6 @@ export default (foundation: FoundationColors = defaultFoundationColors): Semanti
     backgroundLightWarning: coreExtensions.backgroundWarningLight,
     backgroundLightNegative: coreExtensions.backgroundNegativeLight,
   };
-
 
   const tagTokens ={
     tagGrayBackgroundPrimary: primitiveDarkColors.gray400Dark,
@@ -191,11 +193,20 @@ export default (foundation: FoundationColors = defaultFoundationColors): Semanti
     tagLimeBorderSecondaryUnselected: primitiveDarkColors.lime500Dark,
     tagLimeBorderSecondarySelected: primitiveDarkColors.lime800Dark,
   };
+  const hoveredAndPressedColors: HoveredAndPressedSemanticColors = {
+    hoverOverlayInverseAlpha: 'rgba(0, 0, 0, 0.04)',
+    hoverOverlayAlpha: 'rgba(255, 255, 255, 0.1)',
+    hoverNegativeAlpha: 'rgba(163, 44, 52, 0.4)',
+    pressedOverlayAlpha: 'rgba(255, 255, 255, 0.15)',
+    pressedOverlayInverseAlpha: 'rgba(0, 0, 0, 0.08)',
+    pressedNegativeAlpha: 'rgba(163, 44, 52, 0.6)',
+  };
 
   return {
     ...core,
     ...coreExtensions,
     ...tagTokens,
+    ...hoveredAndPressedColors,
     ...deprecated,
   };
 };

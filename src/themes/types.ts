@@ -193,6 +193,7 @@ export type CoreExtensionSemanticColors = {
   contentNegative: string;
   contentWarning: string;
   contentPositive: string;
+  tagRedContentSecondary: string;
   // Border
   borderStateDisabled: string;
   borderAccent: string;
@@ -203,6 +204,7 @@ export type CoreExtensionSemanticColors = {
   borderNegativeLight: string;
   borderWarningLight: string;
   borderPositiveLight: string;
+  tagRedBorderSecondarySelected: string;
   // Programs
   safety: string;
   eatsGreen400: string;
@@ -231,9 +233,19 @@ export type DeprecatedSemanticColors = {
   backgroundLightNegative: string;
 };
 
+export type HoveredAndPressedSemanticColors = {
+  hoverOverlayInverseAlpha: string;
+  pressedOverlayInverseAlpha: string;
+  hoverOverlayAlpha: string;
+  pressedOverlayAlpha: string;
+  hoverNegativeAlpha: string;
+  pressedNegativeAlpha: string;
+};
+
 export type SemanticColors = {} & CoreSemanticColors &
   CoreExtensionSemanticColors &
-  DeprecatedSemanticColors;
+  DeprecatedSemanticColors &
+  HoveredAndPressedSemanticColors;
 
 export type ComponentColors = {
   //Banner
@@ -253,34 +265,87 @@ export type ComponentColors = {
   buttonPrimaryText: string;
   buttonPrimaryHover: string;
   buttonPrimaryActive: string;
+  buttonPrimaryHoverOverlay: string;
+  buttonPrimaryActiveOverlay: string;
   buttonPrimarySelectedText: string;
   buttonPrimarySelectedFill: string;
+  buttonPrimaryLoadingFill: string;
   buttonPrimarySpinnerForeground: string;
   buttonPrimarySpinnerBackground: string;
   buttonSecondaryFill: string;
   buttonSecondaryText: string;
   buttonSecondaryHover: string;
   buttonSecondaryActive: string;
+  buttonSecondaryHoverOverlay: string;
+  buttonSecondaryActiveOverlay: string;
   buttonSecondarySelectedText: string;
   buttonSecondarySelectedFill: string;
+  buttonSecondaryLoadingFill: string;
   buttonSecondarySpinnerForeground: string;
   buttonSecondarySpinnerBackground: string;
   buttonTertiaryFill: string;
   buttonTertiaryText: string;
   buttonTertiaryHover: string;
   buttonTertiaryActive: string;
+  buttonTertiaryHoverOverlay: string;
+  buttonTertiaryActiveOverlay: string;
   buttonTertiarySelectedText: string;
   buttonTertiarySelectedFill: string;
+  buttonTertiaryLoadingFill: string;
+  buttonTertiaryFocusFill: string;
   buttonTertiaryDisabledActiveFill: string;
   buttonTertiaryDisabledActiveText: string;
   buttonTertiarySpinnerForeground: string;
   buttonTertiarySpinnerBackground: string;
+  buttonDangerPrimaryFill: string;
+  buttonDangerPrimaryText: string;
+  buttonDangerPrimaryHoverOverlay: string;
+  buttonDangerPrimaryActiveOverlay: string;
+  buttonDangerPrimarySelectedText: string;
+  buttonDangerPrimarySelectedFill: string;
+  buttonDangerPrimaryLoadingFill: string;
+  buttonDangerPrimarySpinnerForeground: string;
+  buttonDangerPrimarySpinnerBackground: string;
+  buttonDangerSecondaryFill: string;
+  buttonDangerSecondaryText: string;
+  buttonDangerSecondaryHoverOverlay: string;
+  buttonDangerSecondaryActiveOverlay: string;
+  buttonDangerSecondarySelectedText: string;
+  buttonDangerSecondarySelectedFill: string;
+  buttonDangerSecondaryLoadingFill: string;
+  buttonDangerSecondarySpinnerForeground: string;
+  buttonDangerSecondarySpinnerBackground: string;
+  buttonDangerTertiaryFill: string;
+  buttonDangerTertiaryText: string;
+  buttonDangerTertiaryHoverOverlay: string;
+  buttonDangerTertiaryActiveOverlay: string;
+  buttonDangerTertiarySelectedText: string;
+  buttonDangerTertiarySelectedFill: string;
+  buttonDangerTertiaryLoadingFill: string;
+  buttonDangerTertiarySpinnerForeground: string;
+  buttonDangerTertiarySpinnerBackground: string;
+  buttonOutlineFill: string;
+  buttonOutlineText: string;
+  buttonOutlineHoverOverlay: string;
+  buttonOutlineActiveOverlay: string;
+  buttonOutlineSelectedFill: string;
+  buttonOutlineSelectedText: string;
+  buttonOutlineFocusFill: string;
+  buttonOutlineLoadingFill: string;
+  buttonOutlineSpinnerForeground: string;
+  buttonOutlineSpinnerBackground: string;
   buttonDisabledFill: string;
   buttonDisabledText: string;
   buttonDisabledActiveFill: string;
   buttonDisabledActiveText: string;
   buttonDisabledSpinnerForeground: string;
   buttonDisabledSpinnerBackground: string;
+  buttonOuterBorder: string;
+  buttonOutlineOuterBorder: string;
+  buttonDangerTertiaryOuterBorder: string;
+  buttonTransparentBorder: string;
+  buttonInnerBorder: string;
+  buttonFocusOuterBorder: string;
   // Breadcrumbs
   breadcrumbsText: string;
   breadcrumbsSeparatorFill: string;
@@ -708,8 +773,11 @@ export type Lighting = {
 };
 
 export type Animation = {
+  timing0: string;
   timing100: string;
+  timing150: string;
   timing200: string;
+  timing250: string;
   timing300: string;
   timing400: string;
   timing500: string;
@@ -718,6 +786,10 @@ export type Animation = {
   timing800: string;
   timing900: string;
   timing1000: string;
+  timing1500: string;
+  timing3000: string;
+  timing5000: string;
+  timing7000: string;
   easeOutCurve: string;
   easeInCurve: string;
   easeInOutCurve: string;
@@ -725,6 +797,11 @@ export type Animation = {
   easeOutQuinticCurve: string;
   easeInOutQuinticCurve: string;
   linearCurve: string;
+  easeLinear: string;
+  easeDecelerate: string;
+  easeAccelerate: string;
+  easeAccelerateDecelerate: string;
+  easeResponsiveAccelerate: string;
 };
 
 export type Border = {

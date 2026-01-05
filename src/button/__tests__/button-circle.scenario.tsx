@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { useStyletron } from '../..';
-import { Button, SHAPE, SIZE, KIND } from '..';
+import { useStyletron } from '../../';
+import { Button, SHAPE, SIZE, KIND } from '../';
 import Upload from '../../icon/upload';
 
 export function Scenario() {
