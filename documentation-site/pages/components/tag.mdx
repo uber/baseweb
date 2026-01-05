@@ -4,7 +4,6 @@ import Exports from "../../components/exports";
 
 import Basic from "examples/tag/basic.tsx";
 import Hierarchy from "examples/tag/variants.tsx";
-import Primitive from "examples/tag/primitive.tsx";
 import Kinds from "examples/tag/kinds.tsx";
 import Size from "examples/tag/size.tsx";
 import NonClickable from "examples/tag/non-clickable.tsx";
@@ -39,14 +38,8 @@ Compact UI to display a collection of concise information.
   <Basic />
 </Example>
 
-<Example title="Semantic KIND values" path="tag/kinds.tsx">
+<Example title="Supported KIND values" path="tag/kinds.tsx">
   <Kinds />
-</Example>
-
-You can change the color of the tag by passing a value to the `kind` prop. Here we see the set of "semantic" color options. These will reflect the `negative`, `positive`, etc values that you use in your theme.
-
-<Example title="Primitive KIND values" path="tag/primitive.tsx">
-  <Primitive />
 </Example>
 
 <Notification
@@ -67,7 +60,7 @@ You can change the color of the tag by passing a value to the `kind` prop. Here 
   </ul>
 </Notification>
 
-In addition to the "semantic" `kind` colors, you can also use "primitive" colors such as `blue` or `green`. Some of these simply alias the "semantic" colors (and therefore your theme), but there are also color-ways not contained in the "semantic" set, such as `orange`, `purple`, and `magenta`.
+You can change the color of the tag by passing a value to the `kind` prop. Supported kinds include `gray`, `blue`, `green`, `yellow`, `red`, `orange`, `purple`, `magenta`, `teal`, and `lime`.
 
 <Example title="Tag hierarchy Prop Type" path="tag/variants.tsx">
   <Hierarchy />
