@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 export const SIZE = {
+  xSmall: 'xSmall',
   small: 'small',
   medium: 'medium',
   large: 'large',
@@ -15,25 +16,33 @@ export const HIERARCHY = Object.freeze({
   secondary: 'secondary',
 } as const);
 
-// todo: dynamic identity map generation
-export const KIND = {
-  custom: 'custom',
-  // semantic
+export const DEPRECATED_KIND = Object.freeze({
   neutral: 'neutral',
   primary: 'primary',
   accent: 'accent',
   positive: 'positive',
   warning: 'warning',
   negative: 'negative',
-  // primitive
   black: 'black',
-  blue: 'blue',
-  green: 'green',
-  red: 'red',
-  yellow: 'yellow',
-  orange: 'orange',
-  purple: 'purple',
   brown: 'brown',
+} as const);
+
+export const SUPPORTED_KIND = Object.freeze({
+  custom: 'custom',
+  gray: 'gray',
+  red: 'red',
+  orange: 'orange',
+  yellow: 'yellow',
+  green: 'green',
+  blue: 'blue',
+  purple: 'purple',
+  magenta: 'magenta',
   teal: 'teal',
   lime: 'lime',
+} as const);
+
+// todo: dynamic identity map generation
+export const KIND = {
+  ...DEPRECATED_KIND,
+  ...SUPPORTED_KIND,
 } as const;

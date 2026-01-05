@@ -10,6 +10,7 @@ import shade from 'polished/lib/color/shade.js';
 import { styled, type Theme } from '../styles';
 import { KIND, HIERARCHY, SIZE } from './constants';
 import type { SharedPropsArg } from './types';
+import * as DeprecatedStyles from './deprecated-styles';
 
 export function customOnRamp(color: string, unit?: string) {
   // This is a temporary fix to prevent the tag from crashing when the color is not defined
@@ -55,267 +56,183 @@ const COLOR_STATE = {
 // @ts-ignore
 const pick = (theme, light, dark) => (theme.name && theme.name.includes('dark') ? dark : light);
 
-const neutralColorStates = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.disabled]: (theme, color) => ({
-    color: theme.colors.tagNeutralFontDisabled,
-    backgroundColor: pick(theme, theme.colors.gray50, theme.colors.gray100Dark),
-    borderColor: null,
-  }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.primary]: (theme, color) => ({
-    color: theme.colors.tagNeutralSolidFont,
-    backgroundColor: theme.colors.tagNeutralSolidBackground,
-    borderColor: null,
-  }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.secondary]: (theme, color) => ({
-    color: theme.colors.tagNeutralOutlinedFont,
-    backgroundColor: theme.colors.tagNeutralOutlinedBackground,
-    borderColor: null,
-  }),
-};
-
-const primaryColorStates = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.disabled]: (theme, color) => ({
-    color: theme.colors.tagPrimaryFontDisabled,
-    backgroundColor: pick(theme, theme.colors.gray50, theme.colors.gray100Dark),
-    borderColor: null,
-  }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.primary]: (theme, color) => ({
-    color: theme.colors.tagPrimarySolidFont,
-    backgroundColor: theme.colors.tagPrimarySolidBackground,
-    borderColor: null,
-  }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.secondary]: (theme, color) => ({
-    color: theme.colors.tagPrimaryOutlinedFont,
-    backgroundColor: theme.colors.tagPrimaryOutlinedBackground,
-    borderColor: null,
-  }),
-};
-
 const blueColorStates = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.disabled]: (theme, color) => ({
-    color: theme.colors.tagAccentFontDisabled,
-    backgroundColor: pick(theme, theme.colors.blue50, theme.colors.blue100Dark),
+  [COLOR_STATE.disabled]: (theme) => ({
+    color: theme.colors.tagBlueContentStateDisabled,
+    backgroundColor: theme.colors.tagBlueBackgroundStateDisabled,
     borderColor: null,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.primary]: (theme, color) => ({
-    color: theme.colors.tagAccentSolidFont,
-    backgroundColor: theme.colors.tagAccentSolidBackground,
-    borderColor: null,
+  [COLOR_STATE.primary]: (theme) => ({
+    color: theme.colors.tagBlueContentPrimary,
+    backgroundColor: theme.colors.tagBlueBackgroundPrimary,
+    borderColor: theme.colors.tagBlueBorderPrimaryUnselected,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.secondary]: (theme, color) => ({
-    color: theme.colors.tagAccentOutlinedFont,
-    backgroundColor: theme.colors.tagAccentOutlinedBackground,
-    borderColor: null,
+  [COLOR_STATE.secondary]: (theme) => ({
+    color: theme.colors.tagBlueContentSecondary,
+    backgroundColor: theme.colors.tagBlueBackgroundSecondary,
+    borderColor: theme.colors.tagBlueBorderSecondaryUnselected,
   }),
 };
 
 const greenColorStates = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.disabled]: (theme, color) => ({
-    color: theme.colors.tagPositiveFontDisabled,
-    backgroundColor: pick(theme, theme.colors.green50, theme.colors.green100Dark),
+  [COLOR_STATE.disabled]: (theme) => ({
+    color: theme.colors.tagGreenContentStateDisabled,
+    backgroundColor: theme.colors.tagGreenBackgroundStateDisabled,
     borderColor: null,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.primary]: (theme, color) => ({
-    color: theme.colors.tagPositiveSolidFont,
-    backgroundColor: theme.colors.tagPositiveSolidBackground,
-    borderColor: null,
+  [COLOR_STATE.primary]: (theme) => ({
+    color: theme.colors.tagGreenContentPrimary,
+    backgroundColor: theme.colors.tagGreenBackgroundPrimary,
+    borderColor: theme.colors.tagGreenBorderPrimaryUnselected,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.secondary]: (theme, color) => ({
-    color: theme.colors.tagPositiveOutlinedFont,
-    backgroundColor: theme.colors.tagPositiveOutlinedBackground,
-    borderColor: null,
+  [COLOR_STATE.secondary]: (theme) => ({
+    color: theme.colors.tagGreenContentSecondary,
+    backgroundColor: theme.colors.tagGreenBackgroundSecondary,
+    borderColor: theme.colors.tagGreenBorderSecondaryUnselected,
   }),
 };
 
 const yellowColorStates = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.disabled]: (theme, color) => ({
-    color: theme.colors.tagWarningFontDisabled,
-    backgroundColor: pick(theme, theme.colors.yellow50, theme.colors.yellow100Dark),
+  [COLOR_STATE.disabled]: (theme) => ({
+    color: theme.colors.tagYellowContentStateDisabled,
+    backgroundColor: theme.colors.tagYellowBackgroundStateDisabled,
     borderColor: null,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.primary]: (theme, color) => ({
-    color: theme.colors.tagWarningSolidFont,
-    backgroundColor: theme.colors.tagWarningSolidBackground,
-    borderColor: null,
+  [COLOR_STATE.primary]: (theme) => ({
+    color: theme.colors.tagYellowContentPrimary,
+    backgroundColor: theme.colors.tagYellowBackgroundPrimary,
+    borderColor: theme.colors.tagYellowBorderPrimaryUnselected,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.secondary]: (theme, color) => ({
-    color: theme.colors.tagWarningOutlinedFont,
-    backgroundColor: theme.colors.tagWarningOutlinedBackground,
-    borderColor: null,
+  [COLOR_STATE.secondary]: (theme) => ({
+    color: theme.colors.tagYellowContentSecondary,
+    backgroundColor: theme.colors.tagYellowBackgroundSecondary,
+    borderColor: theme.colors.tagYellowBorderSecondaryUnselected,
   }),
 };
 
 const redColorStates = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.disabled]: (theme, color) => ({
-    color: theme.colors.tagNegativeFontDisabled,
-    backgroundColor: pick(theme, theme.colors.red50, theme.colors.red100Dark),
+  [COLOR_STATE.disabled]: (theme) => ({
+    color: theme.colors.tagRedContentStateDisabled,
+    backgroundColor: theme.colors.tagRedBackgroundStateDisabled,
     borderColor: null,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.primary]: (theme, color) => ({
-    color: theme.colors.tagNegativeSolidFont,
-    backgroundColor: theme.colors.tagNegativeSolidBackground,
-    borderColor: null,
+  [COLOR_STATE.primary]: (theme) => ({
+    color: theme.colors.tagRedContentPrimary,
+    backgroundColor: theme.colors.tagRedBackgroundPrimary,
+    borderColor: theme.colors.tagRedBorderPrimaryUnselected,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.secondary]: (theme, color) => ({
-    color: theme.colors.tagNegativeOutlinedFont,
-    backgroundColor: theme.colors.tagNegativeOutlinedBackground,
-    borderColor: null,
+  [COLOR_STATE.secondary]: (theme) => ({
+    color: theme.colors.tagRedContentSecondary,
+    backgroundColor: theme.colors.tagRedBackgroundSecondary,
+    borderColor: theme.colors.tagRedBorderSecondaryUnselected,
   }),
 };
 
 const limeColorStates = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.disabled]: (theme, color) => ({
-    color: pick(theme, theme.colors.lime300, theme.colors.lime400Dark),
-    backgroundColor: pick(theme, theme.colors.lime50, theme.colors.lime100Dark),
+  [COLOR_STATE.disabled]: (theme) => ({
+    color: theme.colors.tagLimeContentStateDisabled,
+    backgroundColor: theme.colors.tagLimeBackgroundStateDisabled,
     borderColor: null,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.primary]: (theme, color) => ({
-    color: pick(theme, theme.colors.white, theme.colors.lime900Dark),
-    backgroundColor: pick(theme, theme.colors.lime600, theme.colors.lime400Dark),
-    borderColor: null,
+  [COLOR_STATE.primary]: (theme) => ({
+    color: theme.colors.tagLimeContentPrimary,
+    backgroundColor: theme.colors.tagLimeBackgroundPrimary,
+    borderColor: theme.colors.tagLimeBorderPrimaryUnselected,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.secondary]: (theme, color) => ({
-    color: pick(theme, theme.colors.lime700, theme.colors.lime700Dark),
-    backgroundColor: pick(theme, theme.colors.lime50, theme.colors.lime100Dark),
-    borderColor: null,
+  [COLOR_STATE.secondary]: (theme) => ({
+    color: theme.colors.tagLimeContentSecondary,
+    backgroundColor: theme.colors.tagLimeBackgroundSecondary,
+    borderColor: theme.colors.tagLimeBorderSecondaryUnselected,
   }),
 };
 
 const tealColorStates = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.disabled]: (theme, color) => ({
-    color: pick(theme, theme.colors.teal300, theme.colors.teal400Dark),
-    backgroundColor: pick(theme, theme.colors.teal50, theme.colors.teal100Dark),
+  [COLOR_STATE.disabled]: (theme) => ({
+    color: theme.colors.tagTealContentStateDisabled,
+    backgroundColor: theme.colors.tagTealBackgroundStateDisabled,
     borderColor: null,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.primary]: (theme, color) => ({
-    color: pick(theme, theme.colors.white, theme.colors.teal900Dark),
-    backgroundColor: pick(theme, theme.colors.teal600, theme.colors.teal400Dark),
-    borderColor: null,
+  [COLOR_STATE.primary]: (theme) => ({
+    color: theme.colors.tagTealContentPrimary,
+    backgroundColor: theme.colors.tagTealBackgroundPrimary,
+    borderColor: theme.colors.tagTealBorderPrimaryUnselected,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.secondary]: (theme, color) => ({
-    color: pick(theme, theme.colors.teal700, theme.colors.teal700Dark),
-    backgroundColor: pick(theme, theme.colors.teal50, theme.colors.teal100Dark),
-    borderColor: null,
+  [COLOR_STATE.secondary]: (theme) => ({
+    color: theme.colors.tagTealContentSecondary,
+    backgroundColor: theme.colors.tagTealBackgroundSecondary,
+    borderColor: theme.colors.tagTealBorderSecondaryUnselected,
   }),
 };
 
 const orangeColorStates = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.disabled]: (theme, color) => ({
-    color: pick(theme, theme.colors.orange300, theme.colors.orange400Dark),
-    backgroundColor: pick(theme, theme.colors.orange50, theme.colors.orange100Dark),
+  [COLOR_STATE.disabled]: (theme) => ({
+    color: theme.colors.tagOrangeContentStateDisabled,
+    backgroundColor: theme.colors.tagOrangeBackgroundStateDisabled,
     borderColor: null,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.primary]: (theme, color) => ({
-    color: pick(theme, theme.colors.white, theme.colors.orange900Dark),
-    backgroundColor: pick(theme, theme.colors.orange600, theme.colors.orange400Dark),
-    borderColor: null,
+  [COLOR_STATE.primary]: (theme) => ({
+    color: theme.colors.tagOrangeContentPrimary,
+    backgroundColor: theme.colors.tagOrangeBackgroundPrimary,
+    borderColor: theme.colors.tagOrangeBorderPrimaryUnselected,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.secondary]: (theme, color) => ({
-    color: pick(theme, theme.colors.orange700, theme.colors.orange700Dark),
-    backgroundColor: pick(theme, theme.colors.orange50, theme.colors.orange100Dark),
-    borderColor: null,
+  [COLOR_STATE.secondary]: (theme) => ({
+    color: theme.colors.tagOrangeContentSecondary,
+    backgroundColor: theme.colors.tagOrangeBackgroundSecondary,
+    borderColor: theme.colors.tagOrangeBorderSecondaryUnselected,
   }),
 };
 
 const purpleColorStates = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.disabled]: (theme, color) => ({
-    color: pick(theme, theme.colors.purple300, theme.colors.purple400Dark),
-    backgroundColor: pick(theme, theme.colors.purple50, theme.colors.purple100Dark),
+  [COLOR_STATE.disabled]: (theme) => ({
+    color: theme.colors.tagPurpleContentStateDisabled,
+    backgroundColor: theme.colors.tagPurpleBackgroundStateDisabled,
     borderColor: null,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.primary]: (theme, color) => ({
-    color: pick(theme, theme.colors.white, theme.colors.purple900Dark),
-    backgroundColor: pick(theme, theme.colors.purple600, theme.colors.purple400Dark),
-    borderColor: null,
+  [COLOR_STATE.primary]: (theme) => ({
+    color: theme.colors.tagPurpleContentPrimary,
+    backgroundColor: theme.colors.tagPurpleBackgroundPrimary,
+    borderColor: theme.colors.tagPurpleBorderPrimaryUnselected,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.secondary]: (theme, color) => ({
-    color: pick(theme, theme.colors.purple700, theme.colors.purple700Dark),
-    backgroundColor: pick(theme, theme.colors.purple50, theme.colors.purple100Dark),
-    borderColor: null,
+  [COLOR_STATE.secondary]: (theme) => ({
+    color: theme.colors.tagPurpleContentSecondary,
+    backgroundColor: theme.colors.tagPurpleBackgroundSecondary,
+    borderColor: theme.colors.tagPurpleBorderSecondaryUnselected,
   }),
 };
 
-const brownColorStates = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.disabled]: (theme, color) => ({
-    color: pick(theme, theme.colors.amber200, theme.colors.amber400Dark),
-    backgroundColor: null,
-    borderColor: pick(theme, theme.colors.amber200, theme.colors.amber400Dark),
-  }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.primary]: (theme, color) => ({
-    color: pick(theme, theme.colors.white, theme.colors.gray900Dark),
-    backgroundColor: pick(theme, theme.colors.amber600, theme.colors.amber400Dark),
+const magentaColorStates = {
+  [COLOR_STATE.disabled]: (theme) => ({
+    color: theme.colors.tagMagentaContentStateDisabled,
+    backgroundColor: theme.colors.tagMagentaBackgroundStateDisabled,
     borderColor: null,
   }),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // @ts-ignore
-  [COLOR_STATE.secondary]: (theme, color) => ({
-    color: pick(theme, theme.colors.amber600, theme.colors.amber600Dark),
-    backgroundColor: null,
-    borderColor: pick(theme, theme.colors.amber600, theme.colors.amber600Dark),
+  [COLOR_STATE.primary]: (theme) => ({
+    color: theme.colors.tagMagentaContentPrimary,
+    backgroundColor: theme.colors.tagMagentaBackgroundPrimary,
+    borderColor: theme.colors.tagMagentaBorderPrimaryUnselected,
+  }),
+  [COLOR_STATE.secondary]: (theme) => ({
+    color: theme.colors.tagMagentaContentSecondary,
+    backgroundColor: theme.colors.tagMagentaBackgroundSecondary,
+    borderColor: theme.colors.tagMagentaBorderSecondaryUnselected,
+  }),
+};
+
+const grayColorStates = {
+  [COLOR_STATE.disabled]: (theme) => ({
+    color: theme.colors.tagGrayContentStateDisabled,
+    backgroundColor: theme.colors.tagGrayBackgroundStateDisabled,
+    borderColor: null,
+  }),
+  [COLOR_STATE.primary]: (theme) => ({
+    color: theme.colors.tagGrayContentPrimary,
+    backgroundColor: theme.colors.tagGrayBackgroundPrimary,
+    borderColor: theme.colors.tagGrayBorderPrimaryUnselected,
+  }),
+  [COLOR_STATE.secondary]: (theme) => ({
+    color: theme.colors.tagGrayContentSecondary,
+    backgroundColor: theme.colors.tagGrayBackgroundSecondary,
+    borderColor: theme.colors.tagGrayBorderSecondaryUnselected,
   }),
 };
 
@@ -341,22 +258,24 @@ const customColorStates = {
 };
 
 const colorMap = {
-  [KIND.neutral]: neutralColorStates,
-  [KIND.primary]: primaryColorStates,
-  [KIND.accent]: blueColorStates,
-  [KIND.positive]: greenColorStates,
-  [KIND.warning]: yellowColorStates,
-  [KIND.negative]: redColorStates,
-  [KIND.black]: primaryColorStates,
+  [KIND.neutral]: DeprecatedStyles.deprecatedNeutralColorStates,
+  [KIND.primary]: DeprecatedStyles.deprecatedPrimaryColorStates,
+  [KIND.accent]: DeprecatedStyles.deprecatedBlueColorStates,
+  [KIND.positive]: DeprecatedStyles.deprecatedGreenColorStates,
+  [KIND.warning]: DeprecatedStyles.deprecatedYellowColorStates,
+  [KIND.negative]: DeprecatedStyles.deprecatedRedColorStates,
+  [KIND.black]: DeprecatedStyles.deprecatedPrimaryColorStates,
   [KIND.blue]: blueColorStates,
   [KIND.green]: greenColorStates,
   [KIND.red]: redColorStates,
   [KIND.yellow]: yellowColorStates,
   [KIND.orange]: orangeColorStates,
   [KIND.purple]: purpleColorStates,
-  [KIND.brown]: brownColorStates,
+  [KIND.brown]: DeprecatedStyles.deprecatedBrownColorStates,
   [KIND.lime]: limeColorStates,
   [KIND.teal]: tealColorStates,
+  [KIND.magenta]: magentaColorStates,
+  [KIND.gray]: grayColorStates,
   [KIND.custom]: customColorStates,
 };
 
@@ -387,9 +306,10 @@ export const Action = styled<'span', SharedPropsArg>(
       cursor: $disabled ? 'not-allowed' : 'pointer',
       display: 'flex',
       [marginDir]: {
-        [SIZE.small]: '8px',
-        [SIZE.medium]: '12px',
-        [SIZE.large]: '16px',
+        [SIZE.xSmall]: $theme.sizing.scale100,
+        [SIZE.small]: $theme.sizing.scale300,
+        [SIZE.medium]: $theme.sizing.scale300,
+        [SIZE.large]: $theme.sizing.scale500,
       }[$size],
       outline: 'none',
       transitionProperty: 'all',
@@ -409,12 +329,12 @@ export const StartEnhancerContainer = styled<'div', SharedPropsArg>(
   }: SharedPropsArg & {
     $theme: Theme;
   }) => {
-    let paddingMagnitude = $theme.sizing.scale300;
-    if ($size === SIZE.medium) {
-      paddingMagnitude = $theme.sizing.scale400;
-    } else if ($size === SIZE.large) {
-      paddingMagnitude = $theme.sizing.scale600;
-    }
+    const paddingMagnitude = {
+      [SIZE.xSmall]: $theme.sizing.scale100,
+      [SIZE.small]: $theme.sizing.scale300,
+      [SIZE.medium]: $theme.sizing.scale300,
+      [SIZE.large]: $theme.sizing.scale500,
+    }[$size];
 
     const paddingDir: string = $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
 
@@ -467,22 +387,45 @@ export const Root = styled<'span', SharedPropsArg>(
       $isFocusVisible,
       $color,
       $size = SIZE.small,
-      $contentMaxWidth,
     } = props;
-    const borderRadius = $size === SIZE.small ? $theme.borders.radius200 : $theme.borders.radius300;
+    const borderRadius =
+      $size === SIZE.small || $size === SIZE.xSmall
+        ? $theme.borders.radius200
+        : $theme.borders.radius300;
     const paddingMagnitude = {
-      [SIZE.small]: $theme.sizing.scale300,
-      [SIZE.medium]: $theme.sizing.scale500,
-      [SIZE.large]: $theme.sizing.scale600,
+      [SIZE.xSmall]: $theme.sizing.scale100,
+      [SIZE.small]: $theme.sizing.scale200,
+      [SIZE.medium]: $theme.sizing.scale300,
+      [SIZE.large]: $theme.sizing.scale400,
     }[$size];
-    const borderWidth =
-      (!$disabled && $hierarchy === HIERARCHY.primary) || $kind !== KIND.custom ? 0 : '2px';
+    const paddingLongitude = {
+      [SIZE.xSmall]: $theme.sizing.scale0,
+      [SIZE.small]: $theme.sizing.scale100,
+      [SIZE.medium]: $theme.sizing.scale100,
+      [SIZE.large]: $theme.sizing.scale300,
+    }[$size];
+    const isActionable = !$disabled && ($clickable || $closeable);
+    const borderWidthValue = {
+      [SIZE.xSmall]: '1px',
+      [SIZE.small]: '1px',
+      [SIZE.medium]: '1px',
+      [SIZE.large]: '2px',
+    }[$size];
+
     const { color, backgroundColor, borderColor } = colorMap[$kind][getColorStateFromProps(props)](
       $theme,
       $color
     );
+    // previously, only secondary and disabled custom tags had borders
+    // now, it extends to actionable tags as well
+    const showBorder =
+      ($kind === KIND.custom && ($hierarchy === HIERARCHY.secondary || $disabled)) ||
+      ($kind !== KIND.custom && isActionable && !!borderColor);
+    const borderWidth = showBorder ? borderWidthValue : 0;
+
     return {
       ...{
+        [SIZE.xSmall]: $theme.typography.LabelXSmall,
         [SIZE.small]: $theme.typography.LabelSmall,
         [SIZE.medium]: $theme.typography.LabelMedium,
         [SIZE.large]: $theme.typography.LabelLarge,
@@ -510,31 +453,55 @@ export const Root = styled<'span', SharedPropsArg>(
       cursor: $disabled ? 'not-allowed' : $clickable ? 'pointer' : 'default',
       display: 'inline-flex',
       height: {
+        [SIZE.xSmall]: '20px',
         [SIZE.small]: '24px',
         [SIZE.medium]: '32px',
         [SIZE.large]: '40px',
       }[$size],
       justifyContent: 'space-between',
-      maxWith: $contentMaxWidth === null ? '100%' : 'auto',
       marginTop: '5px',
       marginBottom: '5px',
       marginLeft: '5px',
       marginRight: '5px',
-      paddingTop: $theme.sizing.scale0,
-      paddingBottom: $theme.sizing.scale0,
+      paddingTop: paddingLongitude,
+      paddingBottom: paddingLongitude,
       paddingLeft: paddingMagnitude,
       paddingRight: paddingMagnitude,
       outline: 'none',
-      ':hover':
-        $disabled || !$clickable
-          ? {}
-          : {
-              boxShadow: `inset 0px 0px 100px ${pick(
-                $theme,
-                `rgba(0, 0, 0, 0.08)`,
-                `rgba(255, 255, 255, 0.2)`
-              )}`,
+      ...(isActionable
+        ? {
+            // adding overlay component to cover both border and content area for hovered and pressed state
+            position: 'relative',
+            '::before': {
+              content: "''",
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              borderTopLeftRadius: 'inherit',
+              borderTopRightRadius: 'inherit',
+              borderBottomRightRadius: 'inherit',
+              borderBottomLeftRadius: 'inherit',
+              backgroundColor: 'transparent',
+              pointerEvents: 'none',
             },
+            // end of overlay
+            // Applies only on devices that support hovering, like desktop computers.
+            '@media (hover: hover)': {
+              ':hover::before': {
+                backgroundColor: $theme.colors.hoverOverlayAlpha,
+                // this box shadow is used to extend the overlay to the border
+                boxShadow: `0 0 0 ${borderWidth} ${$theme.colors.hoverOverlayAlpha}`,
+              },
+            },
+            ':active::before': {
+              backgroundColor: $theme.colors.pressedOverlayAlpha,
+              // this box shadow is used to extend the overlay to the border
+              boxShadow: `0 0 0 ${borderWidth} ${$theme.colors.pressedOverlayAlpha}`,
+            },
+          }
+        : {}),
       ':focus':
         $disabled || (!$clickable && !$closeable)
           ? {}
