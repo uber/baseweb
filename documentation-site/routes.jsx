@@ -276,6 +276,10 @@ const routes = [
             itemId: '/components/tag',
           },
           {
+            title: 'Tag Group',
+            itemId: '/components/tag-group',
+          },
+          {
             title: 'Tile',
             itemId: '/components/tile',
           },
