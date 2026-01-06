@@ -91,7 +91,7 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
               if (isRadio) {
                 this.childRefs[index] = React.createRef<HTMLButtonElement>();
               }
-              return React.cloneElement(child, {
+              return React.cloneElement(child as React.ReactElement, {
                 disabled: disabled || child.props.disabled,
                 isSelected,
                 ref: isRadio ? this.childRefs[index] : undefined,
