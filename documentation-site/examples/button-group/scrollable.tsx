@@ -5,7 +5,7 @@ import { ButtonGroup } from "baseui/button-group";
 export default function Example() {
   return (
     <div style={{ width: "200px", border: "1px solid black" }}>
-      <ButtonGroup wrap={true}>
+      <ButtonGroup wrap={false}>
         <Button>Label</Button>
         <Button>Label</Button>
         <Button>Label</Button>

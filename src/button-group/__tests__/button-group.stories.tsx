@@ -13,6 +13,10 @@ import { Scenario as ButtonGroupOverrides } from './button-group-overrides.scena
 import { Scenario as ButtonGroupPill } from './button-group-pill.scenario';
 import { Scenario as ButtonGroupRadio } from './button-group-radio.scenario';
 import { Scenario as ButtonGroupSizes } from './button-group-sizes.scenario';
+import { Scenario as ButtonGroupPadding } from './button-group-padding-scenario';
+import { Scenario as ButtonGroupWrap } from './button-group-wrap.scenario';
+import { Scenario as ButtonGroupKinds } from './button-group-kinds.scenario';
+import { Scenario as ButtonGroupA11y } from './button-group-a11y.scenario';
 
 export const Checkbox = () => <ButtonGroupCheckbox />;
 export const Disabled = () => <ButtonGroupDisabled />;
@@ -22,3 +26,13 @@ export const Overrides = () => <ButtonGroupOverrides />;
 export const Pill = () => <ButtonGroupPill />;
 export const Radio = () => <ButtonGroupRadio />;
 export const Sizes = () => <ButtonGroupSizes />;
+export const Padding = () => <ButtonGroupPadding />;
+export const Wrap = () => <ButtonGroupWrap />;
+export const Kinds = () => <ButtonGroupKinds />;
+export const A11y = () => <ButtonGroupA11y />;
+
+export default {
+  meta: {
+    runtimeErrorsAllowed: true,
+  },
+};

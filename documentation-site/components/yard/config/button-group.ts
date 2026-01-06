@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { ButtonGroup, MODE, SIZE, SHAPE } from "baseui/button-group";
+import { ButtonGroup, MODE, SIZE, SHAPE, PADDING } from "baseui/button-group";
 import { Button } from "baseui/button";
 import { PropTypes } from "react-view";
 import type { TConfig } from "../types";
@@ -22,6 +22,7 @@ const ButtonGroupConfig: TConfig = {
     MODE,
     SIZE,
     SHAPE,
+    PADDING,
   },
   theme: [
     "buttonPrimaryFill",
@@ -79,9 +80,27 @@ const ButtonGroupConfig: TConfig = {
       description: "Defines which buttons are selected",
       hidden: true,
     },
+    wrap: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: "Defines if the button group should wrap.",
+    },
+    padding: {
+      type: PropTypes.Enum,
+      options: PADDING,
+      description:
+        "Defines the padding of the buttons in the button group. 'none' by default - no padding, 'default' - 8px horizontal padding, 'custom' - expect custom padding from developer",
+      value: "PADDING.none",
+      defaultValue: "PADDING.none",
+      imports: {
+        "baseui/button-group": {
+          named: ["PADDING"],
+        },
+      },
+    },
     size: {
-      value: "SIZE.default",
-      defaultValue: "SIZE.default",
+      value: "SIZE.medium",
+      defaultValue: "SIZE.medium",
       options: SIZE,
       type: PropTypes.Enum,
       description: "Defines the size of the button.",
@@ -92,8 +111,8 @@ const ButtonGroupConfig: TConfig = {
       },
     },
     shape: {
-      value: "SHAPE.default",
-      defaultValue: "SHAPE.default",
+      value: "SHAPE.rectangular",
+      defaultValue: "SHAPE.rectangular",
       options: SHAPE,
       type: PropTypes.Enum,
       description: "Defines the shape of the button in the button group.",

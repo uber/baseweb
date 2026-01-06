@@ -12,3 +12,9 @@ export const MODE = Object.freeze({
 export const STATE_CHANGE_TYPE = Object.freeze({
   change: 'change',
 } as const);
+
+export const PADDING = Object.freeze({
+  default: 'default',
+  none: 'none',
+  custom: 'custom', // expect custom padding from developer
+} as const);
