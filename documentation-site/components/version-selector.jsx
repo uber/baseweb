@@ -33,6 +33,26 @@ const majorVersionsToDisplay = majorVersions.map((version) => {
   };
 });
 const VersionSelector = () => {
+  const handleVersionSelect = async (item) => {
+    const versionUrl = `https://${item.label}.baseweb.design`;
+
+    try {
+      // Check if the version page exists
+      const response = await fetch(versionUrl, { method: 'HEAD' });
+
+      if (response.ok) {
+        // Page exists, navigate to it
+        window.location.href = versionUrl;
+      } else {
+        // Page doesn't exist, redirect to main site
+        window.location.href = 'https://baseweb.design/';
+      }
+    } catch (error) {
+      // In case of network error, redirect to main site
+      window.location.href = 'https://baseweb.design/';
+    }
+  };
+
   return (
     <StatefulPopover
       placement={PopoverPlacement.bottomLeft}
@@ -44,7 +64,7 @@ const VersionSelector = () => {
           <StatefulMenu
             items={majorVersionsToDisplay}
             onItemSelect={({ item }) => {
-              window.open(`https://${item.label}.baseweb.design`);
+              handleVersionSelect(item);
               close();
             }}
             overrides={{
