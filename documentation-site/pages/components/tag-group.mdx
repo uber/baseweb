@@ -1,0 +1,36 @@
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
+
+import Hierarchy from "examples/tag-group/hierachy.tsx";
+import Size from "examples/tag-group/size.tsx";
+import Wrap from "examples/tag-group/wrap.tsx";
+
+import { TagGroup } from "baseui/tag-group";
+import * as TagGroupExports from "baseui/tag-group";
+
+export default Layout;
+
+# Tag Group
+
+Groups multiple tags together with shared styling and behavior.
+
+## Examples
+
+<Example title="Tag Group hierarchy" path="tag-group/hierachy.tsx">
+  <Hierarchy />
+</Example>
+
+<Example title="Tag Group size" path="tag-group/size.tsx">
+  <Size />
+</Example>
+
+<Example title="Tag Group wrap" path="tag-group/wrap.tsx">
+  <Wrap />
+</Example>
+
+<Exports
+  component={TagGroupExports}
+  title="Tag Group exports"
+  path="baseui/tag-group"
+/>
