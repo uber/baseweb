@@ -4,7 +4,7 @@ const posts = [
     author: "Diana Suvorova",
     authorLink: "https://github.com/diana.suvorova",
     title: "What's new in Base Web 16?",
-    tagline: "Refreshed Button and Tag components, plus introducing the new Tag Group component",
+    tagline: "Refreshed Button and Tag components, new Tag Group component",
     date: "7 January 2026",
     coverImage:
       "https://user-images.githubusercontent.com/5317799/160484160-c3de4f21-c4bd-4978-b39a-7c5c677b449f.png",
