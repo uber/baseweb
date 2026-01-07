@@ -1,0 +1,36 @@
+import Layout from "../../../components/layout";
+import { Meta } from "../../../components/blog";
+import metadata from "./metadata.json";
+
+export default Layout;
+
+<Meta data={metadata} />
+
+# Base Web v16 Released
+
+Base Web v16 brings refreshed designs for Button and Tag components, plus a new Tag Group component.
+
+## Refreshed Button and Tag
+
+Both Button and Tag components have updated designs with better visual consistency and improved accessibility. Your existing code continues to work without changes.
+
+## New Tag Group Component
+
+Tag Group simplifies managing multiple tags with built-in add/remove functionality, validation, and keyboard support.
+
+```jsx
+import { TagGroup } from "baseui/tag-group";
+
+function MyComponent() {
+  const [tags, setTags] = React.useState(["Design", "React", "UI"]);
+  return <TagGroup tags={tags} onChange={setTags} />;
+}
+```
+
+## Upgrade
+
+```bash
+npm install baseui@^16.0.0
+```
+
+Check out the [Button](/components/button), [Tag](/components/tag), and [Tag Group](/components/tag-group) documentation for details.
