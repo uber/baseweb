@@ -1,5 +1,18 @@
 const posts = [
   {
+    path: "/blog/base-web-v16",
+    author: "Diana Suvorova",
+    authorLink: "https://github.com/diana.suvorova",
+    title: "What's new in Base Web 16?",
+    tagline: "Refreshed Button and Tag components, plus introducing the new Tag Group component",
+    date: "7 January 2026",
+    coverImage:
+      "https://user-images.githubusercontent.com/5317799/160484160-c3de4f21-c4bd-4978-b39a-7c5c677b449f.png",
+    coverImageWidth: 960,
+    coverImageHeight: 575,
+    keyWords: ["Base Web", "Design System", "React", "v16", "Button", "Tag", "Tag Group"],
+  },
+  {
     path: "/blog/file-uploader",
     author: "Emerson Pfeiffer",
     authorLink: "https://github.com/epfeiffe",
