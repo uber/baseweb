@@ -55,14 +55,6 @@ const Adopters = (props) => (
         </FlexGridItem>
       ))}
     </FlexGrid>
-    <Button
-      $as="a"
-      href="https://github.com/uber/baseweb/issues/1889"
-      size="compact"
-      kind="secondary"
-    >
-      Please let us know if you are using Base Web!
-    </Button>
   </>
 );
 
