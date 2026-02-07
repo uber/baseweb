@@ -88,6 +88,10 @@ const routes = [
             itemId: '/components/checkbox',
           },
           {
+            title: 'Checkbox-v2',
+            itemId: '/components/checkbox-v2',
+          },
+          {
             title: 'Combobox',
             itemId: '/components/combobox',
           },
@@ -126,6 +130,10 @@ const routes = [
           {
             title: 'Stepper',
             itemId: '/components/stepper',
+          },
+          {
+            title: 'Switch',
+            itemId: '/components/switch',
           },
           {
             title: 'Textarea',

@@ -184,6 +184,18 @@ const primitiveColors: PrimitiveColors = {
   /* @deprecated use orange color tokens instead */
   brown700: '#3D281E',
 
+  // Brand colors
+  brandDefault50: '#EFF4FE',
+  brandDefault100: '#DEE9FE',
+  brandDefault200: '#CDDEFF',
+  brandDefault300: '#A9C9FF',
+  brandDefault400: '#6DAAFB',
+  brandDefault500: '#068BEE',
+  brandDefault600: '#276EF1',
+  brandDefault700: '#175BCC',
+  brandDefault800: '#1948A3',
+  brandDefault900: '#002661',
+
   /***** dark color tokens *****/
   gray50Dark: '#161616',
   gray100Dark: '#292929',
@@ -305,6 +317,18 @@ const primitiveColors: PrimitiveColors = {
   magenta700Dark: '#E099C9',
   magenta800Dark: '#EEB6DB',
   magenta900Dark: '#F1D4E7',
+
+  // Brand colors
+  brandDefault50Dark: '#09152C',
+  brandDefault100Dark: '#182946',
+  brandDefault200Dark: '#22375C',
+  brandDefault300Dark: '#2D4775',
+  brandDefault400Dark: '#335BA3',
+  brandDefault500Dark: '#3F6EC5',
+  brandDefault600Dark: '#5E8BDB',
+  brandDefault700Dark: '#93B4EE',
+  brandDefault800Dark: '#B3CCF6',
+  brandDefault900Dark: '#D1DFF6',
 };
 
 const primitiveLightColors = {} as PrimitiveLightColors;

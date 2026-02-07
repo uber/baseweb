@@ -1,0 +1,75 @@
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
+
+import Basic from "examples/switch/basic-controlled.tsx";
+import Uncontrolled from "examples/switch/basic-uncontrolled";
+import Multiline from "examples/switch/multiline.tsx";
+import Disabled from "examples/switch/disabled.tsx";
+import Alignment from "examples/switch/alignment.tsx";
+import Size from "examples/switch/size.tsx";
+import ShowIcon from "examples/switch/showIcon.tsx";
+import Customization from "examples/switch/overrides.tsx";
+
+import { Block } from "baseui/block";
+import * as SwitchExports from "baseui/switch";
+
+import Yard from "../../components/yard/index";
+import switchYardConfig from "../../components/yard/config/switch";
+
+export default Layout;
+
+# Switch
+
+<Yard placeholderHeight={48} {...switchYardConfig} />
+
+Switches are used to allow users to to toggle an option on/off.
+
+Switch is used as a toggle to allow the user to make a binary choice usually (but not limited) in
+the form of a yes/no or on/off suggestion. Switches are often used in product settings or as filter
+options. When engaged (on), Base Web switches are colored and when disengaged (off) they’re grey.
+
+## Examples
+
+<Example title="Basic usage" path="switch/basic-controlled.tsx">
+  <Basic />
+</Example>
+
+<Example title="Multiple lines" path="switch/multiline.tsx">
+  <Multiline />
+</Example>
+
+<Example title="Disabled state" path="switch/disabled.tsx">
+  <Disabled />
+</Example>
+
+<Example title="Alignments" path="switch/alignment.tsx">
+  <Alignment />
+</Example>
+
+<Example title="Sizes" path="switch/size.tsx">
+  <Size />
+</Example>
+
+<Example title="ShowIcon" path="switch/showIcon.tsx">
+  <ShowIcon />
+</Example>
+
+<Example title="Overriding styles" path="switch/overrides.tsx">
+  <Customization />
+</Example>
+
+<Example
+  title="Stateful (uncontrolled) usage"
+  path="switch/basic-uncontrolled.tsx"
+>
+  <Uncontrolled />
+</Example>
+
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `Switch`, which manages its own state.
+
+<Exports
+  component={SwitchExports}
+  title="Switch exports"
+  path="baseui/switch"
+/>

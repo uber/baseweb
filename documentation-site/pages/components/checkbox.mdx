@@ -21,7 +21,21 @@ import * as CheckboxExports from "baseui/checkbox";
 import Yard from "../../components/yard/index";
 import checkboxYardConfig from "../../components/yard/config/checkbox";
 
+import { Notification, KIND as NOTIFICATION_KIND } from "baseui/notification";
+
 export default Layout;
+
+<Notification
+  overrides={{ Body: { style: { width: "auto", margin: "16px 0 0 0" } } }}
+  kind={NOTIFICATION_KIND.warning}
+>
+  This checkbox component is about to be deprecated in favor of 2 separate
+  components: Checkbox-v2 and Switch. The supported apis keep almost same, so
+  the migration just requires minimal efforts(most likely only change import
+  path) but gains much more benefits. We encouraged you to start new
+  implementations with Checkbox-v2 or Switch depending your use case and design.
+  Any migrations from Checkbox to Checkbox-v2 or Switch are recommended.
+</Notification>
 
 # Checkbox
 
@@ -91,7 +105,7 @@ options. When engaged (on), Base Web toggles are colored and when disengaged (of
   <Uncontrolled />
 </Example>
 
-As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulCheckbox`, which manages its own state.
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `Checkbox`, which manages its own state.
 
 <Exports
   component={CheckboxExports}

@@ -49,6 +49,20 @@ export default (
       hexToRgba(defaultFoundationColors.primaryB, '0.2') ||
       '',
     borderInverseSelected: foundation.primaryB,
+
+    // brand default
+    brandBackgroundPrimary: primitiveLightColors.brandDefault600,
+    brandBackgroundSecondary: primitiveLightColors.brandDefault50,
+    brandBackgroundTertiary: primitiveLightColors.white,
+    brandBackgroundDisabled: primitiveLightColors.brandDefault50,
+    brandContentPrimary: primitiveLightColors.brandDefault600,
+    brandContentOnPrimary: primitiveLightColors.white,
+    brandContentOnSecondary: primitiveLightColors.brandDefault700,
+    brandContentOnTertiary: primitiveLightColors.black,
+    brandContentOnGradient: primitiveLightColors.white,
+    brandContentDisabled: primitiveLightColors.brandDefault300,
+    brandBorderAccessible: primitiveLightColors.brandDefault600,
+    brandBorderSubtle: primitiveLightColors.brandDefault100,
   };
 
   const coreExtensions: CoreExtensionSemanticColors = {

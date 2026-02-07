@@ -169,6 +169,19 @@ export type CoreSemanticColors = {
   borderInverseOpaque: string;
   borderInverseTransparent: string;
   borderInverseSelected: string;
+  // Brand default
+  brandBackgroundPrimary: string;
+  brandBackgroundSecondary: string;
+  brandBackgroundTertiary: string;
+  brandBackgroundDisabled: string;
+  brandContentPrimary: string;
+  brandContentOnPrimary: string;
+  brandContentOnSecondary: string;
+  brandContentOnTertiary: string;
+  brandContentOnGradient: string;
+  brandContentDisabled: string;
+  brandBorderAccessible: string;
+  brandBorderSubtle: string;
 };
 export type CoreExtensionSemanticColors = {
   // Backgrounds
