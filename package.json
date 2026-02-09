@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "16.0.0",
+  "version": "16.0.1",
   "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
@@ -29,8 +29,7 @@
     "axe-core": "^4.11.0",
     "card-validator": "^6.2.0",
     "csstype": "2.6.11",
-    "d3": "^6.7.0",
-    "d3-array": "2.4.0",
+    "d3": "^7.9.0",
     "date-fns": "^2.28.0",
     "date-fns-tz": "^1.2.2",
     "just-extend": "4.1.1",
