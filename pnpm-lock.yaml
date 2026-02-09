@@ -26,9 +26,6 @@ importers:
       d3:
         specifier: ^7.9.0
         version: 7.9.0
-      d3-array:
-        specifier: 3.2.4
-        version: 3.2.4
       date-fns:
         specifier: ^2.28.0
         version: 2.30.0

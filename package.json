@@ -30,7 +30,6 @@
     "card-validator": "^6.2.0",
     "csstype": "2.6.11",
     "d3": "^7.9.0",
-    "d3-array": "3.2.4",
     "date-fns": "^2.28.0",
     "date-fns-tz": "^1.2.2",
     "just-extend": "4.1.1",
