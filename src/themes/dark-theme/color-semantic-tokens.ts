@@ -41,6 +41,19 @@ export default (foundation: FoundationColors = defaultFoundationColors): Semanti
     borderInverseTransparent: hexToRgba(foundation.primaryB, '0.2') || '',
     borderInverseSelected: foundation.primaryB,
 
+    // Brand Default
+    brandBackgroundPrimary: primitiveDarkColors.brandDefault500Dark,
+    brandBackgroundSecondary: primitiveDarkColors.brandDefault100Dark,
+    brandBackgroundTertiary: primitiveDarkColors.white,
+    brandBackgroundDisabled: primitiveDarkColors.brandDefault100Dark,
+    brandContentPrimary: primitiveDarkColors.brandDefault600Dark,
+    brandContentOnPrimary: primitiveDarkColors.white,
+    brandContentOnSecondary: primitiveDarkColors.brandDefault700Dark,
+    brandContentOnTertiary: primitiveDarkColors.black,
+    brandContentOnGradient: primitiveDarkColors.white,
+    brandContentDisabled: primitiveDarkColors.brandDefault400Dark,
+    brandBorderAccessible: primitiveDarkColors.brandDefault600Dark,
+    brandBorderSubtle: primitiveDarkColors.brandDefault400Dark,
   };
 
   const coreExtensions: CoreExtensionSemanticColors = {

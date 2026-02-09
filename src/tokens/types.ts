@@ -168,6 +168,18 @@ export type PrimitiveColors = {
   /** @deprecated use blue color tokens instead */
   cobalt700: string;
 
+  // brand color tokens
+  brandDefault50: string;
+  brandDefault100: string;
+  brandDefault200: string;
+  brandDefault300: string;
+  brandDefault400: string;
+  brandDefault500: string;
+  brandDefault600: string;
+  brandDefault700: string;
+  brandDefault800: string;
+  brandDefault900: string;
+
   // dark color tokens
   gray50Dark: string;
   gray100Dark: string;
@@ -289,6 +301,17 @@ export type PrimitiveColors = {
   magenta700Dark: string;
   magenta800Dark: string;
   magenta900Dark: string;
+
+  brandDefault50Dark: string;
+  brandDefault100Dark: string;
+  brandDefault200Dark: string;
+  brandDefault300Dark: string;
+  brandDefault400Dark: string;
+  brandDefault500Dark: string;
+  brandDefault600Dark: string;
+  brandDefault700Dark: string;
+  brandDefault800Dark: string;
+  brandDefault900Dark: string;
 };
 
 export type PrimitiveLightColors = {

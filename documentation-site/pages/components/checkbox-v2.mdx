@@ -1,0 +1,84 @@
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
+
+import Basic from "examples/checkbox-v2/basic-controlled.tsx";
+import Uncontrolled from "examples/checkbox-v2/basic-uncontrolled";
+import Multiline from "examples/checkbox-v2/multiline.tsx";
+import Error from "examples/checkbox-v2/error.tsx";
+import Indeterminate from "examples/checkbox-v2/indeterminate.tsx";
+import Disabled from "examples/checkbox-v2/disabled.tsx";
+import Alignment from "examples/checkbox-v2/alignment.tsx";
+import Customization from "examples/checkbox-v2/overrides.tsx";
+import ComponentOverrides from "examples/checkbox-v2/component-overrides.tsx";
+
+import { Block } from "baseui/block";
+import * as CheckboxExports from "baseui/checkbox-v2";
+
+import Yard from "../../components/yard/index";
+import checkboxYardConfig from "../../components/yard/config/checkbox-v2";
+
+export default Layout;
+
+# Checkbox
+
+<Yard placeholderHeight={48} {...checkboxYardConfig} />
+
+Checkboxes are used to provide users with multiple options for selection in a series of options.
+
+## When to use
+
+- When a collection of options share context.
+- When a user wants to select multiple options.
+
+## Examples
+
+<Example title="Basic usage" path="checkbox-v2/basic-controlled.tsx">
+  <Basic />
+</Example>
+
+<Example title="Multiple lines" path="checkbox-v2/multiline.tsx">
+  <Multiline />
+</Example>
+
+<Example title="Error state" path="checkbox-v2/error.tsx">
+  <Error />
+</Example>
+
+<Example title="Indeterminate state" path="checkbox-v2/indeterminate.tsx">
+  <Indeterminate />
+</Example>
+
+<Example title="Disabled state" path="checkbox-v2/disabled.tsx">
+  <Disabled />
+</Example>
+
+<Example title="Alignments" path="checkbox-v2/alignment.tsx">
+  <Alignment />
+</Example>
+
+<Example title="Overriding styles" path="checkbox-v2/overrides.tsx">
+  <Customization />
+</Example>
+
+<Example
+  title="Overriding sub-components"
+  path="checkbox-v2/component-overrides.tsx"
+>
+  <ComponentOverrides />
+</Example>
+
+<Example
+  title="Stateful (uncontrolled) usage"
+  path="checkbox-v2/basic-uncontrolled.tsx"
+>
+  <Uncontrolled />
+</Example>
+
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `Checkbox`, which manages its own state.
+
+<Exports
+  component={CheckboxExports}
+  title="Checkbox exports"
+  path="baseui/checkbox-v2"
+/>
