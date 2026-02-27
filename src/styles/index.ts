@@ -17,5 +17,6 @@ export {
 } from './styled';
 export { hexToRgb, expandBorderStyles } from './util';
 export { default as ThemeProvider, type ThemeProviderProps } from './theme-provider';
+export { createCSSVarTheme } from '../stylex/theme-proxy';
 export const ThemeConsumer = ThemeContext.Consumer;
 export * from './types';
