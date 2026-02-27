@@ -159,6 +159,337 @@ function createReadableColorProxy(): ColorTokens {
         brandContentDisabled: '--bui-brand-content-disabled',
         brandBorderAccessible: '--bui-brand-border-accessible',
         brandBorderSubtle: '--bui-brand-border-subtle',
+
+        // Component Colors
+        // Banner
+        bannerActionLowInfo: '--bui-banner-action-low-info',
+        bannerActionLowNegative: '--bui-banner-action-low-negative',
+        bannerActionLowPositive: '--bui-banner-action-low-positive',
+        bannerActionLowWarning: '--bui-banner-action-low-warning',
+        bannerActionHighInfo: '--bui-banner-action-high-info',
+        bannerActionHighNegative: '--bui-banner-action-high-negative',
+        bannerActionHighPositive: '--bui-banner-action-high-positive',
+        bannerActionHighWarning: '--bui-banner-action-high-warning',
+
+        // Bottom Navigation
+        bottomNavigationText: '--bui-bottom-navigation-text',
+        bottomNavigationSelectedText: '--bui-bottom-navigation-selected-text',
+
+        // Buttons - Primary
+        buttonPrimaryFill: '--bui-button-primary-fill',
+        buttonPrimaryText: '--bui-button-primary-text',
+        buttonPrimaryHover: '--bui-button-primary-hover',
+        buttonPrimaryActive: '--bui-button-primary-active',
+        buttonPrimaryHoverOverlay: '--bui-button-primary-hover-overlay',
+        buttonPrimaryActiveOverlay: '--bui-button-primary-active-overlay',
+        buttonPrimarySelectedFill: '--bui-button-primary-selected-fill',
+        buttonPrimarySelectedText: '--bui-button-primary-selected-text',
+        buttonPrimaryLoadingFill: '--bui-button-primary-loading-fill',
+        buttonPrimarySpinnerForeground: '--bui-button-primary-spinner-foreground',
+        buttonPrimarySpinnerBackground: '--bui-button-primary-spinner-background',
+
+        // Buttons - Secondary
+        buttonSecondaryFill: '--bui-button-secondary-fill',
+        buttonSecondaryText: '--bui-button-secondary-text',
+        buttonSecondaryHover: '--bui-button-secondary-hover',
+        buttonSecondaryActive: '--bui-button-secondary-active',
+        buttonSecondaryHoverOverlay: '--bui-button-secondary-hover-overlay',
+        buttonSecondaryActiveOverlay: '--bui-button-secondary-active-overlay',
+        buttonSecondarySelectedFill: '--bui-button-secondary-selected-fill',
+        buttonSecondarySelectedText: '--bui-button-secondary-selected-text',
+        buttonSecondaryLoadingFill: '--bui-button-secondary-loading-fill',
+        buttonSecondarySpinnerForeground: '--bui-button-secondary-spinner-foreground',
+        buttonSecondarySpinnerBackground: '--bui-button-secondary-spinner-background',
+
+        // Buttons - Tertiary
+        buttonTertiaryFill: '--bui-button-tertiary-fill',
+        buttonTertiaryText: '--bui-button-tertiary-text',
+        buttonTertiaryHover: '--bui-button-tertiary-hover',
+        buttonTertiaryActive: '--bui-button-tertiary-active',
+        buttonTertiaryHoverOverlay: '--bui-button-tertiary-hover-overlay',
+        buttonTertiaryActiveOverlay: '--bui-button-tertiary-active-overlay',
+        buttonTertiarySelectedFill: '--bui-button-tertiary-selected-fill',
+        buttonTertiarySelectedText: '--bui-button-tertiary-selected-text',
+        buttonTertiaryLoadingFill: '--bui-button-tertiary-loading-fill',
+        buttonTertiaryFocusFill: '--bui-button-tertiary-focus-fill',
+        buttonTertiaryDisabledActiveFill: '--bui-button-tertiary-disabled-active-fill',
+        buttonTertiaryDisabledActiveText: '--bui-button-tertiary-disabled-active-text',
+        buttonTertiarySpinnerForeground: '--bui-button-tertiary-spinner-foreground',
+        buttonTertiarySpinnerBackground: '--bui-button-tertiary-spinner-background',
+
+        // Buttons - Danger Primary
+        buttonDangerPrimaryFill: '--bui-button-danger-primary-fill',
+        buttonDangerPrimaryText: '--bui-button-danger-primary-text',
+        buttonDangerPrimaryHoverOverlay: '--bui-button-danger-primary-hover-overlay',
+        buttonDangerPrimaryActiveOverlay: '--bui-button-danger-primary-active-overlay',
+        buttonDangerPrimarySelectedFill: '--bui-button-danger-primary-selected-fill',
+        buttonDangerPrimarySelectedText: '--bui-button-danger-primary-selected-text',
+        buttonDangerPrimaryLoadingFill: '--bui-button-danger-primary-loading-fill',
+        buttonDangerPrimarySpinnerForeground: '--bui-button-danger-primary-spinner-foreground',
+        buttonDangerPrimarySpinnerBackground: '--bui-button-danger-primary-spinner-background',
+
+        // Buttons - Danger Secondary
+        buttonDangerSecondaryFill: '--bui-button-danger-secondary-fill',
+        buttonDangerSecondaryText: '--bui-button-danger-secondary-text',
+        buttonDangerSecondaryHoverOverlay: '--bui-button-danger-secondary-hover-overlay',
+        buttonDangerSecondaryActiveOverlay: '--bui-button-danger-secondary-active-overlay',
+        buttonDangerSecondarySelectedFill: '--bui-button-danger-secondary-selected-fill',
+        buttonDangerSecondarySelectedText: '--bui-button-danger-secondary-selected-text',
+        buttonDangerSecondaryLoadingFill: '--bui-button-danger-secondary-loading-fill',
+        buttonDangerSecondarySpinnerForeground: '--bui-button-danger-secondary-spinner-foreground',
+        buttonDangerSecondarySpinnerBackground: '--bui-button-danger-secondary-spinner-background',
+
+        // Buttons - Danger Tertiary
+        buttonDangerTertiaryFill: '--bui-button-danger-tertiary-fill',
+        buttonDangerTertiaryText: '--bui-button-danger-tertiary-text',
+        buttonDangerTertiaryHoverOverlay: '--bui-button-danger-tertiary-hover-overlay',
+        buttonDangerTertiaryActiveOverlay: '--bui-button-danger-tertiary-active-overlay',
+        buttonDangerTertiarySelectedFill: '--bui-button-danger-tertiary-selected-fill',
+        buttonDangerTertiarySelectedText: '--bui-button-danger-tertiary-selected-text',
+        buttonDangerTertiaryLoadingFill: '--bui-button-danger-tertiary-loading-fill',
+        buttonDangerTertiarySpinnerForeground: '--bui-button-danger-tertiary-spinner-foreground',
+        buttonDangerTertiarySpinnerBackground: '--bui-button-danger-tertiary-spinner-background',
+
+        // Buttons - Outline
+        buttonOutlineFill: '--bui-button-outline-fill',
+        buttonOutlineText: '--bui-button-outline-text',
+        buttonOutlineHoverOverlay: '--bui-button-outline-hover-overlay',
+        buttonOutlineActiveOverlay: '--bui-button-outline-active-overlay',
+        buttonOutlineSelectedFill: '--bui-button-outline-selected-fill',
+        buttonOutlineSelectedText: '--bui-button-outline-selected-text',
+        buttonOutlineFocusFill: '--bui-button-outline-focus-fill',
+        buttonOutlineLoadingFill: '--bui-button-outline-loading-fill',
+        buttonOutlineSpinnerForeground: '--bui-button-outline-spinner-foreground',
+        buttonOutlineSpinnerBackground: '--bui-button-outline-spinner-background',
+
+        // Buttons - Disabled
+        buttonDisabledFill: '--bui-button-disabled-fill',
+        buttonDisabledText: '--bui-button-disabled-text',
+        buttonDisabledActiveFill: '--bui-button-disabled-active-fill',
+        buttonDisabledActiveText: '--bui-button-disabled-active-text',
+        buttonDisabledSpinnerForeground: '--bui-button-disabled-spinner-foreground',
+        buttonDisabledSpinnerBackground: '--bui-button-disabled-spinner-background',
+
+        // Button Borders
+        buttonOuterBorder: '--bui-button-outer-border',
+        buttonOutlineOuterBorder: '--bui-button-outline-outer-border',
+        buttonDangerTertiaryOuterBorder: '--bui-button-danger-tertiary-outer-border',
+        buttonInnerBorder: '--bui-button-inner-border',
+        buttonTransparentBorder: '--bui-button-transparent-border',
+        buttonFocusOuterBorder: '--bui-button-focus-outer-border',
+
+        // Breadcrumbs
+        breadcrumbsText: '--bui-breadcrumbs-text',
+        breadcrumbsSeparatorFill: '--bui-breadcrumbs-separator-fill',
+
+        // Calendar/Datepicker
+        calendarBackground: '--bui-calendar-background',
+        calendarForeground: '--bui-calendar-foreground',
+        calendarForegroundDisabled: '--bui-calendar-foreground-disabled',
+        calendarHeaderBackground: '--bui-calendar-header-background',
+        calendarHeaderForeground: '--bui-calendar-header-foreground',
+        calendarHeaderBackgroundActive: '--bui-calendar-header-background-active',
+        calendarHeaderForegroundDisabled: '--bui-calendar-header-foreground-disabled',
+        calendarDayForegroundPseudoSelected: '--bui-calendar-day-foreground-pseudo-selected',
+        calendarDayBackgroundPseudoSelectedHighlighted: '--bui-calendar-day-background-pseudo-selected-highlighted',
+        calendarDayForegroundPseudoSelectedHighlighted: '--bui-calendar-day-foreground-pseudo-selected-highlighted',
+        calendarDayBackgroundSelected: '--bui-calendar-day-background-selected',
+        calendarDayForegroundSelected: '--bui-calendar-day-foreground-selected',
+        calendarDayBackgroundSelectedHighlighted: '--bui-calendar-day-background-selected-highlighted',
+        calendarDayForegroundSelectedHighlighted: '--bui-calendar-day-foreground-selected-highlighted',
+
+        // Combobox
+        comboboxListItemFocus: '--bui-combobox-list-item-focus',
+        comboboxListItemHover: '--bui-combobox-list-item-hover',
+
+        // File Uploader
+        fileUploaderBackgroundColor: '--bui-file-uploader-background-color',
+        fileUploaderBackgroundColorActive: '--bui-file-uploader-background-color-active',
+        fileUploaderBorderColorActive: '--bui-file-uploader-border-color-active',
+        fileUploaderBorderColorDefault: '--bui-file-uploader-border-color-default',
+        fileUploaderMessageColor: '--bui-file-uploader-message-color',
+
+        // Links
+        linkText: '--bui-link-text',
+        linkVisited: '--bui-link-visited',
+        linkHover: '--bui-link-hover',
+        linkActive: '--bui-link-active',
+
+        // List
+        listHeaderFill: '--bui-list-header-fill',
+        listBodyFill: '--bui-list-body-fill',
+
+        // Progress Steps
+        progressStepsCompletedText: '--bui-progress-steps-completed-text',
+        progressStepsCompletedFill: '--bui-progress-steps-completed-fill',
+        progressStepsActiveText: '--bui-progress-steps-active-text',
+        progressStepsActiveFill: '--bui-progress-steps-active-fill',
+
+        // Toggle
+        toggleFill: '--bui-toggle-fill',
+        toggleFillChecked: '--bui-toggle-fill-checked',
+        toggleFillDisabled: '--bui-toggle-fill-disabled',
+        toggleTrackFill: '--bui-toggle-track-fill',
+        toggleTrackFillDisabled: '--bui-toggle-track-fill-disabled',
+
+        // Tick/Checkbox
+        tickFill: '--bui-tick-fill',
+        tickFillHover: '--bui-tick-fill-hover',
+        tickFillActive: '--bui-tick-fill-active',
+        tickFillSelected: '--bui-tick-fill-selected',
+        tickFillSelectedHover: '--bui-tick-fill-selected-hover',
+        tickFillSelectedHoverActive: '--bui-tick-fill-selected-hover-active',
+        tickFillError: '--bui-tick-fill-error',
+        tickFillErrorHover: '--bui-tick-fill-error-hover',
+        tickFillErrorHoverActive: '--bui-tick-fill-error-hover-active',
+        tickFillErrorSelected: '--bui-tick-fill-error-selected',
+        tickFillErrorSelectedHover: '--bui-tick-fill-error-selected-hover',
+        tickFillErrorSelectedHoverActive: '--bui-tick-fill-error-selected-hover-active',
+        tickFillDisabled: '--bui-tick-fill-disabled',
+        tickBorder: '--bui-tick-border',
+        tickBorderError: '--bui-tick-border-error',
+        tickMarkFill: '--bui-tick-mark-fill',
+        tickMarkFillError: '--bui-tick-mark-fill-error',
+        tickMarkFillDisabled: '--bui-tick-mark-fill-disabled',
+
+        // Slider
+        sliderTrackFill: '--bui-slider-track-fill',
+        sliderHandleFill: '--bui-slider-handle-fill',
+        sliderHandleFillDisabled: '--bui-slider-handle-fill-disabled',
+        sliderHandleInnerFill: '--bui-slider-handle-inner-fill',
+        sliderTrackFillHover: '--bui-slider-track-fill-hover',
+        sliderTrackFillActive: '--bui-slider-track-fill-active',
+        sliderTrackFillDisabled: '--bui-slider-track-fill-disabled',
+        sliderHandleInnerFillDisabled: '--bui-slider-handle-inner-fill-disabled',
+        sliderHandleInnerFillSelectedHover: '--bui-slider-handle-inner-fill-selected-hover',
+        sliderHandleInnerFillSelectedActive: '--bui-slider-handle-inner-fill-selected-active',
+
+        // Inputs
+        inputBorder: '--bui-input-border',
+        inputFill: '--bui-input-fill',
+        inputFillError: '--bui-input-fill-error',
+        inputFillDisabled: '--bui-input-fill-disabled',
+        inputFillActive: '--bui-input-fill-active',
+        inputFillPositive: '--bui-input-fill-positive',
+        inputTextDisabled: '--bui-input-text-disabled',
+        inputBorderError: '--bui-input-border-error',
+        inputBorderPositive: '--bui-input-border-positive',
+        inputEnhancerFill: '--bui-input-enhancer-fill',
+        inputEnhancerFillDisabled: '--bui-input-enhancer-fill-disabled',
+        inputEnhancerTextDisabled: '--bui-input-enhancer-text-disabled',
+        inputPlaceholder: '--bui-input-placeholder',
+        inputPlaceholderDisabled: '--bui-input-placeholder-disabled',
+
+        // Menu
+        menuFill: '--bui-menu-fill',
+        menuFillHover: '--bui-menu-fill-hover',
+        menuFontDefault: '--bui-menu-font-default',
+        menuFontDisabled: '--bui-menu-font-disabled',
+        menuFontHighlighted: '--bui-menu-font-highlighted',
+        menuFontSelected: '--bui-menu-font-selected',
+
+        // Modal
+        modalCloseColor: '--bui-modal-close-color',
+        modalCloseColorHover: '--bui-modal-close-color-hover',
+        modalCloseColorFocus: '--bui-modal-close-color-focus',
+
+        // Tab
+        tabBarFill: '--bui-tab-bar-fill',
+        tabColor: '--bui-tab-color',
+
+        // Notification
+        notificationInfoBackground: '--bui-notification-info-background',
+        notificationInfoText: '--bui-notification-info-text',
+        notificationPositiveBackground: '--bui-notification-positive-background',
+        notificationPositiveText: '--bui-notification-positive-text',
+        notificationWarningBackground: '--bui-notification-warning-background',
+        notificationWarningText: '--bui-notification-warning-text',
+        notificationNegativeBackground: '--bui-notification-negative-background',
+        notificationNegativeText: '--bui-notification-negative-text',
+
+        // Tag - Neutral
+        tagNeutralFontDisabled: '--bui-tag-neutral-font-disabled',
+        tagNeutralOutlinedDisabled: '--bui-tag-neutral-outlined-disabled',
+        tagNeutralSolidFont: '--bui-tag-neutral-solid-font',
+        tagNeutralSolidBackground: '--bui-tag-neutral-solid-background',
+        tagNeutralOutlinedBackground: '--bui-tag-neutral-outlined-background',
+        tagNeutralOutlinedFont: '--bui-tag-neutral-outlined-font',
+
+        // Tag - Primary
+        tagPrimaryFontDisabled: '--bui-tag-primary-font-disabled',
+        tagPrimaryOutlinedDisabled: '--bui-tag-primary-outlined-disabled',
+        tagPrimarySolidFont: '--bui-tag-primary-solid-font',
+        tagPrimarySolidBackground: '--bui-tag-primary-solid-background',
+        tagPrimaryOutlinedFontHover: '--bui-tag-primary-outlined-font-hover',
+        tagPrimaryOutlinedFont: '--bui-tag-primary-outlined-font',
+        tagPrimaryOutlinedBackground: '--bui-tag-primary-outlined-background',
+
+        // Tag - Accent
+        tagAccentFontDisabled: '--bui-tag-accent-font-disabled',
+        tagAccentOutlinedDisabled: '--bui-tag-accent-outlined-disabled',
+        tagAccentSolidFont: '--bui-tag-accent-solid-font',
+        tagAccentSolidBackground: '--bui-tag-accent-solid-background',
+        tagAccentOutlinedBackground: '--bui-tag-accent-outlined-background',
+        tagAccentOutlinedFont: '--bui-tag-accent-outlined-font',
+
+        // Tag - Positive
+        tagPositiveFontDisabled: '--bui-tag-positive-font-disabled',
+        tagPositiveOutlinedDisabled: '--bui-tag-positive-outlined-disabled',
+        tagPositiveSolidFont: '--bui-tag-positive-solid-font',
+        tagPositiveSolidBackground: '--bui-tag-positive-solid-background',
+        tagPositiveOutlinedBackground: '--bui-tag-positive-outlined-background',
+        tagPositiveOutlinedFont: '--bui-tag-positive-outlined-font',
+
+        // Tag - Warning
+        tagWarningFontDisabled: '--bui-tag-warning-font-disabled',
+        tagWarningOutlinedDisabled: '--bui-tag-warning-outlined-disabled',
+        tagWarningSolidFont: '--bui-tag-warning-solid-font',
+        tagWarningSolidBackground: '--bui-tag-warning-solid-background',
+        tagWarningOutlinedBackground: '--bui-tag-warning-outlined-background',
+        tagWarningOutlinedFont: '--bui-tag-warning-outlined-font',
+
+        // Tag - Negative
+        tagNegativeFontDisabled: '--bui-tag-negative-font-disabled',
+        tagNegativeOutlinedDisabled: '--bui-tag-negative-outlined-disabled',
+        tagNegativeSolidFont: '--bui-tag-negative-solid-font',
+        tagNegativeSolidBackground: '--bui-tag-negative-solid-background',
+        tagNegativeOutlinedBackground: '--bui-tag-negative-outlined-background',
+        tagNegativeOutlinedFont: '--bui-tag-negative-outlined-font',
+
+        // Table
+        tableHeadBackgroundColor: '--bui-table-head-background-color',
+        tableBackground: '--bui-table-background',
+        tableStripedBackground: '--bui-table-striped-background',
+        tableFilter: '--bui-table-filter',
+        tableFilterHeading: '--bui-table-filter-heading',
+        tableFilterBackground: '--bui-table-filter-background',
+        tableFilterFooterBackground: '--bui-table-filter-footer-background',
+
+        // Toast
+        toastText: '--bui-toast-text',
+        toastPrimaryText: '--bui-toast-primary-text',
+        toastInfoBackground: '--bui-toast-info-background',
+        toastInfoText: '--bui-toast-info-text',
+        toastPositiveBackground: '--bui-toast-positive-background',
+        toastPositiveText: '--bui-toast-positive-text',
+        toastWarningBackground: '--bui-toast-warning-background',
+        toastWarningText: '--bui-toast-warning-text',
+        toastNegativeBackground: '--bui-toast-negative-background',
+        toastNegativeText: '--bui-toast-negative-text',
+
+        // Spinner
+        spinnerTrackFill: '--bui-spinner-track-fill',
+
+        // Progress bar
+        progressbarTrackFill: '--bui-progressbar-track-fill',
+
+        // Tooltip
+        tooltipBackground: '--bui-tooltip-background',
+        tooltipText: '--bui-tooltip-text',
+
+        // Rating
+        ratingInactiveFill: '--bui-rating-inactive-fill',
+        ratingStroke: '--bui-rating-stroke',
       };
 
       const varName = cssVarMap[prop];

@@ -21,13 +21,16 @@ export type ThemeProviderProps = {
   /**
    * Use human-readable CSS variable names (--bui-background-primary)
    * instead of optimized hashed names (--x1q4dcxg).
-   * Requires importing 'baseui/dist/baseui-theme-readable.css' instead of 'baseui/dist/stylex.css'
+   *
+   * Default: true (recommended for CSS modules integration and easier debugging)
+   *
+   * Set to false for smaller bundle size in production (requires importing 'baseui/dist/stylex.css')
    */
   useReadableClassNames?: boolean;
 };
 
 const ThemeProvider: React.FC<React.PropsWithChildren<ThemeProviderProps>> = (props) => {
-  const { theme, children, useCSSVars = true, useReadableClassNames = false } = props;
+  const { theme, children, useCSSVars = true, useReadableClassNames = true } = props;
 
   // Apply theme class or data-theme attribute
   useEffect(() => {
