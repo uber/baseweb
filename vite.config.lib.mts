@@ -13,7 +13,7 @@ export default defineConfig({
   plugins: [
     react(),
     stylexPlugin({
-      dev: false,
+      dev: true, // Enable dev mode for human-readable class names
       useCSSLayers: true,
       unstable_moduleResolution: {
         type: 'commonJS',

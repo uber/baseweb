@@ -19,7 +19,8 @@
     "start:docs": "npx serve@latest documentation-site/out",
     "build:ladle": "ladle build",
     "build:stylex": "vite build --config vite.config.lib.mts",
-    "build:lib": "npm run build:stylex && NODE_ENV=production babel ./src --out-dir ./dist --config-file ./publish/.babelrc.js --extensions '.ts,.tsx,.js' --ignore **.test.*,**/__tests__/**,**/e2e.*,**/template-component/**,**/test/**",
+    "build:stylex:readable": "npx ts-node src/stylex/build-readable.ts",
+    "build:lib": "npm run build:stylex && npm run build:stylex:readable && NODE_ENV=production babel ./src --out-dir ./dist --config-file ./publish/.babelrc.js --extensions '.ts,.tsx,.js' --ignore **.test.*,**/__tests__/**,**/e2e.*,**/template-component/**,**/test/**",
     "build:lib:dts": "tsc -p tsconfig.dist.json || true",
     "build": "ladle build && next build documentation-site && mkdir -p public && mv build public/ladle && cp -r documentation-site/out/* public",
     "prepare": "husky install"
