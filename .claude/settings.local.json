@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__code-mcp__get_github_pull_request_metadata",
+      "mcp__code-mcp__get_github_pull_request_diff",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr diff:*)",
+      "Bash(gh pr checks:*)",
+      "mcp__code-mcp__get_github_pull_request_comments",
+      "mcp__code-mcp__get_github_pull_request_check_runs",
+      "mcp__glean_default__read_document",
+      "mcp__figma__get_design_context",
+      "mcp__base-mcp__search_base_docs",
+      "mcp__base-mcp__get_page_by_name",
+      "mcp__base-mcp__get_component_paths",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:t3.uberinternal.com)",
+      "mcp__glean_default__search"
+    ]
+  }
+}

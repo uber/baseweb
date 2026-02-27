@@ -1,19 +1,17 @@
 import * as React from "react";
-import { useStyletron } from "baseui";
 import { Input, StyledInput } from "baseui/input";
 import { Tag, HIERARCHY } from "baseui/tag";
 
 const InputReplacement = React.forwardRef(
   ({ tags, removeTag, ...restProps }: any, ref) => {
-    const [css] = useStyletron();
     return (
       <div
-        className={css({
+        style={{
           flex: "1 1 0%",
           flexWrap: "wrap",
           display: "flex",
           alignItems: "center",
-        })}
+        }}
       >
         {tags.map((tag: string, index: number) => (
           <Tag

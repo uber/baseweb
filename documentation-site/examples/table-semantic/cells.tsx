@@ -31,30 +31,30 @@ function AvatarCell({
   title: string;
   subtitle: string;
 }) {
-  const [css, theme] = useStyletron();
+  const [, theme] = useStyletron();
   return (
-    <div className={css({ display: "flex", alignItems: "center" })}>
+    <div style={{ display: "flex", alignItems: "center" }}>
       <Avatar name={title} size="48px" src={src} />
       <div
-        className={css({
+        style={{
           paddingLeft: theme.sizing.scale550,
           whiteSpace: "nowrap",
-        })}
+        }}
       >
         <p
-          className={css({
+          style={{
             ...theme.typography.LabelSmall,
             margin: 0,
-          })}
+          }}
         >
           {title}
         </p>
         <p
-          className={css({
+          style={{
             ...theme.typography.ParagraphSmall,
             marginBottom: 0,
             marginTop: "4px",
-          })}
+          }}
         >
           {subtitle}
         </p>
@@ -64,32 +64,32 @@ function AvatarCell({
 }
 
 function NumberCell({ value, delta }: { value: number; delta: number }) {
-  const [css, theme] = useStyletron();
+  const [, theme] = useStyletron();
   const positive = delta >= 0;
   return (
-    <div className={css({ display: "flex", alignItems: "center" })}>
-      <span className={css({ ...theme.typography.MonoParagraphSmall })}>
+    <div style={{ display: "flex", alignItems: "center" }}>
+      <span style={{ ...theme.typography.MonoParagraphSmall }}>
         {new Intl.NumberFormat("en-US", {
           style: "currency",
           currency: "USD",
         }).format(value)}
       </span>
       <div
-        className={css({
+        style={{
           alignItems: "center",
           display: "flex",
           paddingLeft: theme.sizing.scale300,
           color: positive
             ? theme.colors.contentPositive
             : theme.colors.contentNegative,
-        })}
+        }}
       >
         {positive ? <ArrowUp /> : <ArrowDown />}
         <span
-          className={css({
+          style={{
             ...theme.typography.MonoLabelSmall,
             paddingLeft: "2px",
-          })}
+          }}
         >
           {delta}%
         </span>
@@ -99,9 +99,8 @@ function NumberCell({ value, delta }: { value: number; delta: number }) {
 }
 
 function TagsCell({ tags }: { tags: Array<string> }) {
-  const [css] = useStyletron();
   return (
-    <div className={css({ display: "flex", alignItems: "center" })}>
+    <div style={{ display: "flex", alignItems: "center" }}>
       {tags.map((tag) => {
         return (
           <Tag key={tag} closeable={false}>
@@ -114,9 +113,9 @@ function TagsCell({ tags }: { tags: Array<string> }) {
 }
 
 function ButtonsCell({ labels }: { labels: Array<string> }) {
-  const [css, theme] = useStyletron();
+  const [, theme] = useStyletron();
   return (
-    <div className={css({ display: "flex", alignItems: "center" })}>
+    <div style={{ display: "flex", alignItems: "center" }}>
       {labels.map((label, index) => {
         return (
           <Button

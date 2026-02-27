@@ -1,14 +1,14 @@
 import * as React from "react";
-import { useStyletron } from "baseui";
 import { Select, Value, ImperativeMethods } from "baseui/select";
 import { Button } from "baseui/button";
+import { useStyletron } from "baseui";
 
 export default function Example() {
-  const [css, theme] = useStyletron();
+  const [, theme] = useStyletron();
   const [value, setValue] = React.useState<Value>([]);
   const controlRef = React.useRef<ImperativeMethods>(null);
   return (
-    <div className={css({ display: "flex" })}>
+    <div style={{ display: "flex" }}>
       <Select
         controlRef={controlRef}
         creatable

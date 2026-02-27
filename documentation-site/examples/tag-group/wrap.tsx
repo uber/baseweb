@@ -1,11 +1,9 @@
 import * as React from "react";
-import { useStyletron } from "baseui";
 import { Tag, SUPPORTED_KIND } from "baseui/tag";
 import { TagGroup } from "baseui/tag-group";
 import { HeadingSmall, ParagraphSmall } from "baseui/typography";
 
 export default function Example() {
-  const [css] = useStyletron();
   return (
     <React.Fragment>
       <HeadingSmall>Wrap: true (default)</HeadingSmall>
@@ -22,7 +20,7 @@ export default function Example() {
       </TagGroup>
 
       <ParagraphSmall>width set to 300px on container </ParagraphSmall>
-      <div className={css({ width: "300px" })}>
+      <div style={{ width: "300px" }}>
         <TagGroup>
           {Object.values(SUPPORTED_KIND)
             .filter((kind) => kind !== SUPPORTED_KIND.custom)
@@ -37,7 +35,7 @@ export default function Example() {
       <ParagraphSmall>
         width set to 300px on container and tag with long text{" "}
       </ParagraphSmall>
-      <div className={css({ width: "300px" })}>
+      <div style={{ width: "300px" }}>
         <TagGroup>
           {Object.values(SUPPORTED_KIND)
             .filter((kind) => kind !== SUPPORTED_KIND.custom)
@@ -55,7 +53,7 @@ export default function Example() {
         width set to 100px(smaller than tag text default max width) on container
         and tag with long text - very extreme case
       </ParagraphSmall>
-      <div className={css({ marginBottom: "40px", width: "100px" })}>
+      <div style={{ marginBottom: "40px", width: "100px" }}>
         <TagGroup>
           {Object.values(SUPPORTED_KIND)
             .filter((kind) => kind !== SUPPORTED_KIND.custom)
@@ -82,7 +80,7 @@ export default function Example() {
       </TagGroup>
 
       <ParagraphSmall>width set to 300px on container </ParagraphSmall>
-      <div className={css({ width: "300px" })}>
+      <div style={{ width: "300px" }}>
         <TagGroup wrap={false}>
           {Object.values(SUPPORTED_KIND)
             .filter((kind) => kind !== SUPPORTED_KIND.custom)
@@ -97,7 +95,7 @@ export default function Example() {
       <ParagraphSmall>
         width set to 300px on container and tag with long text{" "}
       </ParagraphSmall>
-      <div className={css({ marginBottom: "40px", width: "300px" })}>
+      <div style={{ marginBottom: "40px", width: "300px" }}>
         <TagGroup wrap={false}>
           {Object.values(SUPPORTED_KIND)
             .filter((kind) => kind !== SUPPORTED_KIND.custom)

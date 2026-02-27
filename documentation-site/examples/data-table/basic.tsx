@@ -1,5 +1,4 @@
 import React from "react";
-import { useStyletron } from "baseui";
 import {
   StatefulDataTable,
   BooleanColumn,
@@ -107,22 +106,21 @@ const columns = [
     title: "custom color",
     mapDataToValue: (data: RowDataT) => data[5],
     renderCell: function Cell(props: any) {
-      const [css] = useStyletron();
       return (
         <div
-          className={css({
+          style={{
             alignItems: "center",
             fontFamily: '"Comic Sans MS", cursive, sans-serif',
             display: "flex",
-          })}
+          }}
         >
           <div
-            className={css({
+            style={{
               backgroundColor: props.value.color,
               height: "12px",
               marginRight: "24px",
               width: "12px",
-            })}
+            }}
           />
           <div>{props.value.color}</div>
         </div>
@@ -142,9 +140,8 @@ const columns = [
 const rows = makeRowsFromColumns(columns, 2000);
 
 export default function Example() {
-  const [css] = useStyletron();
   return (
-    <div className={css({ height: "800px" })}>
+    <div style={{ height: "800px" }}>
       <StatefulDataTable columns={columns} rows={rows} />
     </div>
   );

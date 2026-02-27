@@ -3,7 +3,7 @@ import { useStyletron } from "baseui";
 import { Checkbox } from "baseui/checkbox-v2";
 
 function GroupList() {
-  const [css, theme] = useStyletron();
+  const [, theme] = useStyletron();
   const [checkboxes, setCheckboxes] = React.useState([true, false]);
 
   const allChecked = checkboxes.every(Boolean);
@@ -23,11 +23,11 @@ function GroupList() {
       </Checkbox>
 
       <div
-        className={css({
+        style={{
           paddingLeft: theme.sizing.scale400,
           display: "flex",
           flexDirection: "column",
-        })}
+        }}
       >
         <Checkbox
           checked={checkboxes[0]}
