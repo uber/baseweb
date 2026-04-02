@@ -316,4 +316,100 @@ describe('Datepicker', () => {
       fireEvent.focus(getByTestId(container, 'input'));
     }).not.toThrowError();
   });
+
+  it('fires onChange with partial range in composed picker so parent state updates', () => {
+    const onChange = jest.fn();
+    const { container } = render(
+      <TestBaseProvider>
+        <Datepicker
+          onChange={onChange}
+          value={[]}
+          range
+          displayValueAtRangeIndex={0}
+          mask="9999/99/99"
+          overrides={{
+            CalendarContainer: { props: { 'data-testid': 'calendar' } },
+          }}
+        />
+      </TestBaseProvider>
+    );
+
+    const input = container.querySelector('input');
+    if (input) fireEvent.focus(input);
+
+    const calendar = queryByTestId(container, 'calendar');
+    expect(calendar).not.toBeNull();
+
+    const day15 = getByText(calendar!, '15');
+    fireEvent.click(day15);
+
+    const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
+    const calledDate = lastCall[0].date;
+    expect(Array.isArray(calledDate)).toBe(true);
+    expect(calledDate[0].getDate()).toBe(15);
+    expect(queryByTestId(container, 'calendar')).not.toBeNull();
+  });
+
+  it('completes range on second click and closes popover in composed picker', () => {
+    const startDate = new Date('2021-11-10T12:00:00');
+    const onChange = jest.fn();
+    const { container } = render(
+      <TestBaseProvider>
+        <Datepicker
+          onChange={onChange}
+          value={[startDate, null]}
+          range
+          displayValueAtRangeIndex={0}
+          mask="9999/99/99"
+          overrides={{
+            CalendarContainer: { props: { 'data-testid': 'calendar' } },
+          }}
+        />
+      </TestBaseProvider>
+    );
+
+    const input = container.querySelector('input');
+    if (input) fireEvent.focus(input);
+
+    expect(queryByTestId(container, 'calendar')).not.toBeNull();
+
+    const day20 = getByText(container, '20');
+    fireEvent.click(day20);
+
+    expect(onChange).toHaveBeenCalled();
+    const calledDate = onChange.mock.calls[0][0].date;
+    expect(Array.isArray(calledDate)).toBe(true);
+    expect(calledDate[0].getDate()).toBe(10);
+    expect(calledDate[1].getDate()).toBe(20);
+    expect(queryByTestId(container, 'calendar')).toBeNull();
+  });
+
+  it('clearing one input in composed picker preserves the other date', () => {
+    const startDate = new Date('2021-11-10T12:00:00');
+    const endDate = new Date('2021-11-20T12:00:00');
+    const onChange = jest.fn();
+    const { container } = render(
+      <TestBaseProvider>
+        <Datepicker
+          onChange={onChange}
+          value={[startDate, endDate]}
+          range
+          displayValueAtRangeIndex={1}
+          mask="9999/99/99"
+        />
+      </TestBaseProvider>
+    );
+
+    const input = container.querySelector('input');
+    if (input) {
+      fireEvent.focus(input);
+      fireEvent.change(input, { target: { value: '' } });
+    }
+
+    const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
+    const calledDate = lastCall[0].date;
+    expect(Array.isArray(calledDate)).toBe(true);
+    expect(calledDate[0].getDate()).toBe(10);
+    expect(calledDate[1]).toBeNull();
+  });
 });

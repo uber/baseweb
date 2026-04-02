@@ -54,7 +54,7 @@ export default function Example() {
               value={dates[0]}
               onChange={(time) => {
                 if (time) {
-                  if (isAfter(time, dates[1])) {
+                  if (dates[1] && isAfter(time, dates[1])) {
                     setDates([time, time]);
                   } else {
                     setDates([time, dates[1]]);
@@ -108,7 +108,7 @@ export default function Example() {
               value={dates[1]}
               onChange={(time) => {
                 if (time) {
-                  if (isBefore(time, dates[0])) {
+                  if (dates[0] && isBefore(time, dates[0])) {
                     setDates([time, time]);
                   } else {
                     setDates([dates[0], time]);

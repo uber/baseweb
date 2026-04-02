@@ -74,10 +74,18 @@ class TimePicker<T = Date> extends React.Component<TimePickerProps<T>, TimePicke
     const adapterChanged = prevProps.adapter !== this.props.adapter;
     const minTimeChange = prevProps.minTime !== this.props.minTime;
     const maxTimeChange = prevProps.maxTime !== this.props.maxTime;
+    const valueDateChanged =
+      prevProps.value !== this.props.value &&
+      (!prevProps.value !== !this.props.value ||
+        (prevProps.value &&
+          this.props.value &&
+          (this.props.adapter.isValid(prevProps.value) ||
+            this.props.adapter.isValid(this.props.value)) &&
+          !this.props.adapter.isSameDay(prevProps.value, this.props.value)));
     if (adapterChanged) {
       this.dateHelpers = new DateHelpers(this.props.adapter);
     }
-    if (formatChanged || stepChanged || minTimeChange || maxTimeChange) {
+    if (formatChanged || stepChanged || minTimeChange || maxTimeChange || valueDateChanged) {
       const steps = this.buildSteps();
       this.setState({ steps });
     }
@@ -177,7 +185,14 @@ class TimePicker<T = Date> extends React.Component<TimePickerProps<T>, TimePicke
 
   handleChange = (seconds: number) => {
     const [hours, minutes] = this.dateHelpers.secondsToHourMinute(seconds);
-    const updatedDate = this.setTime(this.props.value, hours, minutes, 0);
+    const baseValue = this.props.value || this.props.minTime || this.props.maxTime;
+    let updatedDate = this.setTime(baseValue, hours, minutes, 0);
+    if (this.props.minTime && this.props.adapter.isBefore(updatedDate, this.props.minTime)) {
+      updatedDate = this.props.minTime;
+    }
+    if (this.props.maxTime && this.props.adapter.isAfter(updatedDate, this.props.maxTime)) {
+      updatedDate = this.props.maxTime;
+    }
     this.props.onChange && this.props.onChange(updatedDate);
   };
 
@@ -199,6 +214,10 @@ class TimePicker<T = Date> extends React.Component<TimePickerProps<T>, TimePicke
     start: number;
     end: number;
   } => {
+    if (!this.props.value) {
+      return { start: 0, end: DAY };
+    }
+
     let { minTime: min, maxTime: max, ignoreMinMaxDateComponent } = this.props;
     const dayStart = this.setTime(this.props.value, 0, 0, 0);
     const dayEnd = this.setTime(this.props.value, 24, 0, 0);

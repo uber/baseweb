@@ -63,4 +63,68 @@ describe('Component', () => {
     fireEvent.click(await getByText(container.parentElement as any as HTMLElement, 'Past Week'));
     expect(onQuickSelectChange).toHaveBeenCalledWith(expect.objectContaining({ id: 'Past Week' }));
   });
+
+  it('constrains time options when selected date matches minDate', () => {
+    const minDate = new Date('2021-11-10T14:00:00');
+    const value = new Date('2021-11-10T15:00:00');
+    const { container } = render(
+      <TestBaseProvider>
+        <Calendar
+          value={value}
+          minDate={minDate}
+          timeSelectStart
+          overrides={{
+            TimeSelectContainer: { props: { 'data-testid': 'time-select' } },
+          }}
+        />
+      </TestBaseProvider>
+    );
+
+    const timeSelect = queryByTestId(container, 'time-select');
+    expect(timeSelect).not.toBeNull();
+
+    const selectInput = timeSelect!.querySelector('[data-baseweb="select"]');
+    if (selectInput?.firstChild) {
+      fireEvent.click(selectInput.firstChild as HTMLElement);
+    }
+
+    const listbox = container.parentElement!.querySelector('[role="listbox"]');
+    expect(listbox).not.toBeNull();
+    const options = Array.from(listbox!.querySelectorAll('[role="option"]'));
+    const optionTexts = options.map((o) => o.textContent);
+    expect(optionTexts).not.toContain('12:00 PM');
+    expect(optionTexts).toContain('3:00 PM');
+  });
+
+  it('does not constrain time when selected date differs from minDate', () => {
+    const minDate = new Date('2021-11-10T14:00:00');
+    const value = new Date('2021-11-11T10:00:00');
+    const { container } = render(
+      <TestBaseProvider>
+        <Calendar
+          value={value}
+          minDate={minDate}
+          timeSelectStart
+          overrides={{
+            TimeSelectContainer: { props: { 'data-testid': 'time-select' } },
+          }}
+        />
+      </TestBaseProvider>
+    );
+
+    const timeSelect = queryByTestId(container, 'time-select');
+    expect(timeSelect).not.toBeNull();
+
+    const selectInput = timeSelect!.querySelector('[data-baseweb="select"]');
+    if (selectInput?.firstChild) {
+      fireEvent.click(selectInput.firstChild as HTMLElement);
+    }
+
+    const listbox = container.parentElement!.querySelector('[role="listbox"]');
+    expect(listbox).not.toBeNull();
+    const options = Array.from(listbox!.querySelectorAll('[role="option"]'));
+    const optionTexts = options.map((o) => o.textContent);
+    expect(optionTexts).toContain('12:00 AM');
+    expect(optionTexts).toContain('12:00 PM');
+  });
 });
