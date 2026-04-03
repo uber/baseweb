@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { render, getByRole, getByText } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { ProgressBar } from '..';
 
@@ -36,5 +37,23 @@ describe('Stateless progress bar', function () {
   it('should have passed in aria-label', () => {
     const { container } = render(<ProgressBar aria-label="test" steps={2} />);
     getByRole(container, 'progressbar', { name: 'test' });
+  });
+
+  it('should have aria-live attribute for accessibility', () => {
+    const { container } = render(<ProgressBar value={75} />);
+    const progressBar = getByRole(container, 'progressbar');
+    expect(progressBar).toHaveAttribute('aria-live', 'polite');
+  });
+
+  it('should have aria-busy true for infinite progress bar', () => {
+    const { container } = render(<ProgressBar infinite />);
+    const progressBar = getByRole(container, 'progressbar');
+    expect(progressBar).toHaveAttribute('aria-busy', 'true');
+  });
+
+  it('should not have aria-busy for determinate progress bar', () => {
+    const { container } = render(<ProgressBar value={75} />);
+    const progressBar = getByRole(container, 'progressbar');
+    expect(progressBar).not.toHaveAttribute('aria-busy');
   });
 });

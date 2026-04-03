@@ -9,7 +9,9 @@ export default function Example() {
   return (
     <div>
       <ProgressBar value={value} steps={5} />
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}
+      >
         <Button
           onClick={() => setValue((prevValue) => prevValue - stepSize)}
           size={SIZE.compact}

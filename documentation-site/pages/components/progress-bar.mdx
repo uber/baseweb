@@ -8,6 +8,7 @@ import WithLabel from "examples/progress-bar/with-label.tsx";
 import CustomLabel from "examples/progress-bar/custom-label.tsx";
 import Customization from "examples/progress-bar/overrides.tsx";
 import Steps from "examples/progress-bar/steps.tsx";
+import Intent from "examples/progress-bar/intent.tsx";
 import ProgressBarRounded from "examples/progress-bar/rounded.tsx";
 
 import { ProgressBar } from "baseui/progress-bar";
@@ -26,11 +27,13 @@ Indicates a wait time for actions - either within an experience flow or loading 
 
 ## Accessibility
 
-- The progress bar always sets `role="progressbar"`
+- The progress bar always sets `role="progressbar"` and `aria-live="polite"`
 - When `infinite` is `false` (the progress bar is determinate), these determinate aria tags are set:
   - `aria-valuenow={value}`
   - `aria-valuemin={0}`
   - `aria-valuemax={100}`
+- When `infinite` is `true`, `aria-busy="true"` is set
+- Use `ariaLabel` or `aria-label` prop to provide a descriptive label for screen readers
 
 ## Examples
 
@@ -43,6 +46,10 @@ Indicates a wait time for actions - either within an experience flow or loading 
   path="progress-bar/negative.tsx"
 >
   <Negative />
+</Example>
+
+<Example title="Progress bar with Intent" path="progress-bar/intent.tsx">
+  <Intent />
 </Example>
 
 <Example

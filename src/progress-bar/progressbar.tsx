@@ -38,15 +38,6 @@ class ProgressBar extends React.Component<
     value: 0,
   };
 
-  componentDidMount() {
-    // TODO(v11): remove warning when switching default Spinner
-    if (__DEV__) {
-      if (this.props.errorMessage) {
-        console.warn('baseui:ProgressBar The `errorMessage` prop is deprecated in WAI-ARIA v1.2.');
-      }
-    }
-  }
-
   render() {
     const {
       overrides = {},
@@ -59,7 +50,8 @@ class ProgressBar extends React.Component<
       maxValue,
       showLabel,
       infinite,
-      errorMessage,
+      intent,
+      errorMessage, // Deprecated, ignored
       forwardedRef,
       ...restProps
     } = this.props;
@@ -85,6 +77,7 @@ class ProgressBar extends React.Component<
     const [InfiniteBar, infiniteBarProps] = getOverrides(overrides.InfiniteBar, StyledInfiniteBar);
     const sharedProps = {
       $infinite: infinite,
+      $intent: intent,
       $size: size,
       $steps: steps,
       $successValue: maximumValue,
@@ -113,8 +106,6 @@ class ProgressBar extends React.Component<
       return `Step ${Math.ceil(((value - minValue) / (maxValue - minValue)) * steps)} of ${steps}`;
     }
     return (
-      /* eslint-disable jsx-a11y/role-supports-aria-props */
-
       <Root
         ref={forwardedRef}
         data-baseweb="progress-bar"
@@ -123,8 +114,8 @@ class ProgressBar extends React.Component<
         aria-valuenow={infinite ? null : value}
         aria-valuemin={infinite ? null : minValue}
         aria-valuemax={infinite ? null : maximumValue}
-        aria-invalid={errorMessage ? true : null}
-        aria-errormessage={errorMessage}
+        aria-live="polite"
+        aria-busy={infinite ? true : null}
         {...restProps}
         {...sharedProps}
         {...rootProps}
@@ -132,9 +123,18 @@ class ProgressBar extends React.Component<
         <BarContainer {...sharedProps} {...barContainerProps}>
           {infinite ? (
             <React.Fragment>
-              <InfiniteBar $isLeft={true} $size={sharedProps.$size} {...infiniteBarProps} />
+              <InfiniteBar
+                $isLeft={true}
+                $size={sharedProps.$size}
+                $intent={sharedProps.$intent}
+                {...infiniteBarProps}
+              />
 
-              <InfiniteBar $size={sharedProps.$size} {...infiniteBarProps} />
+              <InfiniteBar
+                $size={sharedProps.$size}
+                $intent={sharedProps.$intent}
+                {...infiniteBarProps}
+              />
             </React.Fragment>
           ) : (
             renderProgressBar()
@@ -147,7 +147,6 @@ class ProgressBar extends React.Component<
         )}
       </Root>
     );
-    /* eslint-enable jsx-a11y/role-supports-aria-props */
   }
 }
 
