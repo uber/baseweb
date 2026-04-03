@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 export { default as ProgressBar } from './progressbar';
 export { default as ProgressBarRounded } from './progressbar-rounded';
-export { SIZE } from './constants';
+export { SIZE, INTENT } from './constants';
 // Styled elements
 export {
   StyledRoot,

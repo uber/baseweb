@@ -9,3 +9,11 @@ export const SIZE = {
   medium: 'medium',
   large: 'large',
 } as const;
+
+export const INTENT = {
+  default: 'default',
+  positive: 'positive',
+  warning: 'warning',
+  negative: 'negative',
+  brand: 'brand',
+} as const;
