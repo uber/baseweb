@@ -6,9 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 import type * as React from 'react';
 import type { Override } from '../helpers/overrides';
-import type { SIZE } from './constants';
+import type { SIZE, INTENT } from './constants';
 
 export type Size = keyof typeof SIZE;
+export type Intent = keyof typeof INTENT;
 
 export type ProgressBarOverrides = {
   Root?: Override;
@@ -24,12 +25,19 @@ export type ProgressBarProps = {
   ariaLabel?: string;
   'aria-label'?: string;
   children?: React.ReactNode;
-  /** Error message for screen-reader users**/
+  /**
+   * @deprecated This prop is deprecated and will be removed in a future version.
+   * Use proper error UI patterns instead (Banner, Alert, Toast) as aria-invalid and aria-errormessage
+   * are not semantically correct for progress bars per WAI-ARIA 1.2.
+   * This prop is ignored and has no effect.
+   */
   errorMessage?: string;
   /** The function that returns a progress bar label to display. */
   getProgressLabel: (value: number, maxValue: number, minValue: number) => React.ReactNode;
   /** If set to true, there’s and infinite loading animation. */
   infinite: boolean;
+  /** The visual intent/variant of the progress bar. */
+  intent?: Intent;
   overrides?: ProgressBarOverrides;
   /** If set to false, label is hidden and `getProgressLabel` is ignored. */
   showLabel: boolean;
@@ -50,6 +58,7 @@ export type ProgressBarProps = {
 export type StyleProps = {
   $infinite: boolean;
   $index: number;
+  $intent?: Intent;
   $size: Size;
   $steps: number;
   $successValue: number;
@@ -75,6 +84,9 @@ export type ProgressBarRoundedProps = {
   animate?: boolean;
   /** Toggle container rendering as a block or inline. */
   inline?: boolean;
+  /** The accessible label for the progress bar. Defaults to percentage if not provided. */
+  ariaLabel?: string;
+  'aria-label'?: string;
   /** Overrides for sub-nodes in the rendering tree. */
   overrides?: ProgressBarRoundedOverrides;
 };

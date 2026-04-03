@@ -42,6 +42,7 @@ function ProgressBarRounded({
   animate = true,
   inline = false,
   overrides = {},
+  ariaLabel,
   ...restProps
 }: ProgressBarRoundedProps) {
   const {
@@ -97,13 +98,19 @@ function ProgressBarRounded({
     loop();
   }, [progress]); // We want *only* `progress` to trigger this effect
 
+  const propsAriaLabel = restProps['aria-label'] || ariaLabel;
+  const progressPercentage = `${roundTo(Math.min(progress * 100, 100))}%`;
+  const defaultAriaLabel = propsAriaLabel || `${progressPercentage} complete`;
+
   return (
     <Root
       data-baseweb="progressbar-rounded"
       role="progressbar"
-      aria-valuenow={progress.toFixed(2).replace(/\.?0+$/, '')}
+      aria-label={defaultAriaLabel}
+      aria-valuenow={progress}
       aria-valuemin={0}
       aria-valuemax={1}
+      aria-live="polite"
       $size={size}
       $inline={inline}
       {...restProps}
@@ -122,9 +129,8 @@ function ProgressBarRounded({
         />
       </Svg>
 
-      <Text $size={size} {...textProps}>
-        {roundTo(Math.min(progress * 100, 100))}%
-      </Text>
+      {/* eslint-disable-next-line react/no-children-prop */}
+      <Text $size={size} children={progressPercentage} {...textProps} />
     </Root>
   );
 }

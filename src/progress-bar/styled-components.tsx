@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { styled, hexToRgb, withWrapper } from '../styles';
-import { SIZE } from './constants';
+import { SIZE, INTENT } from './constants';
 
 import type { StyleProps, Size } from './types';
 import React from 'react';
@@ -21,24 +21,38 @@ function getBarHeight(size) {
   }[size];
 }
 
+function getProgressColor(colors, intent) {
+  // When intent is not provided, use the old default color for backward compatibility
+  if (!intent) {
+    return colors.backgroundAccent;
+  }
+
+  return {
+    [INTENT.default]: colors.contentAccent,
+    [INTENT.positive]: colors.contentPositive,
+    [INTENT.warning]: colors.contentWarning,
+    [INTENT.negative]: colors.contentNegative,
+    [INTENT.brand]: colors.brandBorderAccessible,
+  }[intent];
+}
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledRoot = styled<'div', StyleProps>('div', (props) => {
+  const { $theme } = props;
   return {
     width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: $theme.sizing.scale300,
   };
 });
 
 StyledRoot.displayName = 'StyledRoot';
 
-export const StyledBarContainer = styled<'div', StyleProps>('div', (props) => {
-  const { $theme } = props;
-  const { sizing } = $theme;
+export const StyledBarContainer = styled<'div', StyleProps>('div', () => {
   return {
     display: 'flex',
-    marginLeft: sizing.scale500,
-    marginRight: sizing.scale500,
-    marginTop: sizing.scale500,
-    marginBottom: sizing.scale500,
+    position: 'relative',
   };
 });
 
@@ -79,7 +93,16 @@ export const StyledBar = styled<
 StyledBar.displayName = 'StyledBar';
 
 export const StyledBarProgress = styled<'div', StyleProps>('div', (props) => {
-  const { $theme, $value, $successValue, $steps, $index, $maxValue, $minValue = 0 } = props;
+  const {
+    $theme,
+    $value,
+    $successValue,
+    $steps,
+    $index,
+    $maxValue,
+    $minValue = 0,
+    $intent,
+  } = props;
   // making sure this doesn't break existing use that use StyledBarProgress directly
   const maxValue = $maxValue ? $maxValue : $successValue;
   const { colors, sizing, borders } = $theme;
@@ -142,7 +165,7 @@ export const StyledBarProgress = styled<'div', StyleProps>('div', (props) => {
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
-    backgroundColor: colors.backgroundAccent,
+    backgroundColor: getProgressColor(colors, $intent),
     height: '100%',
     width: '100%',
     transform: 'translateX(-102%)',
@@ -157,13 +180,15 @@ export const StyledInfiniteBar = styled<
   'div',
   {
     $isLeft?: boolean;
+    $intent?: StyleProps['$intent'];
     $size: Size;
   }
 >('div', (props) => {
-  const { $theme, $isLeft = false, $size = SIZE.medium } = props;
+  const { $theme, $isLeft = false, $size = SIZE.medium, $intent } = props;
   const { colors, sizing, borders } = $theme;
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
   const height = getBarHeight($size);
+  const progressColor = getProgressColor(colors, $intent);
   const animationStyles = {
     display: 'inline-block',
     flex: 1,
@@ -176,9 +201,9 @@ export const StyledInfiniteBar = styled<
     backgroundSize: '300% auto',
     backgroundRepeat: 'no-repeat',
     backgroundPositionX: $isLeft ? '-50%' : '150%',
-    backgroundImage: `linear-gradient(${$isLeft ? '90' : '270'}deg, transparent 0%, ${
-      colors.backgroundAccent
-    } 25%, ${colors.backgroundAccent} 75%, transparent 100%)`,
+    backgroundImage: `linear-gradient(${
+      $isLeft ? '90' : '270'
+    }deg, transparent 0%, ${progressColor} 25%, ${progressColor} 75%, transparent 100%)`,
     animationName: $isLeft
       ? {
           '0%': {
@@ -227,10 +252,18 @@ export const StyledInfiniteBar = styled<
 StyledInfiniteBar.displayName = 'StyledInfiniteBar';
 
 export const StyledLabel = styled<'div', StyleProps>('div', (props) => {
+  const { $theme, $size } = props;
+  const typographyMap = {
+    [SIZE.small]: $theme.typography.LabelSmall,
+    [SIZE.medium]: $theme.typography.LabelMedium,
+    [SIZE.large]: $theme.typography.LabelLarge,
+  };
   return {
     textAlign: 'center',
-    ...props.$theme.typography.font150,
-    color: props.$theme.colors.contentTertiary,
+    paddingLeft: $theme.sizing.scale600,
+    paddingRight: $theme.sizing.scale600,
+    ...typographyMap[$size],
+    color: $theme.colors.contentPrimary,
   };
 });
 
