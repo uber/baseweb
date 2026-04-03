@@ -95,7 +95,7 @@ export default class Datepicker<T = Date> extends React.Component<
     const onRangeChange = this.props.onRangeChange;
 
     if (Array.isArray(date)) {
-      if (onChange && date.every(Boolean)) {
+      if (onChange && (date.every(Boolean) || this.isComposedRangePicker())) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onChange({ date: date as any as Array<T> });
       }
@@ -322,7 +322,13 @@ export default class Datepicker<T = Date> extends React.Component<
       inputValue.length === 0
     ) {
       if (this.props.range) {
-        this.handleChange([]);
+        if (this.isComposedRangePicker() && Array.isArray(this.props.value)) {
+          const updated = [...this.props.value];
+          updated[this.props.displayValueAtRangeIndex as number] = null;
+          this.handleChange(updated);
+        } else {
+          this.handleChange([]);
+        }
       } else {
         this.handleChange(null);
       }
@@ -447,6 +453,12 @@ export default class Datepicker<T = Date> extends React.Component<
       idList = `${this.props['aria-describedby']} ${idList}`;
     }
     return idList;
+  };
+
+  // Two separate Datepicker instances share state to form a start/end range,
+  // each controlling one slot via displayValueAtRangeIndex (0 = start, 1 = end).
+  isComposedRangePicker = () => {
+    return this.props.range && typeof this.props.displayValueAtRangeIndex === 'number';
   };
 
   hasLockedBehavior = () => {

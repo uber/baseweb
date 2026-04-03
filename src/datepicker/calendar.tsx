@@ -397,8 +397,8 @@ export default class Calendar<T = Date> extends React.Component<
     // with the date value set to the date with updated time
     if (Array.isArray(this.props.value)) {
       const dates = this.props.value.map((date, i) => {
-        if (date && index === i) {
-          return this.dateHelpers.applyTimeToDate(date, time);
+        if (index === i) {
+          return date ? this.dateHelpers.applyTimeToDate(date, time) : newTimeState[index];
         }
         return date;
       });
@@ -500,6 +500,20 @@ export default class Calendar<T = Date> extends React.Component<
     );
   };
 
+  getTimeSelectProps = (value: T | undefined | null) => {
+    const { minDate, maxDate } = this.props;
+    const timeProps: { minTime?: T; maxTime?: T } = {};
+    if (value) {
+      if (minDate && this.dateHelpers.isSameDay(value, minDate)) {
+        timeProps.minTime = minDate;
+      }
+      if (maxDate && this.dateHelpers.isSameDay(value, maxDate)) {
+        timeProps.maxTime = maxDate;
+      }
+    }
+    return timeProps;
+  };
+
   renderTimeSelect: (c: T | undefined | null, b: Function, a: string) => React.ReactNode = (
     value,
     onChange,
@@ -523,6 +537,7 @@ export default class Calendar<T = Date> extends React.Component<
             value={value ? this.dateHelpers.date(value) : value}
             onChange={onChange}
             nullable
+            {...this.getTimeSelectProps(value)}
             {...timeSelectProps}
           />
         </TimeSelectFormControl>

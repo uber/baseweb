@@ -12,6 +12,8 @@ import { FormControl } from '../../form-control';
 import ArrowRight from '../../icon/arrow-right';
 import { Datepicker, TimePicker } from '..';
 
+const MIN_DATE = new Date(2019, 3, 1, 11, 0, 0);
+const MAX_DATE = new Date(2019, 3, 10, 18, 0, 0);
 const START_DATE = new Date(2019, 3, 1, 12, 0, 0);
 const END_DATE = new Date(2019, 3, 10, 16, 0, 0);
 
@@ -46,7 +48,10 @@ export function Scenario() {
             <FormControl label="Start Date" caption="YYYY/MM/DD">
               <Datepicker
                 value={dates}
+                minDate={MIN_DATE}
+                maxDate={MAX_DATE}
                 // typecast to any because if datepicker is range, value is always array type
+
                 onChange={({ date }) => setDates(date as any)}
                 timeSelectStart
                 range
@@ -66,6 +71,8 @@ export function Scenario() {
             <FormControl label="Start Time" caption="HH:MM">
               <TimePicker
                 value={dates[0]}
+                minTime={MIN_DATE}
+                maxTime={MAX_DATE}
                 onChange={(time) => {
                   if (time) {
                     if (dates[1] && isAfter(time, dates[1])) {
@@ -97,6 +104,8 @@ export function Scenario() {
             <FormControl label="End Date" caption="YYYY/MM/DD">
               <Datepicker
                 value={dates}
+                minDate={MIN_DATE}
+                maxDate={MAX_DATE}
                 // typecast to any because if datepicker is range, value is always array type
 
                 onChange={({ date }) => setDates(date as any)}
@@ -113,6 +122,8 @@ export function Scenario() {
             <FormControl label="End Time" caption="HH:MM">
               <TimePicker
                 value={dates[1]}
+                minTime={MIN_DATE}
+                maxTime={MAX_DATE}
                 onChange={(time) => {
                   if (time) {
                     if (dates[0] && isBefore(time, dates[0])) {
