@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Radio, RadioGroup } from "baseui/radio";
+import { Radio, RadioGroup } from "baseui/radio-v2";
 
 export default function Example() {
   const [value, setValue] = React.useState("1");
