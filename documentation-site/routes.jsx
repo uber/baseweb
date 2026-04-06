@@ -124,6 +124,10 @@ const routes = [
             itemId: '/components/radio',
           },
           {
+            title: 'Radio-v2',
+            itemId: '/components/radio-v2',
+          },
+          {
             title: 'Slider',
             itemId: '/components/slider',
           },

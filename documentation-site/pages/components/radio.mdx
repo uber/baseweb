@@ -15,7 +15,21 @@ import * as RadioExports from "baseui/radio";
 import Yard from "../../components/yard/index";
 import radioYardConfig from "../../components/yard/config/radio";
 
+import { Notification, KIND as NOTIFICATION_KIND } from "baseui/notification";
+
 export default Layout;
+
+<Notification
+  overrides={{ Body: { style: { width: "auto", margin: "16px 0 0 0" } } }}
+  kind={NOTIFICATION_KIND.warning}
+>
+  This Radio component is about to be deprecated in favor of the new Radio-v2
+  component. The supported apis keep almost same, so the migration just requires
+  minimal efforts(most likely only change import path) but gains much more
+  benefits. We encouraged you to start new implementations with Radio-v2
+  depending your use case and design. Any migrations from Radio to Radio-v2 or
+  Switch are recommended.
+</Notification>
 
 # Radio
 

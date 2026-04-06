@@ -20,7 +20,7 @@ import { Button } from '../../button';
 import { useStyletron } from '../../styles';
 import { getMapStyle } from './map-style';
 import ReactMapGL, { Marker } from 'react-map-gl';
-import { Slider } from 'src/slider';
+import { Slider } from '../../slider';
 
 const uberHq = {
   latitude: 37.768495131168336,
