@@ -24,13 +24,13 @@ export const getOverlayColor = ({
   const hoveredColor = $disabled
     ? 'transparent'
     : $error
-    ? colors.hoverNegativeAlpha
-    : colors.hoverOverlayAlpha;
+      ? colors.hoverNegativeAlpha
+      : colors.hoverOverlayAlpha;
   const pressedColor = $disabled
     ? 'transparent'
     : $error
-    ? colors.pressedNegativeAlpha
-    : colors.pressedOverlayAlpha;
+      ? colors.pressedNegativeAlpha
+      : colors.pressedOverlayAlpha;
 
   return {
     hoveredColor,
