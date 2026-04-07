@@ -9,8 +9,8 @@ import * as React from "react";
 import { useStyletron } from "baseui";
 import { StyledLink } from "baseui/link";
 import { Input } from "baseui/input";
-import { Radio, RadioGroup } from "baseui/radio";
-import { Checkbox } from "baseui/checkbox";
+import { Radio, RadioGroup } from "baseui/radio-v2";
+import { Checkbox } from "baseui/checkbox-v2";
 import { Select, SIZE } from "baseui/select";
 import { StatefulTooltip } from "baseui/tooltip";
 
@@ -35,7 +35,7 @@ const getTooltip = (description: string, type: string, name: string) => (
 const Spacing: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({ margin: `${theme.sizing.scale400} 0` })}>
+    <div className={css({ margin: `${theme.sizing.scale200} 0` })}>
       {children}
     </div>
   );
@@ -135,6 +135,13 @@ const Knob: React.SFC<{
             onChange={() => {
               globalSet(!val);
             }}
+            overrides={{
+              Label: {
+                style: {
+                  fontWeight: 500,
+                },
+              },
+            }}
           >
             <StatefulTooltip
               accessibilityType="tooltip"
@@ -180,7 +187,9 @@ const Knob: React.SFC<{
                   style: ({ $theme }) => ({
                     flexWrap: "wrap",
                     marginTop: 0,
-                    marginBottom: $theme.sizing.scale300,
+                    marginBottom: 0,
+                    rowGap: 0,
+                    columnGap: 0,
                   }),
                 },
               }}
