@@ -70,7 +70,7 @@
     "@babel/template": "^7.22.15",
     "@babel/traverse": "^7.23.6",
     "@babel/types": "^7.23.6",
-    "@ladle/react": "^4.0.2",
+    "@ladle/react": "^4.1.2",
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
     "@next/mdx": "^14.0.4",
@@ -110,7 +110,7 @@
     "provenance": true
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "pnpm": {
     "peerDependencyRules": {
