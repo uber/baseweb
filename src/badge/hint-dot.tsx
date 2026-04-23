@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { useStyletron } from '../styles/index';
 import { getOverrides } from '../helpers/overrides';
 import { StyledHintDot, StyledRoot, StyledPositioner } from './styled-components';
 import type { HintDotProps } from './types';
@@ -18,13 +17,14 @@ const HintDot = ({
   horizontalOffset: horizontalOffsetProp,
   verticalOffset: verticalOffsetProp,
   hidden,
+  // placement was not there for hintBadge, but we need to support in for Avatar and other potential use cases.
+  placement = PLACEMENT.topRight,
+  hasBorder = true,
   overrides = {},
 }: HintDotProps) => {
   const [HintDot, hintDotProps] = getOverrides(overrides.Badge, StyledHintDot);
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [Positioner, positionerProps] = getOverrides(overrides.Positioner, StyledPositioner);
-
-  const [, theme] = useStyletron();
 
   const anchor = getAnchorFromChildren(children);
 
@@ -39,22 +39,28 @@ const HintDot = ({
       verticalOffset = '-4px';
     }
   }
+
   return (
     <Root {...rootProps}>
       {anchor}
 
       <Positioner
+        aria-hidden={true}
         $horizontalOffset={horizontalOffset}
         $verticalOffset={verticalOffset}
-        $placement={theme.direction === 'rtl' ? PLACEMENT.topLeft : PLACEMENT.topRight}
+        $placement={placement}
         $role={ROLE.hintDot}
+        $noAnchor={!anchor}
+        $hasBorder={hasBorder}
         {...positionerProps}
       >
         <HintDot
-          {...hintDotProps}
+          data-baseweb="hint-badge"
           $color={color}
           $horizontalOffset={horizontalOffset}
           $hidden={hidden}
+          $hasBorder={hasBorder}
+          {...hintDotProps}
         />
       </Positioner>
     </Root>

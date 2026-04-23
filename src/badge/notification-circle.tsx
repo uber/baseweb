@@ -8,7 +8,7 @@ import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import { StyledNotificationCircle, StyledRoot, StyledPositioner } from './styled-components';
 import type { NotificationCircleProps } from './types';
-import { PLACEMENT, ROLE } from './constants';
+import { PLACEMENT, ROLE, NOTIFICATION_CIRCLE_SIZE } from './constants';
 import { getAnchorFromChildren } from './utils';
 
 const NotificationCircle = ({
@@ -19,6 +19,7 @@ const NotificationCircle = ({
   horizontalOffset,
   verticalOffset,
   hidden,
+  size = NOTIFICATION_CIRCLE_SIZE.medium,
   overrides = {},
 }: NotificationCircleProps) => {
   const [NotificationCircle, NotificationCircleProps] = getOverrides(
@@ -34,22 +35,48 @@ const NotificationCircle = ({
     if (typeof contentProp === 'string') {
       console.error(`[baseui] NotificationCircle child must be number or icon, found string`);
     }
-    if (placement && placement !== PLACEMENT.topLeft && placement !== PLACEMENT.topRight) {
+    if (
+      placement &&
+      placement !== PLACEMENT.topLeft &&
+      placement !== PLACEMENT.topRight &&
+      placement !== PLACEMENT.bottomLeft &&
+      placement !== PLACEMENT.bottomRight
+    ) {
       console.error(
-        `[baseui] NotificationCircle must be placed topLeft or topRight, found ${placement}`
+        `[baseui] NotificationCircle must be placed topLeft, topRight, bottomLeft, or bottomRight, found ${placement}`
       );
     }
   }
 
   let content = contentProp;
-  if (typeof content === 'number' && content > 9) {
-    content = '9+';
+  const ICON_SIZE = size === NOTIFICATION_CIRCLE_SIZE.small ? 10 : 12;
+  const isContentNumber = typeof content === 'number';
+  if (typeof content === 'number' && content > 99) {
+    content = '99+';
+  } else if (typeof content === 'function') {
+    // add support for render prop, content = (size) => <Icon size={size} />
+    content = content(ICON_SIZE);
+  } else if (React.isValidElement(content)) {
+    // backwards compatibility for icon element as child, clone the element and pass size as prop
+    // content = <Icon />
+    // React.cloneElement is not recommended but we need this to support the old way of passing icon element as content
+    content = React.cloneElement(content as React.ReactElement<{ size?: number }>, {
+      size: ICON_SIZE,
+    });
   }
 
   // If there's no anchor, render the badge inline
   if (!anchor) {
     return (
-      <NotificationCircle $color={color} $hidden={hidden} {...NotificationCircleProps}>
+      <NotificationCircle
+        data-baseweb="notification-badge"
+        $color={color}
+        $hidden={hidden}
+        $size={size}
+        $extraPadding={isContentNumber}
+        aria-hidden={true}
+        {...NotificationCircleProps}
+      >
         {content}
       </NotificationCircle>
     );
@@ -64,9 +91,17 @@ const NotificationCircle = ({
         $verticalOffset={verticalOffset}
         $placement={placement}
         $role={ROLE.notificationCircle}
+        aria-hidden={true}
         {...positionerProps}
       >
-        <NotificationCircle {...NotificationCircleProps} $color={color} $hidden={hidden}>
+        <NotificationCircle
+          data-baseweb="notification-badge"
+          $color={color}
+          $hidden={hidden}
+          $size={size}
+          $extraPadding={isContentNumber}
+          {...NotificationCircleProps}
+        >
           {content}
         </NotificationCircle>
       </Positioner>

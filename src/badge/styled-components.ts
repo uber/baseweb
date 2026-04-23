@@ -5,8 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles';
-import type { Placement, Color, Shape, Role, Hierarchy } from './types';
-import { COLOR, SHAPE, ROLE, PLACEMENT, HIERARCHY } from './constants';
+import type { Theme } from '../styles';
+import type { Placement, Color, Shape, Role, Hierarchy, NotificationCircleSize } from './types';
+import { COLOR, SHAPE, ROLE, PLACEMENT, HIERARCHY, NOTIFICATION_CIRCLE_SIZE } from './constants';
 
 // @ts-ignore
 function getColorStyles({ $theme, $hierarchy, $color }): {
@@ -34,6 +35,10 @@ function getColorStyles({ $theme, $hierarchy, $color }): {
       [COLOR.warning]: {
         color: $theme.colors.contentOnColorInverse,
         backgroundColor: $theme.colors.backgroundWarning,
+      },
+      [COLOR.onBrand]: {
+        color: $theme.colors.brandBackgroundPrimary,
+        backgroundColor: $theme.colors.brandContentOnPrimary,
       },
     },
     [HIERARCHY.secondary]: {
@@ -64,119 +69,168 @@ function getColorStyles({ $theme, $hierarchy, $color }): {
   return COLOR_STYLES[$hierarchy][$color];
 }
 
-const DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT = {
-  top: '-10px',
-  right: '-10px',
-};
+function getPositionStyles($theme: Theme) {
+  const defaultNotificationCirclePlacement = {
+    insetBlockStart: `-${$theme.sizing.scale400}`,
+    insetInlineEnd: `-${$theme.sizing.scale400}`,
+  };
+  const defaultHintDotPlacement = {
+    insetBlockStart: `-${$theme.sizing.scale100}`,
+    insetInlineEnd: `-${$theme.sizing.scale100}`,
+  };
+  return {
+    [ROLE.badge]: {
+      [PLACEMENT.topEdge]: {
+        insetBlockStart: `-${$theme.sizing.scale300}`,
+        left: '50%', // special case not using insetInlineStart since there is a transform to move left by 50% of its own width
+        transform: 'translateX(-50%)',
+      },
+      [PLACEMENT.bottomEdge]: {
+        insetBlockEnd: `-${$theme.sizing.scale300}`,
+        left: '50%', // special case not using insetInlineStart since there is a transform to move left by 50% of its own width
+        transform: 'translateX(-50%)',
+      },
+      [PLACEMENT.topLeft]: {
+        insetBlockStart: $theme.sizing.scale600,
+        insetInlineStart: $theme.sizing.scale600,
+      },
+      [PLACEMENT.topRight]: {
+        insetBlockStart: $theme.sizing.scale600,
+        insetInlineEnd: $theme.sizing.scale600,
+      },
+      [PLACEMENT.bottomRight]: {
+        insetBlockEnd: $theme.sizing.scale600,
+        insetInlineEnd: $theme.sizing.scale600,
+      },
+      [PLACEMENT.bottomLeft]: {
+        insetBlockEnd: $theme.sizing.scale600,
+        insetInlineStart: $theme.sizing.scale600,
+      },
+      [PLACEMENT.topLeftEdge]: {
+        insetBlockStart: `-${$theme.sizing.scale300}`,
+        insetInlineStart: $theme.sizing.scale600,
+      },
+      [PLACEMENT.topRightEdge]: {
+        insetBlockStart: `-${$theme.sizing.scale300}`,
+        insetInlineEnd: $theme.sizing.scale600,
+      },
+      [PLACEMENT.bottomRightEdge]: {
+        insetBlockEnd: `-${$theme.sizing.scale300}`,
+        insetInlineEnd: $theme.sizing.scale600,
+      },
+      [PLACEMENT.bottomLeftEdge]: {
+        insetBlockEnd: `-${$theme.sizing.scale300}`,
+        insetInlineStart: $theme.sizing.scale600,
+      },
+      [PLACEMENT.leftTopEdge]: {
+        insetBlockStart: $theme.sizing.scale600,
+        insetInlineStart: `-${$theme.sizing.scale300}`,
+      },
+      [PLACEMENT.rightTopEdge]: {
+        insetBlockStart: $theme.sizing.scale600,
+        insetInlineEnd: `-${$theme.sizing.scale300}`,
+      },
+      [PLACEMENT.rightBottomEdge]: {
+        insetBlockEnd: $theme.sizing.scale600,
+        insetInlineEnd: `-${$theme.sizing.scale300}`,
+      },
+      [PLACEMENT.leftBottomEdge]: {
+        insetBlockEnd: $theme.sizing.scale600,
+        insetInlineStart: `-${$theme.sizing.scale300}`,
+      },
+    },
+    [ROLE.notificationCircle]: {
+      [PLACEMENT.topLeft]: {
+        insetBlockStart: `-${$theme.sizing.scale400}`,
+        insetInlineStart: `-${$theme.sizing.scale400}`,
+      },
+      [PLACEMENT.topRight]: defaultNotificationCirclePlacement,
+      [PLACEMENT.bottomRight]: {
+        insetBlockEnd: `-${$theme.sizing.scale400}`,
+        insetInlineEnd: `-${$theme.sizing.scale400}`,
+      },
+      [PLACEMENT.bottomLeft]: {
+        insetBlockEnd: `-${$theme.sizing.scale400}`,
+        insetInlineStart: `-${$theme.sizing.scale400}`,
+      },
+      // NotificationCircle can only be placed topLeft, topRight, bottomLeft, or bottomRight, other values fall back to topRight
+      [PLACEMENT.topEdge]: defaultNotificationCirclePlacement,
+      [PLACEMENT.bottomEdge]: defaultNotificationCirclePlacement,
+      [PLACEMENT.topLeftEdge]: defaultNotificationCirclePlacement,
+      [PLACEMENT.topRightEdge]: defaultNotificationCirclePlacement,
+      [PLACEMENT.bottomRightEdge]: defaultNotificationCirclePlacement,
+      [PLACEMENT.bottomLeftEdge]: defaultNotificationCirclePlacement,
+      [PLACEMENT.leftTopEdge]: defaultNotificationCirclePlacement,
+      [PLACEMENT.rightTopEdge]: defaultNotificationCirclePlacement,
+      [PLACEMENT.rightBottomEdge]: defaultNotificationCirclePlacement,
+      [PLACEMENT.leftBottomEdge]: defaultNotificationCirclePlacement,
+    },
+    [ROLE.hintDot]: {
+      // For now, we only need to support topLeft, topRight, bottomLeft and bottomRight. Others are considered as an invalid placement prop.
+      [PLACEMENT.topLeft]: {
+        insetBlockStart: `-${$theme.sizing.scale100}`,
+        insetInlineStart: `-${$theme.sizing.scale100}`,
+      },
+      [PLACEMENT.topRight]: defaultHintDotPlacement,
+      [PLACEMENT.bottomRight]: {
+        insetBlockEnd: `-${$theme.sizing.scale100}`,
+        insetInlineEnd: `-${$theme.sizing.scale100}`,
+      },
+      [PLACEMENT.bottomLeft]: {
+        insetBlockEnd: `-${$theme.sizing.scale100}`,
+        insetInlineStart: `-${$theme.sizing.scale100}`,
+      },
+      // unsupported placements fall back to topRight
+      [PLACEMENT.topEdge]: defaultHintDotPlacement,
+      [PLACEMENT.topLeftEdge]: defaultHintDotPlacement,
+      [PLACEMENT.topRightEdge]: defaultHintDotPlacement,
+      [PLACEMENT.bottomEdge]: defaultHintDotPlacement,
+      [PLACEMENT.bottomRightEdge]: defaultHintDotPlacement,
+      [PLACEMENT.bottomLeftEdge]: defaultHintDotPlacement,
+      [PLACEMENT.leftTopEdge]: defaultHintDotPlacement,
+      [PLACEMENT.rightTopEdge]: defaultHintDotPlacement,
+      [PLACEMENT.rightBottomEdge]: defaultHintDotPlacement,
+      [PLACEMENT.leftBottomEdge]: defaultHintDotPlacement,
+    },
+  };
+}
 
-const DEFAULT_HINT_DOT_PLACEMENT = {
-  top: '-4px',
-  right: '-4px',
-};
-
-const POSITION_STYLES = Object.freeze({
-  [ROLE.badge]: {
-    [PLACEMENT.topEdge]: {
-      top: '-8px',
-      left: '50%',
-      transform: 'translateX(-50%)',
+// This is designed for hint badge. This data structure make future extension on other badges possible.
+function getPositionStrokeOffStyles($theme: Theme) {
+  const defaultHintDotPlacement = {
+    insetBlockStart: `-${$theme.sizing.scale0}`,
+    insetInlineEnd: `-${$theme.sizing.scale0}`,
+  };
+  return {
+    [ROLE.hintDot]: {
+      // For now, we only need to support topLeft, topRight, bottomLeft and bottomRight. Others are considered as an invalid placement prop.
+      [PLACEMENT.topLeft]: {
+        insetBlockStart: `-${$theme.sizing.scale0}`,
+        insetInlineStart: `-${$theme.sizing.scale0}`,
+      },
+      [PLACEMENT.topRight]: defaultHintDotPlacement,
+      [PLACEMENT.bottomRight]: {
+        insetBlockEnd: `-${$theme.sizing.scale0}`,
+        insetInlineEnd: `-${$theme.sizing.scale0}`,
+      },
+      [PLACEMENT.bottomLeft]: {
+        insetBlockEnd: `-${$theme.sizing.scale0}`,
+        insetInlineStart: `-${$theme.sizing.scale0}`,
+      },
+      // unsupported placements fall back to topRight
+      [PLACEMENT.topEdge]: defaultHintDotPlacement,
+      [PLACEMENT.topLeftEdge]: defaultHintDotPlacement,
+      [PLACEMENT.topRightEdge]: defaultHintDotPlacement,
+      [PLACEMENT.bottomEdge]: defaultHintDotPlacement,
+      [PLACEMENT.bottomRightEdge]: defaultHintDotPlacement,
+      [PLACEMENT.bottomLeftEdge]: defaultHintDotPlacement,
+      [PLACEMENT.leftTopEdge]: defaultHintDotPlacement,
+      [PLACEMENT.rightTopEdge]: defaultHintDotPlacement,
+      [PLACEMENT.rightBottomEdge]: defaultHintDotPlacement,
+      [PLACEMENT.leftBottomEdge]: defaultHintDotPlacement,
     },
-    [PLACEMENT.bottomEdge]: {
-      bottom: '-8px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-    },
-    [PLACEMENT.topLeft]: {
-      top: '16px',
-      left: '16px',
-    },
-    [PLACEMENT.topRight]: {
-      top: '16px',
-      right: '16px',
-    },
-    [PLACEMENT.bottomRight]: {
-      bottom: '16px',
-      right: '16px',
-    },
-
-    [PLACEMENT.bottomLeft]: {
-      bottom: '16px',
-      left: '16px',
-    },
-    [PLACEMENT.topLeftEdge]: {
-      top: '-8px',
-      left: '16px',
-    },
-    [PLACEMENT.topRightEdge]: {
-      top: '-8px',
-      right: '16px',
-    },
-    [PLACEMENT.bottomRightEdge]: {
-      bottom: '-8px',
-      right: '16px',
-    },
-    [PLACEMENT.bottomLeftEdge]: {
-      bottom: '-8px',
-      left: '16px',
-    },
-    [PLACEMENT.leftTopEdge]: {
-      top: '16px',
-      left: '-8px',
-    },
-    [PLACEMENT.rightTopEdge]: {
-      top: '16px',
-      right: '-8px',
-    },
-    [PLACEMENT.rightBottomEdge]: {
-      bottom: '16px',
-      right: '-8px',
-    },
-    [PLACEMENT.leftBottomEdge]: {
-      bottom: '16px',
-      left: '-8px',
-    },
-  },
-  [ROLE.notificationCircle]: {
-    [PLACEMENT.topLeft]: {
-      top: '-10px',
-      left: '-10px',
-    },
-    [PLACEMENT.topRight]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-    // NotificationCircle can only be placed topLeft or topRight, other values fall back to topRight
-    [PLACEMENT.topEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-    [PLACEMENT.bottomEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-    [PLACEMENT.bottomRight]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-    [PLACEMENT.bottomLeft]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-    [PLACEMENT.topLeftEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-    [PLACEMENT.topRightEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-    [PLACEMENT.bottomRightEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-    [PLACEMENT.bottomLeftEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-    [PLACEMENT.leftTopEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-    [PLACEMENT.rightTopEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-    [PLACEMENT.rightBottomEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-    [PLACEMENT.leftBottomEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-  },
-  [ROLE.hintDot]: {
-    [PLACEMENT.topLeft]: {
-      top: '-4px',
-      left: '-4px',
-    },
-    [PLACEMENT.topRight]: DEFAULT_HINT_DOT_PLACEMENT,
-    // HintDot can only be placed topLeft or topRight, other values fall back to topRight
-    [PLACEMENT.topEdge]: DEFAULT_HINT_DOT_PLACEMENT,
-    [PLACEMENT.bottomEdge]: DEFAULT_HINT_DOT_PLACEMENT,
-    [PLACEMENT.bottomRight]: DEFAULT_HINT_DOT_PLACEMENT,
-    [PLACEMENT.bottomLeft]: DEFAULT_HINT_DOT_PLACEMENT,
-    [PLACEMENT.topLeftEdge]: DEFAULT_HINT_DOT_PLACEMENT,
-    [PLACEMENT.topRightEdge]: DEFAULT_HINT_DOT_PLACEMENT,
-    [PLACEMENT.bottomRightEdge]: DEFAULT_HINT_DOT_PLACEMENT,
-    [PLACEMENT.bottomLeftEdge]: DEFAULT_HINT_DOT_PLACEMENT,
-    [PLACEMENT.leftTopEdge]: DEFAULT_HINT_DOT_PLACEMENT,
-    [PLACEMENT.rightTopEdge]: DEFAULT_HINT_DOT_PLACEMENT,
-    [PLACEMENT.rightBottomEdge]: DEFAULT_HINT_DOT_PLACEMENT,
-    [PLACEMENT.leftBottomEdge]: DEFAULT_HINT_DOT_PLACEMENT,
-  },
-});
+  };
+}
 
 export const StyledRoot = styled<'div', {}>('div', () => {
   return {
@@ -232,35 +286,59 @@ export const StyledPositioner = styled<
     $placement: Placement;
     $horizontalOffset?: string | null;
     $verticalOffset?: string | null;
+    $noAnchor?: boolean;
+    $hasBorder?: boolean;
   }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
->('div', ({ $theme, $role, $placement, $horizontalOffset, $verticalOffset }) => {
-  let positionStyle = POSITION_STYLES[$role][$placement];
+>(
+  'div',
+  ({
+    $theme,
+    $role,
+    $placement,
+    $horizontalOffset,
+    $verticalOffset,
+    $noAnchor = false,
+    $hasBorder = true,
+  }) => {
+    // If no anchor and no offset specified, the hintBadge should not have any offsets.
+    if (
+      $role === ROLE.hintDot &&
+      $noAnchor &&
+      $horizontalOffset === undefined &&
+      $verticalOffset === undefined
+    )
+      return {};
 
-  if ($verticalOffset) {
-    if (TOP_PLACEMENTS.includes($placement)) {
-      positionStyle = { ...positionStyle, top: $verticalOffset };
+    let positionStyle =
+      $role === ROLE.hintDot && !$hasBorder
+        ? getPositionStrokeOffStyles($theme)[$role][$placement]
+        : getPositionStyles($theme)[$role][$placement];
+
+    if ($verticalOffset) {
+      if (TOP_PLACEMENTS.includes($placement)) {
+        positionStyle = { ...positionStyle, insetBlockStart: $verticalOffset };
+      }
+      if (BOTTOM_PLACEMENTS.includes($placement)) {
+        positionStyle = { ...positionStyle, insetBlockEnd: $verticalOffset };
+      }
     }
-    if (BOTTOM_PLACEMENTS.includes($placement)) {
-      positionStyle = { ...positionStyle, bottom: $verticalOffset };
+
+    if ($horizontalOffset) {
+      if (LEFT_PLACEMENTS.includes($placement)) {
+        positionStyle = { ...positionStyle, insetInlineStart: $horizontalOffset };
+      }
+      if (RIGHT_PLACEMENTS.includes($placement)) {
+        positionStyle = { ...positionStyle, insetInlineEnd: $horizontalOffset };
+      }
     }
+
+    return {
+      ...positionStyle,
+      position: 'absolute',
+      lineHeight: 'initial',
+    };
   }
-
-  if ($horizontalOffset) {
-    if (LEFT_PLACEMENTS.includes($placement)) {
-      positionStyle = { ...positionStyle, left: $horizontalOffset };
-    }
-    if (RIGHT_PLACEMENTS.includes($placement)) {
-      positionStyle = { ...positionStyle, right: $horizontalOffset };
-    }
-  }
-
-  return {
-    ...positionStyle,
-    position: 'absolute',
-    lineHeight: 'initial',
-  };
-});
+);
 
 StyledPositioner.displayName = 'StyledPositioner';
 
@@ -306,40 +384,96 @@ export const StyledNotificationCircle = styled<
   {
     $color?: Color;
     $hidden?: boolean;
+    $size?: NotificationCircleSize;
+    $extraPadding?: boolean;
   }
->('div', ({ $theme, $color = COLOR.accent, $hidden }) => {
+>('div', ({ $theme, $color = COLOR.accent, $hidden, $size, $extraPadding }) => {
+  const sizeDimension =
+    $size === NOTIFICATION_CIRCLE_SIZE.small ? $theme.sizing.scale600 : $theme.sizing.scale700;
+  const paddingDimension =
+    $size === NOTIFICATION_CIRCLE_SIZE.small
+      ? $extraPadding
+        ? $theme.sizing.scale100
+        : $theme.sizing.scale0
+      : $extraPadding
+      ? '6.5px'
+      : $theme.sizing.scale100;
+
   return {
     visibility: $hidden ? 'hidden' : 'inherit',
-    height: $theme.sizing.scale700,
-    width: $theme.sizing.scale700,
-    borderRadius: '20px',
+    height: sizeDimension,
+    minWidth: sizeDimension,
+    boxSizing: 'border-box',
+    paddingLeft: paddingDimension,
+    paddingRight: paddingDimension,
+    borderRadius: sizeDimension,
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     ...getColorStyles({ $theme, $hierarchy: HIERARCHY.primary, $color }),
-    ...$theme.typography.LabelXSmall,
+    ...($size === NOTIFICATION_CIRCLE_SIZE.small
+      ? $theme.typography.LabelXSmall
+      : $theme.typography.LabelSmall),
   };
 });
 
 StyledNotificationCircle.displayName = 'StyledNotificationCircle';
 
+function getHintDotColorStyles(
+  $theme: Theme,
+  $color: Color
+): {
+  backgroundColor: string;
+  borderColor: string;
+} {
+  const styles = {
+    [COLOR.accent]: {
+      backgroundColor: $theme.colors.brandBackgroundPrimary,
+      borderColor: $theme.colors.backgroundPrimary,
+    },
+    [COLOR.positive]: {
+      backgroundColor: $theme.colors.contentPositive,
+      borderColor: $theme.colors.backgroundPrimary,
+    },
+    [COLOR.warning]: {
+      backgroundColor: $theme.colors.contentWarning,
+      borderColor: $theme.colors.backgroundPrimary,
+    },
+    [COLOR.negative]: {
+      backgroundColor: $theme.colors.contentNegative,
+      borderColor: $theme.colors.backgroundPrimary,
+    },
+    [COLOR.primary]: {
+      backgroundColor: $theme.colors.backgroundInversePrimary,
+      borderColor: $theme.colors.backgroundPrimary,
+    },
+    [COLOR.onBrand]: {
+      backgroundColor: $theme.colors.brandContentOnPrimary,
+      borderColor: $theme.colors.brandBackgroundPrimary,
+    },
+  };
+  return styles[$color] ?? styles[COLOR.accent];
+}
+
 export const StyledHintDot = styled<
   'div',
   {
-    $color: Color;
+    $color?: Color;
     $hidden?: boolean;
+    $hasBorder?: boolean;
   }
->('div', ({ $theme, $color = COLOR.accent, $hidden }) => {
+>('div', ({ $theme, $color = COLOR.accent, $hidden, $hasBorder = true }) => {
+  const { backgroundColor, borderColor } = getHintDotColorStyles($theme, $color);
   return {
     visibility: $hidden ? 'hidden' : 'inherit',
-    // @ts-ignore
-    backgroundColor: $theme.colors[$color],
+    backgroundColor,
     boxSizing: 'content-box',
-    height: '8px',
-    width: '8px',
+    height: $theme.sizing.scale300, // 8px
+    width: $theme.sizing.scale300, // 8px
     borderRadius: '50%',
-    border: `4px solid ${$theme.colors.backgroundPrimary}`,
-    ...getColorStyles({ $theme, $hierarchy: HIERARCHY.primary, $color }),
+    borderStyle: $hasBorder ? 'solid' : 'none',
+    borderWidth: $theme.sizing.scale0, // 2px
+    borderColor,
   };
 });
 StyledHintDot.displayName = 'StyledHintDot';
