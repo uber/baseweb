@@ -11,8 +11,6 @@ import badgeYardConfig from "../../components/yard/config/badge";
 import PrimaryInline from "examples/badge/primary-inline.tsx";
 import SecondaryInline from "examples/badge/secondary-inline.tsx";
 import Offset from "examples/badge/offset.tsx";
-import NotificationCircleExample from "examples/badge/notification-circle.tsx";
-import HintDotExample from "examples/badge/hint-dot.tsx";
 
 export default Layout;
 
@@ -26,7 +24,7 @@ Badge content should generally be 3 words or less.
 
 ## Hierarchy
 
-Primary badges are bright in color to grab a user's attention to an entry point of either a new product/feature, promotion or alert. Another usage is for transit lines. Avoid using multiple primary badges in the same view.
+Primary badges are bright in color to grab a user’s attention to an entry point of either a new product/feature, promotion or alert. Another usage is for transit lines. Avoid using multiple primary badges in the same view.
 
 Secondary badges should be part of the content inside the component. They are often meta data, highlighted information or simplified information.
 
@@ -54,25 +52,5 @@ There may be situations where it makes sense to deviate from the standard badge 
 
 - `horizontalOffset` sets the `right` CSS attribute when `placement` is `topRight` or `bottomRight`. Otherwise it sets the `left` attribute.
 - `verticalOffset` sets the `top` CSS attribute when `placement` is `topLeft`, `top`, or `topRight`. Otherwise it sets the `bottom` attribute.
-
-## NotificationCircle
-
-Use `NotificationCircle` to display a count or icon indicator anchored to an element — for example, an unread message count on a navigation icon.
-
-<Example title="Notification circle" path="badge/notification-circle.tsx">
-  <NotificationCircleExample />
-</Example>
-
-The `content` prop accepts a number, an icon element, or a render prop `(size: number) => ReactNode`. Numbers greater than 99 are automatically clamped to `99+`. Use the `size` prop (`small` or `medium`, defaults to `medium`) to control the circle dimensions. `NotificationCircle` supports `topLeft`, `topRight`, `bottomLeft`, and `bottomRight` placements.
-
-## HintDot
-
-Use `HintDot` to render a small colored dot anchored to an element, drawing attention without conveying specific information.
-
-<Example title="Hint dot" path="badge/hint-dot.tsx">
-  <HintDotExample />
-</Example>
-
-The dot supports `topRight`, `topLeft`, `bottomRight`, and `bottomLeft` placements (defaults to `topRight`). By default a border separates the dot from its anchor; set `hasBorder={false}` to remove it. When no `children` are provided the dot renders inline without an anchor.
 
 <Exports component={BadgeExports} title="Badge exports" path="baseui/badge" />

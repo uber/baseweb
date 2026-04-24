@@ -19,7 +19,7 @@ export { default as Badge } from './badge';
 export { default as NotificationCircle } from './notification-circle';
 export { default as HintDot } from './hint-dot';
 
-export { HIERARCHY, SHAPE, COLOR, PLACEMENT, NOTIFICATION_CIRCLE_SIZE } from './constants';
+export { HIERARCHY, SHAPE, COLOR, PLACEMENT } from './constants';
 
 export * from './styled-components';
 
