@@ -9,11 +9,6 @@ export const HIERARCHY = Object.freeze({
   secondary: 'secondary',
 });
 
-export const NOTIFICATION_CIRCLE_SIZE = {
-  small: 'small',
-  medium: 'medium',
-} as const;
-
 export const SHAPE = Object.freeze({
   pill: 'pill',
   rectangle: 'rectangle',
@@ -21,11 +16,10 @@ export const SHAPE = Object.freeze({
 
 export const COLOR = Object.freeze({
   accent: 'accent',
-  primary: 'primary', // deprecated
+  primary: 'primary',
   positive: 'positive',
   negative: 'negative',
   warning: 'warning',
-  onBrand: 'onBrand',
 });
 
 export const PLACEMENT = Object.freeze({
