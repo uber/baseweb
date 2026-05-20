@@ -1,0 +1,79 @@
+import Example from "../../components/example";
+import Exports from "../../components/exports";
+import Layout from "../../components/layout";
+import SEO from "../../components/meta-seo";
+
+import Basic from "examples/sliding-button/basic.tsx";
+import States from "examples/sliding-button/states.tsx";
+import LowThreshold from "examples/sliding-button/low-threshold.tsx";
+
+import * as SlidingButtonExports from "baseui/sliding-button";
+
+import Yard from "../../components/yard/index";
+import slidingButtonYardConfig from "../../components/yard/config/sliding-button";
+
+<SEO
+  description="Sliding buttons use a drag gesture instead of a tap to confirm actions, reducing accidental triggers and reinforcing user intent."
+  keywords="sliding button, swipe to confirm, slide to confirm, react drag button"
+/>
+
+export default Layout;
+
+# Sliding Button
+
+<Yard placeholderHeight={56} {...slidingButtonYardConfig} />
+
+Sliding buttons are a variation of primary buttons that use a drag gesture instead of a standard tap to confirm actions. They help reduce accidental triggers and reinforce user intent by introducing deliberate friction.
+
+## When to use
+
+- **Prevent accidental actions**: Situations requiring confirmation to avoid unintended triggers.
+- **Costly or non-reversible actions**: Confirming intent on high-stakes operations (e.g., emergency assistance, trip completion).
+- **Multi-step flow completion**: Final step in extended user journeys.
+
+> **Caution**: If the action is not critical, a sliding button may add unnecessary complexity. Use a standard [Button](/components/button) instead.
+
+## Examples
+
+<Example title="Basic usage" path="sliding-button/basic.tsx">
+  <Basic />
+</Example>
+
+<Example
+  title="States (default, loading, disabled)"
+  path="sliding-button/states.tsx"
+>
+  <States />
+</Example>
+
+<Example
+  title="Low threshold (20% drag)"
+  path="sliding-button/low-threshold.tsx"
+>
+  <LowThreshold />
+</Example>
+
+## Threshold
+
+Two completion thresholds support different user types:
+
+- **`THRESHOLD.high`** (default) — at least 80% drag distance. Standard, requires deliberate intent.
+- **`THRESHOLD.low`** — at least 20% drag distance. For users with motor disabilities, seniors, or low-friction flows.
+
+## Accessibility
+
+- **Keyboard support**: Press Enter or Space to activate — provides a standard button interaction for screen reader users.
+- **Screen readers**: Use the `aria-label` prop to provide alternative text that omits "Slide" terminology, since swipe gestures behave differently with VoiceOver and TalkBack enabled.
+- The component sets `role="button"`, `aria-busy` during loading, and `aria-disabled` when disabled.
+
+## Content guidelines
+
+- **Use "Slide"** in the visible label to indicate the drag interaction.
+- **Avoid "Swipe"** — it carries a navigational connotation rather than task completion.
+- **Omit "Slide"** from `aria-label` when VoiceOver/TalkBack is expected — use the `aria-label` prop to provide a plain-language alternative.
+
+<Exports
+  component={SlidingButtonExports}
+  title="Sliding Button exports"
+  path="baseui/sliding-button"
+/>
