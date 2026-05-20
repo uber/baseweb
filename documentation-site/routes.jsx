@@ -358,6 +358,10 @@ const routes = [
             itemId: '/components/skeleton',
           },
           {
+            title: 'Sliding Button',
+            itemId: '/components/sliding-button',
+          },
+          {
             title: 'Snackbar',
             itemId: '/components/snackbar',
           },
