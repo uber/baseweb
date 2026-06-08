@@ -43,5 +43,8 @@ jobs:
       - name: Build d.ts files
         run: pnpm build:lib:dts
 
+      - name: Clear npm auth token for trusted publisher OIDC
+        run: echo "registry=https://registry.npmjs.org/" > $NPM_CONFIG_USERCONFIG
+
       - name: Publishing next version
         run: ./publish/publish-next.js
