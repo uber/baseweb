@@ -32,6 +32,7 @@ jobs:
         with:
           node-version: 22
           cache: "pnpm"
+          registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -44,5 +45,3 @@ jobs:
 
       - name: Publishing next version
         run: ./publish/publish-next.js
-        env:
-          NPM_CONFIG_REGISTRY: https://registry.npmjs.org/
