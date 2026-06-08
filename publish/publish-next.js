@@ -13,7 +13,7 @@ const publishNext = () => {
   fs.writeFileSync("./dist/package.json", JSON.stringify(pkgJson, null, 2));
 
   try {
-    execSync("cd dist && npm publish --tag next");
+    execSync("cd dist && npm publish --tag next", { stdio: "inherit" });
   } catch (e) {
     console.log(e);
     console.log("Next publish failed.");
@@ -33,7 +33,7 @@ fetch(`https://registry.npmjs.org/baseui`)
       delete pkgJson.scripts.prepare;
       fs.writeFileSync("./dist/package.json", JSON.stringify(pkgJson, null, 2));
       try {
-        execSync("cd dist && npm publish");
+        execSync("cd dist && npm publish", { stdio: "inherit" });
       } catch (e) {
         console.log(e);
         console.log("Stable publish failed.");

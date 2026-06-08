@@ -45,3 +45,5 @@ jobs:
 
       - name: Publishing next version
         run: ./publish/publish-next.js
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
