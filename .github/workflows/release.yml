@@ -42,16 +42,5 @@ jobs:
       - name: Build d.ts files
         run: pnpm build:lib:dts
 
-      - name: Creating .npmrc
-        run: |
-          cat << EOF > "$HOME/.npmrc"
-            email=fusionjs+ci@uber.com
-            //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          EOF
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Publishing next version
         run: ./publish/publish-next.js
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
