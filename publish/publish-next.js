@@ -13,7 +13,7 @@ const publishNext = () => {
   fs.writeFileSync("./dist/package.json", JSON.stringify(pkgJson, null, 2));
 
   try {
-    execSync("cd dist && npm publish --tag next", { stdio: "inherit" });
+    execSync("cd dist && npm publish --tag next --loglevel verbose", { stdio: "inherit" });
   } catch (e) {
     console.log(e);
     console.log("Next publish failed.");
