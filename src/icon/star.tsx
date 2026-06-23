@@ -17,11 +17,11 @@ import type { IconProps } from './types';
 // @ts-ignore
 function Search(props: IconProps, ref) {
   const [, theme] = useStyletron();
-  const { title = 'Search', size, color, overrides = {}, ...restProps } = props;
+  const { title = 'Star', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
     // Icons from the theme target the SVG override in the underlying Icon component
     {
-      component: theme.icons && theme.icons.Search ? theme.icons.Search : null,
+      component: theme.icons && theme.icons.Star ? theme.icons.Star : null,
     },
     overrides && overrides.Svg ? toObjectOverride(overrides.Svg) : {}
   );
@@ -44,4 +44,4 @@ function Search(props: IconProps, ref) {
   );
 }
 
-export default React.forwardRef<SVGSVGElement, IconProps>(Search);
+export default React.forwardRef<SVGSVGElement, IconProps>(Star);
