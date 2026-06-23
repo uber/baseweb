@@ -1,7 +1,5 @@
-
 /*
 Copyright (c) Uber Technologies, Inc.
-
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
@@ -10,16 +8,14 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { useStyletron } from '../styles';
 import { mergeOverride, toObjectOverride } from '../helpers/overrides';
-
 import Icon from './icon';
 import type { IconProps } from './types';
 
 // @ts-ignore
-function Search(props: IconProps, ref) {
+function Star(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Star', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
-    // Icons from the theme target the SVG override in the underlying Icon component
     {
       component: theme.icons && theme.icons.Star ? theme.icons.Star : null,
     },
@@ -35,11 +31,11 @@ function Search(props: IconProps, ref) {
       overrides={{ Svg: SvgOverride }}
       {...restProps}
     >
-     <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M12 2.5L14.91 8.26L21.27 9.18L16.64 13.68L17.73 20.02L12 17.01L6.27 20.02L7.36 13.68L2.73 9.18L9.09 8.26L12 2.5Z"
-    />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2.5L14.91 8.26L21.27 9.18L16.64 13.68L17.73 20.02L12 17.01L6.27 20.02L7.36 13.68L2.73 9.18L9.09 8.26L12 2.5Z"
+      />
     </Icon>
   );
 }
