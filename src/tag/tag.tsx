@@ -36,6 +36,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
     isFocused = false,
     isHovered = false,
     kind = KIND.gray,
+    noMargin = false,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onActionClick = (event) => {},
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -118,6 +119,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
     $hierarchy: hierarchy,
     $isFocusVisible: focusVisible,
     $size: size,
+    $noMargin: noMargin,
   };
   const titleText = title || getTextFromChildren(children);
   const isButton = (clickable || closeable) && !disabled;

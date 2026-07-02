@@ -387,6 +387,7 @@ export const Root = styled<'span', SharedPropsArg>(
       $isFocusVisible,
       $color,
       $size = SIZE.small,
+      $noMargin,
     } = props;
     const borderRadius =
       $size === SIZE.small || $size === SIZE.xSmall
@@ -459,10 +460,10 @@ export const Root = styled<'span', SharedPropsArg>(
         [SIZE.large]: '40px',
       }[$size],
       justifyContent: 'space-between',
-      marginTop: '5px',
-      marginBottom: '5px',
-      marginLeft: '5px',
-      marginRight: '5px',
+      marginTop: $noMargin ? 0 : '5px',
+      marginBottom: $noMargin ? 0 : '5px',
+      marginLeft: $noMargin ? 0 : '5px',
+      marginRight: $noMargin ? 0 : '5px',
       paddingTop: paddingLongitude,
       paddingBottom: paddingLongitude,
       paddingLeft: paddingMagnitude,
