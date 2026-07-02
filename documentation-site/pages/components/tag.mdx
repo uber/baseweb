@@ -12,6 +12,7 @@ import Disabled from "examples/tag/disabled.tsx";
 import NonCloseable from "examples/tag/non-closeable.tsx";
 import ClickableNonCloseable from "examples/tag/clickable-non-closeable.tsx";
 import CustomColor from "examples/tag/custom-color.tsx";
+import NoMargin from "examples/tag/no-margin.tsx";
 
 import { Tag } from "baseui/tag";
 import * as TagExports from "baseui/tag";
@@ -95,6 +96,12 @@ You can change the color of the tag by passing a value to the `kind` prop. Suppo
 
 <Example title="Tag Custom Color example" path="tag/custom-color.tsx">
   <CustomColor />
+</Example>
+
+Tag has a default margin so that adjacent tags are spaced out automatically. Set `noMargin` to remove it, for example when composing tags in a custom layout or flex container.
+
+<Example title="Tag with no margin" path="tag/no-margin.tsx">
+  <NoMargin />
 </Example>
 
 ## Accessibility

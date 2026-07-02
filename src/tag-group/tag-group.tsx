@@ -43,11 +43,11 @@ const TagGroup = React.forwardRef<HTMLDivElement, TagGroupProps>((props, ref) =>
           onClick: undefined,
           onKeyDown: undefined,
           closeable: false,
+          // Single Tag has default margin, reset it to 0 in TagGroup
+          noMargin: true,
           overrides: {
             Root: {
               style: {
-                // Single Tag has default margin, reset it to 0 in TagGroup
-                margin: 0,
                 ...(wrap ? { maxWidth: '100%' } : {}), // ensure wrapping works correctly even if Tag itself has a custom maxWidth(Tag has a default maxWidth 128px on Text inside)
                 ...child.props.overrides?.Root?.style,
               },

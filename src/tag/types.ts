@@ -57,6 +57,8 @@ export type TagProps = {
   size?: TagSize;
   startEnhancer?: React.ComponentType<{ size?: number | string }>;
   contentMaxWidth?: string | null;
+  /** Removes the Tag's default margin. Useful when composing tags in a custom layout. */
+  noMargin?: boolean;
 };
 
 export type SharedPropsArg = {
@@ -72,4 +74,5 @@ export type SharedPropsArg = {
   $isFocusVisible?: boolean;
   $size?: string;
   $contentMaxWidth?: string | null;
+  $noMargin?: boolean;
 };

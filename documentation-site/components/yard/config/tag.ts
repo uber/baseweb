@@ -169,6 +169,12 @@ const TagConfig: TConfig = {
       type: PropTypes.Function,
       description: `A component rendered at the start of the tag.`,
     },
+    noMargin: {
+      value: false,
+      defaultValue: false,
+      type: PropTypes.Boolean,
+      description: `Removes the Tag's default margin. Useful when composing tags in a custom layout.`,
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
