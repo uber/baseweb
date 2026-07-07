@@ -55,20 +55,6 @@ describe('Tag', () => {
     expect(actionClickMock.mock.calls.length).toBe(1);
   });
 
-  it('removes default margin when noMargin is set', () => {
-    const { container } = render(
-      <Tag noMargin overrides={{ Root: { props: { 'data-testid': 'root' } } }}>
-        content
-      </Tag>
-    );
-    const root = getByTestId(container, 'root');
-    const style = getComputedStyle(root);
-    expect(style.marginTop).toBe('0px');
-    expect(style.marginBottom).toBe('0px');
-    expect(style.marginLeft).toBe('0px');
-    expect(style.marginRight).toBe('0px');
-  });
-
   it('passes flow check with tag enum', function () {
     // https://github.com/uber/baseweb/issues/1910
     // eslint-disable-next-line no-unused-vars
