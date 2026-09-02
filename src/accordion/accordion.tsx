@@ -30,7 +30,7 @@ export default class Accordion extends React.Component<AccordionProps, Accordion
     ...this.props.initialState,
   };
 
-  itemRefs: React.RefObject<HTMLDivElement>[] = [];
+  itemRefs: Map<React.Key, React.RefObject<HTMLDivElement>> = new Map();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onPanelChange(key: React.Key, onChange: (...args: any[]) => {}, ...args: Array<any>) {
@@ -67,7 +67,7 @@ export default class Accordion extends React.Component<AccordionProps, Accordion
       return;
     }
 
-    const itemRefs = this.itemRefs;
+    const itemRefs = Array.from(this.itemRefs.values());
 
     const HOME = 36;
     const END = 35;
@@ -77,16 +77,16 @@ export default class Accordion extends React.Component<AccordionProps, Accordion
     if (e.keyCode === HOME) {
       e.preventDefault();
       const firstItem = itemRefs[0];
-      firstItem.current && firstItem.current.focus();
+      firstItem && firstItem.current && firstItem.current.focus();
     }
     if (e.keyCode === END) {
       e.preventDefault();
       const lastItem = itemRefs[itemRefs.length - 1];
-      lastItem.current && lastItem.current.focus();
+      lastItem && lastItem.current && lastItem.current.focus();
     }
     if (e.keyCode === ARROW_UP) {
       const activeItemIdx = itemRefs.findIndex((item) => item.current === document.activeElement);
-      if (activeItemIdx >= 0) {
+      if (activeItemIdx > 0) {
         e.preventDefault();
         const prevItem = itemRefs[activeItemIdx - 1];
         prevItem.current && prevItem.current.focus();
@@ -105,15 +105,18 @@ export default class Accordion extends React.Component<AccordionProps, Accordion
   getItems() {
     const { expanded } = this.state;
     const { accordion, disabled, children, renderAll, overrides } = this.props;
+    const nextItemRefs: Map<React.Key, React.RefObject<HTMLDivElement>> = new Map();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return React.Children.map(children, (child: any, index) => {
+    const items = React.Children.map(children, (child: any, index) => {
       if (!child) return;
-
-      const itemRef = React.createRef<HTMLDivElement>();
-      this.itemRefs.push(itemRef);
 
       // If there is no key provided use the panel order as a default key
       const key = child.key || String(index);
+      // Reuse the ref from the previous render when the key is unchanged, so
+      // panel identity (and focus) is preserved instead of growing unbounded.
+      const itemRef = this.itemRefs.get(key) || React.createRef<HTMLDivElement>();
+      nextItemRefs.set(key, itemRef);
+
       let isExpanded = false;
       if (accordion) {
         isExpanded = expanded[0] === key;
@@ -134,6 +137,8 @@ export default class Accordion extends React.Component<AccordionProps, Accordion
       };
       return React.cloneElement(child, props);
     });
+    this.itemRefs = nextItemRefs;
+    return items;
   }
 
   render() {
