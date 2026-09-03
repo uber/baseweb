@@ -209,10 +209,8 @@ const BOTTOM_PLACEMENTS: Placement[] = [
 const LEFT_PLACEMENTS: Placement[] = [
   PLACEMENT.topLeft,
   PLACEMENT.topLeftEdge,
-  PLACEMENT.topEdge,
   PLACEMENT.bottomLeft,
   PLACEMENT.bottomLeftEdge,
-  PLACEMENT.bottomEdge,
   PLACEMENT.leftTopEdge,
   PLACEMENT.leftBottomEdge,
 ];
