@@ -91,4 +91,39 @@ test.describe('accordion', () => {
     const firstPanel = await page.$(selectors.collapsed);
     expect(await isSameNode(page, activeEl, firstPanel)).toBe(true);
   });
+
+  test('pressing Arrow Up while on the first panel does not throw and keeps focus in place', async ({
+    page,
+  }) => {
+    const pageErrors: Error[] = [];
+    page.on('pageerror', (error) => pageErrors.push(error));
+
+    await mount(page, 'accordion--accordion');
+
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('ArrowUp');
+
+    const activeEl = await page.evaluateHandle(() => window.document.activeElement);
+    const firstPanel = await page.$(selectors.collapsed);
+    expect(await isSameNode(page, activeEl, firstPanel)).toBe(true);
+    expect(pageErrors).toEqual([]);
+  });
+
+  test('keyboard navigation still targets the right panels after a re-render', async ({ page }) => {
+    await mount(page, 'accordion--accordion');
+
+    await page.keyboard.press('Tab');
+    // Expanding a panel triggers a state change and re-render of the accordion.
+    await page.keyboard.press('Enter');
+
+    await page.keyboard.press('End');
+    const activeEl = await page.evaluateHandle(() => window.document.activeElement);
+    const lastPanel = await page.$(selectors.lastPanel);
+    expect(await isSameNode(page, activeEl, lastPanel)).toBe(true);
+
+    await page.keyboard.press('Home');
+    const activeEl2 = await page.evaluateHandle(() => window.document.activeElement);
+    const firstPanel = await page.$(selectors.expanded);
+    expect(await isSameNode(page, activeEl2, firstPanel)).toBe(true);
+  });
 });
