@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: pr-check-${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   build:
     name: Build and Type Check
