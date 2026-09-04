@@ -137,6 +137,34 @@ export function Scenario() {
           </Box>
         </Badge>
       </div>
+
+      <div style={layout}>
+        {/* topEdge/bottomEdge are center-anchored (left: 50%, translateX(-50%)).
+            horizontalOffset should have no effect on them and they should stay
+            centered, not drift left. See src/badge/styled-components.ts LEFT_PLACEMENTS. */}
+        <Badge
+          placement={PLACEMENT.topEdge}
+          content="Badge"
+          horizontalOffset="20px"
+          verticalOffset="0"
+        >
+          <Box>
+            <div>topEdge</div>
+            <div>horizontalOffset: 20px (should stay centered)</div>
+          </Box>
+        </Badge>
+        <Badge
+          placement={PLACEMENT.bottomEdge}
+          content="Badge"
+          horizontalOffset="20px"
+          verticalOffset="0"
+        >
+          <Box>
+            <div>bottomEdge</div>
+            <div>horizontalOffset: 20px (should stay centered)</div>
+          </Box>
+        </Badge>
+      </div>
     </div>
   );
 }
