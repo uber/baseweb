@@ -33,9 +33,8 @@ function segmentViolationsByNode(violations: axe.Result[]): Array<[string, axe.R
         // @ts-expect-error todo(flow-ts) node.target is an Array
         map[node.target] = [violation];
       } else {
-        // todo(flow->ts) node.target is an Array
-        // @ts-expect-error todo(flow-ts) result of Array.push is not Array
-        map[node.target] = map[node.target].push(violation);
+        // @ts-expect-error todo(flow-ts) node.target is an Array
+        map[node.target].push(violation);
       }
     });
     return map;
