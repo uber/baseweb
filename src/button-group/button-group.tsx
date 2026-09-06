@@ -138,7 +138,9 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
                 shape,
                 size,
                 overrides: {
+                  ...child.props.overrides,
                   BaseButton: {
+                    ...child.props.overrides?.BaseButton,
                     props: {
                       ...(typeof child.props['aria-checked'] === 'boolean'
                         ? {
@@ -153,10 +155,9 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
                           : !isSimpleClickableBtnGroup
                           ? 'checkbox'
                           : undefined,
+                      ...child.props.overrides?.BaseButton?.props,
                     },
                   },
-
-                  ...child.props.overrides,
                 },
               });
             })}
