@@ -79,7 +79,7 @@ const BottomNavigation = ({
       title="More"
       icon={Overflow}
       onChange={() => setDisplayOverflow(true)}
-      isActive={displayOverflow || activeKey > 4}
+      isActive={displayOverflow || activeKey >= MAX_SELECTORS - 1}
       overrides={{ Title: overrides.OverflowTitle, Selector: overrides.OverflowSelector }}
       key={'more'}
     />
