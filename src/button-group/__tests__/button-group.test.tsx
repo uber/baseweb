@@ -126,6 +126,21 @@ describe('ButtonGroup', () => {
     expect(queryByTitle('testButton')?.getAttribute('aria-checked')).toBeTruthy();
   });
 
+  it('preserves injected aria-checked/role when a child also sets overrides.BaseButton', () => {
+    const { container } = render(
+      <ButtonGroup mode={MODE.radio} selected={0}>
+        <Button overrides={{ BaseButton: { style: { fontWeight: 'bold' } } }} />
+        <Button />
+      </ButtonGroup>
+    );
+
+    const buttons = Array.from(container.querySelectorAll('button'));
+    expect(buttons[0].getAttribute('role')).toBe('radio');
+    expect(buttons[0].getAttribute('aria-checked')).toBe('true');
+    expect(buttons[1].getAttribute('role')).toBe('radio');
+    expect(buttons[1].getAttribute('aria-checked')).toBe('false');
+  });
+
   it('should handle null children', () => {
     const { container } = render(
       <ButtonGroup>
