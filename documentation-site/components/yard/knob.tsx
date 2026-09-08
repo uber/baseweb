@@ -32,6 +32,24 @@ const getTooltip = (description: string, type: string, name: string) => (
   </span>
 );
 
+// Hoisted to module scope: this override never referenced its `$theme`
+// argument, so it's a plain static style object rather than a function of
+// $theme. Previously a brand-new function + object literal was allocated on
+// every render of Knob just to return the same constant shape each time.
+const RADIO_GROUP_ROOT_OVERRIDE_STYLE = {
+  flexWrap: "wrap",
+  marginTop: 0,
+  marginBottom: 0,
+  rowGap: 0,
+  columnGap: 0,
+} as const;
+
+// Hoisted to module scope for the same reason: a static object with no
+// dependency on props/state, previously recreated on every render.
+const CHECKBOX_LABEL_OVERRIDE_STYLE = {
+  fontWeight: 500,
+} as const;
+
 const Spacing: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [css, theme] = useStyletron();
   return (
@@ -137,9 +155,7 @@ const Knob: React.SFC<{
             }}
             overrides={{
               Label: {
-                style: {
-                  fontWeight: 500,
-                },
+                style: CHECKBOX_LABEL_OVERRIDE_STYLE,
               },
             }}
           >
@@ -184,13 +200,7 @@ const Knob: React.SFC<{
               align="horizontal"
               overrides={{
                 RadioGroupRoot: {
-                  style: ({ $theme }) => ({
-                    flexWrap: "wrap",
-                    marginTop: 0,
-                    marginBottom: 0,
-                    rowGap: 0,
-                    columnGap: 0,
-                  }),
+                  style: RADIO_GROUP_ROOT_OVERRIDE_STYLE,
                 },
               }}
               onChange={(e) => {
