@@ -94,6 +94,12 @@ describe('Avatar', () => {
     getByText(container, 'U');
   });
 
+  it('renders explicit initials prop instead of deriving from name', () => {
+    const { container } = render(<Avatar name="user name" initials="XY" />);
+
+    getByText(container, 'XY');
+  });
+
   it('resets noImageAvailable flag when src is updated', () => {
     function TestCase() {
       const [showImg, setShowImg] = React.useState(false);
