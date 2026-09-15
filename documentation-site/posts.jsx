@@ -1,293 +1,115 @@
-const posts = [
-  {
-    path: "/blog/base-web-v16",
-    author: "Diana Suvorova",
-    authorLink: "https://github.com/diana.suvorova",
-    title: "What's new in Base Web 16?",
-    tagline: "We are back with updates and new components",
-    date: "7 January 2026",
-    coverImage:
-      "https://user-images.githubusercontent.com/5317799/160484160-c3de4f21-c4bd-4978-b39a-7c5c677b449f.png",
-    coverImageWidth: 960,
-    coverImageHeight: 575,
-    keyWords: ["Base Web", "Design System", "React", "v16", "Button", "Tag", "Tag Group"],
-  },
-  {
-    path: "/blog/file-uploader",
-    author: "Emerson Pfeiffer",
-    authorLink: "https://github.com/epfeiffe",
-    title: "Introducing the File Uploader Component",
-    tagline: "Adding state to a reusable file uploader component",
-    date: "15 August 2024",
-    coverImage: "/images/blog/file-uploader/file-uploader.gif",
-    coverImageWidth: 960,
-    coverImageHeight: 575,
-    keyWords: ["Base Web", "File Upload", "React", "react-dropzone"],
-  },
-  {
-    path: "/blog/open-source-engagement",
-    author: "Vojtech Miksu",
-    authorLink: "https://github.com/tajo",
-    title: "Open Source Engagement and Future",
-    tagline: "Let's clarify the future of Base Web and what it means for OSS",
-    date: "19 December 2023",
-    coverImage:
-      "https://user-images.githubusercontent.com/5317799/160484160-c3de4f21-c4bd-4978-b39a-7c5c677b449f.png",
-    coverImageWidth: 960,
-    coverImageHeight: 575,
-    keyWords: ["Base Web", "Design System", "React", "Changelog"],
-  },
-  {
-    path: "/blog/base-web-v12",
-    author: "Chase Starr",
-    authorLink: "https://github.com/chasestarr",
-    title: "What's changed in Base Web 12?",
-    tagline: "Let's take a look at all the changes Base Web 12 brings",
-    date: "22 July 2022",
-    coverImage:
-      "https://user-images.githubusercontent.com/5317799/160484160-c3de4f21-c4bd-4978-b39a-7c5c677b449f.png",
-    coverImageWidth: 960,
-    coverImageHeight: 575,
-    keyWords: ["Base Web", "Design System", "React", "Changelog"],
-  },
-  {
-    path: "/blog/base-web-v11",
-    author: "Chase Starr",
-    authorLink: "https://github.com/chasestarr",
-    title: "What's changed in Base Web 11?",
-    tagline: "Let's take a look at all the changes Base Web 11 brings",
-    date: "28 March 2022",
-    coverImage:
-      "https://user-images.githubusercontent.com/5317799/160484160-c3de4f21-c4bd-4978-b39a-7c5c677b449f.png",
-    coverImageWidth: 960,
-    coverImageHeight: 575,
-    keyWords: ["Base Web", "Design System", "React", "Changelog"],
-  },
-  {
-    path: "/blog/introducing-base-map-markers",
-    author: "Dylan Babbs",
-    authorLink: "https://twitter.com/dbabbs",
-    title: "Introducing the Map Marker Component",
-    tagline: "Bringing geospatial components to Base Web",
-    date: "13 October 2021",
-    coverImage: "https://i.imgur.com/K5jPixm.png",
-    coverImageWidth: 542,
-    coverImageHeight: 440,
-    keyWords: ["React", "Map", "Mapbox GL", "react-map-gl", "Map marker"],
-  },
-  {
-    path: "/blog/nested-overrides-playground",
-    author: "Vojtech Miksu",
-    authorLink: "https://twitter.com/vmiksu",
-    title: "Nested Overrides Playground",
-    tagline: "Complex components are easier to customize.",
-    date: "1 December 2020",
-    coverImage:
-      "https://user-images.githubusercontent.com/1387913/100666854-922e5200-330e-11eb-8d90-c7869dbd32bd.jpg",
-    coverImageWidth: 1200,
-    coverImageHeight: 602,
-    keyWords: [
-      "Playground",
-      "React View",
-      "Documentation",
-      "Overrides",
-      "Nested",
-    ],
-  },
-  {
-    path: "/blog/screen-reader-improvements",
-    author: "Chase Starr",
-    authorLink: "https://github.com/chasestarr",
-    title: "Screen Reader Improvements",
-    tagline: "Base Web has added better support for assistive technologies",
-    date: "19 March 2020",
-    coverImage:
-      "https://user-images.githubusercontent.com/5317799/77114795-666e7480-69ea-11ea-958e-e63dae155f0d.png",
-    coverImageWidth: 600,
-    coverImageHeight: 450,
-    keyWords: [
-      "Base Web",
-      "Design System",
-      "React",
-      "screen reader",
-      "accessibility",
-    ],
-  },
-  {
-    path: "/blog/vs-code-extension",
-    author: "Vojtech Miksu",
-    authorLink: "https://twitter.com/vmiksu",
-    title: "VS Code Extension for Base Web and React View Code Snippets",
-    tagline: "Giving developers superpowers.",
-    date: "19 February 2020",
-    coverImage: "/images/blog/vs-code-extension/vscodelogo.png",
-    coverImageWidth: 500,
-    coverImageHeight: 500,
-    keyWords: ["VS Code", "Code Snippets", "React", "Documentation", "View"],
-  },
-  {
-    path: "/blog/base-figma-community",
-    author: "Gergely Nemeth",
-    authorLink: "https://twitter.com/nthgergo",
-    title: "Base Web on Figma Communities",
-    tagline: "Base Web is now available as an open-source gallery on Figma",
-    date: "13 February 2020",
-    coverImage:
-      "https://camo.githubusercontent.com/0193dc7614caaed1c2b553cbd8466dd58cbf0f49/68747470733a2f2f692e696d6775722e636f6d2f5561525a6454712e706e67",
-    coverImageWidth: 600,
-    coverImageHeight: 450,
-    keyWords: ["Base Web", "Design System", "React", "Figma"],
-  },
-  {
-    path: "/blog/visual-regression-testing",
-    author: "Graham Murdoch",
-    authorLink: "https://github.com/sandgraham",
-    title: "Visual Regression Testing",
-    tagline: "A picture is worth a thousand sheep.",
-    date: "16 December 2019",
-    coverImage: "https://i.imgur.com/X0jy3lO.png",
-    coverImageWidth: 600,
-    coverImageHeight: 383,
-    keyWords: [
-      "Design System",
-      "Testing",
-      "React",
-      "Jest",
-      "Regression Testing",
-      "Snapshot Testing",
-      "Visual Regression Testing",
-      "Visual Snapshot Testing",
-    ],
-  },
-  {
-    path: "/blog/introducing-react-view",
-    author: "Vojtech Miksu",
-    authorLink: "https://twitter.com/vmiksu",
-    title:
-      "Introducing React View, an Interactive Playground for Your Components",
-    tagline: "Making documentation better.",
-    date: "3 December 2019",
-    coverImage:
-      "https://user-images.githubusercontent.com/1387913/69589789-09196800-0fa2-11ea-9485-aeb506d18fe8.gif",
-    coverImageWidth: 1302,
-    coverImageHeight: 1135,
-    keyWords: ["Playground", "React", "Documentation", "View"],
-  },
-  {
-    path: "/blog/drag-and-drop-list",
-    author: "Vojtech Miksu",
-    authorLink: "https://twitter.com/vmiksu",
-    title: "Building a Drag and Drop List",
-    tagline: "What goes into building a drag and drop component in 2019?",
-    date: "30 October 2019",
-    coverImage:
-      "https://res.cloudinary.com/flycatcher/image/upload/v1572289775/listgif_igl9j7.gif",
-    coverImageWidth: 600,
-    coverImageHeight: 383,
-    keyWords: ["Drag and Drop", "React", "DnD"],
-  },
-  {
-    path: "/blog/base-web-v9",
-    author: "Graham Murdoch",
-    authorLink: "https://github.com/sandgraham",
-    title: "Color and Typography Updates in v9",
-    tagline:
-      "Everything you need to know about the latest style updates in Base Web",
-    date: "9 September 2019",
-    coverImage:
-      "https://res.cloudinary.com/dawr8pobn/image/upload/v1565816562/baseblack_oodvc1.png",
-    coverImageWidth: 1200,
-    coverImageHeight: 630,
-    keyWords: [
-      "Base Web",
-      "Design System",
-      "React",
-      "Migration Guide",
-      "Major Version",
-    ],
-  },
-  {
-    path: "/blog/responsive-web",
-    author: "Leyan Lo",
-    authorLink: "https://github.com/leyanlo",
-    title: "Building Responsive Apps with Base Web",
-    tagline:
-      "Tips and tricks for building responsive apps for mobile and desktop using Base Web",
-    date: "8 August 2019",
-    coverImage: "/images/blog/responsive-web/responsive-shipper-tools.svg",
-    coverImageWidth: 1200,
-    coverImageHeight: 630,
-    keyWords: [
-      "Base Web",
-      "Design System",
-      "React",
-      "Tutorial",
-      "Responsive",
-      "Mobile",
-    ],
-  },
-  {
-    path: "/blog/phone-input",
-    author: "Graham Murdoch",
-    authorLink: "https://github.com/sandgraham",
-    title: "Building an International Phone Input",
-    tagline: "A new component exhibits the flexibility of Base Web",
-    date: "26 June 2019",
-    coverImage: "https://i.imgur.com/Q4M6njM.png",
-    coverImageWidth: 1200,
-    coverImageHeight: 630,
-    keyWords: ["Design System", "React", "Phone Input", "Forms"],
-  },
-  {
-    path: "/blog/base-web-v8",
-    author: "Chase Starr",
-    authorLink: "https://twitter.com/captivechains",
-    title: "Type checking improvements in V8",
-    tagline: "Reduce boilerplate and increase confidence with Base Web V8",
-    date: "24 June 2019",
-    coverImage: "https://i.imgur.com/jK31J9H.png",
-    coverImageWidth: 1584,
-    coverImageHeight: 1094,
-    keyWords: ["Base Web", "Design System", "React", "Changelog"],
-  },
-  {
-    path: "/blog/base-web-v7",
-    author: "Gergely Nemeth",
-    authorLink: "https://twitter.com/nthgergo",
-    title: "What's changed in Base Web 7?",
-    tagline: "Let's take a look at all the changes Base Web 7 brings",
-    date: "10 May 2019",
-    coverImage:
-      "https://res.cloudinary.com/dawr8pobn/image/upload/c_scale,w_600/v1558459904/base-web-7_vpigth.png",
-    coverImageWidth: 600,
-    coverImageHeight: 450,
-    keyWords: ["Base Web", "Design System", "React", "Changelog"],
-  },
-  {
-    path: "/blog/getting-started-with-styletron",
-    author: "Jhey Tompkins",
-    authorLink: "https://twitter.com/@jh3yy",
-    title: "Getting Started with Styletron",
-    tagline: "Let's build some buttons!",
-    date: "9 April 2019",
-    coverImage:
-      "https://images.unsplash.com/photo-1533915828531-55b274d98dc5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-    coverImageWidth: 500,
-    coverImageHeight: 375,
-    keyWords: ["Styletron", "CSS", "CSS in JS", "Tutorial"],
-  },
-  {
-    path: "/blog/getting-started-with-base-web",
-    author: "Jhey Tompkins",
-    authorLink: "https://twitter.com/@jh3yy",
-    title: "Getting Started with Base Web",
-    tagline: "Let's build a password generator!",
-    date: "2 April 2019",
-    coverImage:
-      "https://cdn.dribbble.com/users/914217/screenshots/4615198/base_ui.png",
-    coverImageWidth: 800,
-    coverImageHeight: 600,
-    keyWords: ["Design System", "React", "Tutorial"],
-  },
-];
-export default posts;
+# coding=utf-8
+# Copyright 2026 TF.Text Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""ToDense layer implementation to support composite tensors in keras models.
+
+Implements the ToDense Keras layer that's to be used in feeding composite
+tensors to recurrent layers or embeddings.
+"""
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import tensorflow as tf
+
+
+class ToDense(tf.keras.layers.Layer):  # pylint: disable=g-classes-have-attributes
+  """Layer that makes padding and masking a Composite Tensors effortless.
+
+  The layer takes a RaggedTensor or a SparseTensor and converts it to a uniform
+  tensor by right-padding it or filling in missing values.
+
+  Example:
+
+  ```python
+  x = tf.keras.layers.Input(shape=(None, None), ragged=True)
+  y = tf_text.keras.layers.ToDense(mask=True)(x)
+  model = tf.keras.Model(x, y)
+
+  rt = tf.RaggedTensor.from_nested_row_splits(
+    flat_values=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+    nested_row_splits=([0, 1, 1, 5], [0, 3, 3, 5, 9, 10]))
+  model.predict(rt)
+
+  [[[10, 11, 12,  0], [ 0,  0,  0,  0], [ 0,  0,  0,  0], [ 0,  0,  0,  0]],
+   [[ 0,  0,  0,  0], [ 0,  0,  0,  0], [ 0,  0,  0,  0], [ 0,  0,  0,  0]],
+   [[ 0,  0,  0,  0], [13, 14,  0,  0], [15, 16, 17, 18], [19,  0,  0,  0]]]
+  ```
+
+  Args:
+    pad_value: A value used to pad and fill in the missing values. Should be a
+      meaningless value for the input data. Default is '0'.
+    mask: A Boolean value representing whether to mask the padded values. If
+      true, no any downstream Masking layer or Embedding layer with
+      mask_zero=True should be added. Default is 'False'.
+    shape: If not `None`, the resulting dense tensor will be guaranteed to have
+      this shape. For RaggedTensor inputs, this is passed to `tf.RaggedTensor`'s
+      `to_tensor` method. For other tensor types, a `tf.ensure_shape` call is
+      added to assert that the output has this shape.
+    **kwargs: kwargs of parent class.
+  Input shape: Any Ragged or Sparse Tensor is accepted, but it requires the type
+    of input to be specified via the Input or InputLayer from the Keras API.
+  Output shape: The output is a uniform tensor having the same shape, in case of
+    a ragged input or the same dense shape, in case of a sparse input.
+  """
+
+  def __init__(self, pad_value=0, mask=False, shape=None, **kwargs):
+    super(ToDense, self).__init__(**kwargs)
+
+    self._pad_value = pad_value
+    self._mask = mask
+    self._shape = shape
+    self._compute_output_and_mask_jointly = True
+    self._supports_ragged_inputs = True
+    self.trainable = False
+    self.masking_layer = tf.keras.layers.Masking(mask_value=self._pad_value)
+
+  def call(self, inputs):
+    if isinstance(inputs, tf.RaggedTensor):
+      # Convert the ragged tensor to a padded uniform tensor
+      outputs = inputs.to_tensor(
+          default_value=self._pad_value, shape=self._shape)
+    elif isinstance(inputs, tf.sparse.SparseTensor):
+      # Fill in the missing value in the sparse_tensor
+      outputs = tf.sparse.to_dense(inputs, default_value=self._pad_value)
+      if self._shape is not None:
+        outputs = tf.ensure_shape(outputs, shape=self._shape)
+    elif isinstance(inputs, tf.Tensor):
+      outputs = inputs
+      if self._shape is not None:
+        outputs = tf.ensure_shape(outputs, shape=self._shape)
+    else:
+      raise TypeError('Unexpected tensor type %s' % type(inputs).__name__)
+
+    if self._mask:
+      outputs = self.masking_layer(outputs)
+
+    return outputs
+
+  def compute_output_shape(self, input_shape):
+    return input_shape
+
+  def get_config(self):
+    config = {
+        'pad_value': self._pad_value,
+        'mask': self._mask,
+        'shape': self._shape,
+    }
+    base_config = super(ToDense, self).get_config()
+    # Plain dict-merge instead of building two intermediate lists via
+    # list(...) + list(...) just to re-wrap them with dict(); same result
+    # (config's keys still take precedence on any overlap), no throwaway
+    # list allocations.
+    return {**base_config, **config}
