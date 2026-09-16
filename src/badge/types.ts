@@ -20,35 +20,27 @@ export type BadgeOverrides = {
   Badge?: Override;
 };
 
-export type BadgeProps = {
+// Fields shared by BadgeProps, NotificationCircleProps, and HintDotProps.
+// Extracted so a future change to any of these only needs to happen once.
+type BaseBadgeProps = {
+  color?: Color;
+  hidden?: boolean;
+  horizontalOffset?: string;
+  verticalOffset?: string;
+  overrides?: BadgeOverrides;
+  children?: React.ReactNode;
+};
+
+export type BadgeProps = BaseBadgeProps & {
   content: React.ReactNode;
   hierarchy?: Hierarchy;
   shape?: Shape;
-  color?: Color;
   placement?: Placement;
-  hidden?: boolean;
-  horizontalOffset?: string;
-  verticalOffset?: string;
-  overrides?: BadgeOverrides;
-  children?: React.ReactNode;
 };
 
-export type NotificationCircleProps = {
+export type NotificationCircleProps = BaseBadgeProps & {
   content: React.ReactNode;
-  color?: Color;
   placement?: Placement;
-  hidden?: boolean;
-  horizontalOffset?: string;
-  verticalOffset?: string;
-  overrides?: BadgeOverrides;
-  children?: React.ReactNode;
 };
 
-export type HintDotProps = {
-  color?: Color;
-  hidden?: boolean;
-  horizontalOffset?: string;
-  verticalOffset?: string;
-  overrides?: BadgeOverrides;
-  children?: React.ReactNode;
-};
+export type HintDotProps = BaseBadgeProps;
