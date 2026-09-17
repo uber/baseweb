@@ -13,7 +13,7 @@ Here is a summary of our recommendations for styling your project:
 
 - Start with [`useStyletron`](/components/use-styletron/). Apply styling directly to elements until you find a need to extract a styling pattern into a component. At this point use [`styled`](/components/styled/) to create a [styled component](https://www.styletron.org/react#styled-components) which can be reused, configured or extended.
 - When extending a styled component, prefer [`withStyle`](https://www.styletron.org/api-reference#withstyle) over [`$style`](https://www.styletron.org/react#style-prop) to create maintainable variations of your base component.
-- When styling parts of your application, try to use values from your theme object whereever possible. The current theme is always made available in the various styling utilities exported from Base Web.
+- When styling parts of your application, try to use values from your theme object wherever possible. The current theme is always made available in the various styling utilities exported from Base Web.
 - When customizing the look of Base Web components, first see if you can configure the theme object to achieve your desired look. If that doesn’t work, check if the component is a styled component. If it is, you can use `withStyle` to extend it. If it is not a styled component you will likely need to use the [overrides pattern](/guides/understanding-overrides/) to pass new styles through or even swap in your own component.
 - Remember that Base Web components are built with [Styletron](https://www.styletron.org/) styled components. These are all exported from their relevant modules and made targetable with overrides.
 
