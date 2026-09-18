@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-//
 
 import * as React from "react";
 import Link from "next/link";
@@ -14,7 +13,6 @@ import Menu from "baseui/icon/menu";
 import DarkLogo from "../images/base-web.svg";
 import LightLogo from "../images/base-web-white.svg";
 import GithubLogo from "./github-logo";
-import SlackLogo from "./slack-logo";
 import AlignLeftIcon from "./align-left-icon";
 import AlignRightIcon from "./align-right-icon";
 import VersionSelector from "./version-selector.jsx";
@@ -26,6 +24,36 @@ import { Button, KIND, SIZE, SHAPE } from "baseui/button";
 const WRAP_SEARCH = 715;
 
 const mq = (breakpoint) => `@media screen and (min-width: ${breakpoint}px)`;
+
+// Hoisted to module scope: none of these override style objects reference
+// `theme`, props, or any component-local variable, so they were previously
+// being re-created as new object literals on every single render of
+// HeaderNavigation for no benefit. Blog and Components share the exact
+// same override shape, so they reuse one constant.
+const NAV_LINK_BUTTON_OVERRIDE_STYLE = {
+  display: "none",
+  [mq(1000)]: {
+    display: "block",
+  },
+};
+
+const GITHUB_BUTTON_OVERRIDE_STYLE = {
+  display: "none",
+  [mq(400)]: {
+    display: "flex",
+  },
+};
+
+const DIRECTION_TOGGLE_OVERRIDE_STYLE = {
+  display: "none",
+  [mq(450)]: {
+    display: "flex",
+  },
+};
+
+const THEME_TOGGLE_OVERRIDE_STYLE = {
+  display: "flex",
+};
 
 export default function HeaderNavigation({
   toggleSidebar,
@@ -104,12 +132,7 @@ export default function HeaderNavigation({
             kind={KIND.tertiary}
             overrides={{
               BaseButton: {
-                style: {
-                  display: "none",
-                  [mq(1000)]: {
-                    display: "block",
-                  },
-                },
+                style: NAV_LINK_BUTTON_OVERRIDE_STYLE,
               },
             }}
           >
@@ -124,12 +147,7 @@ export default function HeaderNavigation({
             kind={KIND.tertiary}
             overrides={{
               BaseButton: {
-                style: {
-                  display: "none",
-                  [mq(1000)]: {
-                    display: "block",
-                  },
-                },
+                style: NAV_LINK_BUTTON_OVERRIDE_STYLE,
               },
             }}
           >
@@ -181,12 +199,7 @@ export default function HeaderNavigation({
           title="Open GitHub repository"
           overrides={{
             BaseButton: {
-              style: {
-                display: "none",
-                [mq(400)]: {
-                  display: "flex",
-                },
-              },
+              style: GITHUB_BUTTON_OVERRIDE_STYLE,
             },
           }}
         >
@@ -202,12 +215,7 @@ export default function HeaderNavigation({
           title="Toggle direction"
           overrides={{
             BaseButton: {
-              style: {
-                display: "none",
-                [mq(450)]: {
-                  display: "flex",
-                },
-              },
+              style: DIRECTION_TOGGLE_OVERRIDE_STYLE,
             },
           }}
         >
@@ -227,9 +235,7 @@ export default function HeaderNavigation({
           title="Toggle theme"
           overrides={{
             BaseButton: {
-              style: {
-                display: "flex",
-              },
+              style: THEME_TOGGLE_OVERRIDE_STYLE,
             },
           }}
         >
