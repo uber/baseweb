@@ -32,6 +32,18 @@ const getTooltip = (description: string, type: string, name: string) => (
   </span>
 );
 
+const RADIO_GROUP_ROOT_OVERRIDE_STYLE = {
+  flexWrap: "wrap",
+  marginTop: 0,
+  marginBottom: 0,
+  rowGap: 0,
+  columnGap: 0,
+} as const;
+
+const CHECKBOX_LABEL_OVERRIDE_STYLE = {
+  fontWeight: 500,
+} as const;
+
 const Spacing: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [css, theme] = useStyletron();
   return (
@@ -137,9 +149,7 @@ const Knob: React.SFC<{
             }}
             overrides={{
               Label: {
-                style: {
-                  fontWeight: 500,
-                },
+                style: CHECKBOX_LABEL_OVERRIDE_STYLE,
               },
             }}
           >
@@ -184,13 +194,7 @@ const Knob: React.SFC<{
               align="horizontal"
               overrides={{
                 RadioGroupRoot: {
-                  style: ({ $theme }) => ({
-                    flexWrap: "wrap",
-                    marginTop: 0,
-                    marginBottom: 0,
-                    rowGap: 0,
-                    columnGap: 0,
-                  }),
+                  style: RADIO_GROUP_ROOT_OVERRIDE_STYLE,
                 },
               }}
               onChange={(e) => {
