@@ -4,13 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-//
-/* global process */
 
 import * as React from "react";
 import { Block } from "baseui/block";
 import { Button } from "baseui/button";
-import { Banner } from "baseui/banner";
 import { FlexGrid, FlexGridItem } from "baseui/flex-grid";
 import { StyledLink as Link } from "baseui/link";
 import Markdown, { H1, H2 } from "../components/markdown-elements";
