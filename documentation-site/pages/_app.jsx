@@ -174,7 +174,7 @@ export default class MyApp extends App {
 
     this.setState({
       themeSet: true,
-      theme: themes[themeName],
+      theme: { ...themes[themeName], direction: this.state.direction },
     });
   }
 
