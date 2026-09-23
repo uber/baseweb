@@ -64,6 +64,13 @@ const changeHandlers = {
     placeholder: "(event) => {}",
     hidden: true,
   },
+  onMouseUp: {
+    value: undefined,
+    type: PropTypes.Function,
+    description: "Called when mouseUp triggers.",
+    placeholder: "(event) => {}",
+    hidden: true,
+  },
   onEsc: {
     value: undefined,
     type: PropTypes.Function,
