@@ -57,6 +57,18 @@ describe('Button Component', () => {
     expect(onClick.mock.calls.length).toBe(0);
   });
 
+  test("onClick doesn't fire on a disabled anchor button", () => {
+    const onClick = jest.fn();
+    const { container } = render(
+      <Button href="https://example.com" disabled onClick={onClick}>
+        link
+      </Button>
+    );
+    const anchor = container.querySelector('a');
+    if (anchor) fireEvent.click(anchor);
+    expect(onClick.mock.calls.length).toBe(0);
+  });
+
   test('simulate isLoading with google translate does not throw with element child', () => {
     const { rerender, container } = render(
       <Button isLoading={false}>
