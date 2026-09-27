@@ -14,7 +14,12 @@ import { trackEvent } from "../helpers/ga";
 const isStyledExport = (exportName) => exportName.startsWith("Styled");
 const getOverrideName = (exportName) => exportName.replace("Styled", "");
 const getOverrides = (component, blacklisted, whitelisted) => {
-  if (whitelisted) return whitelisted.sort();
+  // Copy before sorting: Array.prototype.sort() mutates in place, and
+  // `whitelisted` is a prop passed in by the caller (which may be a
+  // shared/reused array reference, e.g. a module-level constant). Sorting
+  // it directly would silently reorder the caller's own array as a side
+  // effect.
+  if (whitelisted) return [...whitelisted].sort();
   return component
     ? Object.keys(component)
         .filter(isStyledExport)
