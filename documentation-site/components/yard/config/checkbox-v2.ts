@@ -130,6 +130,7 @@ const CheckboxConfig: TConfig = {
       "onBlur",
       "onFocus",
       "onMouseDown",
+      "onMouseUp",
       "onMouseEnter",
       "onMouseLeave",
     ]),
