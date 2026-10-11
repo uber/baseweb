@@ -30,6 +30,7 @@ const Tile = React.forwardRef(
       bodyAlignment,
       selected,
       onClick,
+      onKeyDown,
       disabled,
     }: TileProps,
     ref
@@ -84,6 +85,7 @@ const Tile = React.forwardRef(
         $tileKind={tileKind}
         $selected={selected}
         onClick={onClick}
+        onKeyDown={onKeyDown}
         $disabled={disabled}
         disabled={disabled}
       >
