@@ -98,7 +98,7 @@ const TileGroup = ({
         const isSelected = child.props.selected || isIndexSelected(selected, index);
 
         if (isRadioGroup) {
-          childRefs[index] = React.createRef<HTMLButtonElement>;
+          childRefs[index] = React.createRef<HTMLButtonElement>();
         }
 
         return React.cloneElement(child, {

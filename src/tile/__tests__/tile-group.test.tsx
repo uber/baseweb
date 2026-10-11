@@ -56,6 +56,24 @@ describe('TileGroup', () => {
     );
   });
 
+  it('should move focus between tiles with arrow keys in a singleSelect group', () => {
+    const onClick = jest.fn();
+    const { container } = renderTileGroup({
+      kind: TILE_GROUP_KIND.singleSelect,
+      selected: 0,
+      onClick,
+    });
+    const tiles = Array.from(container.querySelectorAll('button'));
+
+    fireEvent.keyDown(tiles[0], { key: 'ArrowRight' });
+    expect(onClick).toHaveBeenLastCalledWith(expect.anything(), 1);
+    expect(document.activeElement).toBe(tiles[1]);
+
+    fireEvent.keyDown(tiles[0], { key: 'ArrowLeft' });
+    expect(onClick).toHaveBeenLastCalledWith(expect.anything(), 2);
+    expect(document.activeElement).toBe(tiles[2]);
+  });
+
   it('should call child onClick event handler if provided', () => {
     const parentOnClick = jest.fn();
     const childOnClick = jest.fn();

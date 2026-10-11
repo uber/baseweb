@@ -53,5 +53,6 @@ export type TileProps = {
   disabled?: boolean;
   selected?: boolean;
   onClick?: (a: React.SyntheticEvent<HTMLButtonElement>) => unknown;
+  onKeyDown?: (a: React.KeyboardEvent<HTMLButtonElement>) => unknown;
   overrides?: TileOverrides;
 };
