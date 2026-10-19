@@ -11,14 +11,21 @@ import { useStyletron } from '../styles/index';
 import { getOverrides } from '../helpers/overrides';
 import type { SelectorProps } from './types';
 
-export const Selector = ({ title, icon, isActive, onChange, overrides = {} }: SelectorProps) => {
+export const Selector = ({
+  title,
+  icon,
+  isActive,
+  onChange,
+  overrides = {},
+  id,
+}: SelectorProps) => {
   const [Title, TitleProps] = getOverrides(overrides.Title, StyledTitle);
   const [Selector, SelectorProps] = getOverrides(overrides.Selector, StyledSelector);
   const [, theme] = useStyletron();
   const Icon = icon;
 
   return (
-    <Selector onClick={onChange} role="tab" aria-selected={isActive} {...SelectorProps}>
+    <Selector onClick={onChange} role="tab" aria-selected={isActive} id={id} {...SelectorProps}>
       <Icon
         size={20}
         color={

@@ -57,6 +57,13 @@ const BottomNavigation = ({
     onChange({ activeKey });
   }
 
+  const navItems = React.Children.toArray(children);
+
+  const getSelectorId = (idx) =>
+    navItems.length > MAX_SELECTORS && idx >= MAX_SELECTORS - 1
+      ? 'bottom-navigation-tab-overflow'
+      : `bottom-navigation-tab-${idx}`;
+
   const renderSelectors = (navItems) =>
     navItems.map((navItem: React.ReactElement, idx) => {
       const isActive = activeKey === idx && !displayOverflow;
@@ -69,6 +76,7 @@ const BottomNavigation = ({
             isActive ? scrollToTop(idx) : handleNavItemChange(idx);
           }}
           overrides={navItem.props.overrides}
+          id={`bottom-navigation-tab-${idx}`}
           key={idx}
         />
       );
@@ -81,11 +89,10 @@ const BottomNavigation = ({
       onChange={() => setDisplayOverflow(true)}
       isActive={displayOverflow || activeKey >= MAX_SELECTORS - 1}
       overrides={{ Title: overrides.OverflowTitle, Selector: overrides.OverflowSelector }}
+      id="bottom-navigation-tab-overflow"
       key={'more'}
     />
   );
-
-  const navItems = React.Children.toArray(children);
 
   return (
     <Root {...RootProps}>
@@ -98,7 +105,7 @@ const BottomNavigation = ({
             ref={(element) => NavItemPanelRefs.current.push(element)}
             overrides={navItem.props.overrides}
             key={idx}
-            aria-labelledby={`tabs-${navItem.props.title}-tabpanel-${idx}`}
+            aria-labelledby={getSelectorId(idx)}
           >
             {navItem.props.children}
           </Panel>

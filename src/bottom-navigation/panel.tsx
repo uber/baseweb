@@ -10,18 +10,21 @@ import { StyledPanel } from './styled-components';
 import { getOverrides } from '../helpers/overrides';
 import type { PanelProps } from './types';
 
-export const Panel = React.forwardRef(({ isActive, overrides = {}, children }: PanelProps, ref) => {
-  const [Panel, PanelProps] = getOverrides(overrides.Panel, StyledPanel);
-  return (
-    <Panel
-      ref={ref}
-      tabIndex={isActive ? '0' : '-1'}
-      role="tabpanel"
-      hidden={!isActive}
-      {...PanelProps}
-    >
-      {children}
-    </Panel>
-  );
-});
+export const Panel = React.forwardRef(
+  ({ isActive, overrides = {}, children, 'aria-labelledby': ariaLabelledBy }: PanelProps, ref) => {
+    const [Panel, PanelProps] = getOverrides(overrides.Panel, StyledPanel);
+    return (
+      <Panel
+        ref={ref}
+        tabIndex={isActive ? '0' : '-1'}
+        role="tabpanel"
+        hidden={!isActive}
+        aria-labelledby={ariaLabelledBy}
+        {...PanelProps}
+      >
+        {children}
+      </Panel>
+    );
+  }
+);
 Panel.displayName = 'Panel';
