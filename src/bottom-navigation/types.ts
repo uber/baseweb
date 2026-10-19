@@ -41,12 +41,14 @@ export type SelectorProps = {
   isActive: boolean;
   onChange: OnChange;
   overrides: NavItemOverrides;
+  id?: string;
 };
 
 export type PanelProps = {
   isActive: boolean;
   overrides: NavItemOverrides;
   children: React.ReactNode;
+  'aria-labelledby'?: string;
 };
 
 export type OnChange = (params: { activeKey: number }) => void;
