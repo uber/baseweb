@@ -151,9 +151,15 @@ export default function AppNavBar(props: AppNavBarProps) {
   );
   const [DesktopMenu, desktopMenuProps] = getOverrides(overrides.DesktopMenu, StyledDesktopMenu);
 
-  let secondaryMenu;
-  let desktopSubNavPosition: (typeof POSITION)[keyof typeof POSITION] = POSITION.horizontal;
-  let mobileSubNavPosition: (typeof POSITION)[keyof typeof POSITION] = POSITION.vertical;
+  // The active top level menu item determines the secondary navigation and its positioning.
+  const activeItemWithChildren = React.useMemo(
+    () => mainItems.find((item) => item.active && item.children && item.children.length),
+    [mainItems]
+  );
+  const secondaryMenu = activeItemWithChildren?.children;
+  const desktopSubNavPosition =
+    activeItemWithChildren?.navPosition?.desktop || POSITION.horizontal;
+  const mobileSubNavPosition = activeItemWithChildren?.navPosition?.mobile || POSITION.vertical;
 
   return (
     <Root {...rootProps} data-baseweb="app-nav-bar">
@@ -170,16 +176,14 @@ export default function AppNavBar(props: AppNavBarProps) {
           <AppName {...appNameProps}>{title}</AppName>
         </Spacing>
 
-        {secondaryMenu &&
-          // @ts-expect-error todo(flow->ts) always false
-          mobileSubNavPosition === POSITION.horizontal && (
-            <SecondaryMenu
-              items={secondaryMenu}
-              mapItemToNode={mapItemToNode}
-              onSelect={onMainItemSelect}
-              overrides={overrides}
-            />
-          )}
+        {secondaryMenu && mobileSubNavPosition === POSITION.horizontal && (
+          <SecondaryMenu
+            items={secondaryMenu}
+            mapItemToNode={mapItemToNode}
+            onSelect={onMainItemSelect}
+            overrides={overrides}
+          />
+        )}
       </div>
 
       {/* Desktop Nav Experience */}
@@ -200,25 +204,15 @@ export default function AppNavBar(props: AppNavBarProps) {
               aria-label="Main navigation"
               {...primaryMenuContainerProps}
             >
-              {mainItems.map((item, index) => {
-                // For an active top level menu get the secondary navigation and its positioning
-                if (item.active && item.children && item.children.length) {
-                  secondaryMenu = item.children;
-                  if (item.navPosition) {
-                    desktopSubNavPosition = item.navPosition.desktop || desktopSubNavPosition;
-                    mobileSubNavPosition = item.navPosition.mobile || mobileSubNavPosition;
-                  }
-                }
-                return (
-                  <MainMenuItem
-                    item={item}
-                    key={index}
-                    mapItemToNode={mapItemToNode}
-                    onSelect={onMainItemSelect}
-                    overrides={overrides}
-                  />
-                );
-              })}
+              {mainItems.map((item, index) => (
+                <MainMenuItem
+                  item={item}
+                  key={index}
+                  mapItemToNode={mapItemToNode}
+                  onSelect={onMainItemSelect}
+                  overrides={overrides}
+                />
+              ))}
             </PrimaryMenuContainer>
 
             {userItems.length ? (
