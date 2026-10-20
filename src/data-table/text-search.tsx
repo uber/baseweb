@@ -48,7 +48,7 @@ export const HighlightCellText: React.FC<{ text: string; query: string }> = (pro
   const [css, theme] = useStyletron();
 
   if (!props.query) {
-    return <>props.text</>;
+    return <>{props.text}</>;
   }
 
   return (
