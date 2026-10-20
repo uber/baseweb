@@ -90,10 +90,11 @@ const PageControl = ({
             $isVisible={isVisible(page)}
             $size={getSize(page)}
             checked={isActive(page)}
+            disabled={disabled}
             key={page}
             aria-label={`page ${page}`}
             name={name}
-            onChange={() => onPageChange({ nextPage: page })}
+            onChange={() => onPageChange?.({ nextPage: page })}
             tabIndex={isActive(page) ? 0 : -1}
             type="radio"
             {...DotProps}
