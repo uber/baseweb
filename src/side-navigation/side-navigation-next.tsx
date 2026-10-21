@@ -190,7 +190,7 @@ function Item(props: ItemProps) {
       aria-controls={ariaControls}
       aria-expanded={ariaExpanded}
       href={href}
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
       type={actionElement === 'button' ? 'button' : undefined}
       {...actionProps}
     >
