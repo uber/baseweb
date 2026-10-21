@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { render, getByText } from '@testing-library/react';
+import { render, fireEvent, getByText } from '@testing-library/react';
 
-import { Navigation } from '..';
+import { Navigation, SideNavigationItem } from '..';
 
 const nav = [
   {
@@ -36,6 +36,19 @@ const nav = [
 ];
 
 describe('Side navigation', () => {
+  it.each([true, false])('respects disabled=%s when clicked', (disabled) => {
+    const onClick = jest.fn();
+    const { container } = render(
+      <SideNavigationItem id="reports" disabled={disabled} onClick={onClick}>
+        Reports
+      </SideNavigationItem>
+    );
+
+    fireEvent.click(getByText(container, 'Reports'));
+
+    expect(onClick).toHaveBeenCalledTimes(disabled ? 0 : 1);
+  });
+
   it('renders expected nav items', () => {
     const { container } = render(<Navigation items={nav} />);
     getByText(container, 'Colors');
