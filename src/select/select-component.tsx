@@ -5,21 +5,21 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import * as React from 'react';
+import * as React from "react";
 
-import { getOverrides, mergeOverrides } from '../helpers/overrides';
-import DeleteAlt from '../icon/delete-alt';
-import TriangleDownIcon from '../icon/triangle-down';
-import SearchIconComponent from '../icon/search';
-import { LocaleContext } from '../locale';
-import type { Locale } from '../locale';
-import { Popover, PLACEMENT, ACCESSIBILITY_TYPE } from '../popover';
-import { UIDConsumer } from 'react-uid';
+import { getOverrides, mergeOverrides } from "../helpers/overrides";
+import DeleteAlt from "../icon/delete-alt";
+import TriangleDownIcon from "../icon/triangle-down";
+import SearchIconComponent from "../icon/search";
+import { LocaleContext } from "../locale";
+import type { Locale } from "../locale";
+import { Popover, PLACEMENT, ACCESSIBILITY_TYPE } from "../popover";
+import { UIDConsumer } from "react-uid";
 
-import AutosizeInput from './autosize-input';
-import { TYPE, STATE_CHANGE_TYPE, SIZE } from './constants';
-import defaultProps from './default-props';
-import SelectDropdown from './dropdown';
+import AutosizeInput from "./autosize-input";
+import { TYPE, STATE_CHANGE_TYPE, SIZE } from "./constants";
+import defaultProps from "./default-props";
+import SelectDropdown from "./dropdown";
 import {
   StyledRoot,
   StyledControlContainer,
@@ -29,11 +29,17 @@ import {
   StyledIconsContainer,
   StyledSearchIconContainer,
   StyledLoadingIndicator,
-} from './styled-components';
-import type { SelectProps, SelectState, Value, Option, ChangeAction } from './types';
-import { expandValue, normalizeOptions } from './utils';
+} from "./styled-components";
+import type {
+  SelectProps,
+  SelectState,
+  Value,
+  Option,
+  ChangeAction,
+} from "./types";
+import { expandValue, normalizeOptions } from "./utils";
 
-import type { SyntheticEvent, ChangeEvent } from 'react';
+import type { SyntheticEvent, ChangeEvent } from "react";
 
 // @ts-ignore
 function Noop() {
@@ -41,7 +47,7 @@ function Noop() {
 }
 
 // @ts-ignore
-const isClick = (event) => event.type === 'click';
+const isClick = (event) => event.type === "click";
 // @ts-ignore
 const isLeftClick = (event) =>
   event.button !== null && event.button !== undefined && event.button === 0;
@@ -58,8 +64,8 @@ export function isInteractive(rootTarget: EventTarget, rootElement: Element) {
   if (rootTarget instanceof Element) {
     let target: Element | undefined | null = rootTarget;
     while (target && target !== rootElement) {
-      const role = target.getAttribute('role');
-      if (role === 'button' || role === 'link') {
+      const role = target.getAttribute("role");
+      if (role === "button" || role === "link") {
         return true;
       }
       if (target.tagName) target = target.parentElement;
@@ -112,7 +118,7 @@ class Select extends React.Component<SelectProps, SelectState> {
   state = {
     // @ts-ignore
     activeDescendant: null,
-    inputValue: '',
+    inputValue: "",
     isFocused: false,
     isOpen: this.props.startOpen,
     isPseudoFocused: false,
@@ -127,7 +133,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     this.isItMounted = true;
 
     const { controlRef } = this.props;
-    if (controlRef && typeof controlRef !== 'function') {
+    if (controlRef && typeof controlRef !== "function") {
       controlRef.current = {
         setDropdownOpen: this.handleDropdownOpen.bind(this),
         setInputValue: this.handleSetInputValue.bind(this),
@@ -145,23 +151,26 @@ class Select extends React.Component<SelectProps, SelectState> {
       if (prevState.isOpen !== this.state.isOpen) {
         if (this.state.isOpen) {
           this.props.onOpen && this.props.onOpen();
-          document.addEventListener('touchstart', this.handleTouchOutside);
+          document.addEventListener("touchstart", this.handleTouchOutside);
         } else {
           this.props.onClose && this.props.onClose();
-          document.removeEventListener('touchstart', this.handleTouchOutside);
+          document.removeEventListener("touchstart", this.handleTouchOutside);
         }
       }
 
       if (!prevState.isFocused && this.state.isFocused) {
-        setTimeout(() => document.addEventListener('click', this.handleClickOutside), 0);
+        setTimeout(
+          () => document.addEventListener("click", this.handleClickOutside),
+          0,
+        );
       }
     }
   }
 
   componentWillUnmount() {
     if (__BROWSER__) {
-      document.removeEventListener('touchstart', this.handleTouchOutside);
-      document.removeEventListener('click', this.handleClickOutside);
+      document.removeEventListener("touchstart", this.handleTouchOutside);
+      document.removeEventListener("click", this.handleClickOutside);
     }
     this.isItMounted = false;
   }
@@ -274,7 +283,7 @@ class Select extends React.Component<SelectProps, SelectState> {
       // the input, and the user closes the dropdown menu the provided text is maintained. After
       // this, if the user focuses back into the select component then clicks on the component,
       // the provided text highlights rather than position's the cursor at the end of the input.
-      if (this.input) this.input.value = '';
+      if (this.input) this.input.value = "";
 
       this.setState((prev) => ({
         isOpen: !this.focusAfterClear && !prev.isOpen,
@@ -295,7 +304,7 @@ class Select extends React.Component<SelectProps, SelectState> {
   closeMenu() {
     if (this.props.onCloseResetsInput) {
       this.setState({
-        inputValue: '',
+        inputValue: "",
         isOpen: false,
         isPseudoFocused: this.state.isFocused && !this.props.multi,
       });
@@ -345,7 +354,7 @@ class Select extends React.Component<SelectProps, SelectState> {
         isFocused: false,
         isOpen: false,
         isPseudoFocused: false,
-        inputValue: this.props.onBlurResetsInput ? '' : this.state.inputValue,
+        inputValue: this.props.onBlurResetsInput ? "" : this.state.inputValue,
       });
     }
   };
@@ -379,7 +388,11 @@ class Select extends React.Component<SelectProps, SelectState> {
     if (this.props.disabled) return;
     switch (event.keyCode) {
       case 8: // backspace
-        if (!this.state.inputValue && this.props.clearable && this.props.backspaceRemoves) {
+        if (
+          !this.state.inputValue &&
+          this.props.clearable &&
+          this.props.backspaceRemoves
+        ) {
           event.preventDefault();
           this.backspaceValue();
         }
@@ -392,11 +405,15 @@ class Select extends React.Component<SelectProps, SelectState> {
           inputValue:
             !this.props.onCloseResetsInput || !this.props.onBlurResetsInput
               ? prevState.inputValue
-              : '',
+              : "",
         }));
         break;
       case 27: // escape
-        if (!this.state.isOpen && this.props.clearable && this.props.escapeClearsValue) {
+        if (
+          !this.state.isOpen &&
+          this.props.clearable &&
+          this.props.escapeClearsValue
+        ) {
           this.clearValue(event);
           this.setState({ isFocused: false, isPseudoFocused: false });
         }
@@ -472,7 +489,7 @@ class Select extends React.Component<SelectProps, SelectState> {
         $disabled: boolean;
         $isHighlighted: boolean;
       };
-    }
+    },
   ): React.ReactNode =>
     option.isCreatable
       ? // @ts-ignore
@@ -496,7 +513,11 @@ class Select extends React.Component<SelectProps, SelectState> {
     return value.map((value) => expandValue(value, this.props));
   }
 
-  setValue(value: Value, option: Option | undefined | null, type: ChangeAction) {
+  setValue(
+    value: Value,
+    option: Option | undefined | null,
+    type: ChangeAction,
+  ) {
     if (this.props.onChange) {
       this.props.onChange({
         value,
@@ -517,27 +538,29 @@ class Select extends React.Component<SelectProps, SelectState> {
   handleInputRef = (input: HTMLInputElement) => {
     this.input = input;
 
-    if (typeof this.props.inputRef === 'function') {
+    if (typeof this.props.inputRef === "function") {
       this.props.inputRef(input);
     } else if (this.props.inputRef) {
       // @ts-expect-error todo(flow->ts) MutableRefObject
       this.props.inputRef.current = input;
     }
 
-    if (this.props.controlRef && typeof this.props.controlRef === 'function') {
+    if (this.props.controlRef && typeof this.props.controlRef === "function") {
       // @ts-expect-error todo(flow->ts) according to types this code is not reachable
       this.props.controlRef(input);
     }
   };
 
   selectValue = ({ item }: { item: Option }) => {
-    if (item.disabled) {
+    if (this.props.disabled || item.disabled) {
       return;
     }
     this.justSelected = true;
     // NOTE: we add/set the value in a callback to make sure the
     // input value is empty to avoid styling issues in Chrome
-    const updatedValue = this.props.onSelectResetsInput ? '' : this.state.inputValue;
+    const updatedValue = this.props.onSelectResetsInput
+      ? ""
+      : this.state.inputValue;
     if (this.props.multi) {
       this.setState(
         {
@@ -547,12 +570,16 @@ class Select extends React.Component<SelectProps, SelectState> {
         () => {
           const valueArray = this.props.value;
           // @ts-ignore
-          if (valueArray.some((i) => i[this.props.valueKey] === item[this.props.valueKey])) {
+          if (
+            valueArray.some(
+              (i) => i[this.props.valueKey] === item[this.props.valueKey],
+            )
+          ) {
             this.removeValue(item);
           } else {
             this.addValue(item);
           }
-        }
+        },
       );
     } else {
       this.focus();
@@ -565,7 +592,7 @@ class Select extends React.Component<SelectProps, SelectState> {
         },
         () => {
           this.setValue([item], item, STATE_CHANGE_TYPE.select);
-        }
+        },
       );
     }
   };
@@ -585,7 +612,10 @@ class Select extends React.Component<SelectProps, SelectState> {
     const renderLabel = this.props.getValueLabel || this.getValueLabel;
     const labelForInput = renderLabel({ option: item, index: valueLength - 1 });
     // label might not be a string, it might be a Node of another kind.
-    if (!this.props.backspaceClearsInputValue && typeof labelForInput === 'string') {
+    if (
+      !this.props.backspaceClearsInputValue &&
+      typeof labelForInput === "string"
+    ) {
       const remainingInput = labelForInput.slice(0, -1);
       this.setState({
         inputValue: remainingInput,
@@ -609,9 +639,11 @@ class Select extends React.Component<SelectProps, SelectState> {
     const valueArray = [...this.props.value];
     this.setValue(
       // @ts-ignore
-      valueArray.filter((i) => i[this.props.valueKey] !== item[this.props.valueKey]),
+      valueArray.filter(
+        (i) => i[this.props.valueKey] !== item[this.props.valueKey],
+      ),
       item,
-      STATE_CHANGE_TYPE.remove
+      STATE_CHANGE_TYPE.remove,
     );
     this.focus();
   };
@@ -620,11 +652,13 @@ class Select extends React.Component<SelectProps, SelectState> {
     if (isClick(event) && !isLeftClick(event)) return;
 
     if (this.props.value) {
-      const resetValue = this.props.value.filter((item) => item.clearableValue === false);
+      const resetValue = this.props.value.filter(
+        (item) => item.clearableValue === false,
+      );
       this.setValue(resetValue, null, STATE_CHANGE_TYPE.clear);
     }
     this.setState({
-      inputValue: '',
+      inputValue: "",
       isOpen: false,
     });
 
@@ -633,7 +667,10 @@ class Select extends React.Component<SelectProps, SelectState> {
   };
 
   shouldShowPlaceholder = () => {
-    return !(this.state.inputValue || (this.props.value && this.props.value.length));
+    return !(
+      this.state.inputValue ||
+      (this.props.value && this.props.value.length)
+    );
   };
 
   shouldShowValue = () => {
@@ -645,7 +682,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     const { overrides = {} } = this.props;
     const [LoadingIndicator, loadingIndicatorProps] = getOverrides(
       overrides.LoadingIndicator,
-      StyledLoadingIndicator
+      StyledLoadingIndicator,
     );
 
     return (
@@ -655,14 +692,14 @@ class Select extends React.Component<SelectProps, SelectState> {
           LoadingIndicator children can be overriden if required. */}
         <span
           style={{
-            position: 'absolute',
-            width: '1px',
-            height: '1px',
+            position: "absolute",
+            width: "1px",
+            height: "1px",
             padding: 0,
-            margin: '-1px',
-            overflow: 'hidden',
-            clip: 'rect(0,0,0,0)',
-            whiteSpace: 'nowrap',
+            margin: "-1px",
+            overflow: "hidden",
+            clip: "rect(0,0,0,0)",
+            whiteSpace: "nowrap",
             border: 0,
           }}
         >
@@ -673,8 +710,12 @@ class Select extends React.Component<SelectProps, SelectState> {
   }
 
   renderValue(
-    valueArray: Value
-  ): React.ReactNode | undefined | null | Array<React.ReactNode | undefined | null> {
+    valueArray: Value,
+  ):
+    | React.ReactNode
+    | undefined
+    | null
+    | Array<React.ReactNode | undefined | null> {
     const { overrides = {} } = this.props;
     const sharedProps = this.getSharedProps();
     const renderLabel = this.props.getValueLabel || this.getValueLabel;
@@ -684,7 +725,8 @@ class Select extends React.Component<SelectProps, SelectState> {
     }
     if (this.props.multi) {
       return valueArray.map((value, i) => {
-        const disabled = sharedProps.$disabled || value.clearableValue === false;
+        const disabled =
+          sharedProps.$disabled || value.clearableValue === false;
         return (
           <Value
             value={value}
@@ -719,7 +761,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     const { overrides = {} } = this.props;
     const [InputContainer, inputContainerProps] = getOverrides(
       overrides.InputContainer,
-      StyledInputContainer
+      StyledInputContainer,
     );
     const sharedProps = this.getSharedProps();
     const isOpen = this.state.isOpen;
@@ -727,18 +769,18 @@ class Select extends React.Component<SelectProps, SelectState> {
     const selected = this.getValueArray(this.props.value)
       // @ts-ignore
       .map((v) => v[this.props.labelKey])
-      .join(', ');
-    const selectedLabel = selected.length ? `Selected ${selected}. ` : '';
-    const label = `${selectedLabel}${this.props['aria-label'] || ''}`;
+      .join(", ");
+    const selectedLabel = selected.length ? `Selected ${selected}. ` : "";
+    const label = `${selectedLabel}${this.props["aria-label"] || ""}`;
 
     if (!this.props.searchable) {
       return (
         <InputContainer
           aria-activedescendant={this.state.activeDescendant}
-          aria-describedby={this.props['aria-describedby']}
-          aria-errormessage={this.props['aria-errormessage']}
+          aria-describedby={this.props["aria-describedby"]}
+          aria-errormessage={this.props["aria-errormessage"]}
           aria-disabled={this.props.disabled}
-          aria-labelledby={this.props['aria-labelledby']}
+          aria-labelledby={this.props["aria-labelledby"]}
           aria-label={label}
           aria-owns={this.state.isOpen ? listboxId : null}
           aria-required={this.props.required || null}
@@ -756,8 +798,8 @@ class Select extends React.Component<SelectProps, SelectState> {
             style={{
               opacity: 0,
               width: 0,
-              overflow: 'hidden',
-              border: 'none',
+              overflow: "hidden",
+              border: "none",
               padding: 0,
             }}
             tabIndex={-1}
@@ -779,12 +821,12 @@ class Select extends React.Component<SelectProps, SelectState> {
           aria-activedescendant={this.state.activeDescendant}
           aria-autocomplete="list"
           aria-controls={this.state.isOpen ? listboxId : null}
-          aria-describedby={this.props['aria-describedby']}
-          aria-errormessage={this.props['aria-errormessage']}
+          aria-describedby={this.props["aria-describedby"]}
+          aria-errormessage={this.props["aria-errormessage"]}
           aria-expanded={isOpen}
           aria-haspopup="listbox"
           aria-label={label}
-          aria-labelledby={this.props['aria-labelledby']}
+          aria-labelledby={this.props["aria-labelledby"]}
           aria-required={this.props.required || null}
           disabled={this.props.disabled || null}
           id={this.props.id || null}
@@ -805,19 +847,27 @@ class Select extends React.Component<SelectProps, SelectState> {
 
   renderClear() {
     const isValueEntered = Boolean(
-      (this.props.value && this.props.value.length) || this.state.inputValue
+      (this.props.value && this.props.value.length) || this.state.inputValue,
     );
 
-    if (!this.props.clearable || this.props.disabled || this.props.isLoading || !isValueEntered) {
+    if (
+      !this.props.clearable ||
+      this.props.disabled ||
+      this.props.isLoading ||
+      !isValueEntered
+    ) {
       return;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { $size, ...sharedProps } = this.getSharedProps();
     const { overrides = {} } = this.props;
-    const [ClearIcon, clearIconProps] = getOverrides(overrides.ClearIcon, DeleteAlt);
+    const [ClearIcon, clearIconProps] = getOverrides(
+      overrides.ClearIcon,
+      DeleteAlt,
+    );
 
-    const ariaLabel = this.props.multi ? 'Clear all' : 'Clear value';
+    const ariaLabel = this.props.multi ? "Clear all" : "Clear value";
     const sizes = {
       [SIZE.mini]: 15,
       [SIZE.compact]: 15,
@@ -847,18 +897,23 @@ class Select extends React.Component<SelectProps, SelectState> {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { $size, ...sharedProps } = this.getSharedProps();
     const { overrides = {} } = this.props;
-    const [SelectArrow, selectArrowProps] = getOverrides(overrides.SelectArrow, TriangleDownIcon);
+    const [SelectArrow, selectArrowProps] = getOverrides(
+      overrides.SelectArrow,
+      TriangleDownIcon,
+    );
     selectArrowProps.overrides = mergeOverrides(
       {
         Svg: {
           style: ({ $theme, $disabled }) => {
             return {
-              color: $disabled ? $theme.colors.inputTextDisabled : $theme.colors.contentPrimary,
+              color: $disabled
+                ? $theme.colors.inputTextDisabled
+                : $theme.colors.contentPrimary,
             };
           },
         },
       },
-      selectArrowProps.overrides
+      selectArrowProps.overrides,
     );
 
     const sizes = {
@@ -872,7 +927,7 @@ class Select extends React.Component<SelectProps, SelectState> {
       <SelectArrow
         // @ts-ignore
         size={sizes[this.props.size] || sizes[SIZE.default]}
-        title={'open'}
+        title={"open"}
         {...sharedProps}
         {...selectArrowProps}
       />
@@ -886,14 +941,22 @@ class Select extends React.Component<SelectProps, SelectState> {
     const { overrides = {} } = this.props;
     const [SearchIconContainer, searchIconContainerProps] = getOverrides(
       overrides.SearchIconContainer,
-      StyledSearchIconContainer
+      StyledSearchIconContainer,
     );
-    const [SearchIcon, searchIconProps] = getOverrides(overrides.SearchIcon, SearchIconComponent);
+    const [SearchIcon, searchIconProps] = getOverrides(
+      overrides.SearchIcon,
+      SearchIconComponent,
+    );
     const sharedProps = this.getSharedProps();
 
     return (
       <SearchIconContainer {...sharedProps} {...searchIconContainerProps}>
-        <SearchIcon size={16} title={'search'} {...sharedProps} {...searchIconProps} />
+        <SearchIcon
+          size={16}
+          title={"search"}
+          {...sharedProps}
+          {...searchIconProps}
+        />
       </SearchIconContainer>
     );
   }
@@ -902,17 +965,24 @@ class Select extends React.Component<SelectProps, SelectState> {
     const filterValue = this.state.inputValue.trim();
     // apply filter function
     if (this.props.filterOptions) {
-      this.options = this.props.filterOptions(this.options, filterValue, excludeOptions, {
-        // @ts-ignore
-        valueKey: this.props.valueKey,
-        // @ts-ignore
-        labelKey: this.props.labelKey,
-      });
+      this.options = this.props.filterOptions(
+        this.options,
+        filterValue,
+        excludeOptions,
+        {
+          // @ts-ignore
+          valueKey: this.props.valueKey,
+          // @ts-ignore
+          labelKey: this.props.labelKey,
+        },
+      );
     }
     // can user create a new option + there's no exact match already
     const filterDoesNotMatchOption = this.props.ignoreCase
       ? // @ts-ignore
-        (opt) => opt[this.props.labelKey].toLowerCase() !== filterValue.toLowerCase().trim()
+        (opt) =>
+          opt[this.props.labelKey].toLowerCase() !==
+          filterValue.toLowerCase().trim()
       : // @ts-ignore
         (opt) => opt[this.props.labelKey] !== filterValue.trim();
     if (
@@ -973,13 +1043,20 @@ class Select extends React.Component<SelectProps, SelectState> {
   render() {
     this.options = normalizeOptions(this.props.options);
 
-    const { overrides = {}, type, multi, noResultsMsg, value, filterOutSelected } = this.props;
+    const {
+      overrides = {},
+      type,
+      multi,
+      noResultsMsg,
+      value,
+      filterOutSelected,
+    } = this.props;
 
     if (__DEV__) {
       // value may be nullish, only warn if value is defined
       if (value && !Array.isArray(value)) {
         console.warn(
-          'The Select component expects an array as the value prop. For more information, please visit the docs at https://baseweb.design/components/select/'
+          "The Select component expects an array as the value prop. For more information, please visit the docs at https://baseweb.design/components/select/",
         );
       }
     }
@@ -987,23 +1064,31 @@ class Select extends React.Component<SelectProps, SelectState> {
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [ControlContainer, controlContainerProps] = getOverrides(
       overrides.ControlContainer,
-      StyledControlContainer
+      StyledControlContainer,
     );
     const [ValueContainer, valueContainerProps] = getOverrides(
       overrides.ValueContainer,
-      StyledValueContainer
+      StyledValueContainer,
     );
     const [IconsContainer, iconsContainerProps] = getOverrides(
       overrides.IconsContainer,
-      StyledIconsContainer
+      StyledIconsContainer,
     );
-    const [PopoverOverride, popoverProps] = getOverrides(overrides.Popover, Popover);
-    const [Placeholder, placeholderProps] = getOverrides(overrides.Placeholder, StyledPlaceholder);
+    const [PopoverOverride, popoverProps] = getOverrides(
+      overrides.Popover,
+      Popover,
+    );
+    const [Placeholder, placeholderProps] = getOverrides(
+      overrides.Placeholder,
+      StyledPlaceholder,
+    );
     const sharedProps = this.getSharedProps();
 
     // @ts-ignore
     const valueArray = this.getValueArray(value);
-    const options = this.filterOptions(multi && filterOutSelected ? valueArray : null);
+    const options = this.filterOptions(
+      multi && filterOutSelected ? valueArray : null,
+    );
     const isOpen = this.state.isOpen;
     sharedProps.$isOpen = isOpen;
 
@@ -1011,7 +1096,7 @@ class Select extends React.Component<SelectProps, SelectState> {
       if (this.props.error && this.props.positive) {
         // eslint-disable-next-line no-console
         console.warn(
-          `[Select] \`error\` and \`positive\` are both set to \`true\`. \`error\` will take precedence but this may not be what you want.`
+          `[Select] \`error\` and \`positive\` are both set to \`true\`. \`error\` will take precedence but this may not be what you want.`,
         );
       }
     }
@@ -1043,7 +1128,8 @@ class Select extends React.Component<SelectProps, SelectState> {
                     error: this.props.error,
                     positive: this.props.positive,
                     getOptionLabel:
-                      this.props.getOptionLabel || this.getOptionLabel.bind(this, locale),
+                      this.props.getOptionLabel ||
+                      this.getOptionLabel.bind(this, locale),
                     id: listboxId,
                     isLoading: this.props.isLoading,
                     labelKey: this.props.labelKey,
@@ -1060,12 +1146,19 @@ class Select extends React.Component<SelectProps, SelectState> {
                     type,
                     value: valueArray,
                     valueKey: this.props.valueKey,
-                    width: this.anchor.current ? this.anchor.current.clientWidth : null,
+                    width: this.anchor.current
+                      ? this.anchor.current.clientWidth
+                      : null,
                     keyboardControlNode: this.anchor,
                   };
 
                   // @ts-ignore
-                  return <SelectDropdown innerRef={this.dropdown} {...dropdownProps} />;
+                  return (
+                    <SelectDropdown
+                      innerRef={this.dropdown}
+                      {...dropdownProps}
+                    />
+                  );
                 }}
                 placement={PLACEMENT.bottom}
                 {...popoverProps}
@@ -1092,7 +1185,7 @@ class Select extends React.Component<SelectProps, SelectState> {
                       {this.renderInput(listboxId)}
                       {this.shouldShowPlaceholder() ? (
                         <Placeholder {...sharedProps} {...placeholderProps}>
-                          {typeof this.props.placeholder !== 'undefined'
+                          {typeof this.props.placeholder !== "undefined"
                             ? this.props.placeholder
                             : locale.select.placeholder}
                         </Placeholder>
