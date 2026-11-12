@@ -14,6 +14,7 @@ import {
   queryByTestId,
   queryAllByTestId,
   getByText,
+  waitFor,
 } from '@testing-library/react';
 
 import { TestBaseProvider } from '../../test/test-utils';
@@ -61,6 +62,37 @@ describe('Datepicker', () => {
 
     const after = queryByTestId(container, 'calendar');
     expect(after).not.toBeNull();
+  });
+
+  it('does not select a date when an open datepicker becomes disabled', async () => {
+    const onChange = jest.fn();
+    const picker = (disabled: boolean) => (
+      <TestBaseProvider>
+        <Datepicker
+          disabled={disabled}
+          onChange={onChange}
+          value={new Date(2021, 10, 25)}
+          overrides={{ CalendarContainer: { props: { 'data-testid': 'calendar' } } }}
+        />
+      </TestBaseProvider>
+    );
+    const { container, rerender } = render(picker(false));
+    const input = container.querySelector('input')!;
+
+    fireEvent.focus(input);
+    const day = getByText(getByTestId(document.body, 'calendar'), '26');
+
+    rerender(picker(true));
+    fireEvent.click(day);
+
+    expect(onChange).not.toHaveBeenCalled();
+    await waitFor(() => expect(queryByTestId(document.body, 'calendar')).toBeNull());
+
+    rerender(picker(false));
+    expect(queryByTestId(document.body, 'calendar')).toBeNull();
+    fireEvent.focus(input);
+    fireEvent.click(getByText(getByTestId(document.body, 'calendar'), '26'));
+    expect(onChange).toHaveBeenCalledWith({ date: new Date(2021, 10, 26) });
   });
 
   it('calls provided onChange handler', () => {

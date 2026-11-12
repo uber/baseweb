@@ -117,6 +117,8 @@ export default class Datepicker<T = Date> extends React.Component<
   onCalendarSelect: (a: {
     readonly date: T | undefined | null | Array<T | undefined | null>;
   }) => void = (data) => {
+    if (this.props.disabled) return;
+
     let isOpen = false;
     let isPseudoFocused = false;
     let calendarFocused = false;
@@ -252,6 +254,8 @@ export default class Datepicker<T = Date> extends React.Component<
   };
 
   open = (inputRole?: InputRole) => {
+    if (this.props.disabled) return;
+
     this.setState(
       {
         isOpen: true,
@@ -470,6 +474,9 @@ export default class Datepicker<T = Date> extends React.Component<
   };
 
   componentDidUpdate(prevProps: DatepickerProps<T>) {
+    if (this.props.disabled && !prevProps.disabled && this.state.isOpen) {
+      this.close();
+    }
     if (prevProps.value !== this.props.value) {
       this.setState({
         inputValue: this.formatDisplayValue(this.props.value),
