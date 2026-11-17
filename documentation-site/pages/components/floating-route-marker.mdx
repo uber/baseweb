@@ -124,7 +124,7 @@ A floating route marker that cycles through the different pointer positions ever
   <ReactMapGL />
 </Example>
 
-A floating route map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a floating route map marker in react-map-gl, wrap the floating marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
+A floating route map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a floating route map marker in react-map-gl, wrap the floating marker with a [`<Marker/>`](https://github.com/visgl/react-map-gl/blob/v5.2.13/docs/api-reference/marker.md) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
 
 A helper function `calculateFloatingRouteMarkerOffsets` is available to help position the marker in the proper geographical position within a map. Use this helper function inside of the `style` transform within the `Root` override.
 
