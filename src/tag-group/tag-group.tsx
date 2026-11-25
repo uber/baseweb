@@ -8,7 +8,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { KIND, SIZE } from '../tag';
-import { getOverrides } from '../helpers/overrides';
+import type { TagProps } from '../tag';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
 
 import { StyledRoot } from './styled-components';
 import type { TagGroupProps } from './types';
@@ -30,7 +31,7 @@ const TagGroup = React.forwardRef<HTMLDivElement, TagGroupProps>((props, ref) =>
   return (
     <Root ref={ref} {...styleProps} {...rootProps}>
       {React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) {
+        if (!React.isValidElement<TagProps>(child)) {
           return null;
         }
 
@@ -45,16 +46,13 @@ const TagGroup = React.forwardRef<HTMLDivElement, TagGroupProps>((props, ref) =>
           closeable: false,
           // Single Tag has default margin, reset it to 0 in TagGroup
           noMargin: true,
-          overrides: {
-            Root: {
-              style: {
-                ...(wrap ? { maxWidth: '100%' } : {}), // ensure wrapping works correctly even if Tag itself has a custom maxWidth(Tag has a default maxWidth 128px on Text inside)
-                ...child.props.overrides?.Root?.style,
-              },
-              ...child.props.overrides?.Root,
-            },
-            ...child.props.overrides,
-          },
+          // Deep merge so the child's own overrides (props, style objects or style
+          // functions) never drop the wrap constraint; child values still win on conflict.
+          overrides: mergeOverrides(
+            // ensure wrapping works correctly even if Tag itself has a custom maxWidth(Tag has a default maxWidth 128px on Text inside)
+            wrap ? { Root: { style: { maxWidth: '100%' } } } : {},
+            child.props.overrides
+          ),
         });
       })}
     </Root>
